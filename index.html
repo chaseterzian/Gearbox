@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="./data.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" media="screen">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+
+  <canvas id="canvas" width='2000px' height='3500px'>
+  <script>
+
+  function gForceXyz(data, xyzStart, xyzStop) {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var time = 0;
+    ctx.beginPath();
+
+    for (var i=xyzStart; i < xyzStop; i=i+10) {
+      ctx.lineTo(time*3, data[i][1]*200);//xPosition
+      ctx.stroke();
+      ctx.lineWidth = 1;
+      time++;
+    }
+    time=0;
+    for (var i=xyzStart; i < xyzStop; i=i+10) {
+      ctx.lineTo(time*3, (data[i][2]*200+500));//yPosition
+      ctx.stroke();
+      ctx.lineWidth = 1;
+      time++;
+    }
+    time=0;
+    for (var i=xyzStart; i < xyzStop; i=i+10) {
+      ctx.lineTo(time*3, (data[i][3]*200+1000));
+      ctx.stroke();
+      ctx.lineWidth = 1;
+      time++;
+    }
+    ctx.closePath();
+  }
+
+  gForceXyz(sData, 2000, 8000);
+  </script>
+</canvas>
+
+hello
+</body>

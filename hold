@@ -1,0 +1,46 @@
+<canvas id="canvas" width='2000px' height='1000px'>
+  <script>
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+
+  ctx.beginPath();
+  for (var i=0; i < 1000; i=i+1) {
+
+    ctx.lineTo(sData[i][1] * 500, sData[i][2] * 500);
+    ctx.stroke();
+  }
+  ctx.closePath();
+  </script>
+</canvas>
+
+<hr>
+
+<canvas id="canvas2" width='2000px' height='1000px'>
+  <script>
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+
+  ctx.beginPath();
+  for (var i=0; i < 15000; i=i+10) {
+
+    ctx.lineTo(sData[i][1] * 500, sData[i][2] * 500);
+    ctx.stroke();
+  }
+  ctx.closePath();
+  </script>
+</canvas>
+
+===============================================
+function nothing() {
+  ctx.beginPath();
+  for (var i=8000; i < 8200; i=i+1) {
+
+    setTimeout(function () {
+      ctx.lineTo(sData[i][1] * 1000, sData[i][2] * 500);
+      ctx.stroke();
+    }, sData[i][0]);
+    console.log(i);
+  }
+  ctx.closePath();
+}
+nothing();
