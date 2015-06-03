@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="./data.js"></script>
+  <script src="./timeout.js"></script>
+  <script src="./app.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+
+  <canvas id="canvas" width='2000px' height='2000px'>
+  <script>
+
+  function gForceTwoAxis(data, start, stop) {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    for (var i=start; i < stop; i=i+10) {
+      ctx.lineTo(data[i][1]*500, data[i][2]*500);
+      ctx.stroke();
+      ctx.lineWidth = 1;
+    }
+    ctx.closePath();
+  }
+  gForceTwoAxis(sData, 4000, 4500);
+
+  </script>
+</canvas>
+
+<hr>
+<div><a href="./index.html">Home</a></div>
+<hr>
+
+</body>

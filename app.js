@@ -1,4 +1,7 @@
 require('./data.js');
+require('./dataSpin3.js');
+
+
 
 function highestG(data) {//consoleZ max
 	var highG = 0;
@@ -17,6 +20,7 @@ function allAxes(data) {//consoleXYZ with time
 	}
 	return dataXYZ;
 }
+
 // console.log(allAxes(sData));
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
