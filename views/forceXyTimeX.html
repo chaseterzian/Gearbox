@@ -20,56 +20,65 @@
 </head>
 <body>
 
-  <canvas id="canvas" width='2000px' height='2000px'>
+  <canvas id="canvas" width='15000px' height='8000px'>
   <script>
   $(document).ready(function() {
-    // data, start, stop, multiX, multiY, dropDataPoints
-    // forceXyTimeX(dataSpin3, 0, 5000, 500, 500, 1);
-    // forceXyTimeX(dataAccelAndBrake, 0000, 4489, 1000, 1000, 1);
-    // forceXyTimeX(data5MileUp, 0000, 20000, 1000, 1000, 20);
 
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-    // ctx.beginPath();
+    var int = 0;
 
-    function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
-
-      var tOut = 0;
-
-      for (var i=start; i<stop; i=i + dropDataPoints) {
+    function forceXTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
+      for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
         setTimeout(function () {
-          // console.log(data5MileUp[tOut][1]);
-          ctx.lineTo((data5MileUp[tOut][1]*1000) + tOut, (data5MileUp[tOut][2]*1000));
+          ctx.lineTo(int, (data[start][1]*multiX)+2000);
           ctx.stroke();
-          ctx.lineWidth = 1;
-          tOut = tOut + 1;
-    }, i*1);
-          console.log(i);
-          console.log(tOut);
+          ctx.lineWidth = 15;
+          start += dropDataPoints;
+          int += dropDataPoints;
+        }, ii*data[ii][0]); //CRAZY HOW ii WORKS HERE, SHOULDNT(ii)
       }
-      // ctx.closePath();
     }
-    //
-    //
-    // 		var canvas = document.getElementById('canvas');
-    // 		var ctx = canvas.getContext('2d');
-    // 		ctx.beginPath();
-    //
-    //
-    // 		for (var i=start; i<stop; i=i + dropDataPoints) {
-    // 				ctx.lineTo(data[i][1]*multiX, data[i][2]*multiY);
-    // 				ctx.stroke();
-    // 				ctx.lineWidth = 1;
-    // 			tOut = tOut + 1;
-    // 		}
-    // 		ctx.closePath();
-    forceXyTimeX(data5MileUp, 0000, 20000, 1000, 1000, 20);
-  });
-  </script>
-</canvas>
+    // console.log(int);
+    // function forceYTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
+    //   for (var y=start, ii=0; y<stop; y=y + dropDataPoints, ii=ii+1) {
+    //     setTimeout(function () {
+    //       ctx.lineTo(int, (data[start][2]*multiY)+2000);
+    //       ctx.stroke();
+    //       ctx.lineWidth = 15;
+    //       start += dropDataPoints;
+    //       int += dropDataPoints;
+    //     }, ii*data[ii][0]); //CRAZY HOW ii WORKS HERE, SHOULDNT(ii)
+    //   }
+    // }
+    // function forceZTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
+    //   for (var i=start, ii=0; i<stop; i=i + dropDataPoints, ii=ii+1) {
+    //     setTimeout(function () {
+    //       ctx.lineTo(int, (data[start][3]*multiY)+1500);
+    //       ctx.stroke();
+    //       ctx.lineWidth = 30;
+    //       start += dropDataPoints;
+    //       int += dropDataPoints;
+    //     }, ii*data[ii][0]); //CRAZY HOW ii WORKS HERE, SHOULDNT(ii)
+    //   }
+    // }
 
-<hr>
-<div><a href="./index.html" class="home">Home</a></div>
-<hr>
+    // data, start, stop, multiX, multiY, dropDataPoints
+    // forceYTimeX(data5MileDown, 0000, 24979, 500, 1000, 10);
+    forceXTimeX(data5MileUp, 10000, 25022, 1000, 1000, 1);
+    // forceYTimeX(data5MileUp, 0000, 29022, 1000, 1000, 10);
+    // forceZTimeX(data5MileUp, 20000, 22922, 500, 1000, 1);
+    // forceYTimeX(dataAccelAndBrake, 0000, 4489, 500, 500, 1);
+    // forceYTimeX(dataSpin3, 0000, 2800, 500, 500, 1);
+    // forceYTimeX(data5MileUp, 0000, 20000, 1000, 1000, 20);
+  });
+
+
+    </script>
+  </canvas>
+
+  <hr>
+  <div><a href="./index.html" class="home">Home</a></div>
+  <hr>
 
 </body>

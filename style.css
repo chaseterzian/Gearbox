@@ -23,5 +23,5 @@ h1{
 canvas {
   width: 98%;
   float: right;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
