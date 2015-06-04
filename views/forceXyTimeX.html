@@ -15,18 +15,56 @@
   <script src="../data/secFiveMileDown.js"></script>
   <script src="../data/secFiveMileUp.js"></script>
   <script src="../data/secToClass.js"></script>
-  <script src="../data/secToClass2.js"></script>
   <link rel="stylesheet" type="text/css" href="../style.css" media="screen">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
 
-<canvas id="canvas" width='2000px' height='2000px'>
+  <canvas id="canvas" width='2000px' height='2000px'>
   <script>
-    //data, start, stop, multiX, multiY, dropDataPoints
+  $(document).ready(function() {
+    // data, start, stop, multiX, multiY, dropDataPoints
     // forceXyTimeX(dataSpin3, 0, 5000, 500, 500, 1);
     // forceXyTimeX(dataAccelAndBrake, 0000, 4489, 1000, 1000, 1);
+    // forceXyTimeX(data5MileUp, 0000, 20000, 1000, 1000, 20);
+
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    // ctx.beginPath();
+
+    function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
+
+      var tOut = 0;
+
+      for (var i=start; i<stop; i=i + dropDataPoints) {
+        setTimeout(function () {
+          // console.log(data5MileUp[tOut][1]);
+          ctx.lineTo((data5MileUp[tOut][1]*1000) + tOut, (data5MileUp[tOut][2]*1000));
+          ctx.stroke();
+          ctx.lineWidth = 1;
+          tOut = tOut + 1;
+    }, i*1);
+          console.log(i);
+          console.log(tOut);
+      }
+      // ctx.closePath();
+    }
+    //
+    //
+    // 		var canvas = document.getElementById('canvas');
+    // 		var ctx = canvas.getContext('2d');
+    // 		ctx.beginPath();
+    //
+    //
+    // 		for (var i=start; i<stop; i=i + dropDataPoints) {
+    // 				ctx.lineTo(data[i][1]*multiX, data[i][2]*multiY);
+    // 				ctx.stroke();
+    // 				ctx.lineWidth = 1;
+    // 			tOut = tOut + 1;
+    // 		}
+    // 		ctx.closePath();
     forceXyTimeX(data5MileUp, 0000, 20000, 1000, 1000, 20);
+  });
   </script>
 </canvas>
 

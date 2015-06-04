@@ -11,7 +11,6 @@ require("../data/secCanyonUp.js");
 require("../data/secFiveMileDown.js");
 require("../data/secFiveMileUp.js");
 require("../data/secToClass.js");
-require("../data/secToClass2.js");
 
 
 function highestG(data) {//consoleZ max
@@ -78,20 +77,45 @@ function forceXy(data, start, stop, multiX, multiY, dropDataPoints) {
 	}
 	ctx.closePath();
 }
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
-	var canvas = document.getElementById('canvas');
-	var ctx = canvas.getContext('2d');
-	ctx.beginPath();
 
-	for (var i=start; i<stop; i=i + dropDataPoints) {
-		ctx.lineTo((data[i][1]*multiX) + i, (data[i][2]*multiY));
-		ctx.stroke();
-		ctx.lineWidth = 1;
-	}
-	ctx.closePath();
-}
+// function forceXy(data, start, stop, multiX, multiY, dropDataPoints) {
+// 	// $(document).ready(function() {
+//
+//
+// 		var canvas = document.getElementById('canvas');
+// 		var ctx = canvas.getContext('2d');
+// 		var tOut = 0;
+// 		ctx.beginPath();
+//
+//
+// 		for (var i=start; i<stop; i=i + dropDataPoints) {
+// 			setTimeout(function () {
+// 				ctx.lineTo(data[i][1]*multiX, data[i][2]*multiY);
+// 				ctx.stroke();
+// 				ctx.lineWidth = 1;
+// 				console.log(data[i][0]*300);
+// 			}, 10*tOut);
+// 			tOut = tOut + 1;
+// 		}
+// 		ctx.closePath();
+// 	// });
+// }
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+// function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
+// 	var canvas = document.getElementById('canvas');
+// 	var ctx = canvas.getContext('2d');
+// 	ctx.beginPath();
+//
+// 	for (var i=start; i<stop; i=i + dropDataPoints) {
+// 		ctx.lineTo((data[i][1]*multiX) + i, (data[i][2]*multiY));
+// 		ctx.stroke();
+// 		ctx.lineWidth = 1;
+// 	}
+// 	ctx.closePath();
+// }
+
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 function forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
