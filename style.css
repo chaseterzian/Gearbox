@@ -1,13 +1,22 @@
 body{
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding-left: 1%;
+  padding-top: 1%;
+  padding-right: 1%;
+  padding-bottom: 1%;
 
 }
 
 a{
   font-size: 30px;
+}
+
+h1{
+  text-align: center;
+}
+
+.home{
+  position: fixed;
+  left: 49%;
 }
 
 #canvas {

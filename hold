@@ -1,3 +1,40 @@
+application layout
+  -template
+  -universal();
+  -moustache
+canvas - sizing
+
+
+db:link to
+what would I use for (controller, model)
+routes necessary?
+server?
+
+
+make content responsive
+on canvas too
+
+-----------------
+TIMEOUT
+
+// $(document).ready(function() {
+//
+//   function nothing() {
+//     ctx.beginPath();
+//
+//     for (i=2000; i < 2200; i++) {
+//       setTimeout(function () {
+//         ctx.lineTo(sData[i][1] * 1000, sData[i][2] * 500);
+//         ctx.stroke();
+//       }, sData[i][0]*1000);
+//
+//       console.log(sData[i][0]*300);
+//     }
+//     ctx.closePath();
+//   }
+//
+// });
+------------------------------------------------------
 <canvas id="canvas" width='2000px' height='1000px'>
   <script>
   var canvas = document.getElementById('canvas');

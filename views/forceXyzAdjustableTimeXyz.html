@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Plot</title>
+  <script src="../app.js"></script>
+  <script src="../data/initSpin1.js"></script>
+  <script src="../data/initSpin2.js"></script>
+  <script src="../data/initSpin3.js"></script>
+  <script src="../data/initRunIndoor.js"></script>
+  <script src="../data/initSwing.js"></script>
+  <script src="../data/secAccelAndLeft.js"></script>
+  <script src="../data/secAccelBrake.js"></script>
+  <script src="../data/secCanyonDown.js"></script>
+  <script src="../data/secCanyonUp.js"></script>
+  <script src="../data/secFiveMileDown.js"></script>
+  <script src="../data/secFiveMileUp.js"></script>
+  <script src="../data/secToClass.js"></script>
+  <script src="../data/secToClass2.js"></script>
+  <link rel="stylesheet" type="text/css" href="../style.css" media="screen">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+
+
+<canvas id="canvas" width='2000px' height='2000px'>
+  <script>
+    // data, start, stop, multX, multY, multZ, timeMult, dropData
+    forceXyzAdjustableTimeXyz(dataSpin3, 1500, 2900, 100, 100, 100, 1, 1);
+  </script>
+</canvas>
+
+
+<hr>
+<div><a href="./index.html">Home</a></div>
+<hr>
+
+</body>
