@@ -16,10 +16,12 @@ h1{
 
 .home{
   position: fixed;
+  top: 95%;
   left: 49%;
 }
 
-#canvas {
-  /*border-top: 0px;*/
+canvas {
+  width: 98%;
+  float: right;
   border: 1px solid black;
 }

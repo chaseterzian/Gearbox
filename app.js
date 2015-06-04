@@ -1,9 +1,17 @@
-require('./data.js');
-require('./dataSpin1.js');
-require('./dataSpin3.js');
-require('./dataSpin2.js');
-require('./dataRunIndoor.js');
-require('./dataDown5Mile');
+require("../app.js");
+require("../data/initSpin1.js");
+require("../data/initSpin2.js");
+require("../data/initSpin3.js");
+require("../data/initRunIndoor.js");
+require("../data/initSwing.js");
+require("../data/secAccelAndLeft.js");
+require("../data/secAccelBrake.js");
+require("../data/secCanyonDown.js");
+require("../data/secCanyonUp.js");
+require("../data/secFiveMileDown.js");
+require("../data/secFiveMileUp.js");
+require("../data/secToClass.js");
+require("../data/secToClass2.js");
 
 
 function highestG(data) {//consoleZ max
@@ -14,7 +22,7 @@ function highestG(data) {//consoleZ max
 	return highG;
 }
 
-function allAxes(data) {//consoleXYZ with time
+function highestAllAxesWithTime(data) {//consoleXYZ with time
 	var dataXYZ = [['X',0,0],['Y',0,0],['Z',0,0]];
 	for (var i=0; i<data.length; i++) {
 		if (dataXYZ[0][2] < data[i][1]) { dataXYZ[0][2] = data[i][1]; dataXYZ[0][1] = data[i][0]; }
@@ -23,21 +31,11 @@ function allAxes(data) {//consoleXYZ with time
 	}
 	return dataXYZ;
 }
-
 console.log(highestG(sData));
-console.log(allAxes(sData));
-console.log(highestG(dataSpin3));
-console.log(allAxes(dataSpin3));
-console.log(highestG(dataSpin2));
-console.log(allAxes(dataSpin2));
-console.log(highestG(dataSpin1));
-console.log(allAxes(dataSpin1));
-console.log(highestG(dataRunIndoor));
-console.log(allAxes(dataRunIndoor));
-
+console.log(highestAllAxesWithTime(sData));
 
 ////////////////////////////////////////////////////////////////////////////////////////
-//named//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 function forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -67,7 +65,7 @@ function forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, d
 	ctx.closePath();
 }
 ////////////////////////////////////////////////////////////////////////////////////////
-//named//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 function forceXy(data, start, stop, multiX, multiY, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -81,7 +79,7 @@ function forceXy(data, start, stop, multiX, multiY, dropDataPoints) {
 	ctx.closePath();
 }
 ////////////////////////////////////////////////////////////////////////////////////////
-//named//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -95,7 +93,7 @@ function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
 	ctx.closePath();
 }
 ////////////////////////////////////////////////////////////////////////////////////////
-//named//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 function forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
