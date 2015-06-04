@@ -33,6 +33,32 @@ function highestAllAxesWithTime(data) {//consoleXYZ with time
 console.log(highestG(sData));
 console.log(highestAllAxesWithTime(sData));
 
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+// function forceXTimeX(data, start, stop, multiX, multiY, dropDataPoints, redlineG) {
+// var canvas = document.getElementById('canvas');
+// var ctx = canvas.getContext('2d');
+// var int = 0;
+// 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+// 		setTimeout(function () {
+// 			ctx.lineTo(int, (data[start][1]*multiX)+2000);
+// 			// ctx.lineTo(int, (data[start][2]*multiY)+2000);
+// 			// ctx.lineTo(int, (data[start][3]*multiY)+2000);
+// 			if (data[start][1] > redlineG) {
+// 				ctx.lineWidth = 15;
+// 				ctx.strokeStyle="#FF0000";
+// 				ctx.stroke();
+// 			} else {
+// 				ctx.lineWidth = 15;
+// 				ctx.strokeStyle="black";
+// 				ctx.stroke();
+// 			}
+// 			start += dropDataPoints;
+// 			int += dropDataPoints;
+// 		}, ii*data[ii][0]); //CRAZY HOW ii WORKS HERE, SHOULDNT(ii)
+// 	}
+// }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 function forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
