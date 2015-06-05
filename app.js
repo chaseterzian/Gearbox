@@ -11,8 +11,8 @@ require("../data/secCanyonUp.js");
 require("../data/secFiveMileDown.js");
 require("../data/secFiveMileUp.js");
 require("../data/secToClass.js");
-
-
+////////////////////////CL///////////////////////////////////////////////////////////////
+////////////////////////CL///////////////////////////////////////////////////////////////
 function highestG(data) {//consoleZ max
 	var highG = 0;
 	for (var i=0; i<data.length; i++) {
@@ -32,62 +32,75 @@ function highestAllAxesWithTime(data) {//consoleXYZ with time
 }
 console.log(highestG(sData));
 console.log(highestAllAxesWithTime(sData));
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-// function forceXTimeX(data, start, stop, multiX, multiY, dropDataPoints, redlineG) {
-// var canvas = document.getElementById('canvas');
-// var ctx = canvas.getContext('2d');
-// var int = 0;
-// 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-// 		setTimeout(function () {
-// 			ctx.lineTo(int, (data[start][1]*multiX)+2000);
-// 			// ctx.lineTo(int, (data[start][2]*multiY)+2000);
-// 			// ctx.lineTo(int, (data[start][3]*multiY)+2000);
-// 			if (data[start][1] > redlineG) {
-// 				ctx.lineWidth = 15;
-// 				ctx.strokeStyle="#FF0000";
-// 				ctx.stroke();
-// 			} else {
-// 				ctx.lineWidth = 15;
-// 				ctx.strokeStyle="black";
-// 				ctx.stroke();
-// 			}
-// 			start += dropDataPoints;
-// 			int += dropDataPoints;
-// 		}, ii*data[ii][0]); //CRAZY HOW ii WORKS HERE, SHOULDNT(ii)
-// 	}
-// }
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-function forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
+////////////////////////APP//////////////////////////////////////////////////////////////
+////////////////////////APP//////////////////////////////////////////////////////////////
+function forceXTime(data, start, stop, multiX, multiY, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
-	var time = 0;
-	ctx.beginPath();
+	var int = 0;
+		for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+			setTimeout(function () {
+				ctx.lineTo(int, (data[start][1]*-multiX)+1800);
+				ctx.lineWidth = 5;
+				ctx.stroke();
+				start += dropDataPoints;
+				int += dropDataPoints;
+			}, ii*data[ii][0]);
+		}
+}
 
-	for (var i=start; i<stop; i=i + dropDataPoints) {
-		ctx.lineTo(time*multiTime, data[i][1]*multiX);//xPosition
-		ctx.stroke();
-		ctx.lineWidth = 1;
-		time++;
+function forceYTime(data, start, stop, multiX, multiY, dropDataPoints) {
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	for (var y=start, ii=0; y<stop; y=y + dropDataPoints, ii=ii+1) {
+		setTimeout(function () {
+			ctx.lineTo(int, (data[start][2]*multiY)+1800);
+			ctx.stroke();
+			ctx.lineWidth = 10;
+			start += dropDataPoints;
+			int += dropDataPoints;
+		}, ii*data[ii][0]);
 	}
-	time=0;
-	for (var i=start; i<stop; i=i + dropDataPoints) {
-		ctx.lineTo(time*3, (data[i][2]*multiY)+500);//yPosition
-		ctx.stroke();
-		ctx.lineWidth = 1;
-		time++;
+}
+
+function forceZTime(data, start, stop, multiX, multiY, dropDataPoints) {
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	for (var i=start, ii=0; i<stop; i=i + dropDataPoints, ii=ii+1) {
+		setTimeout(function () {
+			ctx.lineTo(int, (data[start][3]*multiY)+1800);
+			ctx.stroke();
+			ctx.lineWidth = 10;
+			start += dropDataPoints;
+			int += dropDataPoints;
+		}, ii*data[ii][0]);
 	}
-	time=0;
-	for (var i=start; i<stop; i=i + dropDataPoints) {
-		ctx.lineTo(time*3, (data[i][3]*multiZ)+1000);
-		ctx.stroke();
-		ctx.lineWidth = 1;
-		time++;
-	}
-	ctx.closePath();
+}
+
+function forceXTimeRedline(data, start, stop, multiX, multiY, dropDataPoints, redlineG) {
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+		for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+			setTimeout(function () {
+				ctx.lineTo(int, (data[start][1]*-multiX)+1500);
+				// ctx.lineTo(int, (data[start][2]*multiY)+2000);
+				// ctx.lineTo(int, (data[start][3]*multiY)+2000);
+				if (data[start][1] > redlineG) {
+					ctx.lineWidth = 15;
+					ctx.strokeStyle="#FF0000";
+					ctx.stroke();
+				} else {
+					ctx.lineWidth = 15;
+					ctx.strokeStyle="rgba(0,0,0,1, .2)";
+					ctx.stroke();
+				}
+				start += dropDataPoints;
+				int += dropDataPoints;
+			}, ii*data[ii][0]);
+		}
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -104,89 +117,119 @@ function forceXy(data, start, stop, multiX, multiY, dropDataPoints) {
 	ctx.closePath();
 }
 
-// function forceXy(data, start, stop, multiX, multiY, dropDataPoints) {
-// 	// $(document).ready(function() {
-//
-//
-// 		var canvas = document.getElementById('canvas');
-// 		var ctx = canvas.getContext('2d');
-// 		var tOut = 0;
-// 		ctx.beginPath();
-//
-//
-// 		for (var i=start; i<stop; i=i + dropDataPoints) {
-// 			setTimeout(function () {
-// 				ctx.lineTo(data[i][1]*multiX, data[i][2]*multiY);
-// 				ctx.stroke();
-// 				ctx.lineWidth = 1;
-// 				console.log(data[i][0]*300);
-// 			}, 10*tOut);
-// 			tOut = tOut + 1;
-// 		}
-// 		ctx.closePath();
-// 	// });
-// }
+function forceXyTime(data, start, stop, multiX, multiY, dropDataPoints) {
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		var tOut = 0;
+		for (var i=start; i<stop; i=i + dropDataPoints) {
+			setTimeout(function () {
+				ctx.lineTo(data[i][1]*multiX, data[i][2]*multiY);
+				ctx.stroke();
+				ctx.lineWidth = 1;
+				console.log(data[i][0]*300);
+			}, 10*tOut);
+			tOut = tOut + 1;
+		}
+}
 
+function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	for (var i=start; i<stop; i=i + dropDataPoints) {
+		ctx.lineTo((data[i][1]*multiX) + i, (data[i][2]*multiY));
+		ctx.stroke();
+		ctx.lineWidth = 1;
+	}
+}
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
-// function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
+function forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var time = 0;
+
+	for (var i=start; i<stop; i=i + dropDataPoints) {
+		ctx.lineTo(time*multiTime, data[i][1]*multiX);//xPosition
+		ctx.stroke();
+		ctx.lineWidth = 5;
+		time++;
+	}
+	time=0;
+	for (var i=start; i<stop; i=i + dropDataPoints) {
+		ctx.lineTo(time*3, (data[i][2]*multiY)+500);//yPosition
+		ctx.stroke();
+		ctx.lineWidth = 5;
+		time++;
+	}
+	time=0;
+	for (var i=start; i<stop; i=i + dropDataPoints) {
+		ctx.lineTo(time*3, (data[i][3]*multiZ)+1000);
+		ctx.stroke();
+		ctx.lineWidth = 5;
+		time++;
+	}
+}
+
+// function forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
 // 	var canvas = document.getElementById('canvas');
 // 	var ctx = canvas.getContext('2d');
-// 	ctx.beginPath();
+// 	var time = 0;
 //
-// 	for (var i=start; i<stop; i=i + dropDataPoints) {
-// 		ctx.lineTo((data[i][1]*multiX) + i, (data[i][2]*multiY));
+// 	for (var i=start, ii=0; i<stop; i=i + dropDataPoints, ii=ii+1) {
+// 		setTimeout(function() {
+// 		ctx.lineTo(time*multiTime, data[i][1]*multiX);//xPosition
 // 		ctx.stroke();
-// 		ctx.lineWidth = 1;
+// 		console.log("");
+// 		ctx.lineWidth = 5;
+// 		time++;
+// 	}, ii*data[ii][0]);
 // 	}
-// 	ctx.closePath();
+// 	time=0;
+// 	for (var i=start, ii=0; i<stop; i=i + dropDataPoints, ii=ii+1) {
+// 		setTimeout(function() {
+// 		ctx.lineTo(time*3, (data[i][2]*multiY)+500);//yPosition
+// 		ctx.stroke();
+// 		ctx.lineWidth = 5;
+// 		time++;
+// 	}, ii*data[ii][0]);
+// 	}
+// 	time=0;
+// 	for (var i=start, ii=0; i<stop; i=i + dropDataPoints, ii=ii+1) {
+// 		setTimeout(function() {
+// 		ctx.lineTo(time*3, (data[i][3]*multiZ)+1000);
+// 		ctx.stroke();
+// 		ctx.lineWidth = 5;
+// 		time++;
+// 	}, ii*data[ii][0]);
+// 	}
 // }
 
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+
 function forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	var time = 0;
-	ctx.beginPath();
-
-	for (var i=start; i < stop; i=i+dropDataPoints) {
-		ctx.lineTo(time*multiTime, data[i][1]*multiX);
-		ctx.stroke();
-		ctx.lineWidth = 1;
-		time++;
-	}
-	time = 0;
-	for (var i=start; i < stop; i=i+dropDataPoints) {
-		ctx.lineTo(time*multiTime, (data[i][2]*-multiY));
-		ctx.stroke();
-		ctx.lineWidth = 1;
-		time++;
-	}
-	time = 0;
-	for (var i=start; i < stop; i=i+dropDataPoints) {
-		ctx.lineTo(time*multiTime, (data[i][3]*multiZ));
-		ctx.stroke();
-		ctx.lineWidth = 1;
-		time++;
-	}
-	ctx.closePath();
+		for (var i=start; i < stop; i=i+dropDataPoints) {
+			ctx.lineTo(time*multiTime, (data[i][1]*multiX));
+			ctx.stroke();
+			ctx.lineWidth = 5;
+			time++;
+		}
+		time = 0;
+		for (var i=start; i < stop; i=i+dropDataPoints) {
+			ctx.lineTo(time*multiTime, (data[i][2]*multiY));
+			ctx.stroke();
+			ctx.lineWidth = 5;
+			time++;
+		}
+		time = 0;
+		for (var i=start; i < stop; i=i+dropDataPoints) {
+			ctx.lineTo(time*multiTime, (data[i][3]*multiZ));
+			ctx.stroke();
+			ctx.lineWidth = 5;
+			time++;
+		}
 }
-////////////////////////////////////////////////////////////////////////////////////////
-//sameAsAboveForceXy//////////////////////////////////////////////////////////////////////////////////////
-// function forceXy(data, start, stop, multiX, multiY, dropDataPoints) {
-//   var canvas = document.getElementById('canvas');
-//   var ctx = canvas.getContext('2d');
-//   var time = 0;
-//   ctx.beginPath();
-//
-//   for (var i=start; i<stop; i=i + dropDataPoints) {
-//     ctx.lineTo(data[i][1]*multiX, data[i][2]*multiY);
-//     ctx.stroke();
-//     ctx.lineWidth = 1;
-//     time++;
-//   }
-//   ctx.closePath();
-// }
+
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

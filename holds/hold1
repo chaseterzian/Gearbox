@@ -1,0 +1,110 @@
+application layout
+  -template
+  -universal();
+  -moustache
+canvas - sizing
+
+
+db:link to
+what would I use for (controller, model)
+routes necessary?
+server?
+
+
+make content responsive
+on canvas too
+----------------
+<h2>1in1, dataOnTheY</h2>
+  <div><a href="./data_plot.html">forceXTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+  <div><a href="./data_plot.html">forceYTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+  <div><a href="./data_plot.html">forceZTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+  <div><a href="./data_plot.html">forceXTimeRedline(data, start, stop, multiX, multiY, dropDataPoints, redlineG) ;//logicForRedline</a></div>
+<h2>1in1, dataXy</h2>
+  <div><a href="./data_plot.html">forceXy(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+  <div><a href="./data_plot.html">forceXyTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+  <div><a href="./data_plot.html">forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+<h2>3in1, dataXyzOnTheY</h2>
+  <div><a href="./data_plot.html">forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints);</a></div>
+  <div><a href="./data_plot.html">forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints);</a></div>
+
+----------------
+//1in1, dataOnTheY
+<div><a href="./data_plot.html">forceXTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+<div><a href="./data_plot.html">forceYTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+<div><a href="./data_plot.html">forceZTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+<div><a href="./data_plot.html">forceXTimeRedline(data, start, stop, multiX, multiY, dropDataPoints, redlineG)</a></div>
+//1in1, dataXy
+<div><a href="./data_plot.html">forceXy(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+<div><a href="./data_plot.html">forceXyTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+<div><a href="./data_plot.html">forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+// 3in1, dataXyzOnTheY
+<div><a href="./data_plot.html">forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints);</a></div>
+<div><a href="./data_plot.html">forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints);</a></div>
+
+-----------------
+TIMEOUT
+
+// $(document).ready(function() {
+//
+//   function nothing() {
+//     ctx.beginPath();
+//
+//     for (i=2000; i < 2200; i++) {
+//       setTimeout(function () {
+//         ctx.lineTo(sData[i][1] * 1000, sData[i][2] * 500);
+//         ctx.stroke();
+//       }, sData[i][0]*1000);
+//
+//       console.log(sData[i][0]*300);
+//     }
+//     ctx.closePath();
+//   }
+//
+// });
+------------------------------------------------------
+<canvas id="canvas" width='2000px' height='1000px'>
+  <script>
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+
+  ctx.beginPath();
+  for (var i=0; i < 1000; i=i+1) {
+
+    ctx.lineTo(sData[i][1] * 500, sData[i][2] * 500);
+    ctx.stroke();
+  }
+  ctx.closePath();
+  </script>
+</canvas>
+
+<hr>
+
+<canvas id="canvas2" width='2000px' height='1000px'>
+  <script>
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+
+  ctx.beginPath();
+  for (var i=0; i < 15000; i=i+10) {
+
+    ctx.lineTo(sData[i][1] * 500, sData[i][2] * 500);
+    ctx.stroke();
+  }
+  ctx.closePath();
+  </script>
+</canvas>
+
+===============================================
+function nothing() {
+  ctx.beginPath();
+  for (var i=8000; i < 8200; i=i+1) {
+
+    setTimeout(function () {
+      ctx.lineTo(sData[i][1] * 1000, sData[i][2] * 500);
+      ctx.stroke();
+    }, sData[i][0]);
+    console.log(i);
+  }
+  ctx.closePath();
+}
+nothing();

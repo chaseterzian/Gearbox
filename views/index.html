@@ -15,16 +15,23 @@
   <script src="../data/secFiveMileDown.js"></script>
   <script src="../data/secFiveMileUp.js"></script>
   <script src="../data/secToClass.js"></script>
-  <link rel="stylesheet" type="text/css" href="../style.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
+  <script src="../stylesheets/jquery-1.11.3.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 </head>
 <body>
-
-  <div><a href="./forceXy.html">Force Xy</a></div>
-  <div><a href="./forceXyTimeX.html">Force Xy Time X</a></div>
-  <div><a href="./forceXyzTimeXyz.html">Force Xyz Time X(yz)</a></div>
-  <div><a href="./forceXyzAdjustableTimeXyz.html">Force Xyz Adjustable Time Xyz</a></div>
-  <div><a href="./data_plot.html">Data Plot</a></div>
-
+  <h2>1in1, dataOnTheY</h2>
+    <div><a href="./data_plot.html" id='forceXTime'>forceXTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+    <div><a href="./data_plot.html" id='forceYTime'>forceYTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+    <div><a href="./data_plot.html" id='forceZTime'>forceZTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+    <div><a href="./data_plot.html" id='forceXTimeRedline'>forceXTimeRedline(data, start, stop, multiX, multiY, dropDataPoints, redlineG)</a></div>
+  <h2>1in1, dataXy</h2>
+    <div><a href="./data_plot.html" id='forceXy'>forceXy(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+    <div><a href="./data_plot.html" id='forceXyTime'>forceXyTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+    <div><a href="./data_plot.html" id='forceXyTimeX'>forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
+  <h2>3in1, dataXyzOnTheY</h2>
+    <div><a href="./data_plot.html">forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints);</a></div>
+    <div><a href="./data_plot.html" id='forceXyzAdjustableTimeXyz'>forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints);</a></div>
 
 </body>
