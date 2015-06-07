@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Data Plot</title>
-  <script src="../app.js"></script>
   <script src="../data/initSpin1.js"></script>
   <script src="../data/initSpin2.js"></script>
   <script src="../data/initSpin3.js"></script>
@@ -15,48 +14,51 @@
   <script src="../data/secFiveMileDown.js"></script>
   <script src="../data/secFiveMileUp.js"></script>
   <script src="../data/secToClass.js"></script>
+
   <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
-  <script src="../stylesheets/style.js"></script>
   <script src="../stylesheets/jquery-1.11.3.min.js"></script>
+  <script src="../controllers/app.js"></script>
+  <script src="../controllers/dataControls.js"></script>
 </head>
 
 <body>
   <h1 class="show-data">Click Buttons To Show Data</h1>
-  <button id='forceXyzTimeXyz'>forceXyzTimeXyz</button>
-  <button id='forceXTime'>forceXTime</button>
-  <button id='forceXTimeRedline'>forceXTimeRedline</button>
-  <hr>
 
-<canvas id="canvas" width='5000px' height='2000px'>
+  <p>Testing Zone:
+  <button id='test-functions'>Test Functions</button>
+  <button id='test-z'>Test Z Aixs</button>
+  </p>
+
+  <p>Controlls:
+  <button id='cartesian'>CARTESIAN LAYOUT</button>
+  <button id='freeze'>Freeze Data</button>
+  <button id='reset'>Reset</button>
+  </p>
+
+  <p>Functions:
+  <button id='forceXTime'>forceXTime</button>
+  <button id='forceYTime'>forceYTime</button>
+  <button id='forceZTime'>forceZTime</button>
+  <button id='forceXTimeRedline'>forceXTimeRedline</button>
+  <button id='forceXy'>forceXy</button>
+  <button id='forceXyTime'>forceXyTime</button>
+  <button id='forceXTimeX'>forceXyTimeX</button>
+  <button id='forceXyzTimeXyz'>forceXyzTimeXyz</button>
+  <button id='forceXyzAdjustableTimeXyz'>forceXyzAdjustableTimeXyz</button>
+  </p>
+
+<div id="textDiv"></div>
+<script type="text/javascript" id="textDiv">
+    var div = document.getElementById("textDiv");
+    div.textContent = "dataSpin3[15000][0]";
+    var text = div.textContent;
+</script>
+
+<canvas id="canvas">
   <script>
-  $(document).ready(function() {
-  // // data, start, stop, multiX, multiY ,multiZ, multiTime, dropDataPoints
-  //
-  // //1in1, dataOnTheY
-  // // forceYTime(dataSetName, 10000, 20000, 1000, 1000, 1);
-  $('#forceXTime').on('click', function() {
-    forceXTime(dataSpin3, 0000, 900, 1000, 1000, 1);
-  });
-  // forceZTime(dataSpin3, 0000, 900, 1000, 1000, 1);
-  $('#forceXTimeRedline').on('click', function() {
-    forceXTimeRedline(dataSpin3, 0000, 2900, 500, 500, 1, .5);//logicForRedline
-  });
-  //
-  // //1in1, dataXy
-  // // forceXy(dataSetName, 0, 10000, 1000, 1000, 1);
-  // // forceXyTime(dataSetName, 0, 10000, 1000, 1000, 1);
-  // // forceXyTimeX(dataSetName, 0, 10000, 1000, 1000, 1);
-  //
-  // // 3in1, dataXyzOnTheY
-  $('#forceXyzTimeXyz').on('click', function() {
-    forceXyzTimeXyz(dataSpin3, 900, 2900, 500, 500, 500, 1, 1);
-  });
-  // forceXyzAdjustableTimeXyz(dataSpin3, 0, 1000, 500, 500, 500, 1, 1);
-});
+
   </script>
 </canvas>
 
-  <hr>
   <div><a href="./index.html" class="home">Home</a></div>
-  <hr>
 </body>

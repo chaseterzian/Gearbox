@@ -1,7 +1,7 @@
 body{
-  padding-left: 1%;
+  /*padding-left: 1%;*/
   padding-top: 1%;
-  padding-right: 1%;
+  /*padding-right: 1%;*/
   padding-bottom: 1%;
 
 }
@@ -21,7 +21,18 @@ h1{
 }
 
 canvas {
-  width: 98%;
-  float: right;
-  /*border: 1px solid black;*/
+  /*z-index: -1;*/
+  /*width: 100%;*/
+  /*height: 100%;*/
+  /*width: 4000px;*/
+  /*height:2500px;*/
+
+  /*float: right;*/
+  /*background: black;*/
+  border: 1px solid black;
+}
+
+button{
+  background: beige;
+  potition: fixed; 
 }

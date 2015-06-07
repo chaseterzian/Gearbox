@@ -1,8 +1,26 @@
-require('../app.js');
-$(document).ready(function() {
-    $('body').on('click', function() {
-      forceXTime(dataSpin2, 10000, 20000, 1000, 1000, 1);
-
-
-    });
-});
+// require('../data/initSpin.js')
+//
+// $(document).ready(function() {
+//
+// 	$('#draw-phone').click(function() {
+// 	  testFunctions();
+// 	});
+//
+// 	$('#freeze').on('click', function() {
+// 	  confirm('DATA FREEZE, OK TO CONTINUE- EXPERIMENTAL');
+// 	  location.reload()
+// 	});
+//
+// 	$('#stop').on('click', function() {
+// 	  location.reload();
+// 	});
+//
+// 	$('#cartesian').on('click', function() {
+//     cartesianLayout();
+//   });
+//
+//
+//
+//
+//
+// });

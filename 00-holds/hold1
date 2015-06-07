@@ -14,6 +14,29 @@ server?
 make content responsive
 on canvas too
 ----------------
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+var int = 0;
+ctx.canvas.width  = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+ctx.scale(1,-1);
+
+  // for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+    // setTimeout(function () {
+      // ctx.beginPath();
+      ctx.lineWidth = 15;
+      // ctx.lineTo(data[start][1]*multiX, data[start][2]*multiY);
+      ctx.lineTo(0,0);
+      ctx.lineTo(400,800);
+      ctx.stroke();
+
+      start += dropDataPoints;
+      int += dropDataPoints;
+    // }, data[ii][0]);
+      // ctx.closePath();
+  // }
+----------------
 <h2>1in1, dataOnTheY</h2>
   <div><a href="./data_plot.html">forceXTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
   <div><a href="./data_plot.html">forceYTime(data, start, stop, multiX, multiY, dropDataPoints);</a></div>
