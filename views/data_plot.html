@@ -14,6 +14,7 @@
   <script src="../data/secFiveMileDown.js"></script>
   <script src="../data/secFiveMileUp.js"></script>
   <script src="../data/secToClass.js"></script>
+  <script src="../data/dataResearchPark.js"></script>
 
   <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
   <script src="../stylesheets/jquery-1.11.3.min.js"></script>
@@ -22,12 +23,15 @@
 </head>
 
 <body>
-  <h1 class="show-data">Click Buttons To Show Data</h1>
+  <h1 class="show-data">Data</h1>
+  <hr>
 
   <p>Testing Zone:
   <button id='test-functions'>Test Functions</button>
   <button id='test-z'>Test Z Aixs</button>
   <button id='car-model'>Test Car Model</button>
+  <button id='g-ball-test'>Test G Ball</button>
+  <button id='g-ball-v-2'>gBallV2</button>
   </p>
 
   <p>Controlls:
@@ -37,28 +41,47 @@
   </p>
 
   <p>Functions:
-  <button id='forceXTime'>forceXTime</button>
-  <button id='forceYTime'>forceYTime</button>
-  <button id='forceZTime'>forceZTime</button>
-  <button id='forceXTimeRedline'>forceXTimeRedline</button>
-  <button id='forceXy'>forceXy</button>
-  <button id='forceXyTime'>forceXyTime</button>
-  <button id='forceXTimeX'>forceXyTimeX</button>
-  <button id='forceXyzTimeXyz'>forceXyzTimeXyz</button>
-  <button id='forceXyzAdjustableTimeXyz'>forceXyzAdjustableTimeXyz</button>
+  <button id='accel-xy-2pts'>gBall Accel XY 2 Points</button>
+  <button id='accel-xy-1pt'>gBall Accel XY 1 Point</button>
   </p>
 
-<div id="textDiv"></div>
-<script type="text/javascript" id="textDiv">
-    var div = document.getElementById("textDiv");
-    div.textContent = "dataSpin3[15000][0]";
-    var text = div.textContent;
+<h3>
+<div id="text-div1"></div>
+<div id="text-div2"></div>
+<div id="text-div3"></div>
+<div id="text-div4"></div>
+<div id="text-div5"></div>
+<div id="text-div17"></div>
+</h3>
+<b><div id="text-div6"></div></b>
+<hr>
+<div id="text-div7" class="space"></div>
+<div id="text-div8" class="space"></div>
+<div id="text-div9" class="space"></div>
+<div id="text-div10" class="space"></div>
+<div id="text-div11" class="space"></div>
+<div id="text-div12" class="space"></div>
+<div id="text-div13" class="space"></div>
+<h3><div id="text-div14" class="center"></div></h3>
+<h5><div id="text-div15" class="center"></div></h5>
+<h3><div id="text-div16" class="center"></div></h3>
+<div id="text-div20" class="space"></div>
+
+
+<script>
+// window.onload = function() {
+//     var ctx = c.getContext("2d");
+//     ctx.drawImage(img, 10, 10);
+// }
+  // document.getElementById("canvas-pic").innerHTML = "../images/tach.png";
 </script>
 
-<canvas id="canvas">
-  <script>
 
-  </script>
+<canvas id="canvas">
+  <!-- <img src="../images/tach.png" id="canvas-pic"></img> -->
+</canvas>
+
+<canvas id="canvas2">
 </canvas>
 
   <div><a href="./index.html" class="home">Home</a></div>

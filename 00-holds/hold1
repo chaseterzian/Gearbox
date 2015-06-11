@@ -13,6 +13,165 @@ server?
 
 make content responsive
 on canvas too
+------------------------------
+if (data[start][1] >= 0) {
+ctx.beginPath(); ctx.lineTo(data[start][2]*multiY,-200); ctx.lineTo(-data[start][2]*multiY,-200);//EXPANDING Y
+ctx.stroke(); ctx.closePath();
+}	else {
+ctx.beginPath(); ctx.lineTo(data[start][2]*multiY,200); ctx.lineTo(-data[start][2]*multiY,200);//EXPANDING Y
+ctx.stroke(); ctx.closePath();
+}
+__________________________
+// ctx.fillStyle=("black");
+// ctx.beginPath(); ctx.arc(0, 0, data[start][3]*multiZ*8, data[start][3]*multiZ*8, Math.PI, true); ctx.fill();
+// ctx.fillStyle=("white");
+// ctx.beginPath(); ctx.arc(0, 0, (data[start][3]*multiZ*8)-1, (data[start][3]*multiZ*8)-1, Math.PI, true); ctx.fill();
+
+_________________________________________
+// ctx.fillStyle=("black");
+// ctx.beginPath(); ctx.arc(0, 0, data[start][3]*multiZ*8, data[start][3]*multiZ*8, Math.PI, true); ctx.fill();
+// ctx.fillStyle=("white");
+_____________________________
+var highestAllAxesWithTime = function(data) {//consoleXYZ with time
+	var dataXYZ = [['X',0,0],['Y',0,0],['Z',0,0]];
+	for (var i=0; i<data.length; i++) {
+		setTimeout(function() {
+		if (dataXYZ[0][2] < data[i][1]) { dataXYZ[0][2] = data[i][1]; dataXYZ[0][1] = data[i][0]; }
+		else if (dataXYZ[1][2] < data[i][2]) { dataXYZ[1][2] = data[i][2]; dataXYZ[1][1] = data[i][0]; }
+		else if (dataXYZ[2][2] < data[i][3]) { dataXYZ[2][2] = data[i][3]; dataXYZ[2][1] = data[i][0]; }
+	document.getElementById("text-div6").innerHTML = "Max at Time: " + dataXYZ[0] + " /// " + dataXYZ[1] + " /// " + dataXYZ[2] + " /// ";
+	} i+100);
+	}
+}
+_____________________________
+function gBallSeperateAxes(data, start, stop, multiX, multiY, dropDataPoints, multiTime) {
+	var dataXYZ = [['X',0,0],['Y',0,0],['Z',0,0]];
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	ctx.canvas.width  = window.innerWidth;
+	ctx.canvas.height = window.innerHeight;
+	ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+	ctx.scale(1,1);
+	// ctx.beginPath();
+	// ctx.strokeStyle=("black");
+	// ctx.lineTo(100,0); ctx.lineTo(-50,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+	// ctx.lineTo(0,100); ctx.lineTo(0,-50); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+		for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+			setTimeout(function () {
+				ctx.beginPath();
+				ctx.strokeStyle=("black");
+				ctx.lineTo(100,0); ctx.lineTo(-50,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+				ctx.lineTo(0,100); ctx.lineTo(0,-50); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+
+				ctx.beginPath();
+				ctx.fillStyle=("white");
+				ctx.arc(data[start][1]*multiX, 0,12,12, Math.PI, true);
+				ctx.arc(0, data[start][2]*multiY,12,12, Math.PI, true);
+				ctx.fill(); ctx.closePath();
+				start += dropDataPoints;
+				int += dropDataPoints;
+				ctx.rotate(data[start][1]/-150);
+				context.clearRect(0, 0, canvas.width, canvas.height);
+			}, ii*data[ii][0]);
+
+			setTimeout(function () {
+				ctx.beginPath();
+				ctx.strokeStyle=("white");
+				ctx.lineTo(100,0); ctx.lineTo(-50,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+				ctx.lineTo(0,100); ctx.lineTo(0,-50); ctx.stroke(); ctx.closePath();
+
+				ctx.beginPath();
+				ctx.fillStyle=("black");
+				ctx.arc(data[start][1]*multiX, 0,10,10, Math.PI, true);
+				ctx.arc(0, data[start][2]*multiY,10,10, Math.PI, true);
+				ctx.fill(); ctx.closePath();
+				int += dropDataPoints;
+			}, (ii+10)*data[ii][0]);
+		}
+
+		for (var i=0; i < data.length; i++) {
+			setTimeout(function() {
+				if (dataXYZ[0][2] < data[i][1]) { dataXYZ[0][2] = data[i][1]; dataXYZ[0][1] = data[i][0]; }
+				if (dataXYZ[1][2] < data[i][2]) { dataXYZ[1][2] = data[i][2]; dataXYZ[1][1] = data[i][0]; }
+				if (dataXYZ[2][2] < data[i][3]) { dataXYZ[2][2] = data[i][3]; dataXYZ[2][1] = data[i][0]; }
+				document.getElementById("textDiv").innerHTML = dataXYZ;
+			}, (ii+10)*data[ii][0]);
+		}
+}
+$('#g-ball-seperate-axes').on('click', function() {
+	gBallSeperateAxes(dataCanyonDown, 10000, 18000, 500, 100, 2, 1);
+	highestAllAxesWithTime(dataCanyonDown);
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+-----------------------------
+
+// var div = document.getElementById("textDiv");
+// div.textContent = "dataSpin3[15000][0]";
+// var text = div.textContent;
+
+
+
+
+-----------------------------
+
+
+GBALL FIRST CIRCLE
+setTimeout(function () {
+  ctx.beginPath();
+  ctx.fillStyle=("white");
+  ctx.arc(data[start][1]*multiX, data[start][2]*multiY,12,12, Math.PI, true);
+  ctx.fill(); ctx.closePath();
+  start += dropDataPoints;
+  int += dropDataPoints;
+}, ii*data[ii][0]);
+setTimeout(function () {
+  ctx.beginPath();
+  ctx.fillStyle=("black");
+  ctx.arc(data[start][1]*multiX, data[start][2]*multiY,10,10, Math.PI, true);
+  ctx.fill(); ctx.closePath();
+  int += dropDataPoints;
+}, (ii+100)*data[ii][0]);
+-----------------------------
+GBALL DANK
+setTimeout(function () {
+  ctx.beginPath();
+  ctx.fillStyle=("white");
+  ctx.fillRect(data[start][1]*multiX, data[start][2]*multiY,10,10);
+  ctx.stroke(); ctx.closePath();
+  start += dropDataPoints;
+  int += dropDataPoints;
+}, ii*data[ii][0]);
+setTimeout(function () {
+  ctx.beginPath();
+  ctx.fillStyle=("black");
+  ctx.fillRect(data[start][1]*multiX, data[start][2]*multiY,10,10);
+  ctx.stroke(); ctx.closePath();
+  int += dropDataPoints;
+}, (ii+10)*data[ii][0]);
+}
+----------------
+setTimeout(function () {
+  ctx.beginPath();
+  ctx.fillStyle=("white");
+  ctx.beginPath();
+  ctx.arc(data[start][1]*multiX, data[start][2]*multiY,10,10, Math.PI, true);
+  ctx.fill(); ctx.closePath();
+  start += dropDataPoints;
+  int += dropDataPoints;
+}, ii*data[ii][0]);
+setTimeout(function () {
+  ctx.beginPath();
+  ctx.fillStyle=("black");
+  ctx.arc(data[start][1]*multiX, data[start][2]*multiY,10,10, Math.PI, true);
+  ctx.fill(); ctx.closePath();
+  // ctx.fillRect(data[start][1]*multiX, data[start][2]*multiY,10,10);
+  // ctx.stroke(); ctx.closePath();
+  // int += dropDataPoints;
+}, (ii+10)*data[ii][0]);
+}v
 ----------------
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');

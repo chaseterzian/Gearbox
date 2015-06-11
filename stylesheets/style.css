@@ -1,13 +1,30 @@
 body{
-  /*padding-left: 1%;*/
+  padding-left: 1%;
   padding-top: 1%;
-  /*padding-right: 1%;*/
+  padding-right: 1%;
   padding-bottom: 1%;
+  /*background-image: url("../images/stripe.jpg");*/
 
+}
+
+.space {
+  padding-bottom: 5px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.normal {
+  font-weight: normal;
 }
 
 a{
   font-size: 20px;
+}
+
+#red {
+  text: red;
 }
 
 h1{
@@ -29,10 +46,14 @@ canvas {
 
   /*float: right;*/
   /*background: black;*/
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
 
 button{
   background: beige;
-  potition: fixed; 
+  potition: fixed;
+}
+
+.center{
+  text-align: center;
 }
