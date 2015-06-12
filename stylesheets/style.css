@@ -1,10 +1,71 @@
+.col-1-var(){
+  width: 8.33333%;
+  height: var()px;
+  float: left;
+}
+.col-half{
+  width: 5%;
+  float: left;
+}
+.col-1{
+  width: 8.33333%;
+  float: left;
+}
+.col-2{
+  width: 16.66666%;
+  float: left;
+}
+.col-3{
+  width: 25%;
+  float: left;
+}
+.col-4{
+  width: 33.33333%;
+  float: left;
+}
+.col-5{
+  width: 41.66666%;
+  float: left;
+}
+.col-6{
+  width: 50.00%;
+  float: left;
+}
+.col-7{
+  width: 58.33333%;
+  float: left;
+}
+.col-8{
+  width: 66.66666%;
+  float: left;
+}
+.col-9{
+  width: 75.00%;
+  float: left;
+}
+.col-10{
+  width: 83.33333%;
+  float: left;
+}
+.col-11{
+  width: 91.66666%;
+  float: left;
+}
+.col-12{
+  width: 100.00%;
+  float: left;
+}
+.500{
+  height: 500px;
+}
+
+
 body{
-  padding-left: 1%;
+  /*padding-left: 1%;
   padding-top: 1%;
   padding-right: 1%;
-  padding-bottom: 1%;
-  /*background-image: url("../images/stripe.jpg");*/
-
+  padding-bottom: 1%;*/
+  /*background-image: url("../images/whiteGradient.jpg");*/
 }
 
 .space {
@@ -31,6 +92,11 @@ h1{
   text-align: center;
 }
 
+#some-shit {
+  padding-top: 70px;
+  font-size: 50px;
+}
+
 .home{
   position: fixed;
   top: 95%;
@@ -40,8 +106,8 @@ h1{
 canvas {
   /*z-index: -1;*/
   /*width: 100%;*/
-  /*height: 100%;*/
-  /*width: 4000px;*/
+  height: auto%;
+  width: 100%;
   /*height:2500px;*/
 
   /*float: right;*/
