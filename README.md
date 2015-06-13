@@ -1,25 +1,110 @@
-CONSOLE ONLY:
+Available Sensor Data:
+_____________________
 
-highestG(data);
-highestAllAxesWithTime(data);
+0 - ACCELEROMETER X (m/s²)
+-0.1513
 
+1 - ACCELEROMETER Y (m/s²)
+-0.3475
 
-OTHER:
+2 - ACCELEROMETER Z (m/s²)
+9.9794
 
-1in1, dataOnTheY  - {
-forceXTime(data, start, stop, multiX, multiY, dropDataPoints);
-forceYTime(data, start, stop, multiX, multiY, dropDataPoints);
-forceZTime(data, start, stop, multiX, multiY, dropDataPoints);
-forceXTimeRedline(data, start, stop, multiX, multiY, dropDataPoints, redlineG) ;
-}
+3 - GRAVITY X (m/s²)
+-0.0926
 
-1in1, dataXy - {
-forceXy(data, start, stop, multiX, multiY, dropDataPoints);
-forceXyTime(data, start, stop, multiX, multiY, dropDataPoints);
-forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints);
-}
+4 - GRAVITY Y (m/s²)
+-0.3462
 
-3in1, dataXyzOnTheY - {
-forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints);
-forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints);
-}
+5 - GRAVITY Z (m/s²)
+9.8001
+
+6 - LINEAR ACCELERATION X (m/s²)
+-0.071
+
+7 - LINEAR ACCELERATION Y (m/s²)
+-0.0628
+
+8 - LINEAR ACCELERATION Z (m/s²)
+-0.0265
+
+9 - GYROSCOPE X (°/s)
+-0.34
+
+10 - GYROSCOPE Y (°/s)
+0.18
+
+11 -  GYROSCOPE Z (°/s)
+1.63
+
+12 - LIGHT (lux)
+15071.0
+
+13 - MAGNETIC FIELD X (μT)
+122.0
+
+14 - MAGNETIC FIELD Y (μT)
+77.46
+
+15 - MAGNETIC FIELD Z (μT)
+91.8
+
+16 - ORIENTATION Z (azimuth °)
+303.16
+
+17 - ORIENTATION X (pitch °)
+2.03
+
+18 - ORIENTATION Y (roll °)
+0.45
+
+19 - PROXIMITY (i)
+2.0
+
+20 -ATMOSPHERIC PRESSURE (hPa)
+812.3
+
+21 - SOUND LEVEL (dB)
+48.297
+
+22 - LOCATION Latitude :
+40.034935
+
+23 - LOCATION Longitude :
+-105.34338
+
+24 - LOCATION Altitude ( m)
+5932.26
+
+25 - LOCATION Altitude-google ( m)
+NaN
+
+26 - LOCATION Altitude-atmospheric pressure ( m)
+,
+
+27 - LOCATION Speed ( Mph)
+5.62
+
+28 - LOCATION Accuracy ( m)
+41.935486
+
+29 - LOCATION ORIENTATION (°)
+112.4
+
+30 - Satellites in range
+15 / 25
+
+31 - Time since start in ms
+444
+
+32 - YYYY-MO-DD HH-MI-SS_SSS
+12
+
+33 - 
+42
+
+34 - 
+59
+
+35 - 
+043

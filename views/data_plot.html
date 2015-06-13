@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Data Plot</title>
+    <script src="../server.js"></script>
   <script src="../data/initSpin1.js"></script>
   <script src="../data/initSpin2.js"></script>
   <script src="../data/initSpin3.js"></script>
@@ -14,18 +15,34 @@
   <script src="../data/secFiveMileDown.js"></script>
   <script src="../data/secFiveMileUp.js"></script>
   <script src="../data/secToClass.js"></script>
-  <script src="../data/dataResearchPark.js"></script>
   <script src="../data/dataStandDrive.js"></script>
+  <script src="../data/data5MileDownFullSet.js"></script>
+  <script src="../data/dataUnknown.js"></script>
 
   <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
   <script src="../stylesheets/jquery-1.11.3.min.js"></script>
   <script src="../controllers/app.js"></script>
   <script src="../controllers/dataControls.js"></script>
+
 </head>
 <body>
 
-  <h1 class="show-data">Hows My Driving</h1>
+  <h1 class="show-data">Testing Zone</h1>
   <hr>
+  <input type='file' id='input'>
+  <div id='random-box'></div>
+
+<script>
+// var selectedFile = document.getElementById('input').files[0];
+// $('document').ready(function() {
+// $('#show-file').on('click', function() {
+// // console.log('hi');
+// document.getElementById("random-box").innerHTML = selectedFile;
+// console.log(selectedFile);
+// });
+// });
+console.log('hi');
+</script>
 
 <div class='col-5'>
   <h4>
@@ -41,11 +58,14 @@
     <button id='cartesian'>Cartesian Layout</button>
     <button id='freeze'>Freeze Data</button>
     <button id='reset'>RESET</button>
+    <button id='hide-controls'>Hide Controls</button>
+    <button id='show-file'>SHOW FILE</button>
   </h4>
   <h4>
     Functions:
-    <button id='accel-xy-2pts'>gBall Accel XY 2 Points</button>
-    <button id='accel-xy-1pt'>gBall Accel XY 1 Point</button>
+    <button id='movement-xyz'>Movement XYZ</button>
+    <button id='movement-xyz-full'>Movement XYZ Full</button>
+    <button id='movement-xy-1point'>Movement XY 1 Point</button>
   </h4>
     <b><div id="text-div6"></div></b>
 </div>
@@ -67,26 +87,26 @@
   <h3><div id="text-div16" class="center"></div></h3>
 </div>
 
+
 <div id='all-errors-div' class="space"></div>
 <div class='col-12'></div>
-
 
 
 <div class='col-2'>
   <hr>
   <b><div id="text-div-crash" class="space"></div></b>
-  <div id="text-div-good-driver" class="space"></div>
-  <div id="text-div-hard-left" class="space"></div>
-  <div id="text-div-hard-right" class="space"></div>
+    <div id="text-div-good-driver" class="space"></div>
+    <div id="text-div-hard-left" class="space"></div>
+    <div id="text-div-hard-right" class="space"></div>
 
-  <div id="text-div9" class="space"></div>
-  <div id="text-div21" class="space"></div>
-  <div id="text-div10" class="space"></div>
-  <div id="text-div22" class="space"></div>
-  <div id="text-div-bump" class="space"></div>
-  <div id="text-div-airborne" class="space"></div>
-  <div id="text-div13" class="space"></div>
-  <div id="text-div20" class="space"></div>
+    <div id="text-div9" class="space"></div>
+    <div id="text-div21" class="space"></div>
+    <div id="text-div10" class="space"></div>
+    <div id="text-div22" class="space"></div>
+    <div id="text-div-bump" class="space"></div>
+    <div id="text-div-airborne" class="space"></div>
+    <div id="text-div13" class="space"></div>
+    <div id="text-div20" class="space"></div>
 </div>
 
 <div class='col-10'>
@@ -99,4 +119,5 @@
 </canvas>
 
   <div><a href="./index.html" class="home">Home</a></div>
+
 </body>
