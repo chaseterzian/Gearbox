@@ -13,6 +13,8 @@ $(document).ready(function() {
 // require("../data/secFiveMileUp.js");
 // require("../data/secToClass.js");
 // require("../data/data5MileDownFullSet.js");
+g = 9.81;
+
 	$('#freeze').on('click', function() {
 	  confirm('DATA FREEZE, OK TO CONTINUE- EXPERIMENTAL');
 	  location.reload()
@@ -66,6 +68,9 @@ function movementXyz(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 				// ctx.beginPath(); ctx.lineTo(1000,0); ctx.lineTo(-1000,0); ctx.stroke(); ctx.closePath();//grid
 				// ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-200); ctx.stroke(); ctx.closePath();
 
+				if (data[start][3] > 1.1) {//LOUS MUSIC
+					document.getElementById("text-div17").innerHTML = "- Consider turning your music down, at this voulme you may not be able to hear the horn of another car";
+				}
 				if (data[start][3] >= 1.2) {//BUMP
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-bump").innerHTML =
@@ -136,22 +141,25 @@ function movementXyz(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 					"***ACCIDENT WARNING: It seems that you may have been in an accident. If you press 'OK' you can ignore this message, otherwise your emergency contact will be notified by SMS";
 				}
 
-				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
-				if (data[start][2] >= redline || data[start][2] < -redline) { ctx.fillStyle=("red"); }
-				else {ctx.fillStyle=("black");}
-				ctx.beginPath(); ctx.arc(0, 0, data[start][3]*multiZ*8, data[start][3]*multiZ*8, Math.PI, true); ctx.fill();//LARGE Z-CIRCLE
-				ctx.fillStyle=("white");
-				ctx.beginPath(); ctx.arc(0, 0, (data[start][3]*multiZ*8)-1, (data[start][3]*multiZ*8)-1, Math.PI, true); ctx.fill();//white
 
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
 				if (data[start][2] >= redline || data[start][2] < -redline) { ctx.fillStyle=("red"); }
 				else {ctx.fillStyle=("black");}
-	// if (data[start][3] < 0) {
-				ctx.beginPath(); ctx.arc(0, 0, data[start][3]*multiZ, data[start][3]*multiZ, Math.PI, true); ctx.fill();//Z-CIRCLE
-				ctx.fillStyle=("white");
-				ctx.beginPath(); ctx.arc(0, 0, (data[start][3]*multiZ)-2, (data[start][3]*multiZ)-2, Math.PI, true); ctx.fill();//white
-	// } else {
-	// }
+				if (data[start][3] > 0) {//PREVENTS Z CIRCLE FROM BREAKING ON AIRBORNE
+					ctx.beginPath(); ctx.arc(0, 0, data[start][3]*multiZ*8, data[start][3]*multiZ*8, Math.PI, true); ctx.fill();//LARGE Z-CIRCLE
+					ctx.fillStyle=("white");
+					ctx.beginPath(); ctx.arc(0, 0, (data[start][3]*multiZ*8)-1, (data[start][3]*multiZ*8)-1, Math.PI, true); ctx.fill();//white
+				}
+
+				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
+				if (data[start][2] >= redline || data[start][2] < -redline) { ctx.fillStyle=("red"); }
+				else {ctx.fillStyle=("black");}
+				if (data[start][3] > 0) {//PREVENTS SMALL Z CIRCLE FROM BREAKING ON AIRBORNE  
+					ctx.beginPath(); ctx.arc(0, 0, 2+data[start][3]*multiZ, 2+data[start][3]*multiZ, Math.PI, true); ctx.fill();//Z-CIRCLE
+					ctx.fillStyle=("white");
+					ctx.beginPath(); ctx.arc(0, 0, (2+data[start][3]*multiZ)-2, (2+data[start][3]*multiZ)-2, Math.PI, true); ctx.fill();//white
+				}
+
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
 				if (data[start][2] >= redline || data[start][2] < -redline) { ctx.fillStyle=("red"); }
 				else {ctx.fillStyle=("black");}
@@ -167,16 +175,16 @@ function movementXyz(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 				ctx.stroke(); ctx.closePath();
 
 				if (data[start][1] <= 0) {
-				ctx.beginPath(); ctx.lineTo(-400, data[start][1]*multiX); ctx.lineTo(-400, -data[start][1]*multiX);//EXPANDING XL
-				ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(-400, data[start][1]*multiX); ctx.lineTo(-400, -data[start][1]*multiX);//EXPANDING XL
+					ctx.stroke(); ctx.closePath();
 			}	else {
-				ctx.beginPath(); ctx.lineTo(400, -data[start][1]*multiX); ctx.lineTo(400, data[start][1]*multiX);//EXPANDING XR
-				ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(400, -data[start][1]*multiX); ctx.lineTo(400, data[start][1]*multiX);//EXPANDING XR
+					ctx.stroke(); ctx.closePath();
 			}
 
 				ctx.lineWidth = 2;
 				ctx.strokeStyle = "black";
-				ctx.beginPath(); ctx.lineTo(1000,0); ctx.lineTo(-1000,0); ctx.stroke(); ctx.closePath();//grid
+				ctx.beginPath(); ctx.lineTo(1000,0); ctx.lineTo(-1000,0); ctx.stroke(); ctx.closePath();//GRID
 				ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-200); ctx.stroke(); ctx.closePath();
 
 				start += dropDataPoints;
@@ -195,10 +203,6 @@ function movementXyz(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 				else if (-data[start][2] > .05) { document.getElementById("text-div16").innerHTML = "Braking"; }//Y IS FLIPPED
 				else { document.getElementById("text-div16").innerHTML = "Coasting"; }
 
-				if (data[start][3] > 1.1) {
-					document.getElementById("text-div17").innerHTML = "- Consider turning your music down, at this voulme you may not be able to hear the horn of another car";
-				} else {
-				}
 
 				//if DB level too loud - "consider turning down the stereo, st this volume you may not hear the horn of another car"
 				document.getElementById("text-div1").innerHTML = "Time: " + data[start][0];
@@ -241,111 +245,113 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				// ctx.beginPath(); ctx.lineTo(1000,0); ctx.lineTo(-1000,0); ctx.stroke(); ctx.closePath();//grid
 				// ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-200); ctx.stroke(); ctx.closePath();
 
-				if (data[start][3] >= 1.2) {//BUMP
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-bump").innerHTML =
-					"- That was a " + data[start][3] + " hit, consider checking your car for damage";
-				}
-				if (data[start][3] <= 0) {//AIRBORNE - BRAKS ON CIRCLE GRAPHIC
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-airborne").innerHTML =
-					"- You are now airborne, goodnight";
-				}
+				// if (data[start][3] >= 1.2) {//BUMP
+				// 	ctx.fillStyle=("red");
+				// 	document.getElementById("text-div-bump").innerHTML =
+				// 	"- That was a " + data[start][3] + " hit, consider checking your car for damage";
+				// }
+				// if (data[start][3] <= 0) {//AIRBORNE - BRAKS ON CIRCLE GRAPHIC
+				// 	ctx.fillStyle=("red");
+				// 	document.getElementById("text-div-airborne").innerHTML =
+				// 	"- You are now airborne, goodnight";
+				// }
 
-				if (data[start][1] >= redline) {//HARD LEFT
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-hard-left").innerHTML =
-						"- Very hard left turn. At " +
-						data[start][1] +
-						" times the force of gravity, you are risking loss of control: Time/DataPoint - " +
-						data[start][0] + "sec/" + int;
-						$('#text-div-good-driver').hide();
-				}
-				if (data[start][1] < -redline) {//HARD RIGHT
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-hard-right").innerHTML =
-						"- Very hard right turn. At " +
-						data[start][1] +
-						" times the force of gravity, you are risking loss of control: Time/DataPoint - " +
-						data[start][0] + "sec/" + int;
-						$('#text-div7').hide();
-				}
+				// if (data[start][1] >= redline) {//HARD LEFT
+				// 	ctx.fillStyle=("red");
+				// 	document.getElementById("text-div-hard-left").innerHTML =
+				// 		"- Very hard left turn. At " +
+				// 		data[start][1] +
+				// 		" times the force of gravity, you are risking loss of control: Time/DataPoint - " +
+				// 		data[start][0] + "sec/" + int;
+				// 		$('#text-div-good-driver').hide();
+				// }
+				// if (data[start][1] < -redline) {//HARD RIGHT
+				// 	ctx.fillStyle=("red");
+				// 	document.getElementById("text-div-hard-right").innerHTML =
+				// 		"- Very hard right turn. At " +
+				// 		data[start][1] +
+				// 		" times the force of gravity, you are risking loss of control: Time/DataPoint - " +
+				// 		data[start][0] + "sec/" + int;
+				// 		$('#text-div7').hide();
+				// }
 
-				if (data[start][2] <= -redline) {//BRAKING
-					ctx.fillStyle=("red");
-					document.getElementById("text-div9").innerHTML =
-						"- There was quite a heavy braking event at " +
-						data[start][2] +
-						" times the force of gravity: Time/DataPoint - " +
-						data[start][0] + "sec/" + int;
-				}
-				if (data[start][2] > redline) {//ACCELERATION
-					ctx.fillStyle=("red");
-					document.getElementById("text-div21").innerHTML =
-						"- There was quite a heavy acceleration event at " +
-						data[start][2] +
-						" times the force of gravity: Time/DataPoint - " +
-						data[start][0] + "sec/" + int;
-				}
+				// if (data[start][2] <= -redline) {//BRAKING
+				// 	ctx.fillStyle=("red");
+				// 	document.getElementById("text-div9").innerHTML =
+				// 		"- There was quite a heavy braking event at " +
+				// 		data[start][2] +
+				// 		" times the force of gravity: Time/DataPoint - " +
+				// 		data[start][0] + "sec/" + int;
+				// }
+				// if (data[start][2] > redline) {//ACCELERATION
+				// 	ctx.fillStyle=("red");
+				// 	document.getElementById("text-div21").innerHTML =
+				// 		"- There was quite a heavy acceleration event at " +
+				// 		data[start][2] +
+				// 		" times the force of gravity: Time/DataPoint - " +
+				// 		data[start][0] + "sec/" + int;
+				// }
 
-				if (data[start][2] < -redline && data[start][1] > redline || data[start][2] < -redline && data[start][1] < -redline) {//HEAVY BRAKING
-					ctx.fillStyle=("red");
-					document.getElementById("text-div10").innerHTML =
-						"***WARNING - USE MORE CAUTION: Heavy braking combined with hard cornering can easily cause you to lose control: Time/DataPoint - " +
-						data[start][0] + "sec/" + int;
-				}
-				if (data[start][2] > redline && data[start][1] >= redline || data[start][2] > redline && data[start][1] < -redline) {//HEAVY ACCELERATION
-					ctx.fillStyle=("red");
-					document.getElementById("text-div22").innerHTML =
-						"***WARNING - USE MORE CAUTION: Heavy acceleration combined with hard cornering can easily cause you to lose control: Time/DataPoint - " +
-					data[start][0] + "sec/" + int;
-				}
+				// if (data[start][2] < -redline && data[start][1] > redline || data[start][2] < -redline && data[start][1] < -redline) {//HEAVY BRAKING
+				// 	ctx.fillStyle=("red");
+				// 	document.getElementById("text-div10").innerHTML =
+				// 		"***WARNING - USE MORE CAUTION: Heavy braking combined with hard cornering can easily cause you to lose control: Time/DataPoint - " +
+				// 		data[start][0] + "sec/" + int;
+				// }
+				// if (data[start][2] > redline && data[start][1] >= redline || data[start][2] > redline && data[start][1] < -redline) {//HEAVY ACCELERATION
+				// 	ctx.fillStyle=("red");
+				// 	document.getElementById("text-div22").innerHTML =
+				// 		"***WARNING - USE MORE CAUTION: Heavy acceleration combined with hard cornering can easily cause you to lose control: Time/DataPoint - " +
+				// 	data[start][0] + "sec/" + int;
+				// }
 
-				ctx.fillStyle=("black");
-				setTimeout(function() {
-				  document.getElementById("text-div-good-driver").innerHTML = "- So far, driver is doing well. No swerving, heavy braking/acceleration or aggressive turning has been detected.";
-				}, 3000);
+				// ctx.fillStyle=("black");
+				// setTimeout(function() {
+				//   document.getElementById("text-div-good-driver").innerHTML = "- So far, driver is doing well. No swerving, heavy braking/acceleration or aggressive turning has been detected.";
+				// }, 3000);
 
-				if (data[start][2] > 1) {//CRASH AUTO CONTACT HELP************
-					document.getElementById("text-div-crash").innerHTML =
-					"***ACCIDENT WARNING: It seems that you may have been in an accident. If you press 'OK' you can ignore this message, otherwise your emergency contact will be notified by SMS";
-				}
+				// if (data[start][2] > 1) {//CRASH AUTO CONTACT HELP************
+				// 	document.getElementById("text-div-crash").innerHTML =
+				// 	"***ACCIDENT WARNING: It seems that you may have been in an accident. If you press 'OK' you can ignore this message, otherwise your emergency contact will be notified by SMS";
+				// }
 
-	// 			if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
-	// 			if (data[start][2] >= redline || data[start][2] < -redline) { ctx.fillStyle=("red"); }
-	// 			else {ctx.fillStyle=("black");}
-	// 			ctx.beginPath(); ctx.arc(0, 0, data[start][3]*multiZ*8, data[start][3]*multiZ*8, Math.PI, true); ctx.fill();//LARGE Z-CIRCLE
-	// 			ctx.fillStyle=("white");
-	// 			ctx.beginPath(); ctx.arc(0, 0, (data[start][3]*multiZ*8)-1, (data[start][3]*multiZ*8)-1, Math.PI, true); ctx.fill();//white
-
-	// 			if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
-	// 			if (data[start][2] >= redline || data[start][2] < -redline) { ctx.fillStyle=("red"); }
-	// 			else {ctx.fillStyle=("black");}
-	// // if (data[start][3] < 0) {
-	// 			ctx.beginPath(); ctx.arc(0, 0, data[start][3]*multiZ, data[start][3]*multiZ, Math.PI, true); ctx.fill();//Z-CIRCLE
-	// 			ctx.fillStyle=("white");
-	// 			ctx.beginPath(); ctx.arc(0, 0, (data[start][3]*multiZ)-2, (data[start][3]*multiZ)-2, Math.PI, true); ctx.fill();//white
-	// // } else {
-	// // }
+				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
-				if (data[start][2] >= redline || data[start][2] < -redline) { ctx.fillStyle=("red"); }
 				else {ctx.fillStyle=("black");}
-				ctx.beginPath(); ctx.arc(data[start][1]*multiX, 0,10,10, Math.PI, true); ctx.fill();//G BALL X
-				ctx.beginPath(); ctx.arc(0, data[start][2]*multiY,10,10, Math.PI, true); ctx.fill();//G BALL Y
+				if (data[start][2] > 0) { 
+					ctx.beginPath(); ctx.arc(0, 0, data[start][2]*multiZ*8, data[start][2]*multiZ*8, Math.PI, true); ctx.fill();//LARGE Z-CIRCLE
+					ctx.fillStyle=("white");
+					ctx.beginPath(); ctx.arc(0, 0, (data[start][2]*multiZ*8)-1, (data[start][2]*multiZ*8)-1, Math.PI, true); ctx.fill();//white
+				}
+					
+				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
+				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
+				else {ctx.fillStyle=("black");}
+				if (data[start][2] > 0) {
+					ctx.beginPath(); ctx.arc(0, 0, data[start][2]*multiZ, data[start][2]*multiZ, Math.PI, true); ctx.fill();//Z-CIRCLE
+					ctx.fillStyle=("white");
+					ctx.beginPath(); ctx.arc(0, 0, (data[start][2]*multiZ)-2, (data[start][2]*multiZ)-2, Math.PI, true); ctx.fill();//white
+				}
+
+				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
+				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
+				else {ctx.fillStyle=("black");}
+				ctx.beginPath(); ctx.arc(data[start][0]*multiX, 0,10,10, Math.PI, true); ctx.fill();//G BALL X
+				ctx.beginPath(); ctx.arc(0, data[start][1]*multiY,10,10, Math.PI, true); ctx.fill();//G BALL Y
 				ctx.lineWidth = 1;
 
+				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
-				if (data[start][2] >= redline || data[start][2] < -redline) { ctx.strokeStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
 				ctx.lineWidth = 2;
-				ctx.beginPath(); ctx.lineTo(data[start][2]*multiY,-200); ctx.lineTo(-data[start][2]*multiY,-200);//EXPANDING Y
+				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-200); ctx.lineTo(-data[start][1]*multiY,-200);//EXPANDING Y
 				ctx.stroke(); ctx.closePath();
 
-				if (data[start][1] <= 0) {
-				ctx.beginPath(); ctx.lineTo(-400, data[start][1]*multiX); ctx.lineTo(-400, -data[start][1]*multiX);//EXPANDING XL
+				if (data[start][0] >= 0) {
+				ctx.beginPath(); ctx.lineTo(-400, data[start][0]*multiX); ctx.lineTo(-400, -data[start][0]*multiX);//EXPANDING XL
 				ctx.stroke(); ctx.closePath();
 			}	else {
-				ctx.beginPath(); ctx.lineTo(400, -data[start][1]*multiX); ctx.lineTo(400, data[start][1]*multiX);//EXPANDING XR
+				ctx.beginPath(); ctx.lineTo(400, -data[start][0]*multiX); ctx.lineTo(400, data[start][0]*multiX);//EXPANDING XR
 				ctx.stroke(); ctx.closePath();
 			}
 
@@ -358,32 +364,32 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				int += dropDataPoints;
 				timer += 8;
 
-				if (data[start][1] > .05) { document.getElementById("text-div14").innerHTML = "Turning Left"; }
-				else if (data[start][1] < -.05) { document.getElementById("text-div14").innerHTML = "Turning Right"; }
+				if (data[start][0] > .05) { document.getElementById("text-div14").innerHTML = "Turning Left"; }
+				else if (data[start][0] < -.05) { document.getElementById("text-div14").innerHTML = "Turning Right"; }
 				else { document.getElementById("text-div14").innerHTML = "Driving Straight: "; }
 
 				document.getElementById("text-div15").innerHTML = " and "
 
-				if (-data[start][2] > redline) { document.getElementById("text-div16").innerHTML = "Braking Hard"; }//Y IS FLIPPED
-				else if (-data[start][2] < -.3) { document.getElementById("text-div16").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
-				else if (-data[start][2] < -.05) { document.getElementById("text-div16").innerHTML = "Accelerating"; }//Y IS FLIPPED
-				else if (-data[start][2] > .05) { document.getElementById("text-div16").innerHTML = "Braking"; }//Y IS FLIPPED
+				if (-data[start][1] > redline) { document.getElementById("text-div16").innerHTML = "Braking Hard"; }//Y IS FLIPPED
+				else if (-data[start][1] < -.3) { document.getElementById("text-div16").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
+				else if (-data[start][1] < -.05) { document.getElementById("text-div16").innerHTML = "Accelerating"; }//Y IS FLIPPED
+				else if (-data[start][1] > .05) { document.getElementById("text-div16").innerHTML = "Braking"; }//Y IS FLIPPED
 				else { document.getElementById("text-div16").innerHTML = "Coasting"; }
 
-				if (data[start][3] > 1.1) {
+				if (data[start][2] > 1.1) {
 					document.getElementById("text-div17").innerHTML = "- Consider turning your music down, at this voulme you may not be able to hear the horn of another car";
 				} else {
 				}
 
 				//if DB level too loud - "consider turning down the stereo, st this volume you may not hear the horn of another car"
 				document.getElementById("text-div1").innerHTML = "Time: " + data[start][32] + ":" + data[start][33] + ":" + data[start][34] + ":" + data[start][35];
-				document.getElementById("text-div2").innerHTML = "X:    " + data[start][1];
-				document.getElementById("text-div3").innerHTML = "Y:    " + data[start][2];
-				document.getElementById("text-div4").innerHTML = "Z:    " + data[start][3];
+				document.getElementById("text-div2").innerHTML = "X:    " + data[start][0];
+				document.getElementById("text-div3").innerHTML = "Y:    " + data[start][1];
+				document.getElementById("text-div4").innerHTML = "Z:    " + data[start][2];
 				document.getElementById("text-div5").innerHTML = "Data Points: " + int;
-				document.getElementById("text-div17").innerHTML = "In Car Noise Level: " + Math.round(data[start][3]*100)/4; + "Db";
+				document.getElementById("text-div17").innerHTML = "In Car Noise Level: " + data[start][21] + "dB";
 				document.getElementById("text-div6").innerHTML = highestAllAxesWithTime(data);//MAX AT TIME
-		}, ((data[ii][34]*1000)+data[ii][35])*3 );
+		}, 2000+((data[ii][34]*1000)+data[ii][35])*2.5 );
 	}
 
 }
@@ -391,8 +397,9 @@ $('#movement-xyz-full').on('click', function() {
 	// accelXy2pts(data5MileDown, 9000, 15000, 300, 300, 20, 1, .5);
 	// accelXy2pts(dataAccelAndBrake, 101, 2900, 300, 300, 20, 1, .5);
 	// accelXy2pts(dataStandDrive, 0101, 15000, 300, 300, 20, 1, .7);//VIDEO ON DESKTOP
-	movementXyzFull(data5MileDownFullSet, 0101, 15000, 1, 1, 1, 1, 1*9.81);//IPAD?
+	movementXyzFull(data5MileDownLongFull, 101, 33000, 40, 40, 2, 1, .6*g);//IPAD?
 	// accelXy2pts(dataUnknown, 0101, 15000, 300, 300, 20, 1, .7);//IPAD?
+
 	document.getElementById("text-div6").innerHTML = "Max: " + highestAllAxesWithTime(data);
 
 });
@@ -436,7 +443,7 @@ function movementXy1Point(data, start, stop, multiX, multiY, dropDataPoints, red
 		}
 }
 $('#movement-xy-1point').on('click', function() {
-	movementXy1Point(data5MileDownFullSet, 0101, 15000, 300, 300, 20, 1, 10);//IPAD?
+	movementXy1Point(data5MileDownFullSet, 0101, 15000, 500, 400, 20, 1, 10);//IPAD?
 	// accelXy1pt(dataCanyonDown, 9000, 15000, 300, 300, 1, 1);
 	// accelXy1pt(dataStandDrive, 0101, 15000, 300, 300, 20, 1, .7);//VIDEO ON DESKTOP
 });
