@@ -36,7 +36,6 @@ _____________________
 
 11 -  GYROSCOPE Z (°/s)
 1.63
-
 12 - LIGHT (lux)
 15071.0
 
@@ -97,14 +96,12 @@ NaN
 31 - Time since start in ms
 444
 
-32 - YYYY-MO-DD HH-MI-SS_SSS
-12
+32 - YYYY-MO-DD
 
-33 - 
-42
+33 - HH-
 
-34 - 
-59
+34 - MI-
 
-35 - 
-043
+35 - SS_
+
+36 - SSS

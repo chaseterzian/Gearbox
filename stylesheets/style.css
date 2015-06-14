@@ -1,17 +1,29 @@
 body{
   padding-left: 1%;
   padding-top: 1%;
-  padding-right: 1%;
+  padding-right: 3%;
   padding-bottom: 1%;
 }
 #bg-image {
-  background-image: url("../images/ferrariSide.jpg");
+  background-image: url("../images/world.png");
   background-width: 100%;
   background-height: 100%;
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 0px 233px;
+  /*z-index: 100;*/
+  /*background-position: center;*/
 }
+
+.bg {
+  /*background: url(../images/compas.jpg) no-repeat 50% 50%;*/
+  /*display: hide;*/
+}
+
+video {
+  display: none;
+}
+
 
 #random-box{
   width: 100px;
@@ -21,6 +33,10 @@ body{
 
 #demo-movie-div {
   display: hide;
+}
+
+.pad-top{
+  padding-top: 5px;
 }
 
 .col-1-var(){
@@ -42,6 +58,10 @@ body{
 }
 .col-3{
   width: 25%;
+  float: left;
+}
+.col-35{
+  width: 30%;
   float: left;
 }
 .col-4{
@@ -127,7 +147,7 @@ canvas {
   height: auto%;
   width: 100%;
   /*height:2500px;*/
-
+  /*background: url(../images/compas.jpg) no-repeat 50% 50%;*/
   /*float: right;*/
   /*background: black;*/
   /*border: 1px solid black;*/

@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Data Plot</title>
-  <script src="../server.js"></script>
-  <script src="../data/initSpin1.js"></script>
-  <script src="../data/initSpin2.js"></script>
-  <script src="../data/initSpin3.js"></script>
-  <script src="../data/initRunIndoor.js"></script>
-  <script src="../data/initSwing.js"></script>
-  <script src="../data/secAccelAndLeft.js"></script>
-  <script src="../data/secAccelBrake.js"></script>
-  <script src="../data/secCanyonDown.js"></script>
-  <script src="../data/secCanyonUp.js"></script>
-  <script src="../data/secFiveMileDown.js"></script>
-  <script src="../data/secFiveMileUp.js"></script>
-  <script src="../data/secToClass.js"></script>
-  <script src="../data/dataStandDrive.js"></script>
-  <script src="../data/data5MileDownLongFull.js"></script>
-  <script src="../data/dataUnknown.js"></script>
+<title>Data Plot</title>
+<script src="../data/dataStandDrive.js"></script>
+<script src="../data/data5MileDownLongFull.js"></script>
+<script src="../data/data5MileDownFullSet.js"></script>
+<script src="../data/dataStandDriveFull2.js"></script>
 
-  <!-- <link href='..videos/data5MileDown' -->
-  <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
-  <script src="../stylesheets/jquery-1.11.3.min.js"></script>
-  <script src="../controllers/app.js"></script>
-  <script src="../controllers/dataControls.js"></script>
+<script src="../data2/dataFlagstaffUp.js"></script>
+<script src="../data2/dataDownFlagstaff1.js"></script>
+<script src="../data2/dataDownFlagstaff2.js"></script>
+<script src="../data2/dataDownBaselineHill.js"></script>
+<script src="../data2/dataHomeFromBroadway.js"></script>
 
+<link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
+<script src="../stylesheets/jquery-1.11.3.min.js"></script>
+<script src="../controllers/lineFunctions.js"></script>
+<script src="../controllers/app.js"></script>
+<script src="../controllers/lineFunctions.js"></script>
+<script src="../controllers/dataControls.js"></script>
+<script type="text/javascript"></script>
 </head>
-<body>
+<body id='bg-image'>
 
-  <h1 class="show-data">Testing Zone</h1>
-  <hr>
-  <input type='file' id='input'>
-  <div id='random-box'></div>
+<h1 class="show-data">Testing Zone</h1>
+<hr>
+
 
 <script>
 // var selectedFile = document.getElementById('input').files[0];
@@ -45,87 +39,93 @@
 console.log('hi');
 </script>
 
-
-<div class='col-5'>
-  <h4>
-    Testing Zone:
-    <button id='test-functions'>Test Functions</button>
-    <button id='test-z'>Test Z Aixs</button>
-    <button id='car-model'>Test Car Model</button>
-    <button id='g-ball-test'>Test G Ball</button>
-    <button id='g-ball-v-2'>gBallV2</button>
-  </h4>
-  <h4>
-    Controlls:
-    <button id='cartesian'>Cartesian Layout</button>
-    <button id='freeze'>Freeze Data</button>
-    <button id='reset'>RESET</button>
-    <button id='hide-controls'>Hide Controls</button>
-    <button id='show-file'>SHOW FILE</button>
-  </h4>
-  <h4>
-    Functions:
-    <button id='movement-xyz'>Movement XYZ</button>
-    <button id='movement-xyz-full'>Movement XYZ Full</button>
-    <button id='movement-xy-1point'>Movement XY 1 Point</button>
-  </h4>
-    <b><div id="text-div6"></div></b>
+<div class='col-35'>
+<h4>
+Controlls:
+<button id='cartesian'>Cartesian Layout</button>
+<button id='freeze'>Freeze Data</button>
+<button id='reset'>RESET</button>
+</h4>
+<h4>
+Functions:
+<button id='movement-xyz-full'>Movement XYZ Full</button>
+<button id='movement-xy-1point'>Movement XY 1 Point</button>
+<button id='orientation'>Orien</button>
+<button id='wheel'>Wheel</button>
+<hr>
+<b><div id="text-div6"></div></b>
 </div>
-
-<div class='col-3'>
-  <h3>
-    <div id="text-div1"></div>
-    <div id="text-div2"></div>
-    <div id="text-div3"></div>
-    <div id="text-div4"></div>
-    <div id="text-div5"></div>
-    <div id="text-div17"></div>
-  </h3>
-</div>
-
-<div class='col-4'>
-  <h3><div id="text-div14" class="center"></div></h3>
-  <h5><div id="text-div15" class="center"></div></h5>
-  <h3><div id="text-div16" class="center"></div></h3>
-</div>
-
-
-<div id='all-errors-div' class="space"></div>
-<div class='col-12'></div>
 
 
 <div class='col-2'>
-  <hr>
-  <!-- <video id="sampleMovie" width="270" height="480" preload controls> -->
-  <!-- <source src="../videos/data5MileDownVid.MOV" /> -->
-  <!-- <source src="../videos/dataStandTest.MOV" />
-  </video> -->
-
-  <b><div id="text-div-crash" class="space"></div></b>
-    <div id="text-div-good-driver" class="space"></div>
-    <div id="text-div-hard-left" class="space"></div>
-    <div id="text-div-hard-right" class="space"></div>
-
-    <div id="text-div9" class="space"></div>
-    <div id="text-div21" class="space"></div>
-    <div id="text-div10" class="space"></div>
-    <div id="text-div22" class="space"></div>
-    <div id="text-div-bump" class="space"></div>
-    <div id="text-div-airborne" class="space"></div>
-    <div id="text-div13" class="space"></div>
-    <div id="text-div20" class="space"></div>
+<h3><div id="text-div14" class='center'></div></h3>
+<h5><div id="text-div15" class='center'></div></h5>
+<h3><div id="text-div16" class='center'></div></h3>
+<hr>
 </div>
 
-<div class='col-10'>
-  <canvas id="canvas">
-    <!-- <img src="../images/tach.png" id="canvas-pic"></img> -->
-  </canvas>
-</div>
-
-
-<canvas id="canvas2">
+<div class='col-2'>
+<canvas id="canvas-compas">
 </canvas>
+</div>
 
-  <div><a href="./index.html" class="home">Home</a></div>
+<div class='col-2'>
+<h3>
+<div id="text-div2" class='center' ></div>
+<div id="text-div3" class='center' ></div>
+<div id="text-div4" class='center' ></div>
+<div id="text-div5" class='center' ></div>
+<h3>
+</div>
+
+<div class='col-2'>
+<canvas id="canvas-wheel">
+</canvas>
+</div>
+
+<div class="col-12"></div>
+
+
+<div class='col-2'>
+<h3>
+<div id="text-div1"></div>
+<div id="text-div17"></div>
+<div id="noise-data"></div>
+<div id="noise-data2"></div>
+<div id="altitude"></div>
+<div id="orientation-in-degrees"></div>
+<div id="speed"></div>
+<hr>
+</h3>
+
+<b><div id="text-div-crash" class="space"></div></b>
+<div id="text-div-good-driver" class="space"></div>
+<div id="text-div-hard-left" class="space"></div>
+<div id="text-div-hard-right" class="space"></div>
+
+<div id="text-div9" class="space"></div>
+<div id="text-div21" class="space"></div>
+<div id="text-div10" class="space"></div>
+<div id="text-div22" class="space"></div>
+<div id="text-div-bump" class="space"></div>
+<div id="text-div-airborne" class="space"></div>
+<div id="text-div13" class="space"></div>
+<div id="text-div20" class="space"></div>
+</div>
+
+<div class='col-8'>
+<canvas id="canvas">
+
+
+
+<script>
+</script>
+</canvas>
+</div>
+
+
+
+
+<div><a href="./index.html" class="home">Home</a></div>
 
 </body>
