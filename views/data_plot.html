@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Data Plot</title>
-<script src="../data/dataStandDrive.js"></script>
-<script src="../data/data5MileDownLongFull.js"></script>
-<script src="../data/data5MileDownFullSet.js"></script>
-<script src="../data/dataStandDriveFull2.js"></script>
+	<title>Data Plot</title>
+	<script src="../data/dataStandDrive.js"></script>
+	<script src="../data/data5MileDownLongFull.js"></script>
+	<script src="../data/data5MileDownFullSet.js"></script>
+	<script src="../data/dataStandDriveFull2.js"></script>
 
-<script src="../data2/dataFlagstaffUp.js"></script>
-<script src="../data2/dataDownFlagstaff1.js"></script>
-<script src="../data2/dataDownFlagstaff2.js"></script>
-<script src="../data2/dataDownBaselineHill.js"></script>
-<script src="../data2/dataHomeFromBroadway.js"></script>
+	<script src="../data2/dataFlagstaffUp.js"></script>
+	<script src="../data2/dataDownFlagstaff1.js"></script>
+	<script src="../data2/dataDownFlagstaff2.js"></script>
+	<script src="../data2/dataDownBaselineHill.js"></script>
+	<script src="../data2/dataHomeFromBroadway.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
-<script src="../stylesheets/jquery-1.11.3.min.js"></script>
-<script src="../controllers/lineFunctions.js"></script>
-<script src="../controllers/app.js"></script>
-<script src="../controllers/lineFunctions.js"></script>
-<script src="../controllers/dataControls.js"></script>
-<script type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
+	<script src="../stylesheets/jquery-1.11.3.min.js"></script>
+	<script src="../controllers/lineFunctions.js"></script>
+	<script src="../controllers/app.js"></script>
+	<script src="../controllers/lineFunctions.js"></script>
+	<script src="../controllers/dataControls.js"></script>
+	<script type="text/javascript"></script>
+	<!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"> -->
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 </head>
 <body id='bg-image'>
 
-<h1 class="show-data">Testing Zone</h1>
-<hr>
+	<div class='hide-this'>
+		<h1><button class='btn2'>Testing Area</button></h1>
+		<hr>
 
-<script>
+		<script>
 // var selectedFile = document.getElementById('input').files[0];
 // $('document').ready(function() {
 // $('#show-file').on('click', function() {
@@ -35,102 +38,107 @@
 // console.log(selectedFile);
 // });
 // });
-console.log('hi');
 </script>
-
-<div class='col-35'>
-<h4>
-Controlls:
-<button id='cartesian'>Cartesian Layout</button>
-<button id='freeze'>Freeze Data</button>
-<button id='reset'>RESET</button>
-</h4>
-<h4>
-Functions:
-<button id='movement-xyz-full'>Movement XYZ Full</button>
-<button id='movement-xy-1point'>Movement XY 1 Point</button>
-<button id='orientation'>Orien</button>
-<button id='wheel'>Wheel</button>
-<button id='location-route-model'>Location</button>
-<hr>
-<b><div id="text-div6"></div></b>
 </div>
 
-
-<div class='col-2'>
-<h3><div id="text-div14" class='center'></div></h3>
-<h5><div id="text-div15" class='center'></div></h5>
-<h3><div id="text-div16" class='center'></div></h3>
-<hr>
+<div class='col-25' id='button-panel'>
+	<h4>
+		<!-- Controlls: -->
+		<button class='btn' id='cartesian'>Cartesian Layout</button>
+		<div><button class='btn' id='freeze'>Freeze Data</button></div>
+		<div><button class='btn' id='reset'>Reset</button></div>
+	</h4>
+	<h4 class="hide-this"/>
+	<!-- Functions: -->
+	<div><button class='btn' id='movement-xyz-full'>Show All Data</button></div>
+	<div><button class='btn' id='movement-xy-1point'>Experimaental Functions</button></div>
+	<div><button class='btn' id='orientation'>Orientation</button></div>
+	<div><button class='btn' id='wheel'>Steering Wheel</button></div>
+	<div><button class='btn' id='location-route-model'>Location</button></div>
+	<div><button class='btn' id='location-lat-start'>Lat Start</button></div>
+	<div><button class='btn' id='location-long-start'>Long Start</button></div>
+	<hr>
+	<b><div id="text-div6"></div></b>
 </div>
 
-<div class='col-2'>
-<canvas id="canvas-compas">
-</canvas>
+<div class='col-30'>
+	<canvas id="canvas-compas">
+	</canvas>
 </div>
 
-<div class='col-2'>
-<h3>
-<div id="text-div2" class='center' ></div>
-<div id="text-div3" class='center' ></div>
-<div id="text-div4" class='center' ></div>
-<div id="text-div5" class='center' ></div>
-<h3>
+<div class='col-25 hide-then-show'>
+	<h3><div id="text-div14" class='center btn'></div></h3>
+	<h5><div id="text-div15" class='center btn'></div></h5>
+	<h3><div id="text-div16" class='center btn'></div></h3>
+	<hr>
 </div>
 
-<div class='col-2'>
-<canvas id="canvas-wheel">
-</canvas>
+<div class='col-30'>
+	<canvas id="canvas-wheel">
+	</canvas>
 </div>
+
 
 <div class="col-12"></div>
 
 
-<div class='col-2'>
-<h3>
-<div id="text-div1"></div>
-<div id="text-div17"></div>
-<div id="noise-data"></div>
-<div id="noise-data2"></div>
-<div id="altitude"></div>
-<div id="orientation-in-degrees"></div>
-<div id="speed"></div>
-<hr>
-</h3>
+<div class='col-2 hide-then-show'>
+	<h3>
+		<div id="text-div1" class='btn'></div>
+		<div id="text-div17" class='btn'></div>
+		<div id="sound-in-db" class='btn'></div>
+		<div id="noise-data2" class='btn'></div>
+		<div id="altitude" class='btn'></div>
+		<div id="orientation-in-degrees" class='btn'></div>
+		<div id="speed" class='btn'></div>
+		<hr>
+	</h3>
 
-<b><div id="text-div-crash" class="space"></div></b>
-<div id="text-div-good-driver" class="space"></div>
-<div id="text-div-hard-left" class="space"></div>
-<div id="text-div-hard-right" class="space"></div>
+	<b><div id="text-div-crash" class="space"></div></b>
+	<div id="text-div-good-driver" class="space"></div>
+	<div id="text-div-hard-left" class="space"></div>
+	<div id="text-div-hard-right" class="space"></div>
 
-<div id="text-div9" class="space"></div>
-<div id="text-div21" class="space"></div>
-<div id="text-div10" class="space"></div>
-<div id="text-div22" class="space"></div>
-<div id="text-div-bump" class="space"></div>
-<div id="text-div-airborne" class="space"></div>
-<div id="text-div13" class="space"></div>
-<div id="text-div20" class="space"></div>
-</div>
+	<div id="text-div9" class="space"></div>
+	<div id="text-div21" class="space"></div>
+	<div id="text-div10" class="space"></div>
+	<div id="text-div22" class="space"></div>
+	<div id="text-div-bump" class="space"></div>
+	<div id="text-div-airborne" class="space"></div>
+	<div id="text-div13" class="space"></div>
+	<h3>
+		<div id="text-div2" class='center btn' ></div>
+		<div id="text-div3" class='center btn' ></div>
+		<div id="text-div4" class='center btn' ></div>
+		<div id="text-div5" class='center btn' ></div>
+		<h3>
+			<div id="text-div20" class="space"></div>
+		</div>
 
-<div class='col-10'>
-<canvas id="canvas">
-</canvas>
-</div>
+		<div class='col-10'>
+			<canvas id="canvas">
+			</canvas>
+		</div>
 
-<div class='col-12'>
-</div>
-
-<div class='col-12'>
-<canvas id="canvas-location">
-</canvas>
-</div>
-
-
-
+		<div class='col-12'>
+		</div>
 
 
+		<form class='btn4 hide-this' action="/csv-upload" method="post">
+			<input type='file' name='csv' accept='.csv'>
+			<button class='btn5';type="submit" >Submit</button>
+		</form>
 
-<div><a href="./index.html" class="home">Home</a></div>
+		<div class='col-12'>
+			<canvas id="canvas-location">
+			</canvas>
+		</div>
 
-</body>
+
+
+
+
+
+		<div><a href="./index.html" class="home btn">Home</a></div>
+
+	</body>

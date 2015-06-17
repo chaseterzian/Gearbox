@@ -1,3 +1,4 @@
+$('document').ready(function { 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 function cartesianLayout() {
@@ -51,8 +52,6 @@ function testFunctions(data, start, stop, multiX, multiY, dropDataPoints, multiT
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
-// ctx.bezierCurveTo(88,96,87,99,87,101);
-// ctx.quadraticCurveTo(20,250,250,620.50);
 function testZ(data, start, stop, multiZ, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -438,4 +437,7 @@ function forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, mu
 }
 $('#forceXyzAdjustableTimeXyz').on('click', function() {
 	forceXyzAdjustableTimeXyz(dataSpin3, 0, 1000, 1500, 1500, 1500, 1, 1);
+});
+
+
 });

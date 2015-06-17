@@ -14,6 +14,35 @@ server?
 make content responsive
 on canvas too
 ------------------------------------------------------------------
+SIDE EFFECT - STR8 LINE SCROLLING DOWN THE SCREEN 
+function locationAndRouteModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline, latS, longS) {
+  var latStart = latitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline);
+  var longStart = longitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline);
+  console.log(latStart);
+  console.log(longStart);
+  var canvas = document.getElementById('canvas-location');
+  var ctx = canvas.getContext('2d');
+  var int = 0;
+
+  for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+    setTimeout(function () {
+      ctx.canvas.width  = window.innerWidth;
+      ctx.canvas.height = 800;//window.innerHeight;
+      ctx.scale(1,1);
+      ctx.translate(canvas.width/2, canvas.height/2);
+        // ctx.rotate((Math.PI/180)*(data[start][0]*25));
+        // ctx.strokeStyle="black";
+        // ctx.lineWidth = 10;
+        // ctx.beginPath(); ctx.arc(0, 0, 300, 300, Math.PI, true); ctx.stroke();//WHELL
+        // ctx.lineWidth = 10;
+        ctx.beginPath(); ctx.lineTo(-300,int); ctx.lineTo(300,int); ctx.stroke(); ctx.closePath();
+        start += dropDataPoints;
+        int += dropDataPoints;
+      }, 2000+data[ii][31]*dropDataPoints);
+  }
+
+}
+------------------------------------------------------------------
 CONVERTING LOCATION POINTS TO WRITABLE FORMAT - JSBIN HOLD
 
 arrLat = [];
