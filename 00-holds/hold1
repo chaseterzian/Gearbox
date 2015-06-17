@@ -13,6 +13,25 @@ server?
 
 make content responsive
 on canvas too
+------------------------------------------------------------------
+CONVERTING LOCATION POINTS TO WRITABLE FORMAT - JSBIN HOLD
+
+arrLat = [];
+arrLatLeft = [];
+arrLatRight = [];
+arrLong = [];
+arrLongLeft = [];
+arrLongRight = [];
+arr1 = [91.3,39.99723,-105.30903,6596.8];
+
+arrLat.push(arr1[1]);
+arrLat = arrLat.join().split('.');
+arrLatLeft.push(parseFloat(arrLat[0]));
+arrLatRight.push(parseFloat("." + arrLat[1]));
+
+console.log( (arrLatLeft - arrLatLeft) + (arrLatRight*100) );
+// console.log( (arrLatRight*100) );
+
 -------------------------------------------------------------------
 //////////////////////////////////
 // ctx.bezierCurveTo(88,96,87,99,87,101);
