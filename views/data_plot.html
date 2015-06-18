@@ -6,6 +6,7 @@
 	<script src="../data/data5MileDownLongFull.js"></script>
 	<script src="../data/data5MileDownFullSet.js"></script>
 	<script src="../data/dataStandDriveFull2.js"></script>
+	<script src="../data/secFiveMileDown.js"></script>
 
 	<script src="../data2/dataFlagstaffUp.js"></script>
 	<script src="../data2/dataDownFlagstaff1.js"></script>
@@ -41,23 +42,28 @@
 </script>
 </div>
 
-<div class='col-25' id='button-panel'>
+<div class='col-35' id='button-panel'>
 	<h4>
 		<!-- Controlls: -->
-		<button class='btn' id='cartesian'>Cartesian Layout</button>
+		<div><button class='btn' >Show My Report</button></div>
+		<div><button class='btn' id='cartesian'>Cartesian Layout</button></div>
 		<div><button class='btn' id='freeze'>Freeze Data</button></div>
 		<div><button class='btn' id='reset'>Reset</button></div>
 	</h4>
 	<h4 class="hide-this"/>
 	<!-- Functions: -->
+	<div><button class='btn' id='test-functions'>Test Functions</button></div>
 	<div><button class='btn' id='movement-xyz-full'>Show All Data</button></div>
-	<div><button class='btn' id='movement-xy-1point'>Experimaental Functions</button></div>
-	<div><button class='btn' id='orientation'>Orientation</button></div>
 	<div><button class='btn' id='wheel'>Steering Wheel</button></div>
+	<div><button class='btn' id='orientation'>Orientation</button></div>
 	<div><button class='btn' id='location-route-model'>Location</button></div>
 	<div><button class='btn' id='location-lat-start'>Lat Start</button></div>
 	<div><button class='btn' id='location-long-start'>Long Start</button></div>
 	<hr>
+	<form class='btn4 hide-this' action="/csv-upload" method="post">
+		<input type='file' name='csv' accept='.csv'>
+		<button class='btn4' type="submit" >Submit</button>
+	</form>
 	<b><div id="text-div6"></div></b>
 </div>
 
@@ -67,9 +73,9 @@
 </div>
 
 <div class='col-25 hide-then-show'>
-	<h3><div id="text-div14" class='center btn'></div></h3>
-	<h5><div id="text-div15" class='center btn'></div></h5>
-	<h3><div id="text-div16" class='center btn'></div></h3>
+	<div><button id="text-div14" class='center btn'></button></div>
+	<div><button id="text-div15" class='center btn'></button></div>
+	<div><button id="text-div16" class='center btn'></button></div>
 	<hr>
 </div>
 
@@ -123,11 +129,6 @@
 		<div class='col-12'>
 		</div>
 
-
-		<form class='btn4 hide-this' action="/csv-upload" method="post">
-			<input type='file' name='csv' accept='.csv'>
-			<button class='btn5';type="submit" >Submit</button>
-		</form>
 
 		<div class='col-12'>
 			<canvas id="canvas-location">

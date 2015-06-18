@@ -116,7 +116,7 @@ body{
   -webkit-border-radius: 6;
   -moz-border-radius: 6;
   /*top: 92.5%;*/
-  position: fixed;
+  /*position: right;*/
   top: 61%;
   left: 1.6%;
   border-radius: 6px;
@@ -124,27 +124,10 @@ body{
   color: #ffffff;
   font-size: 15px;
   background: #000000;
-  padding: 7px 5px 7px 5px;
+  padding: 2px 5px 2px 5px;
   text-decoration: none;
 }
 
-.btn5 {
-  /*position: absolute;*/
-  /*top: 50%;*/
-  -webkit-border-radius: 6;
-  -moz-border-radius: 6;
-  /*top: 92.5%;*/
-  position: fixed;
-  top: 65%;
-  left: 1.5%;
-  border-radius: 6px;
-  font-family: Courier New;
-  color: #ffffff;
-  font-size: 15px;
-  background: #000000;
-  padding: 7px 5px 7px 5px;
-  text-decoration: none;
-}
 .bg {
   /*background: url(../images/compas.jpg) no-repeat 50% 50%;*/
   /*display: hide;*/

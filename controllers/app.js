@@ -1,5 +1,39 @@
 $(document).ready(function() {
 
+	function testZ(data, start, stop, multiZ, dropDataPoints) {
+	var canvas = document.getElementById('canvas-testing');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	ctx.canvas.width  = window.innerWidth;
+	ctx.canvas.height = window.innerHeight;
+	ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+	ctx.scale(.2,.2);
+	ctx.beginPath();
+	ctx.lineTo(200,0); ctx.lineTo(-100,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+	ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+		setTimeout(function () {
+			ctx.lineWidth = 1;
+			ctx.beginPath();
+			ctx.strokeStyle=("black");
+			ctx.lineTo(data[start][1]*multiZ, 0);
+			// ctx.stroke(); ctx.closePath();
+			ctx.lineTo(0, data[start][2]*multiZ);
+			ctx.stroke(); ctx.closePath();
+			// ctx.lineTo(data[start][3]*multiZ, data[start][3]*(multiZ/2));
+			// ctx.stroke(); ctx.closePath();
+
+			start += dropDataPoints;
+			int += dropDataPoints;
+		}, ii*data[ii][0]*dropDataPoints/10);
+	}
+}
+$('#test-functions').on('click', function() {
+	testZ(data5MileDown, 101, 15000, 5000, 1);
+});
+
+
+
 	g = 9.81;
 
 	$("form").on("submit", function() {//DOES NOT WORK YET
@@ -212,7 +246,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 			function carMovementInWords() { 
 				if (data[start][0] > .07*g) { document.getElementById("text-div14").innerHTML = "Turning Right"; }
 				else if (data[start][0] < -.07*g) { document.getElementById("text-div14").innerHTML = "Turning Left"; }
-				else { document.getElementById("text-div14").innerHTML = "Driving Straight: "; }
+				else { document.getElementById("text-div14").innerHTML = "Driving Straight"; }
 
 				document.getElementById("text-div15").innerHTML = " and "
 
@@ -247,7 +281,7 @@ $('#movement-xyz-full').on('click', function() {
 	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2, .3*g);
 	$('.hide-this').toggle('hide');
 	$('.hide-then-show').show('.hide-then-show');
-	$('#bg-image3').toggle('#bg-image3');
+	// $('#bg-image3').toggle('#bg-image3');
 	// $('#bg-image').toggle('bg-image2');
 	// console.log(latitudeStartingPoint(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g) );
 	// console.log(longitudeStartingPoint(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g) );
