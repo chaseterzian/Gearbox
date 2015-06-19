@@ -1,51 +1,22 @@
 $(document).ready(function() {
 
-	function testZ(data, start, stop, multiZ, dropDataPoints) {
-	var canvas = document.getElementById('canvas-testing');
-	var ctx = canvas.getContext('2d');
-	var int = 0;
-	ctx.canvas.width  = window.innerWidth;
-	ctx.canvas.height = window.innerHeight;
-	ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-	ctx.scale(.2,.2);
-	ctx.beginPath();
-	ctx.lineTo(200,0); ctx.lineTo(-100,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
-	ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath(); ctx.beginPath();
-	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-		setTimeout(function () {
-			ctx.lineWidth = 1;
-			ctx.beginPath();
-			ctx.strokeStyle=("black");
-			ctx.lineTo(data[start][1]*multiZ, 0);
-			// ctx.stroke(); ctx.closePath();
-			ctx.lineTo(0, data[start][2]*multiZ);
-			ctx.stroke(); ctx.closePath();
-			// ctx.lineTo(data[start][3]*multiZ, data[start][3]*(multiZ/2));
-			// ctx.stroke(); ctx.closePath();
+// require('lineFunctions.js');
 
-			start += dropDataPoints;
-			int += dropDataPoints;
-		}, ii*data[ii][0]*dropDataPoints/10);
-	}
-}
-$('#test-functions').on('click', function() {
-	testZ(data5MileDown, 101, 15000, 5000, 1);
+g = 9.81;
+$(window).load(function() {
+	$('reportcontent').hide();
 });
-
-
-
-	g = 9.81;
 
 	$("form").on("submit", function() {//DOES NOT WORK YET
 		// debugger;
 	});
-	$('#freeze').on('click', function() {
+	$('#freeze-button').on('click', function() {
 		alert("DATA FREEZE, IT'S COLD IN HERE");
 	});
-	$('#reset').on('click', function() {
+	$('#reset-button').on('click', function() {
 		location.reload();
 	});
-	$('#cartesian').on('click', function() {
+	$('#cartesian-button').on('click', function() {
 		cartesianLayout();
 	});
 
@@ -53,22 +24,37 @@ $('#test-functions').on('click', function() {
 	$('html').fadeIn(2000);
 
 	$('.hide-then-show').hide('.hide-then-show');
-// $('#click-some-shit').click(function() {
-// 	event.preventDefault();
-// 	newLocation = this.href;
-// 	$('body').fadeOut(1000, newpage);
-// });
-// $('#click-some-shit').on('click', function() {
-// 	$('#bg-image2').toggle('hide');
-// });
-// $('document').on('load', function() {
-// 	$('video').hide();
-// });
-  // $(".alternate").show();}
-  // $('body').on('click', function() {
-    // {$(".alternate").toggle('hide');
-    // {$(".alternate").toggle();
-  // });
+
+	$('#testing-area').on('click', function() {
+		$('#testing-area').css("background-color", "red");
+	});
+
+	$('#test-functions-button').on('click', function() {
+		testZ(data5MileDown, 101, 15000, 5000, 1);
+	});
+
+	$('#test-functions').on('click', function() {
+		graphicsFunctionOne(data5MileDown, 101, 15000, 5000, 1);
+	});
+
+	$('#report-button').on('click', function() {
+		$('datacontent').toggle('hide');
+		$('reportcontent').toggle('show');
+	});
+
+	$('#data-page').on('click', function() {
+		$('datacontent').toggle('show');
+		$('reportcontent').toggle('hide');
+	});
+
+	$('#nothing').on('click', function() {
+		// $('body').css('background-image', 'url(/')
+			$('body').removeClass('bg-image');
+	});
+
+
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
@@ -244,9 +230,9 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 			carMovementAndPositionVisuals();
 
 			function carMovementInWords() { 
-				if (data[start][0] > .07*g) { document.getElementById("text-div14").innerHTML = "Turning Right"; }
-				else if (data[start][0] < -.07*g) { document.getElementById("text-div14").innerHTML = "Turning Left"; }
-				else { document.getElementById("text-div14").innerHTML = "Driving Straight"; }
+				if (data[start][0] > .07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Right"; }
+				else if (data[start][0] < -.07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Left"; }
+				else { document.getElementById("left-right-straight").innerHTML = "Driving Straight"; }
 
 				document.getElementById("text-div15").innerHTML = " and "
 
@@ -257,7 +243,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				else { document.getElementById("text-div16").innerHTML = "Coasting"; }
 			}
 			carMovementInWords();
-			
+
 			function  dataRealtimePrintOuts() {
 				document.getElementById("text-div1").innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
 				document.getElementById("text-div2").innerHTML = "X:    " + data[start][0];
@@ -267,7 +253,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				document.getElementById("text-div5").innerHTML = "Data Points: " + int;
 				document.getElementById("sound-in-db").innerHTML = "Sound in dB: ";
 				document.getElementById("noise-data2").innerHTML = (data[start][21]-80);
-				document.getElementById("text-div6").innerHTML = highestAllAxesWithTime(data);//MAX FORCE OF ALL DATA AT TIME
+				// document.getElementById("text-div6").innerHTML = highestAllAxesWithTime(data);//MAX FORCE OF ALL DATA AT TIME
 				document.getElementById("altitude").innerHTML = "Altitude in ft: " + data[start][24];
 			}
 			dataRealtimePrintOuts();
@@ -275,7 +261,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 }
 
 }
-$('#movement-xyz-full').on('click', function() {
+$('#show-all-data-button').on('click', function() {
 	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .2*g);
 	orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
 	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2, .3*g);
@@ -313,44 +299,7 @@ var highestAllAxesWithTime = function(data) {//consoleXYZ with time
 	return "Max: " + dataXYZ[0] + " /// " + dataXYZ[1] + " /// " + dataXYZ[2] + " /// ";
 }
 
-//////////////////////////////////////////////////////////////////////////////////////
-function latitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 
-	var arrLatStartLeft = [];
-	var arrLatForStart = [];
-	for (var x=start; x<stop; x=x+dropDataPoints) { 
-		if (data[start][22] !== undefined && data[start][22] !== NaN && arrLatForStart.length === 0) { 
-			arrLatStartLeft.push(data[start][22]);
-			arrLatStartLeft = arrLatStartLeft.join().split('.');
-			arrLatForStart.push(parseFloat(arrLatStartLeft[0]));
-		}
-		start += dropDataPoints;
-	}
-	return arrLatForStart;
-}
-// $('#location-lat-start').on('click', function() {
-// 	latitudeStartingPoint(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
-// 	console.log(latitudeStartingPoint(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g) );
-// });
-function longitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 
-	var arrLongForStart = [];
-	var arrLongStartLeft = [];
-	for (var x=start; x<stop; x=x+dropDataPoints) { 
-		// if (data[start][23] !== undefined && data[start][23] !== NaN && arrLongForStart.length === 0) { 
-			if (arrLongForStart.length === 0) { 
-				arrLongStartLeft.push(data[start][23]);
-				arrLongStartLeft = arrLongStartLeft.join().split('.');
-			arrLongForStart.push(parseFloat(arrLongStartLeft[0]));//it is not getting to these numbers
-		}
-		start += dropDataPoints;
-	}
-	return arrLongForStart;
-}
-// $('#location-long-start').on('click', function() {
-// 	latitudeStartingPoint(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
-// 	console.log(longitudeStartingPoint(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g) );
-// });
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
 	var canvas = document.getElementById('canvas-wheel');
 	var ctx = canvas.getContext('2d');
@@ -407,12 +356,11 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 			}, 2000+data[ii][31]*dropDataPoints);
 }
 }
-$('#wheel').on('click', function() {
+$('#wheel-function-button').on('click', function() {
 	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 30, 30, 2, 1, .3*g);
 });
 
-////////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
 function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 
 	var canvas = document.getElementById('canvas-compas');
 	var ctx = canvas.getContext('2d');
@@ -474,10 +422,70 @@ function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 
 }
 }
-$('#orientation').on('click', function() {
+$('#orientation-function-button').on('click', function() {
 	console.log("insied testnewcanvas jquery");
 	orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
 });
+
+//////////////////////////////////////////////////////////////////////////
+function graphicsFunctionOne(data, start, stop, multiZ, dropDataPoints) {
+	var canvas = document.getElementById('canvas-testing');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	ctx.canvas.width  = window.innerWidth;
+	ctx.canvas.height = window.innerHeight;
+	ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+	ctx.scale(.2,.2);
+	ctx.beginPath();
+	ctx.lineTo(200,0); ctx.lineTo(-100,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+	ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+		setTimeout(function () {
+			ctx.lineWidth = 1;
+			ctx.beginPath();
+			ctx.strokeStyle=("black");
+			ctx.lineTo(data[start][1]*multiZ*2, 0);
+			// ctx.stroke(); ctx.closePath();
+			ctx.lineTo(0, data[start][2]*multiZ);
+			ctx.stroke(); ctx.closePath();
+			// ctx.lineTo(data[start][3]*multiZ, data[start][3]*(multiZ/2));
+			// ctx.stroke(); ctx.closePath();
+
+			start += dropDataPoints;
+			int += dropDataPoints;
+		}, ii*data[ii][0]*dropDataPoints/10);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+function latitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 
+	var arrLatStartLeft = [];
+	var arrLatForStart = [];
+	for (var x=start; x<stop; x=x+dropDataPoints) { 
+		if (data[start][22] !== undefined && data[start][22] !== NaN && arrLatForStart.length === 0) { 
+			arrLatStartLeft.push(data[start][22]);
+			arrLatStartLeft = arrLatStartLeft.join().split('.');
+			arrLatForStart.push(parseFloat(arrLatStartLeft[0]));
+		}
+		start += dropDataPoints;
+	}
+	return arrLatForStart;
+}
+
+function longitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 
+	var arrLongForStart = [];
+	var arrLongStartLeft = [];
+	for (var x=start; x<stop; x=x+dropDataPoints) { 
+		// if (data[start][23] !== undefined && data[start][23] !== NaN && arrLongForStart.length === 0) { 
+			if (arrLongForStart.length === 0) { 
+				arrLongStartLeft.push(data[start][23]);
+				arrLongStartLeft = arrLongStartLeft.join().split('.');
+			arrLongForStart.push(parseFloat(arrLongStartLeft[0]));//it is not getting to these numbers
+		}
+		start += dropDataPoints;
+	}
+	return arrLongForStart;
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 function locationAndRouteModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
@@ -536,7 +544,7 @@ function locationAndRouteModel(data, start, stop, multiX, multiY, multiZ, dropDa
 }
 
 }
-$('#location-route-model').on('click', function() {
+$('#location-route-function-button').on('click', function() {
 	locationAndRouteModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
 });
 
@@ -565,20 +573,50 @@ function movementXy1Point(data, start, stop, multiX, multiY, dropDataPoints, red
 
 				start += dropDataPoints;
 				int += dropDataPoints;
-
-				document.getElementById("text-div1").innerHTML = "Time: " + data[start][32] + ":" + data[start][33] + ":" + data[start][34] + ":" + data[start][35];
-				document.getElementById("text-div2").innerHTML = "X:    " + data[start][0];
-				document.getElementById("text-div3").innerHTML = "Y:    " + data[start][1];
-				document.getElementById("text-div4").innerHTML = "Z:    " + data[start][2];
-				document.getElementById("text-div5").innerHTML = "Data Points: " + int;
-				// document.getElementById("text-div6").innerHTML = "Max: " + highestAllAxesWithTime(data);
 			}, ii*data[ii][0]*880);
-}
+	}
 }
 $('#movement-xy-1point').on('click', function() {
 	movementXy1Point(data5MileDownFullSet, 0101, 15000, 500, 400, 20, 1, 10);//IPAD?
 	// accelXy1pt(dataCanyonDown, 9000, 15000, 300, 300, 1, 1);
 	// accelXy1pt(dataStandDrive, 0101, 15000, 300, 300, 20, 1, .7);//VIDEO ON DESKTOP
 });
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+function forceXyzForReport(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
+	var canvas = document.getElementById('canvas-report');
+	var ctx = canvas.getContext('2d');
+	ctx.canvas.width  = window.innerWidth;
+	ctx.canvas.height = window.innerHeight;
+	ctx.translate(0, canvas.height/2);//DO PERCENTAGES FOR BALL
+	ctx.scale(.1,.1);
+	var time = 0;
+	for (var i=0; i<stop; i=i + dropDataPoints) {
+		ctx.lineWidth = 500;
+		ctx.beginPath(); ctx.lineTo(-200,0); ctx.lineTo(100,0); ctx.stroke(); ctx.closePath();//GRID
+		ctx.beginPath(); ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath();//GRID
+		ctx.beginPath(); 
+		ctx.lineTo(time, data[i][0]*multiX); 
+		ctx.lineTo(time+1, data[i][0]*multiX); 
+		ctx.stroke(); ctx.closePath();//xPosition
+		ctx.beginPath(); 
+		ctx.lineTo(time, (data[i][1]*multiY)+2500); 
+		ctx.lineTo(time+1, (data[i][1]*multiY)+2500); 
+		ctx.stroke(); ctx.closePath();//yPosition
+
+		ctx.beginPath(); 
+		ctx.lineTo(time, (data[i][2]*multiZ)-1500);  
+		ctx.lineTo(time+1, (data[i][2]*multiZ)-1500);  
+		ctx.stroke(); ctx.closePath();
+		time++;
+	}
+
+
+}
+$('#report-button').on('click', function() {
+	// forceXyzTimeXyz(dataSpin3, 900, 2900, 500, 500, 500, 1, 1);
+	forceXyzForReport(dataDownFlagstaff1, 0, 10000, 200, 200, 200, 1, 1);
+});
+
 
 });

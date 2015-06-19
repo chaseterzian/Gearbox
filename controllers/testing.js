@@ -53,9 +53,7 @@ $(document).ready(function() {
 		}, ii*data[ii][0]);
 	}
 }
-$('#testing-function').on('click', function() {
-	testZ(dataSpin3, 101, 2900, 1000, 10);
-});
+
 
 
 

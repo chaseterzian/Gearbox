@@ -1,6 +1,5 @@
 $('document').ready(function { 
 //////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
 function cartesianLayout() {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -12,7 +11,6 @@ function cartesianLayout() {
 		ctx.beginPath(); ctx.lineTo(200,-100); ctx.lineTo(-400,200); ctx.stroke(); ctx.closePath();
 	}
 
-//////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 function testFunctions(data, start, stop, multiX, multiY, dropDataPoints, multiTime) {
 	var canvas = document.getElementById('canvas');
@@ -50,41 +48,6 @@ function testFunctions(data, start, stop, multiX, multiY, dropDataPoints, multiT
 		testFunctions(dataCanyonDown, 1000, 10000, 100, 100, 1);
 	});
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-// function testZ(data, start, stop, multiZ, dropDataPoints) {
-// 	var canvas = document.getElementById('canvas');
-// 	var ctx = canvas.getContext('2d');
-// 	var int = 0;
-// 	ctx.canvas.width  = window.innerWidth;
-// 	ctx.canvas.height = window.innerHeight;
-// 	ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-// 	ctx.scale(1,1);
-// 	ctx.beginPath();
-// 	ctx.lineTo(200,0); ctx.lineTo(-100,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
-// 	ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath(); ctx.beginPath();
-// 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-// 		setTimeout(function () {
-// 			ctx.lineWidth = 1;
-// 			ctx.beginPath();
-// 			ctx.strokeStyle=("black");
-// 			ctx.lineTo(data[start][1]*multiZ, 0);
-// 			// ctx.stroke(); ctx.closePath();
-// 			ctx.lineTo(0, data[start][2]*multiZ);
-// 			ctx.stroke(); ctx.closePath();
-// 			// ctx.lineTo(data[start][3]*multiZ, data[start][3]*(multiZ/2));
-// 			// ctx.stroke(); ctx.closePath();
-
-// 			start += dropDataPoints;
-// 			int += dropDataPoints;
-// 		}, ii*data[ii][0]);
-// 	}
-// }
-// $('#test-z').on('click', function() {
-// 	testZ(dataCanyonDown, 101, 15000, 1000, 10);
-// });
-
-//////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 function testCarModel(data, start, stop, multiZ, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
@@ -127,7 +90,6 @@ $('#car-model').on('click', function() {
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
 function gBallTest(data, start, stop, multiZ, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -165,7 +127,6 @@ $('#g-ball-test').on('click', function() {
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
 function gBallV2(data, start, stop, multiX, multiY, dropDataPoints, multiTime) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -200,7 +161,6 @@ $('#g-ball-v-2').on('click', function() {
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
 function forceYTime(data, start, stop, multiX, multiY, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -226,7 +186,6 @@ $('#forceYTime').on('click', function() {
 	forceYTime(dataSpin3, 0000, 2500, 100, 100, 4);
 });
 
-//////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 function forceXTimeRedline(data, start, stop, multiX, multiY, dropDataPoints, redlineG) {
 	var canvas = document.getElementById('canvas');
@@ -259,7 +218,6 @@ $('#forceXTimeRedline').on('click', function() {
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
 function forceXy(data, start, stop, multiX, multiY, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -281,7 +239,6 @@ $('#forceXy').on('click', function() {
 	forceXy(dataSpin3, 0, 2900, 500, 500, 1);
 });
 
-////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 function forceXyTime(data, start, stop, multiX, multiY, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
@@ -309,7 +266,6 @@ $('#forceXyTime').on('click', function() {
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
 function forceXyTimeX(data, start, stop, multiX, multiY, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
@@ -331,7 +287,6 @@ $('#forceXyTimeX').on('click', function() {
 	forceXyTimeX(dataSpin3, 0, 2500, 100, 100, 5);
 });
 
-////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 function forceXyzTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
 	var canvas = document.getElementById('canvas');
@@ -401,7 +356,6 @@ $('#forceXyzTimeXyz').on('click', function() {
 // 	}
 // }
 
-/////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 function forceXyzAdjustableTimeXyz(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
 	var canvas = document.getElementById('canvas');

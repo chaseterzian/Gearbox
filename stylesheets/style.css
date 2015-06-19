@@ -35,7 +35,19 @@ body{
   background-position: center;
 }
 
-#bg-image2 {
+#bg-image {
+  /*background-image: url("../images/ferrariGarage.jpg");*/
+  background-image: url("../images/ferrariGarage.jpg");
+  background-width: 100%;
+  background-height: 100%;
+  background-repeat: no-repeat;
+  /*background-size: contain;*/
+  background-position: 0px 0px;
+  /*opacity: .7;*/
+  /*background-position: center;*/
+}
+
+.bg-image2 {
   /*opacity: .6;*/
   background-image: url("../images/garage.jpg");
   background-width: 100%;
@@ -49,17 +61,6 @@ body{
   /*z-index: 100;*/
   /*background-position: center;*/
   /*z-index: -10;*/
-}
-#bg-image {
-  /*background-image: url("../images/ferrariGarage.jpg");*/
-  background-image: url("../images/ferrariGarage.jpg");
-  background-width: 100%;
-  background-height: 100%;
-  background-repeat: no-repeat;
-  /*background-size: contain;*/
-  background-position: 0px 0px;
-  /*opacity: .7;*/
-  /*background-position: center;*/
 }
 
 .btn {
@@ -259,8 +260,14 @@ h1{
 
 .home{
   position: fixed;
-  top: 95;
-  left: 49;
+  top: 93%;
+  right: 75;
+}
+
+#upload-button{
+  position: fixed;
+  top: 93%;
+  left: 2%;
 }
 
 canvas {
@@ -282,6 +289,12 @@ button{
 
 .center{
   text-align: center;
+}
+
+#move-home{
+  position: fixed;
+  top: 3%;
+  right: 75;
 }
 
 /*.center2 {*/
