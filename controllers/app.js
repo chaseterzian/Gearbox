@@ -163,12 +163,14 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 
 			function carMovementAndPositionVisuals() { 
 				
-				ctx.lineWidth = 2;				
-				ctx.beginPath(); ctx.arc(0, 0, 605, 605, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				ctx.lineWidth = 1;				
 				ctx.beginPath(); ctx.arc(0, 0, 600, 600, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				ctx.beginPath(); ctx.arc(0, 0, 610, 610, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				ctx.beginPath(); ctx.arc(0, 0, 603, 603, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				ctx.beginPath(); ctx.arc(0, 0, 606, 606, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				ctx.beginPath(); ctx.arc(0, 0, 609, 609, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				ctx.beginPath(); ctx.arc(0, 0, 611, 611, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
 
-				ctx.lineWidth = 2;
+				ctx.lineWidth = 1;
 				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
@@ -200,8 +202,10 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				else {ctx.strokeStyle=("black");}
 				ctx.lineWidth = 1;
 				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-300); ctx.lineTo(-data[start][1]*multiY,-300); ctx.stroke(); ctx.closePath();//EXPANDING Y
-				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-295); ctx.lineTo(-data[start][1]*multiY,-295); ctx.stroke(); ctx.closePath();//EXPANDING Y
-				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-290); ctx.lineTo(-data[start][1]*multiY,-290); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-297); ctx.lineTo(-data[start][1]*multiY,-297); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-294); ctx.lineTo(-data[start][1]*multiY,-294); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-291); ctx.lineTo(-data[start][1]*multiY,-291); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-288); ctx.lineTo(-data[start][1]*multiY,-288); ctx.stroke(); ctx.closePath();//EXPANDING Y
 
 				if (data[start][0] >= 0) {
 				ctx.beginPath(); ctx.lineTo(-410, data[start][0]*multiX); ctx.lineTo(-410, -data[start][0]*multiX);//EXPANDING XL NON FUNCTIONAL
@@ -215,13 +219,19 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 
 			ctx.lineWidth = 1;
 			ctx.strokeStyle = "black";
-				ctx.beginPath(); ctx.lineTo(600,-5); ctx.lineTo(-600,-5); ctx.stroke(); ctx.closePath();//GRID
+				ctx.beginPath(); ctx.lineTo(600,-6); ctx.lineTo(-600,-6); ctx.stroke(); ctx.closePath();//GRID
+				ctx.beginPath(); ctx.lineTo(600,-3); ctx.lineTo(-600,-3); ctx.stroke(); ctx.closePath();//GRID
 				ctx.beginPath(); ctx.lineTo(600,0); ctx.lineTo(-600,0); ctx.stroke(); ctx.closePath();//GRID
-				ctx.beginPath(); ctx.lineTo(600,5); ctx.lineTo(-600,5); ctx.stroke(); ctx.closePath();//GRID
+				ctx.beginPath(); ctx.lineTo(600,3); ctx.lineTo(-600,3); ctx.stroke(); ctx.closePath();//GRID
+				ctx.beginPath(); ctx.lineTo(600,6); ctx.lineTo(-600,6); ctx.stroke(); ctx.closePath();//GRID
 
-				ctx.beginPath(); ctx.lineTo(-5,400); ctx.lineTo(-5,-300); ctx.stroke(); ctx.closePath();
+
+
+				ctx.beginPath(); ctx.lineTo(-6,400); ctx.lineTo(-6,-300); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-3,400); ctx.lineTo(-3,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-300); ctx.stroke(); ctx.closePath();
-				ctx.beginPath(); ctx.lineTo(5,400); ctx.lineTo(5,-300); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(3,400); ctx.lineTo(3,-300); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(6,400); ctx.lineTo(6,-300); ctx.stroke(); ctx.closePath();
 
 				start += dropDataPoints;
 				int += dropDataPoints;
