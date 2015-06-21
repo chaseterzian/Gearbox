@@ -3,10 +3,9 @@ $(document).ready(function() {
 // require('lineFunctions.js');
 
 g = 9.81;
-$(window).load(function() {
-	$('reportcontent').hide();
-});
-
+	$(window).load(function() {
+		$('reportcontent').hide();
+	});
 	$("form").on("submit", function() {//DOES NOT WORK YET
 		// debugger;
 	});
@@ -19,42 +18,30 @@ $(window).load(function() {
 	$('#cartesian-button').on('click', function() {
 		cartesianLayout();
 	});
-
 	$('html').css('display', 'none');
 	$('html').fadeIn(2000);
-
 	$('.hide-then-show').hide('.hide-then-show');
-
 	$('#testing-area').on('click', function() {
 		$('#testing-area').css("background-color", "red");
 	});
-
 	$('#test-functions-button').on('click', function() {
 		testZ(data5MileDown, 101, 15000, 5000, 1);
 	});
-
 	$('#test-functions').on('click', function() {
 		graphicsFunctionOne(data5MileDown, 101, 15000, 5000, 1);
 	});
-
 	$('#report-button').on('click', function() {
 		$('datacontent').toggle('hide');
 		$('reportcontent').toggle('show');
 	});
-
 	$('#data-page').on('click', function() {
 		$('datacontent').toggle('show');
 		$('reportcontent').toggle('hide');
 	});
-
 	$('#nothing').on('click', function() {
 		// $('body').css('background-image', 'url(/')
 			$('body').removeClass('bg-image');
 	});
-
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
@@ -267,12 +254,12 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				document.getElementById("altitude").innerHTML = "Altitude in ft: " + data[start][24];
 			}
 			dataRealtimePrintOuts();
-		}, 2000+data[ii][31]*dropDataPoints);//MS
+		}, data[ii][31]*dropDataPoints);//MS
 }
 
 }
 $('#show-all-data-button').on('click', function() {
-	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .2*g);
+	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0*g);
 	orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
 	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2, .3*g);
 	$('.hide-this').toggle('hide');
