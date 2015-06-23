@@ -14,6 +14,12 @@ server?
 make content responsive
 on canvas too
 ------------------------------------------------------------------
+FILE IMPORT**********************************
+<!-- <form class='btn4 hide-this' id='upload-button' action="/csv-upload" method="post"> -->
+      <!-- <input type='file' name='csv' accept='.csv'> -->
+      <!-- <button class='btn4' type="submit" >Submit</button> -->
+    <!-- </form> -->
+------------------------------------------------------------------
 SIDE EFFECT - STR8 LINE SCROLLING DOWN THE SCREEN 
 function locationAndRouteModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline, latS, longS) {
   var latStart = latitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline);

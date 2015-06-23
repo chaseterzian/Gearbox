@@ -1,47 +1,7 @@
 $(document).ready(function() {
 
-// require('lineFunctions.js');
 
-g = 9.81;
-	$(window).load(function() {
-		$('reportcontent').hide();
-	});
-	$("form").on("submit", function() {//DOES NOT WORK YET
-		// debugger;
-	});
-	$('#freeze-button').on('click', function() {
-		alert("DATA FREEZE, IT'S COLD IN HERE");
-	});
-	$('#reset-button').on('click', function() {
-		location.reload();
-	});
-	$('#cartesian-button').on('click', function() {
-		cartesianLayout();
-	});
-	$('html').css('display', 'none');
-	$('html').fadeIn(2000);
-	$('.hide-then-show').hide('.hide-then-show');
-	$('#testing-area').on('click', function() {
-		$('#testing-area').css("background-color", "red");
-	});
-	$('#test-functions-button').on('click', function() {
-		testZ(data5MileDown, 101, 15000, 5000, 1);
-	});
-	$('#test-functions').on('click', function() {
-		graphicsFunctionOne(data5MileDown, 101, 15000, 5000, 1);
-	});
-	$('#report-button').on('click', function() {
-		$('datacontent').toggle('hide');
-		$('reportcontent').toggle('show');
-	});
-	$('#data-page').on('click', function() {
-		$('datacontent').toggle('show');
-		$('reportcontent').toggle('hide');
-	});
-	$('#nothing').on('click', function() {
-		// $('body').css('background-image', 'url(/')
-			$('body').removeClass('bg-image');
-	});
+	g = 9.81;
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
@@ -220,18 +180,23 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				ctx.beginPath(); ctx.lineTo(3,400); ctx.lineTo(3,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(6,400); ctx.lineTo(6,-300); ctx.stroke(); ctx.closePath();
 
-				start += dropDataPoints;
-				int += dropDataPoints;
-				timer += 8;
-			}
-			carMovementAndPositionVisuals();
 
-			function carMovementInWords() { 
-				if (data[start][0] > .07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Right"; }
-				else if (data[start][0] < -.07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Left"; }
-				else { document.getElementById("left-right-straight").innerHTML = "Driving Straight"; }
+	// ctx.beginPath(); ctx.lineTo(-150, 350); ctx.lineTo(-150, -100); ctx.stroke(); ctx.closePath(); 
+	// ctx.beginPath(); ctx.lineTo(150, 350); ctx.lineTo(150, -100); ctx.stroke(); ctx.closePath(); 
+	// ctx.beginPath(); ctx.lineTo(-150, 350); ctx.lineTo(150, 350); ctx.stroke(); ctx.closePath(); 
 
-				document.getElementById("text-div15").innerHTML = " and "
+	start += dropDataPoints;
+	int += dropDataPoints;
+	timer += 8;
+}
+carMovementAndPositionVisuals();
+
+function carMovementInWords() { 
+	if (data[start][0] > .07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Right"; }
+	else if (data[start][0] < -.07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Left"; }
+	else { document.getElementById("left-right-straight").innerHTML = "Driving Straight"; }
+
+	document.getElementById("text-div15").innerHTML = " and "
 
 				if (-data[start][1] > redline) { document.getElementById("text-div16").innerHTML = "Braking Hard"; }//Y IS FLIPPED
 				else if (-data[start][1] < -.3*g) { document.getElementById("text-div16").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
@@ -248,7 +213,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				document.getElementById("text-div4").innerHTML = "Z:    " + data[start][2];
 				document.getElementById("speed").innerHTML = "Speed in MPH: " + data[start][27];
 				document.getElementById("text-div5").innerHTML = "Data Points: " + int;
-				document.getElementById("sound-in-db").innerHTML = "Sound in dB: ";
+				document.getElementById("sound-in-db").innerHTML = "dB Level:";
 				document.getElementById("noise-data2").innerHTML = (data[start][21]-80);
 				// document.getElementById("text-div6").innerHTML = highestAllAxesWithTime(data);//MAX FORCE OF ALL DATA AT TIME
 				document.getElementById("altitude").innerHTML = "Altitude in ft: " + data[start][24];
@@ -264,16 +229,6 @@ $('#show-all-data-button').on('click', function() {
 	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2, .3*g);
 	$('.hide-this').toggle('hide');
 	$('.hide-then-show').show('.hide-then-show');
-	// $('#bg-image3').toggle('#bg-image3');
-	// $('#bg-image').toggle('bg-image2');
-	// console.log(latitudeStartingPoint(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g) );
-	// console.log(longitudeStartingPoint(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g) );
-	// $('video').show();
-	// movementXyzFull(dataStandDriveFull2, 0, 4000, 20, 20, 2, 1, .6*g);
-	// steeringWheelModel(dataStandDriveFull2, 0, 18000, 60, 60, 2, 1, .3*g);
-	// orientation(dataStandDriveFull2, 0, 18000, 60, 60, 2, 1, .3*g);
-	// movementXyzFull(data5MileDownFullSet, 0, 18000, 100, 100, 2, 1, .4*g);//IPAD?
-	// document.getElementById("text-div6").innerHTML = "Max: " + highestAllAxesWithTime(data);
 });
 
 ////////////////////////////////////////////////////////////////////////
@@ -295,6 +250,102 @@ var highestAllAxesWithTime = function(data) {//consoleXYZ with time
 	}
 	return "Max: " + dataXYZ[0] + " /// " + dataXYZ[1] + " /// " + dataXYZ[2] + " /// ";
 }
+
+/////////////////////////////////////////////////////////////////////////////
+function carModel() {
+	var canvas = document.getElementById('canvas-testing');
+	var ctx = canvas.getContext('2d');
+	ctx.canvas.width  = window.innerWidth;
+	ctx.canvas.height = 800;//window.innerHeight;
+	ctx.scale(1,1);
+	ctx.translate(canvas.width/2, canvas.height/2);
+
+		ctx.lineWidth = 5;
+	//BODY
+	ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.arc(0, -40,150,0, Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT HALF CIRCLE
+	ctx.beginPath(); ctx.lineTo(-150, -100); ctx.lineTo(-100, -200); ctx.stroke(); ctx.closePath();//FRONT LEFT FENDER 
+	ctx.beginPath(); ctx.lineTo(150, -100); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT RIGHT FENDER 
+	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(-150, -100); ctx.stroke(); ctx.closePath();//LEFT SIDE
+	ctx.beginPath(); ctx.lineTo(150, 310); ctx.lineTo(150, -100); ctx.stroke(); ctx.closePath();//RIGHT SIDE 
+	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(-130, 350); ctx.stroke(); ctx.closePath();//LEFT SIDE BUMPER CONNECT
+	ctx.beginPath(); ctx.lineTo(150, 310); ctx.lineTo(130, 350); ctx.stroke(); ctx.closePath();//RIGHT SIDE BUMPER CONNECT
+	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(150, 310); ctx.stroke(); ctx.closePath();//BUMPER FULL LINE*************
+	ctx.beginPath(); ctx.lineTo(-130, 350); ctx.lineTo(-35, 350); ctx.stroke(); ctx.closePath();//REAR BUMPER L
+	ctx.beginPath(); ctx.lineTo(130, 350); ctx.lineTo(35, 350); ctx.stroke(); ctx.closePath();//REAR BUMPER L
+	ctx.beginPath(); ctx.lineTo(-35, 330); ctx.lineTo(35, 330); ctx.stroke(); ctx.closePath();//REAR BUMPER PLATE HOLDER
+	ctx.beginPath(); ctx.lineTo(-35, 330); ctx.lineTo(-35, 350); ctx.stroke(); ctx.closePath();//REAR PLATE L
+	ctx.beginPath(); ctx.lineTo(35, 330); ctx.lineTo(35, 350); ctx.stroke(); ctx.closePath();//REAR PLATE R
+	
+
+	//BODY LINES
+	ctx.lineWidth = 1;
+		//SIDES
+	ctx.beginPath(); ctx.lineTo(-105, 280); ctx.lineTo(-105, -77); ctx.stroke(); ctx.closePath();//LEFT SIDE
+	ctx.beginPath(); ctx.lineTo(105, 280); ctx.lineTo(105, -77); ctx.stroke(); ctx.closePath();//RIGHT SIDE
+	ctx.beginPath(); ctx.arc(0, 30,150,0, Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT HALF CIRCLE
+		//DOORS
+	ctx.beginPath(); ctx.lineTo(-150, 0); ctx.lineTo(-105, 30); ctx.stroke(); ctx.closePath();//LEFT DOOR	
+	ctx.beginPath(); ctx.lineTo(-150, 100); ctx.lineTo(-105, 120); ctx.stroke(); ctx.closePath();//LEFT DOOR
+	ctx.beginPath(); ctx.lineTo(-150, 200); ctx.lineTo(-105, 210); ctx.stroke(); ctx.closePath();//LEFT DOOR
+	ctx.beginPath(); ctx.lineTo(150, 0); ctx.lineTo(105, 30); ctx.stroke(); ctx.closePath();//RIGHT DOOR		
+	ctx.beginPath(); ctx.lineTo(150, 100); ctx.lineTo(105, 120); ctx.stroke(); ctx.closePath();//RIGHT DOOR
+	ctx.beginPath(); ctx.lineTo(150, 200); ctx.lineTo(105, 210); ctx.stroke(); ctx.closePath();//RIGHT DOOR
+		//DOOR HANDLES
+	ctx.lineWidth = 4;
+	ctx.beginPath(); ctx.lineTo(-120, 85); ctx.lineTo(-120, 100); ctx.stroke(); ctx.closePath();//L DOOR HANDLE
+	ctx.beginPath(); ctx.lineTo(-120, 175); ctx.lineTo(-120, 190); ctx.stroke(); ctx.closePath();//L DOOR	HANDLE
+	ctx.beginPath(); ctx.lineTo(120, 85); ctx.lineTo(120, 100); ctx.stroke(); ctx.closePath();//R DOOR HANDLE
+	ctx.beginPath(); ctx.lineTo(120, 175); ctx.lineTo(120, 190); ctx.stroke(); ctx.closePath();//R DOOR	HANDLE
+
+		//ROOF
+	ctx.lineWidth = 1;
+	ctx.beginPath(); ctx.lineTo(-60,48); ctx.lineTo(-60,155);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(-30,45); ctx.lineTo(-30,152);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(0,40); ctx.lineTo(0,160);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(30,45); ctx.lineTo(30,152);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(60,48); ctx.lineTo(60,155);	ctx.stroke(); ctx.closePath();//TOP
+
+
+	//WHEELS
+	ctx.lineWidth = 3;
+		//FL
+	ctx.beginPath(); ctx.arc(-140,-50,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT LEFT TIRE 
+	ctx.beginPath(); ctx.arc(-140,-50,32,32,Math.PI, true); ctx.fillStyle = 'white'; ctx.fill(); ctx.closePath();//FRONT LEFT TIRE 
+	ctx.beginPath(); ctx.arc(-140,-50,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT LEFT TIRE 
+		//FR
+	ctx.beginPath(); ctx.arc(140,-50,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT RIGHT TIRE 
+	ctx.beginPath(); ctx.arc(140,-50,32,32,Math.PI, true); ctx.fillStyle = 'white'; ctx.fill(); ctx.closePath();//FRONT RIGHT TIRE 
+	ctx.beginPath(); ctx.arc(140,-50,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT RIGHT TIRE 
+		//RL
+	ctx.beginPath(); ctx.arc(-140,275,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR LEFT TIRE 
+	ctx.beginPath(); ctx.arc(-140,275,32,32,Math.PI, true); ctx.fillStyle = 'white'; ctx.fill(); ctx.closePath();//REAR LEFT TIRE 
+	ctx.beginPath(); ctx.arc(-140,275,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR LEFT TIRE 
+		//RR
+	ctx.beginPath(); ctx.arc(140,275,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR RIGHT TIRE 
+	ctx.beginPath(); ctx.arc(140,275,32,32,Math.PI, true); ctx.fillStyle = 'white'; ctx.fill(); ctx.closePath();//REAR RIGHT TIRE 
+	ctx.beginPath(); ctx.arc(140,275,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR RIGHT TIRE 
+
+	//WINDOWS
+	ctx.lineWidth = 5;
+		//FRONT
+	ctx.beginPath(); ctx.lineTo(-100,-40); ctx.lineTo(100,-40);	ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(-85,30); ctx.lineTo(85,30);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(-100,-40); ctx.lineTo(-85,30);	ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(100,-40); ctx.lineTo(85,30);	ctx.stroke(); ctx.closePath();//R
+		//BACK
+	ctx.beginPath(); ctx.lineTo(-85,170); ctx.lineTo(85,170);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(-100,260); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(-85,170); ctx.lineTo(-100,260);	ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(85,170); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//R
+
+
+
+
+}
+$(window).load(function() {
+	carModel();
+});
 
 /////////////////////////////////////////////////////////////////////////////
 function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {

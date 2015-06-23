@@ -16,7 +16,6 @@
 	<script src="../stylesheets/jquery-1.11.3.min.js"></script>
 	<script src="../controllers/lineFunctions.js"></script>
 	<script src="../controllers/app.js"></script>
-	<script src="../controllers/lineFunctions.js"></script>
 	<script src="../controllers/dataControls.js"></script>
 	<script type="text/javascript"></script>
 </head>
@@ -34,12 +33,11 @@
 	<div class='col-30' id='button-panel'>
 		<h4>
 			<div><button class='btn' id='report-button'>Show My Report</button></div>
-			<div><button class='btn' id='nothing'>Nothing</button></div>
-			<div><button class='btn' id='cartesian-button'>Cartesian Layout</button></div>
-			<div><button class='btn' id='freeze-button'>Freeze Data</button></div>
+			<div><button class='btn' id='freeze-button'>Pause Stream</button></div>
 			<div><button class='btn' id='reset-button'>Reset</button></div>
 		</h4>
 		<h4 class="hide-this"/>
+			<div><button class='btn' id='car-model'>Car Model</button></div>
 			<div><button class='btn' id='test-functions-button'>Test Functions</button></div>
 			<div><button class='btn' id='show-all-data-button'>Show All Data</button></div>
 			<div><button class='btn' id='wheel-function-button'>Steering Wheel</button></div>
@@ -47,10 +45,56 @@
 			<div><button class='btn' id='location-route-function-button'>Location</button></div>
 		</h4>
 		<hr>
-		<form class='btn4 hide-this' id='upload-button' action="/csv-upload" method="post">
-			<input type='file' name='csv' accept='.csv'>
-			<button class='btn4' type="submit" >Submit</button>
-		</form>
+
+
+
+
+<style>
+  .thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>
+
+<input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+
+
+
 		<b><div id="text-div6"></div></b>
 	</div>
 
@@ -73,7 +117,7 @@
 
 	<div class="col-12"></div>
 
-	<div class='col-2 hide-then-show'>
+	<div class='col-3 hide-then-show'>
 		<h3>
 			<div><button id="text-div1" class='btn'></button></div>
 			<div><button id="sound-in-db" class='btn'></button></div>
@@ -107,15 +151,23 @@
 		<div id="text-div20" class="space"></div>
 		</div>
 
-		<div class='col-10'>
+		<div class='col-9'>
 			<canvas id="canvas">
 			</canvas>
 		</div>
 
 		<div class='col-12'>
+			<canvas id="canvas-testing">
+			</canvas>
 		</div>
 
 		<div><a href="./index.html" class="home btn" id='home-button'>Home</a></div>
+
+		<div class='col-12'>
+
+		</div>
+
+
 </datacontent>
 
 <reportcontent>

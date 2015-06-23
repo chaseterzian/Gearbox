@@ -1,12 +1,22 @@
+FILE UPLOAD AND save
+TO STRABELIZE PLOT AVErAGE OF 20 OR SO PREVIOUS POINTS PER POINTS
+SAVING DIV TEXT TO ARRAY FOR A REPORT
+//EACH DATA POINT IS 1/100 OF A SECIND
+PULL REG FROM MYSELF ???
+
+UI CHOOSING THINGS
+
+
+
 SERVER	
     -content doesnt work, do I even need one considering the following:
 
 CONVERTING 
 	-do not know how to access the data so that I can convert it.
 
-GRABBING PHONE DATA
-	-live feed eliminates need to save, move, and drop file to be interpreted
-	-android dev docs not clear
+// GRABBING PHONE DATA
+// 	-live feed eliminates need to save, move, and drop file to be interpreted
+// 	-android dev docs not clear
 
 GRABBING THE FILE IN GENERAL
 	-import through browser window, store in a variable
@@ -21,10 +31,10 @@ GRABBING THE FILE IN GENERAL
 	-convert on import
 	-run
 
-STYLE
-	-roataing compas (image possible)
-	-video for demo?
-	-transforming box for car orientation
+// STYLE
+// 	-roataing compas (image possible)
+// 	-video for demo?
+// 	-transforming box for car orientation
 
 
 MISC ISSUES
