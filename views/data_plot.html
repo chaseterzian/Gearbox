@@ -44,12 +44,10 @@
 			</canvas>
 		</div>
 
-
 		<div class='col-30 hide-then-show'>
 			<canvas id="canvas-wheel">
 			</canvas>
 		</div>
-
 
 		<div class='col-30' id='button-panel'>
 			<h4>
@@ -71,46 +69,44 @@
 
 
 
-		<style>
-		.thumb {
-			height: 75px;
-			border: 1px solid #000;
-			margin: 10px 5px 0 0;
-		}
-		</style>
-
-		<input type="file" id="files" name="files[]" multiple />
-		<output id="list"></output>
+		<div class='btn'>
+			<input type="file" id="files" name="files[]" multiple />
+			<output id="list"></output>
+		</div>
 
 		<script>
 		function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
+    		var files = evt.target.files; // FileList object
 
-    // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
+		
+		    // Loop through the FileList and render image files as thumbnails.
+		    for (var i = 0, f; f = files[i]; i++) {
 
-      // Only process image files.
-      if (!f.type.match('image.*')) {
-      	continue;
-      }
+		      // Only process image files.
+		      if (!f.type.match('image.*')) {
+		      	continue;
+		      }
 
-      var reader = new FileReader();
+		      var reader = new FileReader();
 
-      // Closure to capture the file information.
-      reader.onload = (function(theFile) {
-      	return function(e) {
-          // Render thumbnail.
-          var span = document.createElement('span');
-          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-          '" title="', escape(theFile.name), '"/>'].join('');
-          document.getElementById('list').insertBefore(span, null);
-      };
-  })(f);
+		      // Closure to capture the file information.
+		      reader.onload = (function(theFile) {
+		      	return function(e) {
+		          // Render thumbnail.
+		          var span = document.createElement('span');
+		          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+		          '" title="', escape(theFile.name), '"/>'].join('');
+		          document.getElementById('list').insertBefore(span, null);
+		      };
+		  })(f);
 
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f);
-  }
-}
+		      // Read in the image file as a data URL.
+		      
+		      reader.readAsText(f);
+		      // console.log(files);
+		  }
+		  // console.log(files);
+		}
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
 </script>
@@ -194,7 +190,7 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 		</div>
 		<div class='col-3'></div>
 	</carmodelback>
-<div id='wheelmodeltag'></div>
+	<div id='wheelmodeltag'></div>
 	<wheelmodel>
 		<div><button class='btn' id='reset-button3'>Reset</button></div>
 		<div class='col-3'></div>
@@ -208,14 +204,14 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 
 
 
-	<reportcontent>
-		<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
-		<button class='btn'>Export Data</button>
-		<p>TESTING THE SHOWING OF THE REPORT CONTENT</p>
-		<p>ERROR MESSAGES HERE IN DOC FORM</p>
-		<p>BUTTON TO EXPORT OR SAVE DATA</p>
-		<p>THIS IS THE DRIVING REPORT</p>
-		<canvas id='canvas-report'>
-		</canvas>
-	</reportcontent>
+<reportcontent>
+	<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
+	<button class='btn'>Export Data</button>
+	<p>TESTING THE SHOWING OF THE REPORT CONTENT</p>
+	<p>ERROR MESSAGES HERE IN DOC FORM</p>
+	<p>BUTTON TO EXPORT OR SAVE DATA</p>
+	<p>THIS IS THE DRIVING REPORT</p>
+	<canvas id='canvas-report'>
+	</canvas>
+</reportcontent>
 </body>

@@ -11,22 +11,20 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	var timer = 0;
 
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-
 		setTimeout(function () {
 			var dataStableX = 1;
 			var dataStableY = 1;
 			var dataStableZ = 1;
 			var incForStable = 1;
-			while (incForStable <= 50) { 
+			while (incForStable <= 35) { 
 				dataStableX = dataStableX + data[start+incForStable][0];
 				dataStableY = dataStableY + data[start+incForStable][1];
 				dataStableZ = dataStableZ + data[start+incForStable][2];
 				incForStable++;
-
 			} 
-			dataStableX = dataStableX/50;
-			dataStableY = dataStableY/50;
-			dataStableZ = dataStableZ/50;
+			dataStableX = dataStableX/35;
+			dataStableY = dataStableY/35;
+			dataStableZ = dataStableZ/35;
 
 
 			ctx.canvas.width  = window.innerWidth;
@@ -34,9 +32,6 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	  		ctx.scale(1,1);
 				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
 				ctx.rotate(dataStableX/6);
-				// ctx.lineWidth = 2;
-				// ctx.beginPath(); ctx.lineTo(1000,0); ctx.lineTo(-1000,0); ctx.stroke(); ctx.closePath();//grid
-				// ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-200); ctx.stroke(); ctx.closePath();
 
 				function warningMessages() { 
 				if (data[start][2] >= 2*g) {//BUMP
@@ -418,12 +413,6 @@ $('#show-all-data-button').on('click', function() {
 	$('.hide-this').toggle('hide');
 	$('.hide-then-show').show('.hide-then-show');
 });
-
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////
 function highestG(data) {//consoleZ max
@@ -823,6 +812,43 @@ $('#car-model-back-button').on('click', function() {
 	$('carmodelback').show();
 	carModelFromBack2(dataDownFlagstaff1, 1, 18000, 1, .1*g);
 });
+
+/////////////////////////////////////////////////////////////////////////////
+function forceXyzForReport(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
+	var canvas = document.getElementById('canvas-report');
+	var ctx = canvas.getContext('2d');
+	ctx.canvas.width  = window.innerWidth/2;
+	ctx.scale(1,1);
+	ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+	ctx.scale(.1,.1);
+	var time = 0;
+	for (var i=0; i<stop; i=i + dropDataPoints) {
+		ctx.lineWidth = 500;
+		ctx.beginPath(); ctx.lineTo(-200,0); ctx.lineTo(100,0); ctx.stroke(); ctx.closePath();//GRID
+		ctx.beginPath(); ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath();//GRID
+		ctx.beginPath(); 
+		ctx.lineTo(time, data[i][0]*multiX); 
+		ctx.lineTo(time+1, data[i+1][0]*multiX); 
+		ctx.stroke(); ctx.closePath();//xPosition
+		ctx.beginPath(); 
+		ctx.lineTo(time, (data[i][1]*multiY)+2500); 
+		ctx.lineTo(time+1, (data[i+1][1]*multiY)+2500); 
+		ctx.stroke(); ctx.closePath();//yPosition
+
+		ctx.beginPath(); 
+		ctx.lineTo(time, (data[i][2]*multiZ)-1500);  
+		ctx.lineTo(time+1, (data[i+1][2]*multiZ)-1500);  
+		ctx.stroke(); ctx.closePath();
+		time++;
+	}
+
+
+}
+$('#report-button').on('click', function() {
+	// forceXyzTimeXyz(dataSpin3, 900, 2900, 500, 500, 500, 1, 1);
+	forceXyzForReport(dataDownFlagstaff1, 0, 10000, 200, 200, 200, 1, 1);
+});
+
 /////////////////////////////////////////////////////////////////////////////
 function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
 	var canvas = document.getElementById('canvas-wheel');
@@ -1031,10 +1057,8 @@ function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 				if (data[start][29] > 247.5 && data[start][29] <=292.5 ) { direction = 'W'; } 
 				if (data[start][29] > 292.5 && data[start][29] <=337.5 ) { direction = 'NW'; } 
 
-
 				start += dropDataPoints;
 				int += dropDataPoints;
-				console.log(data[start][29]);
 				// document.getElementById("orientation-in-degrees").innerHTML = 'Orientation: ' + data[start][29];
 				document.getElementById("heading").innerHTML = 'Direction: ' + direction;
 			}, 2000+data[ii][31]*dropDataPoints);
@@ -1042,7 +1066,7 @@ function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 }
 }
 $('#orientation-function-button').on('click', function() {
-	console.log("insied testnewcanvas jquery");
+	// console.log("insied testnewcanvas jquery");
 	orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
 });
 
@@ -1110,8 +1134,6 @@ function longitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropD
 function locationAndRouteModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
 	var latStart = latitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline);
 	var longStart = longitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline);
-	console.log(latStart);
-	console.log(longStart);
 	var canvas = document.getElementById('canvas-location');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -1147,7 +1169,7 @@ function locationAndRouteModel(data, start, stop, multiX, multiY, multiZ, dropDa
 			// ctx.beginPath(); ctx.lineTo(1000, 5000); ctx.lineTo(-1000,5000); ctx.stroke(); ctx.closePath();
 			// ctx.beginPath(); ctx.lineTo(1000,10000); ctx.lineTo(-1000,10000); ctx.stroke(); ctx.closePath();
 			// cartesianLayout();
-			console.log("after lines");
+			// console.log("after lines");
 			// ctx.beginPath(); 
 	  	// ctx.lineTo(arrLatRight*10000,-arrLongRight*10000);//(Y REVERSE
 	  		// ctx.fillStyle = 'black';
@@ -1201,41 +1223,7 @@ $('#movement-xy-1point').on('click', function() {
 	// accelXy1pt(dataStandDrive, 0101, 15000, 300, 300, 20, 1, .7);//VIDEO ON DESKTOP
 });
 //////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-function forceXyzForReport(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
-	var canvas = document.getElementById('canvas-report');
-	var ctx = canvas.getContext('2d');
-	ctx.canvas.width  = window.innerWidth;
-	ctx.canvas.height = window.innerHeight;
-	ctx.translate(0, canvas.height/2);//DO PERCENTAGES FOR BALL
-	ctx.scale(.1,.1);
-	var time = 0;
-	for (var i=0; i<stop; i=i + dropDataPoints) {
-		ctx.lineWidth = 500;
-		ctx.beginPath(); ctx.lineTo(-200,0); ctx.lineTo(100,0); ctx.stroke(); ctx.closePath();//GRID
-		ctx.beginPath(); ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath();//GRID
-		ctx.beginPath(); 
-		ctx.lineTo(time, data[i][0]*multiX); 
-		ctx.lineTo(time+1, data[i][0]*multiX); 
-		ctx.stroke(); ctx.closePath();//xPosition
-		ctx.beginPath(); 
-		ctx.lineTo(time, (data[i][1]*multiY)+2500); 
-		ctx.lineTo(time+1, (data[i][1]*multiY)+2500); 
-		ctx.stroke(); ctx.closePath();//yPosition
-
-		ctx.beginPath(); 
-		ctx.lineTo(time, (data[i][2]*multiZ)-1500);  
-		ctx.lineTo(time+1, (data[i][2]*multiZ)-1500);  
-		ctx.stroke(); ctx.closePath();
-		time++;
-	}
-
-
-}
-$('#report-button').on('click', function() {
-	// forceXyzTimeXyz(dataSpin3, 900, 2900, 500, 500, 500, 1, 1);
-	forceXyzForReport(dataDownFlagstaff1, 0, 10000, 200, 200, 200, 1, 1);
-});
+/////////////////////////////////////////////////////////////////////////////////////
 
 
 });
