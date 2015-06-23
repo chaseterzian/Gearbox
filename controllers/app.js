@@ -252,7 +252,7 @@ var highestAllAxesWithTime = function(data) {//consoleXYZ with time
 }
 
 /////////////////////////////////////////////////////////////////////////////
-function carModel() {
+function carModelFromTop() {
 	var canvas = document.getElementById('canvas-testing');
 	var ctx = canvas.getContext('2d');
 	ctx.canvas.width  = window.innerWidth;
@@ -263,6 +263,11 @@ function carModel() {
 	ctx.lineWidth = 5;
 	//BODY
 	ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(-35, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.lineTo(35, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.lineTo(-35, -200); ctx.lineTo(-25, -190); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.lineTo(35, -200); ctx.lineTo(25, -190); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+
 	ctx.beginPath(); ctx.arc(0, -40,150,0, Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT HALF CIRCLE
 	ctx.beginPath(); ctx.lineTo(-150, -100); ctx.lineTo(-100, -200); ctx.stroke(); ctx.closePath();//FRONT LEFT FENDER 
 	ctx.beginPath(); ctx.lineTo(150, -100); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT RIGHT FENDER 
@@ -285,7 +290,6 @@ function carModel() {
 		//FRONT
 	ctx.beginPath(); ctx.lineTo(-105, -77); ctx.lineTo(-60, -180); ctx.stroke(); ctx.closePath();//L SIDE
 	ctx.beginPath(); ctx.lineTo(105, -77); ctx.lineTo(60, -180); ctx.stroke(); ctx.closePath();//R SIDE
-
 		//DOORS
 	ctx.beginPath(); ctx.lineTo(-150, 0); ctx.lineTo(-105, 30); ctx.stroke(); ctx.closePath();//LEFT DOOR	
 	ctx.beginPath(); ctx.lineTo(-150, 100); ctx.lineTo(-105, 120); ctx.stroke(); ctx.closePath();//LEFT DOOR
@@ -319,8 +323,6 @@ function carModel() {
 	ctx.beginPath(); ctx.lineTo(100,290); ctx.lineTo(100,310);	ctx.stroke(); ctx.closePath();//R
 	ctx.beginPath(); ctx.lineTo(65,290); ctx.lineTo(65,310);	ctx.stroke(); ctx.closePath();//R
 	ctx.beginPath(); ctx.lineTo(60,290); ctx.lineTo(50,310);	ctx.stroke(); ctx.closePath();//R
-
-
 	//WHEELS
 	ctx.lineWidth = 3;
 		//FL
@@ -351,14 +353,62 @@ function carModel() {
 	ctx.beginPath(); ctx.lineTo(-100,260); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//BOTTOM
 	ctx.beginPath(); ctx.lineTo(-85,170); ctx.lineTo(-100,260);	ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(85,170); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//R
+}
+// $(window).load(function() {
+// 	carModelFromTop();
+// });
 
+/////////////////////////////////////////////////////////////////////////////
+function carModelFromBack() {
+	var canvas = document.getElementById('canvas-testing');
+	var ctx = canvas.getContext('2d');
+	ctx.canvas.width  = window.innerWidth;
+	ctx.canvas.height = 800;//window.innerHeight;
+	ctx.scale(1,1);
+	ctx.translate(canvas.width/2, canvas.height/2);
+
+	//BODY
+	ctx.lineWidth = 5;
+	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//REAR BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(-195, -25); ctx.lineTo(-195, -140); ctx.stroke(); ctx.closePath();//L SIDE
+	ctx.beginPath(); ctx.lineTo(195, -25); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//R SIDE
+	ctx.beginPath(); ctx.lineTo(-195, -25); ctx.lineTo(-180, 0); ctx.stroke(); ctx.closePath();//L BOTTOM CONNECT
+	ctx.beginPath(); ctx.lineTo(195, -25); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//R BOTTOM CONNECT
+	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(-165, -250); ctx.stroke(); ctx.closePath();//L SIDE UP
+	ctx.beginPath(); ctx.lineTo(195, -140); ctx.lineTo(165, -250); ctx.stroke(); ctx.closePath();//R SIDE UP
+	ctx.beginPath(); ctx.lineTo(-165, -250); ctx.lineTo(-150, -260); ctx.stroke(); ctx.closePath();//L SIDE ROOF CONNECT
+	ctx.beginPath(); ctx.lineTo(165, -250); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//R SIDE ROOF CONNECT
+	ctx.beginPath(); ctx.lineTo(-150, -260); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//ROOF
+	//WINDOW
+
+	//BUMPER
+	ctx.lineWidth = 3;
+	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//HATCH LINE
+	ctx.beginPath(); ctx.lineTo(-195, -30); ctx.lineTo(-55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(195, -30); ctx.lineTo(55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(-55, -30); ctx.lineTo(-40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
+	ctx.beginPath(); ctx.lineTo(55, -30); ctx.lineTo(	40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
+	ctx.beginPath(); ctx.lineTo(-50, -20); ctx.lineTo(50, -20); ctx.stroke(); ctx.closePath();//SWEET BUMPER EFFECTS
+
+	//PLATE
+	ctx.lineWidth = 2;
+	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(60, -70); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(-60, -50); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(-60, -50); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(60, -70); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
+
+	//WHEELS
+	ctx.lineWidth = 5;
+	ctx.beginPath(); ctx.arc(-140,40,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
+	ctx.beginPath(); ctx.arc(140,40,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
 
 
 
 }
 $(window).load(function() {
-	carModel();
+	carModelFromBack();
 });
+
 
 /////////////////////////////////////////////////////////////////////////////
 function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
