@@ -15,6 +15,12 @@ $(document).ready(function() {
 $(window).load(function() {
 	$('reportcontent').hide();
 });
+$(window).load(function() {
+	$('carmodeltop').hide();
+});
+$(window).load(function() {
+	$('carmodelback').hide();
+});
 	$("form").on("submit", function() {//DOES NOT WORK YET
 		// debugger;
 	});
@@ -22,6 +28,12 @@ $(window).load(function() {
 		alert("DATA FREEZE, IT'S COLD IN HERE");
 	});
 	$('#reset-button').on('click', function() {
+		location.reload();
+	});
+	$('#reset-button2').on('click', function() {
+		location.reload();
+	});
+	$('#reset-button3').on('click', function() {
 		location.reload();
 	});
 	$('#cartesian-button').on('click', function() {

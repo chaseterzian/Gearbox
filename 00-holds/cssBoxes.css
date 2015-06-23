@@ -1,0 +1,100 @@
+.col-half{
+  /*width: 5%;*/
+  width: 4.9%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+.col-1{
+  /*width: 8.33333%;*/
+  width: 8.3%;
+  float: left;
+/*border: 1px solid red;*/
+}
+.col-2{
+  /*width: 16.66666%;*/
+  width: 16.6%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+.col-25{
+  /*width: 20%;*/
+  width: 19.9%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+.col-3{
+  /*width: 25%;*/
+  width: 24.9%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+.col-35{
+  /*width: 30%;*/
+  width: 29.9%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+.col-30{
+  /*width: 26.6%;*/
+  width: 26.45%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+
+.col-4{
+  /*width: 33.33333%;*/
+  width: 33.3%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+.col-5{
+  /*width: 41.66666%;*/
+  width: 41.6%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+.col-6{
+  width: 50.00%;
+  float: left;
+/*border: 1px solid red;*/
+}
+.col-7{
+  width: 58.33333%;
+  float: left;
+/*border: 1px solid red;*/
+}
+.col-7minus{
+  width: 54.5%;
+  float: left;
+/*border: 1px solid red;*/
+}
+.col-8{
+  width: 66.66666%;
+  float: left;
+/*border: 1px solid red;*/
+}
+.col-9{
+  /*width: 75.00%;*/
+  width: 74.65%;
+  float: left;
+/*border: 1px solid red;*/
+}
+.col-10{
+  width: 83.33333%;
+  float: left;
+/*border: 1px solid red;*/
+}
+.col-11{
+  width: 91.66666%;
+  float: left;
+/*border: 1px solid red;*/
+}
+.col-12{
+  width: 100.00%;
+  float: left;
+  /*border: 1px solid red;*/
+}
+.500{
+  height: 500px;
+  /*border: 1px solid red;*/
+}

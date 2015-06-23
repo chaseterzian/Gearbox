@@ -1,4 +1,4 @@
-$('document').ready(function { 
+// $('document').ready(function { 
 //////////////////////////////////////////////////////////////////////////////////////////////
 function cartesianLayout() {
 	var canvas = document.getElementById('canvas');
@@ -394,4 +394,4 @@ $('#forceXyzAdjustableTimeXyz').on('click', function() {
 });
 
 
-});
+// });

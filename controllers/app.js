@@ -17,7 +17,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	  		ctx.canvas.height = 800;//window.innerHeight;
 	  		ctx.scale(1,1);
 				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-				ctx.rotate(-data[start][0]/10);
+				ctx.rotate(data[start][0]/10);
 				// ctx.lineWidth = 2;
 				// ctx.beginPath(); ctx.lineTo(1000,0); ctx.lineTo(-1000,0); ctx.stroke(); ctx.closePath();//grid
 				// ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-200); ctx.stroke(); ctx.closePath();
@@ -110,21 +110,21 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 
 			function carMovementAndPositionVisuals() { 
 				
-				ctx.lineWidth = 1;				
-				ctx.beginPath(); ctx.arc(0, 0, 600, 600, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				ctx.beginPath(); ctx.arc(0, 0, 603, 603, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				ctx.beginPath(); ctx.arc(0, 0, 606, 606, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				ctx.beginPath(); ctx.arc(0, 0, 609, 609, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				ctx.beginPath(); ctx.arc(0, 0, 611, 611, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				// ctx.lineWidth = 1;				
+				// ctx.beginPath(); ctx.arc(0, 0, 600, 600, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				// ctx.beginPath(); ctx.arc(0, 0, 603, 603, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				// ctx.beginPath(); ctx.arc(0, 0, 606, 606, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				// ctx.beginPath(); ctx.arc(0, 0, 609, 609, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				// ctx.beginPath(); ctx.arc(0, 0, 611, 611, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
 
 				ctx.lineWidth = 1;
 				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
 				if (data[start][2] > 1) { 
-					ctx.beginPath(); ctx.arc(0, 0, 1+data[start][2]*multiZ*8, 5+data[start][2]*multiZ*8, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
-					ctx.beginPath(); ctx.arc(0, 0, 6+data[start][2]*multiZ*8, 6+data[start][2]*multiZ*8, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
-					ctx.beginPath(); ctx.arc(0, 0, 11+data[start][2]*multiZ*8, 11+data[start][2]*multiZ*8, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
+					ctx.beginPath(); ctx.arc(0, 0, 1+data[start][2]*multiZ*12, 5+data[start][2]*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
+					ctx.beginPath(); ctx.arc(0, 0, 6+data[start][2]*multiZ*12, 6+data[start][2]*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
+					ctx.beginPath(); ctx.arc(0, 0, 11+data[start][2]*multiZ*12, 11+data[start][2]*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
 				}
 
 				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
@@ -144,15 +144,15 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				ctx.beginPath(); ctx.arc(0, data[start][1]*multiY,25,25, Math.PI, true); ctx.stroke();//G BALL Y
 				ctx.lineWidth = 1;
 
-				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
-				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
-				else {ctx.strokeStyle=("black");}
-				ctx.lineWidth = 1;
-				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-300); ctx.lineTo(-data[start][1]*multiY,-300); ctx.stroke(); ctx.closePath();//EXPANDING Y
-				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-297); ctx.lineTo(-data[start][1]*multiY,-297); ctx.stroke(); ctx.closePath();//EXPANDING Y
-				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-294); ctx.lineTo(-data[start][1]*multiY,-294); ctx.stroke(); ctx.closePath();//EXPANDING Y
-				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-291); ctx.lineTo(-data[start][1]*multiY,-291); ctx.stroke(); ctx.closePath();//EXPANDING Y
-				ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-288); ctx.lineTo(-data[start][1]*multiY,-288); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				// if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
+				// if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
+				// else {ctx.strokeStyle=("black");}
+				// ctx.lineWidth = 1;
+				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-300); ctx.lineTo(-data[start][1]*multiY,-300); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-297); ctx.lineTo(-data[start][1]*multiY,-297); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-294); ctx.lineTo(-data[start][1]*multiY,-294); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-291); ctx.lineTo(-data[start][1]*multiY,-291); ctx.stroke(); ctx.closePath();//EXPANDING Y
+				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-288); ctx.lineTo(-data[start][1]*multiY,-288); ctx.stroke(); ctx.closePath();//EXPANDING Y
 
 				if (data[start][0] >= 0) {
 				ctx.beginPath(); ctx.lineTo(-410, data[start][0]*multiX); ctx.lineTo(-410, -data[start][0]*multiX);//EXPANDING XL NON FUNCTIONAL
@@ -171,20 +171,147 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				ctx.beginPath(); ctx.lineTo(600,0); ctx.lineTo(-600,0); ctx.stroke(); ctx.closePath();//GRID
 				ctx.beginPath(); ctx.lineTo(600,3); ctx.lineTo(-600,3); ctx.stroke(); ctx.closePath();//GRID
 				ctx.beginPath(); ctx.lineTo(600,6); ctx.lineTo(-600,6); ctx.stroke(); ctx.closePath();//GRID
-
-
-
 				ctx.beginPath(); ctx.lineTo(-6,400); ctx.lineTo(-6,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(-3,400); ctx.lineTo(-3,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(3,400); ctx.lineTo(3,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(6,400); ctx.lineTo(6,-300); ctx.stroke(); ctx.closePath();
 
+				//ROAD LINES
+				ctx.lineWidth = 5;
+				// ctx.strokeStyle = 'yellow';
+				if (data[start][27] < 1.0) { 
+					ctx.beginPath(); ctx.lineTo(-400,-250); ctx.lineTo(-400,-350); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(-400,-50); ctx.lineTo(-400,-150); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,150); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,150); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(-400,250); ctx.lineTo(-400,350); ctx.stroke(); ctx.closePath();
 
-	// ctx.beginPath(); ctx.lineTo(-150, 350); ctx.lineTo(-150, -100); ctx.stroke(); ctx.closePath(); 
-	// ctx.beginPath(); ctx.lineTo(150, 350); ctx.lineTo(150, -100); ctx.stroke(); ctx.closePath(); 
-	// ctx.beginPath(); ctx.lineTo(-150, 350); ctx.lineTo(150, 350); ctx.stroke(); ctx.closePath(); 
+					ctx.beginPath(); ctx.lineTo(400,-250); ctx.lineTo(400,-350); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(400,-50); ctx.lineTo(400,-150); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(400,50); ctx.lineTo(400,150); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(400,50); ctx.lineTo(400,150); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(400,250); ctx.lineTo(400,350); ctx.stroke(); ctx.closePath();
+				} else { 
+					if (start%2 === 0) { 
+						ctx.beginPath(); ctx.lineTo(-400,-150); ctx.lineTo(-400,-250); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,-50); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(-400,150); ctx.lineTo(-400,250); ctx.stroke(); ctx.closePath();
 
+						ctx.beginPath(); ctx.lineTo(400,-150); ctx.lineTo(400,-250); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(400,50); ctx.lineTo(400,-50); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(400,150); ctx.lineTo(400,250); ctx.stroke(); ctx.closePath();
+					} else { 
+						ctx.beginPath(); ctx.lineTo(-400,-250); ctx.lineTo(-400,-350); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(-400,-50); ctx.lineTo(-400,-150); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,150); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,150); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(-400,250); ctx.lineTo(-400,350); ctx.stroke(); ctx.closePath();
+
+						ctx.beginPath(); ctx.lineTo(400,-250); ctx.lineTo(400,-350); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(400,-50); ctx.lineTo(400,-150); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(400,50); ctx.lineTo(400,150); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(400,50); ctx.lineTo(400,150); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(400,250); ctx.lineTo(400,350); ctx.stroke(); ctx.closePath();
+					}
+				}
+				ctx.strokeStyle = 'black';
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+		ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(-35, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.lineTo(35, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.lineTo(-35, -200); ctx.lineTo(-25, -190); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+	ctx.beginPath(); ctx.lineTo(35, -200); ctx.lineTo(25, -190); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+
+	ctx.beginPath(); ctx.arc(0, -40,150,0, Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT HALF CIRCLE
+	ctx.beginPath(); ctx.lineTo(-150, -100); ctx.lineTo(-100, -200); ctx.stroke(); ctx.closePath();//FRONT LEFT FENDER 
+	ctx.beginPath(); ctx.lineTo(150, -100); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT RIGHT FENDER 
+	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(-150, -100); ctx.stroke(); ctx.closePath();//LEFT SIDE
+	ctx.beginPath(); ctx.lineTo(150, 310); ctx.lineTo(150, -100); ctx.stroke(); ctx.closePath();//RIGHT SIDE 
+	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(-130, 350); ctx.stroke(); ctx.closePath();//LEFT SIDE BUMPER CONNECT
+	ctx.beginPath(); ctx.lineTo(150, 310); ctx.lineTo(130, 350); ctx.stroke(); ctx.closePath();//RIGHT SIDE BUMPER CONNECT
+	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(150, 310); ctx.stroke(); ctx.closePath();//BUMPER FULL LINE*************
+	ctx.beginPath(); ctx.lineTo(-130, 350); ctx.lineTo(-35, 350); ctx.stroke(); ctx.closePath();//REAR BUMPER L
+	ctx.beginPath(); ctx.lineTo(130, 350); ctx.lineTo(35, 350); ctx.stroke(); ctx.closePath();//REAR BUMPER L
+	ctx.beginPath(); ctx.lineTo(-35, 330); ctx.lineTo(35, 330); ctx.stroke(); ctx.closePath();//REAR BUMPER PLATE HOLDER
+	ctx.beginPath(); ctx.lineTo(-35, 330); ctx.lineTo(-35, 350); ctx.stroke(); ctx.closePath();//REAR PLATE L
+	ctx.beginPath(); ctx.lineTo(35, 330); ctx.lineTo(35, 350); ctx.stroke(); ctx.closePath();//REAR PLATE R
+	//BODY LINES
+	ctx.lineWidth = 1;
+		//SIDES
+	ctx.beginPath(); ctx.lineTo(-105, 280); ctx.lineTo(-105, -77); ctx.stroke(); ctx.closePath();//LEFT SIDE
+	ctx.beginPath(); ctx.lineTo(105, 280); ctx.lineTo(105, -77); ctx.stroke(); ctx.closePath();//RIGHT SIDE
+	ctx.beginPath(); ctx.arc(0, 30,150,0, Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT HALF CIRCLE
+		//FRONT
+	ctx.beginPath(); ctx.lineTo(-105, -77); ctx.lineTo(-60, -180); ctx.stroke(); ctx.closePath();//L SIDE
+	ctx.beginPath(); ctx.lineTo(105, -77); ctx.lineTo(60, -180); ctx.stroke(); ctx.closePath();//R SIDE
+		//DOORS
+	ctx.beginPath(); ctx.lineTo(-150, 0); ctx.lineTo(-105, 30); ctx.stroke(); ctx.closePath();//LEFT DOOR	
+	ctx.beginPath(); ctx.lineTo(-150, 100); ctx.lineTo(-105, 120); ctx.stroke(); ctx.closePath();//LEFT DOOR
+	ctx.beginPath(); ctx.lineTo(-150, 200); ctx.lineTo(-105, 210); ctx.stroke(); ctx.closePath();//LEFT DOOR
+	ctx.beginPath(); ctx.lineTo(150, 0); ctx.lineTo(105, 30); ctx.stroke(); ctx.closePath();//RIGHT DOOR		
+	ctx.beginPath(); ctx.lineTo(150, 100); ctx.lineTo(105, 120); ctx.stroke(); ctx.closePath();//RIGHT DOOR
+	ctx.beginPath(); ctx.lineTo(150, 200); ctx.lineTo(105, 210); ctx.stroke(); ctx.closePath();//RIGHT DOOR
+		//DOOR HANDLES
+		ctx.lineWidth = 4;
+	ctx.beginPath(); ctx.lineTo(-120, 85); ctx.lineTo(-120, 100); ctx.stroke(); ctx.closePath();//L DOOR HANDLE
+	ctx.beginPath(); ctx.lineTo(-120, 175); ctx.lineTo(-120, 190); ctx.stroke(); ctx.closePath();//L DOOR	HANDLE
+	ctx.beginPath(); ctx.lineTo(120, 85); ctx.lineTo(120, 100); ctx.stroke(); ctx.closePath();//R DOOR HANDLE
+	ctx.beginPath(); ctx.lineTo(120, 175); ctx.lineTo(120, 190); ctx.stroke(); ctx.closePath();//R DOOR	HANDLE
+		//ROOF
+		ctx.lineWidth = 1;
+	ctx.beginPath(); ctx.lineTo(-60,48); ctx.lineTo(-60,155);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(-30,45); ctx.lineTo(-30,152);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(0,40); ctx.lineTo(0,160);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(30,45); ctx.lineTo(30,152);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(60,48); ctx.lineTo(60,155);	ctx.stroke(); ctx.closePath();//TOP
+		//LIGHTS
+		ctx.lineWidth = 2;
+	ctx.beginPath(); ctx.lineTo(-120,290); ctx.lineTo(-60,290);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(-100,310); ctx.lineTo(-50,310);	ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(-100,290); ctx.lineTo(-100,310);	ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-65,290); ctx.lineTo(-65,310);	ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-60,290); ctx.lineTo(-50,310);	ctx.stroke(); ctx.closePath();//L
+
+	ctx.beginPath(); ctx.lineTo(120,290); ctx.lineTo(60,290);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(100,310); ctx.lineTo(50,310);	ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(100,290); ctx.lineTo(100,310);	ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(65,290); ctx.lineTo(65,310);	ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(60,290); ctx.lineTo(50,310);	ctx.stroke(); ctx.closePath();//R
+	//WHEELS
+	ctx.lineWidth = 3;
+		//FL
+	ctx.beginPath(); ctx.arc(-140,-50,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT LEFT TIRE 
+	// ctx.beginPath(); ctx.arc(-140,-50,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//FRONT LEFT TIRE 
+	ctx.beginPath(); ctx.arc(-140,-50,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT LEFT TIRE 
+		//FR
+	ctx.beginPath(); ctx.arc(140,-50,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT RIGHT TIRE 
+	// ctx.beginPath(); ctx.arc(140,-50,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//FRONT RIGHT TIRE 
+	ctx.beginPath(); ctx.arc(140,-50,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT RIGHT TIRE 
+		//RL
+	ctx.beginPath(); ctx.arc(-140,275,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR LEFT TIRE 
+	// ctx.beginPath(); ctx.arc(-140,275,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//REAR LEFT TIRE 
+	ctx.beginPath(); ctx.arc(-140,275,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR LEFT TIRE 
+		//RR
+	ctx.beginPath(); ctx.arc(140,275,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR RIGHT TIRE 
+	// ctx.beginPath(); ctx.arc(140,275,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//REAR RIGHT TIRE 
+	ctx.beginPath(); ctx.arc(140,275,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR RIGHT TIRE 
+	//WINDOWS
+	ctx.lineWidth = 5;
+		//FRONT
+	ctx.beginPath(); ctx.lineTo(-100,-40); ctx.lineTo(100,-40);	ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(-85,30); ctx.lineTo(85,30);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(-100,-40); ctx.lineTo(-85,30);	ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(100,-40); ctx.lineTo(85,30);	ctx.stroke(); ctx.closePath();//R
+		//BACK
+	ctx.beginPath(); ctx.lineTo(-85,170); ctx.lineTo(85,170);	ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(-100,260); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(-85,170); ctx.lineTo(-100,260);	ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(85,170); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//R
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////
 	start += dropDataPoints;
 	int += dropDataPoints;
 	timer += 8;
@@ -212,6 +339,7 @@ function carMovementInWords() {
 				document.getElementById("text-div3").innerHTML = "Y:    " + data[start][1];
 				document.getElementById("text-div4").innerHTML = "Z:    " + data[start][2];
 				document.getElementById("speed").innerHTML = "Speed in MPH: " + data[start][27];
+				// document.getElementById("heading").innerHTML = "Heading: ";
 				document.getElementById("text-div5").innerHTML = "Data Points: " + int;
 				document.getElementById("sound-in-db").innerHTML = "dB Level:";
 				document.getElementById("noise-data2").innerHTML = (data[start][21]-80);
@@ -219,17 +347,24 @@ function carMovementInWords() {
 				document.getElementById("altitude").innerHTML = "Altitude in ft: " + data[start][24];
 			}
 			dataRealtimePrintOuts();
-		}, data[ii][31]*dropDataPoints);//MS
+		}, 2000+data[ii][31]*dropDataPoints);//MS
 }
 
 }
 $('#show-all-data-button').on('click', function() {
-	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0*g);
+	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .25*g);
 	orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
 	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2, .3*g);
+	carModelFromBack(dataDownFlagstaff1, 0, 18000, 1, .2*g);
 	$('.hide-this').toggle('hide');
 	$('.hide-then-show').show('.hide-then-show');
 });
+
+
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////
 function highestG(data) {//consoleZ max
@@ -252,15 +387,22 @@ var highestAllAxesWithTime = function(data) {//consoleXYZ with time
 }
 
 /////////////////////////////////////////////////////////////////////////////
-function carModelFromTop() {
-	var canvas = document.getElementById('canvas-testing');
+function carModelFromTop(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
+	var canvas = document.getElementById('car-model-top');
 	var ctx = canvas.getContext('2d');
-	ctx.canvas.width  = window.innerWidth;
-	ctx.canvas.height = 800;//window.innerHeight;
-	ctx.scale(1,1);
-	ctx.translate(canvas.width/2, canvas.height/2);
+	var int = 0;
+	var timer = 0;
 
-	ctx.lineWidth = 5;
+	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+
+		setTimeout(function () {
+			ctx.canvas.width  = window.innerWidth/2;
+			ctx.canvas.height = window.innerHeight+200;
+			ctx.scale(1,1);
+				ctx.translate(canvas.width/2, canvas.height/4);//DO PERCENTAGES FOR BALL
+				ctx.rotate(-data[start][0]/10);
+
+				ctx.lineWidth = 5;
 	//BODY
 	ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
 	ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(-35, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
@@ -298,20 +440,20 @@ function carModelFromTop() {
 	ctx.beginPath(); ctx.lineTo(150, 100); ctx.lineTo(105, 120); ctx.stroke(); ctx.closePath();//RIGHT DOOR
 	ctx.beginPath(); ctx.lineTo(150, 200); ctx.lineTo(105, 210); ctx.stroke(); ctx.closePath();//RIGHT DOOR
 		//DOOR HANDLES
-	ctx.lineWidth = 4;
+		ctx.lineWidth = 4;
 	ctx.beginPath(); ctx.lineTo(-120, 85); ctx.lineTo(-120, 100); ctx.stroke(); ctx.closePath();//L DOOR HANDLE
 	ctx.beginPath(); ctx.lineTo(-120, 175); ctx.lineTo(-120, 190); ctx.stroke(); ctx.closePath();//L DOOR	HANDLE
 	ctx.beginPath(); ctx.lineTo(120, 85); ctx.lineTo(120, 100); ctx.stroke(); ctx.closePath();//R DOOR HANDLE
 	ctx.beginPath(); ctx.lineTo(120, 175); ctx.lineTo(120, 190); ctx.stroke(); ctx.closePath();//R DOOR	HANDLE
 		//ROOF
-	ctx.lineWidth = 1;
+		ctx.lineWidth = 1;
 	ctx.beginPath(); ctx.lineTo(-60,48); ctx.lineTo(-60,155);	ctx.stroke(); ctx.closePath();//TOP
 	ctx.beginPath(); ctx.lineTo(-30,45); ctx.lineTo(-30,152);	ctx.stroke(); ctx.closePath();//TOP
 	ctx.beginPath(); ctx.lineTo(0,40); ctx.lineTo(0,160);	ctx.stroke(); ctx.closePath();//TOP
 	ctx.beginPath(); ctx.lineTo(30,45); ctx.lineTo(30,152);	ctx.stroke(); ctx.closePath();//TOP
 	ctx.beginPath(); ctx.lineTo(60,48); ctx.lineTo(60,155);	ctx.stroke(); ctx.closePath();//TOP
 		//LIGHTS
-	ctx.lineWidth = 2;
+		ctx.lineWidth = 2;
 	ctx.beginPath(); ctx.lineTo(-120,290); ctx.lineTo(-60,290);	ctx.stroke(); ctx.closePath();//TOP
 	ctx.beginPath(); ctx.lineTo(-100,310); ctx.lineTo(-50,310);	ctx.stroke(); ctx.closePath();//BOTTOM
 	ctx.beginPath(); ctx.lineTo(-100,290); ctx.lineTo(-100,310);	ctx.stroke(); ctx.closePath();//L
@@ -327,19 +469,19 @@ function carModelFromTop() {
 	ctx.lineWidth = 3;
 		//FL
 	ctx.beginPath(); ctx.arc(-140,-50,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT LEFT TIRE 
-	ctx.beginPath(); ctx.arc(-140,-50,32,32,Math.PI, true); ctx.fillStyle = 'white'; ctx.fill(); ctx.closePath();//FRONT LEFT TIRE 
+	// ctx.beginPath(); ctx.arc(-140,-50,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//FRONT LEFT TIRE 
 	ctx.beginPath(); ctx.arc(-140,-50,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT LEFT TIRE 
 		//FR
 	ctx.beginPath(); ctx.arc(140,-50,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT RIGHT TIRE 
-	ctx.beginPath(); ctx.arc(140,-50,32,32,Math.PI, true); ctx.fillStyle = 'white'; ctx.fill(); ctx.closePath();//FRONT RIGHT TIRE 
+	// ctx.beginPath(); ctx.arc(140,-50,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//FRONT RIGHT TIRE 
 	ctx.beginPath(); ctx.arc(140,-50,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT RIGHT TIRE 
 		//RL
 	ctx.beginPath(); ctx.arc(-140,275,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR LEFT TIRE 
-	ctx.beginPath(); ctx.arc(-140,275,32,32,Math.PI, true); ctx.fillStyle = 'white'; ctx.fill(); ctx.closePath();//REAR LEFT TIRE 
+	// ctx.beginPath(); ctx.arc(-140,275,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//REAR LEFT TIRE 
 	ctx.beginPath(); ctx.arc(-140,275,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR LEFT TIRE 
 		//RR
 	ctx.beginPath(); ctx.arc(140,275,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR RIGHT TIRE 
-	ctx.beginPath(); ctx.arc(140,275,32,32,Math.PI, true); ctx.fillStyle = 'white'; ctx.fill(); ctx.closePath();//REAR RIGHT TIRE 
+	// ctx.beginPath(); ctx.arc(140,275,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//REAR RIGHT TIRE 
 	ctx.beginPath(); ctx.arc(140,275,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR RIGHT TIRE 
 	//WINDOWS
 	ctx.lineWidth = 5;
@@ -353,19 +495,36 @@ function carModelFromTop() {
 	ctx.beginPath(); ctx.lineTo(-100,260); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//BOTTOM
 	ctx.beginPath(); ctx.lineTo(-85,170); ctx.lineTo(-100,260);	ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(85,170); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//R
+
+	start += dropDataPoints;
+	int += dropDataPoints;
+	timer += 8;
+
+}, 2000+data[ii][31]*dropDataPoints);
+
 }
-// $(window).load(function() {
-// 	carModelFromTop();
-// });
+}
+$('#car-model-top-button').on('click', function() {
+	carModelFromTop(dataDownFlagstaff1, 1000, 18000, 60, 60, 2, 2, .3*g);
+	$('datacontent').hide();
+	$('carmodeltop').show();
+});
 
 /////////////////////////////////////////////////////////////////////////////
-function carModelFromBack() {
-	var canvas = document.getElementById('canvas-testing');
+function carModelFromBack(data, start, stop, dropDataPoints, redline) {
+	var canvas = document.getElementById('car-model-back');
 	var ctx = canvas.getContext('2d');
-	ctx.canvas.width  = window.innerWidth;
-	ctx.canvas.height = 800;//window.innerHeight;
-	ctx.scale(1,1);
-	ctx.translate(canvas.width/2, canvas.height/2);
+	var int = 0;
+	var timer = 0;
+
+	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+
+		setTimeout(function () {
+			ctx.canvas.width  = window.innerWidth/2;
+			ctx.canvas.height = 600;
+			ctx.scale(1,1);
+				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+				ctx.rotate(-data[start][0]/10);
 
 	//BODY
 	ctx.lineWidth = 5;
@@ -387,13 +546,20 @@ function carModelFromBack() {
 	ctx.beginPath(); ctx.lineTo(-140, -245); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//TOP
 	//LIGHTS
 	ctx.lineWidth = 2;
+	if (data[start][1] < -redline) { ctx.strokeStyle=("red"); ctx.fillStyle=("red"); }
+	else {ctx.strokeStyle=("black"); ctx.fillStyle=("black"); }
 	ctx.beginPath(); ctx.lineTo(-195, -100); ctx.lineTo(-100, -100); ctx.stroke(); ctx.closePath();//BOTTOM L
 	ctx.beginPath(); ctx.lineTo(195, -100); ctx.lineTo(100, -100); ctx.stroke(); ctx.closePath();//BOTTOM R
 	ctx.beginPath(); ctx.lineTo(-100, -100); ctx.lineTo(-100, -140); ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(100, -100); ctx.lineTo(100, -140); ctx.stroke(); ctx.closePath();//R
 	ctx.beginPath(); ctx.lineTo(-160, -100); ctx.lineTo(-170, -140); ctx.stroke(); ctx.closePath();//L FAR
 	ctx.beginPath(); ctx.lineTo(160, -100); ctx.lineTo(170, -140); ctx.stroke(); ctx.closePath();//R FAR
+	ctx.beginPath(); ctx.arc(-120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(-150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
 	//BUMPER
+  ctx.strokeStyle=("black");
 	ctx.lineWidth = 3;
 	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//HATCH LINE
 	ctx.beginPath(); ctx.lineTo(-195, -30); ctx.lineTo(-55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
@@ -416,7 +582,7 @@ function carModelFromBack() {
 	ctx.beginPath(); ctx.arc(-150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
 	ctx.beginPath(); ctx.arc(150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
 		//TREADS
-	ctx.lineWidth = 3;	
+		ctx.lineWidth = 3;	
 	ctx.beginPath(); ctx.lineTo(-170, 0); ctx.lineTo(-170, 40); ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(-165, 0); ctx.lineTo(-165, 43); ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(-160, 0); ctx.lineTo(-160, 45); ctx.stroke(); ctx.closePath();//L
@@ -434,12 +600,151 @@ function carModelFromBack() {
 	ctx.beginPath(); ctx.lineTo(140, 0); ctx.lineTo(140, 45); ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(135, 0); ctx.lineTo(135, 43); ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(130, 0); ctx.lineTo(130, 40); ctx.stroke(); ctx.closePath();//L
+	
+		//ROAD LINES
+				// ctx.lineWidth = 5;
+				// 	if (start%2 === 0) { 
+				// 		console.log(start);
+				// 		ctx.beginPath(); ctx.lineTo(-330,100); ctx.lineTo(-270,0); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(-250,-50); ctx.lineTo(-220,-150); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(-200,-200); ctx.lineTo(-185,-250); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(-170,-300); ctx.lineTo(-160,-340); ctx.stroke(); ctx.closePath();
+
+				// 		ctx.beginPath(); ctx.lineTo(330,100); ctx.lineTo(270,0); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(250,-50); ctx.lineTo(220,-150); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(200,-200); ctx.lineTo(185,-250); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(170,-300); ctx.lineTo(160,-340); ctx.stroke(); ctx.closePath();
+				// }
+
+				start += dropDataPoints;
+				int += dropDataPoints;
+				timer += 8;
+
+			}, 2000+data[ii][31]*dropDataPoints);
+
 }
-$(window).load(function() {
-	carModelFromBack();
+}
+
+
+function carModelFromBack2(data, start, stop, dropDataPoints, redline) {
+	var canvas = document.getElementById('car-model-back2');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	var timer = 0;
+
+	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+
+		setTimeout(function () {
+			ctx.canvas.width  = window.innerWidth/2;
+			ctx.canvas.height = window.innerHeight;
+			ctx.scale(1,1);
+				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+				ctx.rotate(-data[start][0]/10);
+
+	//BODY
+	ctx.lineWidth = 5;
+	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//REAR BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(-195, -25); ctx.lineTo(-195, -140); ctx.stroke(); ctx.closePath();//L SIDE
+	ctx.beginPath(); ctx.lineTo(195, -25); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//R SIDE
+	ctx.beginPath(); ctx.lineTo(-195, -25); ctx.lineTo(-180, 0); ctx.stroke(); ctx.closePath();//L BOTTOM CONNECT
+	ctx.beginPath(); ctx.lineTo(195, -25); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//R BOTTOM CONNECT
+	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(-165, -250); ctx.stroke(); ctx.closePath();//L SIDE UP
+	ctx.beginPath(); ctx.lineTo(195, -140); ctx.lineTo(165, -250); ctx.stroke(); ctx.closePath();//R SIDE UP
+	ctx.beginPath(); ctx.lineTo(-165, -250); ctx.lineTo(-150, -260); ctx.stroke(); ctx.closePath();//L SIDE ROOF CONNECT
+	ctx.beginPath(); ctx.lineTo(165, -250); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//R SIDE ROOF CONNECT
+	ctx.beginPath(); ctx.lineTo(-150, -260); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//ROOF
+	//WINDOW
+	ctx.lineWidth = 2;
+	ctx.beginPath(); ctx.lineTo(-170, -150); ctx.lineTo(170, -150); ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(-170, -150); ctx.lineTo(-140, -245); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(170, -150); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(-140, -245); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//TOP
+	//LIGHTS
+	ctx.lineWidth = 2;
+	if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
+	else {ctx.strokeStyle=("black");}
+	ctx.beginPath(); ctx.lineTo(-195, -100); ctx.lineTo(-100, -100); ctx.stroke(); ctx.closePath();//BOTTOM L
+	ctx.beginPath(); ctx.lineTo(195, -100); ctx.lineTo(100, -100); ctx.stroke(); ctx.closePath();//BOTTOM R
+	ctx.beginPath(); ctx.lineTo(-100, -100); ctx.lineTo(-100, -140); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(100, -100); ctx.lineTo(100, -140); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(-160, -100); ctx.lineTo(-170, -140); ctx.stroke(); ctx.closePath();//L FAR
+	ctx.beginPath(); ctx.lineTo(160, -100); ctx.lineTo(170, -140); ctx.stroke(); ctx.closePath();//R FAR
+	ctx.beginPath(); ctx.arc(-120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(-150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	//BUMPER
+  ctx.strokeStyle=("black");
+	ctx.lineWidth = 3;
+	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//HATCH LINE
+	ctx.beginPath(); ctx.lineTo(-195, -30); ctx.lineTo(-55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(195, -30); ctx.lineTo(55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(-55, -30); ctx.lineTo(-40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
+	ctx.beginPath(); ctx.lineTo(55, -30); ctx.lineTo(	40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
+	ctx.beginPath(); ctx.lineTo(-50, -20); ctx.lineTo(50, -20); ctx.stroke(); ctx.closePath();//SWEET BUMPER EFFECTS
+	//PLATE
+	ctx.lineWidth = 2;
+	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(60, -70); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(-60, -50); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(-60, -50); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(60, -70); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
+	//WHEELS
+	ctx.lineWidth = 5;
+	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(-180, 20); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-120, 0); ctx.lineTo(-120, 20); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(180, 0); ctx.lineTo(180, 20); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(120, 0); ctx.lineTo(120, 20); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.arc(-150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
+	ctx.beginPath(); ctx.arc(150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
+		//TREADS
+		ctx.lineWidth = 3;	
+	ctx.beginPath(); ctx.lineTo(-170, 0); ctx.lineTo(-170, 40); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-165, 0); ctx.lineTo(-165, 43); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-160, 0); ctx.lineTo(-160, 45); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-155, 0); ctx.lineTo(-155, 47); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-145, 0); ctx.lineTo(-145, 47); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-140, 0); ctx.lineTo(-140, 45); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-135, 0); ctx.lineTo(-135, 43); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-130, 0); ctx.lineTo(-130, 40); ctx.stroke(); ctx.closePath();//L
+
+	ctx.beginPath(); ctx.lineTo(170, 0); ctx.lineTo(170, 40); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(165, 0); ctx.lineTo(165, 43); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(160, 0); ctx.lineTo(160, 45); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(155, 0); ctx.lineTo(155, 47); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(145, 0); ctx.lineTo(145, 47); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(140, 0); ctx.lineTo(140, 45); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(135, 0); ctx.lineTo(135, 43); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(130, 0); ctx.lineTo(130, 40); ctx.stroke(); ctx.closePath();//L
+	
+		//ROAD LINES
+				// ctx.lineWidth = 5;
+				// 	if (start%2 === 0) { 
+				// 		console.log(start);
+				// 		ctx.beginPath(); ctx.lineTo(-330,100); ctx.lineTo(-270,0); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(-250,-50); ctx.lineTo(-220,-150); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(-200,-200); ctx.lineTo(-185,-250); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(-170,-300); ctx.lineTo(-160,-340); ctx.stroke(); ctx.closePath();
+
+				// 		ctx.beginPath(); ctx.lineTo(330,100); ctx.lineTo(270,0); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(250,-50); ctx.lineTo(220,-150); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(200,-200); ctx.lineTo(185,-250); ctx.stroke(); ctx.closePath();
+				// 		ctx.beginPath(); ctx.lineTo(170,-300); ctx.lineTo(160,-340); ctx.stroke(); ctx.closePath();
+				// }
+
+				start += dropDataPoints;
+				int += dropDataPoints;
+				timer += 8;
+
+			}, 2000+data[ii][31]*dropDataPoints);
+
+}
+}
+
+$('#car-model-back-button').on('click', function() {
+	$('datacontent').hide()
+	$('carmodelback').show();
+	carModelFromBack2(dataDownFlagstaff1, 1, 18000, 1, .1*g);
 });
-
-
 /////////////////////////////////////////////////////////////////////////////
 function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
 	var canvas = document.getElementById('canvas-wheel');
@@ -506,6 +811,7 @@ function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 	var canvas = document.getElementById('canvas-compas');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
+	var direction = 'N';
 
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 		setTimeout(function () {
@@ -556,9 +862,22 @@ function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 				ctx.beginPath(); ctx.lineTo(400,0); ctx.lineTo(100,-15); ctx.stroke(); ctx.closePath();
 				ctx.strokeStyle = 'red';
 				ctx.beginPath(); ctx.lineTo(0,-300); ctx.lineTo(0,0); ctx.stroke(); ctx.closePath();
+				
+				if (data[start][29] >= 337.5 || data[start][29] <= 22.5) { direction = 'N'; } 
+				if (data[start][29] > 22.5 && data[start][29] <=67.5 ) { direction = 'NE'; } 
+				if (data[start][29] > 67.5 && data[start][29] <=112.5 ) { direction = 'E'; } 
+				if (data[start][29] > 112.5 && data[start][29] <=157.5 ) { direction = 'SE'; } 
+				if (data[start][29] > 157.5 && data[start][29] <=202.5 ) { direction = 'S'; } 
+				if (data[start][29] > 202.5 && data[start][29] <=247.5 ) { direction = 'SW'; } 
+				if (data[start][29] > 247.5 && data[start][29] <=292.5 ) { direction = 'W'; } 
+				if (data[start][29] > 292.5 && data[start][29] <=337.5 ) { direction = 'NW'; } 
+
+
 				start += dropDataPoints;
 				int += dropDataPoints;
-				document.getElementById("orientation-in-degrees").innerHTML = 'Orientation: ' + data[start][29];
+				console.log(data[start][29]);
+				// document.getElementById("orientation-in-degrees").innerHTML = 'Orientation: ' + data[start][29];
+				document.getElementById("heading").innerHTML = 'Direction: ' + direction;
 			}, 2000+data[ii][31]*dropDataPoints);
 
 }

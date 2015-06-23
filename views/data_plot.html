@@ -21,25 +21,47 @@
 </head>
 <body id='bg-image'>
 
-<homecontent>
-</homecontent>
+	<homecontent>
+	</homecontent>
 
-<datacontent>
-	<div class='hide-this'>
-		<h1><button class='btn2' id='testing-area'>Testing Area</button></h1>
-		<hr>
-	</div>
+	<datacontent>
+		<div class='hide-this'>
+			<h1><button class='btn2' id='testing-area'>Testing Area</button></h1>
+			<hr>
+		</div>
 
-	<div class='col-30' id='button-panel'>
-		<h4>
-			<div><button class='btn' id='report-button'>Show My Report</button></div>
-			<div><button class='btn' id='freeze-button'>Pause Stream</button></div>
-			<div><button class='btn' id='reset-button'>Reset</button></div>
-		</h4>
-		<h4 class="hide-this"/>
-			<div><button class='btn' id='car-model'>Car Model</button></div>
+		<div class='col-25 hide-then-show'>
+			<div id="left-right-straight" class='center btn'></div>
+			<div id="text-div15" class='center btn'></div>
+			<div id="text-div16" class='center btn'></div>
+			<hr>
+			<div id="speed" class='btn'></div>
+			<div id="heading" class='btn'> </div>
+		</div>
+
+		<div class='col-30 hide-then-show'>
+			<canvas id="canvas-compas">
+			</canvas>
+		</div>
+
+
+		<div class='col-30 hide-then-show'>
+			<canvas id="canvas-wheel">
+			</canvas>
+		</div>
+
+
+		<div class='col-30' id='button-panel'>
+			<h4>
+				<div><button class='btn' id='report-button'>Show My Report</button></div>
+				<div><button class='btn' id='freeze-button'>Pause Stream</button></div>
+				<div><button class='btn' id='reset-button'>Reset</button></div>
+			</h4>
+			<h4 class="hide-this"/>
 			<div><button class='btn' id='test-functions-button'>Test Functions</button></div>
 			<div><button class='btn' id='show-all-data-button'>Show All Data</button></div>
+			<div><button class='btn' id='car-model-back-button'>Car Model From Back</button></div>
+			<div><button class='btn' id='car-model-top-button'>Car Model From Top</button></div>
 			<div><button class='btn' id='wheel-function-button'>Steering Wheel</button></div>
 			<div><button class='btn' id='orientation-function-button'>Orientation</button></div>
 			<div><button class='btn' id='location-route-function-button'>Location</button></div>
@@ -49,19 +71,19 @@
 
 
 
-<style>
-  .thumb {
-    height: 75px;
-    border: 1px solid #000;
-    margin: 10px 5px 0 0;
-  }
-</style>
+		<style>
+		.thumb {
+			height: 75px;
+			border: 1px solid #000;
+			margin: 10px 5px 0 0;
+		}
+		</style>
 
-<input type="file" id="files" name="files[]" multiple />
-<output id="list"></output>
+		<input type="file" id="files" name="files[]" multiple />
+		<output id="list"></output>
 
-<script>
-  function handleFileSelect(evt) {
+		<script>
+		function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
 
     // Loop through the FileList and render image files as thumbnails.
@@ -69,115 +91,119 @@
 
       // Only process image files.
       if (!f.type.match('image.*')) {
-        continue;
+      	continue;
       }
 
       var reader = new FileReader();
 
       // Closure to capture the file information.
       reader.onload = (function(theFile) {
-        return function(e) {
+      	return function(e) {
           // Render thumbnail.
           var span = document.createElement('span');
           span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                            '" title="', escape(theFile.name), '"/>'].join('');
+          '" title="', escape(theFile.name), '"/>'].join('');
           document.getElementById('list').insertBefore(span, null);
-        };
-      })(f);
+      };
+  })(f);
 
       // Read in the image file as a data URL.
       reader.readAsDataURL(f);
-    }
   }
+}
 
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
 </script>
 
 
 
-		<b><div id="text-div6"></div></b>
-	</div>
+<b><div id="text-div6"></div></b>
+</div>
 
-	<div class='col-30'>
-		<canvas id="canvas-compas">
-		</canvas>
-	</div>
 
-	<div class='col-25 hide-then-show'>
-		<div id="left-right-straight" class='center btn'></div>
-		<div id="text-div15" class='center btn'></div>
-		<div id="text-div16" class='center btn'></div>
+
+
+
+<div class="col-12"></div>
+
+<div class='col-3 hide-then-show'>
+	<h3>
+		<div><button id="text-div1" class='btn'></button></div>
+		<div><button id="sound-in-db" class='btn'></button></div>
+		<div><button id="noise-data2" class='btn'></button></div>
+		<div><button id="altitude" class='btn'></button></div>
+
 		<hr>
-	</div>
+	</h3>
 
-	<div class='col-30'>
-		<canvas id="canvas-wheel">
-		</canvas>
-	</div>
+	
+	<canvas id="car-model-back">
+	</canvas>
 
-	<div class="col-12"></div>
-
-	<div class='col-3 hide-then-show'>
+	<h3>
+		<div><button id="text-div2" class='center btn' ></button></div>
+		<div><button id="text-div3" class='center btn' ></button></div>
+		<div><button id="text-div4" class='center btn' ></button></div>
+		<div><button id="text-div5" class='center btn' ></button></div>
 		<h3>
-			<div><button id="text-div1" class='btn'></button></div>
-			<div><button id="sound-in-db" class='btn'></button></div>
-			<div><button id="noise-data2" class='btn'></button></div>
-			<div><button id="altitude" class='btn'></button></div>
-			<div><button id="orientation-in-degrees" class='btn'></button></div>
-			<div><button id="speed" class='btn'></button></div>
-			<hr>
-		</h3>
 
-		<div id='all-errors-switching'></div>
-		<b><div id="text-div-crash" class="space"></div></b>
-		<div id="text-div-good-driver" class="space"></div>
-		<div id="text-div-hard-left" class="space"></div>
-		<div id="text-div-hard-right" class="space"></div>
-
-		<div id="text-div9" class="space"></div>
-		<div id="text-div21" class="space"></div>
-		<div id="text-div10" class="space"></div>
-		<div id="text-div22" class="space"></div>
-		<div id="text-div-bump" class="space"></div>
-		<div id="text-div-airborne" class="space"></div>
-		<div id="text-div13" class="space"></div>
-		<h3>
-			<div><button id="text-div2" class='center btn' ></button></div>
-			<div><button id="text-div3" class='center btn' ></button></div>
-			<div><button id="text-div4" class='center btn' ></button></div>
-			<div><button id="text-div5" class='center btn' ></button></div>
-		<h3>
-		
-		<div id="text-div20" class="space"></div>
+			<!-- <div id="text-div20" class="space"></div> -->
 		</div>
 
 		<div class='col-9'>
 			<canvas id="canvas">
 			</canvas>
+
+			<div id='all-errors-switching'></div>
+			<b><div id="text-div-crash" class="space"></div></b>
+			<div id="text-div-good-driver" class="space"></div>
+			<div id="text-div-hard-left" class="space"></div>
+			<div id="text-div-hard-right" class="space"></div>
+
+			<div id="text-div9" class="space"></div>
+			<div id="text-div21" class="space"></div>
+			<div id="text-div10" class="space"></div>
+			<div id="text-div22" class="space"></div>
+			<div id="text-div-bump" class="space"></div>
+			<div id="text-div-airborne" class="space"></div>
+			<div id="text-div13" class="space"></div>
 		</div>
 
-		<div class='col-12'>
-			<canvas id="canvas-testing">
-			</canvas>
-		</div>
+
 
 		<div><a href="./index.html" class="home btn" id='home-button'>Home</a></div>
 
-		<div class='col-12'>
+	</datacontent>
 
+	<carmodeltop>
+		<div><button class='btn' id='reset-button2'>Reset</button></div>
+		<div class='col-3'></div>
+		<div class='col-6'>
+			<canvas id='car-model-top'>
+			</canvas>
 		</div>
+		<div class='col-3'></div>
+	</carmodeltop>
+
+	<carmodelback>	
+		<div><button class='btn' id='reset-button3'>Reset</button></div>
+		<div class='col-3'></div>
+		<div class='col-6'>
+			<canvas id='car-model-back2'>
+			</canvas>
+		</div>
+		<div class='col-3'></div>
+	</carmodelback>
 
 
-</datacontent>
-
-<reportcontent>
-	<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
-	<button class='btn'>Export Data</button>
-	<p>TESTING THE SHOWING OF THE REPORT CONTENT</p>
-	<p>ERROR MESSAGES HERE IN DOC FORM</p>
-	<p>BUTTON TO EXPORT OR SAVE DATA</p>
-	<p>THIS IS THE DRIVING REPORT</p>
-	<canvas id='canvas-report'>
-	</canvas>
-</reportcontent>
+	<reportcontent>
+		<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
+		<button class='btn'>Export Data</button>
+		<p>TESTING THE SHOWING OF THE REPORT CONTENT</p>
+		<p>ERROR MESSAGES HERE IN DOC FORM</p>
+		<p>BUTTON TO EXPORT OR SAVE DATA</p>
+		<p>THIS IS THE DRIVING REPORT</p>
+		<canvas id='canvas-report'>
+		</canvas>
+	</reportcontent>
 </body>
