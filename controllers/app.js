@@ -380,7 +380,19 @@ function carModelFromBack() {
 	ctx.beginPath(); ctx.lineTo(165, -250); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//R SIDE ROOF CONNECT
 	ctx.beginPath(); ctx.lineTo(-150, -260); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//ROOF
 	//WINDOW
-
+	ctx.lineWidth = 2;
+	ctx.beginPath(); ctx.lineTo(-170, -150); ctx.lineTo(170, -150); ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(-170, -150); ctx.lineTo(-140, -245); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(170, -150); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(-140, -245); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//TOP
+	//LIGHTS
+	ctx.lineWidth = 2;
+	ctx.beginPath(); ctx.lineTo(-195, -100); ctx.lineTo(-100, -100); ctx.stroke(); ctx.closePath();//BOTTOM L
+	ctx.beginPath(); ctx.lineTo(195, -100); ctx.lineTo(100, -100); ctx.stroke(); ctx.closePath();//BOTTOM R
+	ctx.beginPath(); ctx.lineTo(-100, -100); ctx.lineTo(-100, -140); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(100, -100); ctx.lineTo(100, -140); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(-160, -100); ctx.lineTo(-170, -140); ctx.stroke(); ctx.closePath();//L FAR
+	ctx.beginPath(); ctx.lineTo(160, -100); ctx.lineTo(170, -140); ctx.stroke(); ctx.closePath();//R FAR
 	//BUMPER
 	ctx.lineWidth = 3;
 	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//HATCH LINE
@@ -389,21 +401,39 @@ function carModelFromBack() {
 	ctx.beginPath(); ctx.lineTo(-55, -30); ctx.lineTo(-40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
 	ctx.beginPath(); ctx.lineTo(55, -30); ctx.lineTo(	40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
 	ctx.beginPath(); ctx.lineTo(-50, -20); ctx.lineTo(50, -20); ctx.stroke(); ctx.closePath();//SWEET BUMPER EFFECTS
-
 	//PLATE
 	ctx.lineWidth = 2;
 	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(60, -70); ctx.stroke(); ctx.closePath();//
 	ctx.beginPath(); ctx.lineTo(-60, -50); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
 	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(-60, -50); ctx.stroke(); ctx.closePath();//
 	ctx.beginPath(); ctx.lineTo(60, -70); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
-
 	//WHEELS
 	ctx.lineWidth = 5;
-	ctx.beginPath(); ctx.arc(-140,40,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
-	ctx.beginPath(); ctx.arc(140,40,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
+	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(-180, 20); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-120, 0); ctx.lineTo(-120, 20); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(180, 0); ctx.lineTo(180, 20); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(120, 0); ctx.lineTo(120, 20); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.arc(-150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
+	ctx.beginPath(); ctx.arc(150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
+		//TREADS
+	ctx.lineWidth = 3;	
+	ctx.beginPath(); ctx.lineTo(-170, 0); ctx.lineTo(-170, 40); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-165, 0); ctx.lineTo(-165, 43); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-160, 0); ctx.lineTo(-160, 45); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-155, 0); ctx.lineTo(-155, 47); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-145, 0); ctx.lineTo(-145, 47); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-140, 0); ctx.lineTo(-140, 45); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-135, 0); ctx.lineTo(-135, 43); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-130, 0); ctx.lineTo(-130, 40); ctx.stroke(); ctx.closePath();//L
 
-
-
+	ctx.beginPath(); ctx.lineTo(170, 0); ctx.lineTo(170, 40); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(165, 0); ctx.lineTo(165, 43); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(160, 0); ctx.lineTo(160, 45); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(155, 0); ctx.lineTo(155, 47); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(145, 0); ctx.lineTo(145, 47); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(140, 0); ctx.lineTo(140, 45); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(135, 0); ctx.lineTo(135, 43); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(130, 0); ctx.lineTo(130, 40); ctx.stroke(); ctx.closePath();//L
 }
 $(window).load(function() {
 	carModelFromBack();
