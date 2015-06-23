@@ -11,8 +11,21 @@ routes necessary?
 server?
 
 
-make content responsive
+make content respon
+sive
 on canvas too
+--------------------------------------------------------
+  var i = 0;
+  var count = 0;
+  var dataStable = 0;
+  for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+
+    setTimeout(function () {
+      while (i < i+50) { 
+        count = count + data[start+i][0];
+        i++
+      } 
+      dataStable; = count/50
 ------------------------------------------------------------------
 FILE IMPORT**********************************
 <!-- <form class='btn4 hide-this' id='upload-button' action="/csv-upload" method="post"> -->

@@ -13,11 +13,27 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 
 		setTimeout(function () {
+			var dataStableX = 1;
+			var dataStableY = 1;
+			var dataStableZ = 1;
+			var incForStable = 1;
+			while (incForStable <= 50) { 
+				dataStableX = dataStableX + data[start+incForStable][0];
+				dataStableY = dataStableY + data[start+incForStable][1];
+				dataStableZ = dataStableZ + data[start+incForStable][2];
+				incForStable++;
+
+			} 
+			dataStableX = dataStableX/50;
+			dataStableY = dataStableY/50;
+			dataStableZ = dataStableZ/50;
+
+
 			ctx.canvas.width  = window.innerWidth;
 	  		ctx.canvas.height = 800;//window.innerHeight;
 	  		ctx.scale(1,1);
 				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-				ctx.rotate(data[start][0]/10);
+				ctx.rotate(dataStableX/6);
 				// ctx.lineWidth = 2;
 				// ctx.beginPath(); ctx.lineTo(1000,0); ctx.lineTo(-1000,0); ctx.stroke(); ctx.closePath();//grid
 				// ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-200); ctx.stroke(); ctx.closePath();
@@ -109,7 +125,20 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 			warningMessages();
 
 			function carMovementAndPositionVisuals() { 
-				
+				var dataStableX = 1;
+				var dataStableY = 1;
+				var dataStableZ = 1;
+				var incForStable = 1;
+				while (incForStable <= 50) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+
+				} 
+				dataStableX = dataStableX/50;
+				dataStableY = dataStableY/50;
+				dataStableZ = dataStableZ/50;
 				// ctx.lineWidth = 1;				
 				// ctx.beginPath(); ctx.arc(0, 0, 600, 600, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
 				// ctx.beginPath(); ctx.arc(0, 0, 603, 603, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
@@ -122,9 +151,9 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
 				if (data[start][2] > 1) { 
-					ctx.beginPath(); ctx.arc(0, 0, 1+data[start][2]*multiZ*12, 5+data[start][2]*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
-					ctx.beginPath(); ctx.arc(0, 0, 6+data[start][2]*multiZ*12, 6+data[start][2]*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
-					ctx.beginPath(); ctx.arc(0, 0, 11+data[start][2]*multiZ*12, 11+data[start][2]*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
+					ctx.beginPath(); ctx.arc(0, 0, 1+dataStableZ*multiZ*12, 5+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
+					ctx.beginPath(); ctx.arc(0, 0, 6+dataStableZ*multiZ*12, 6+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
+					ctx.beginPath(); ctx.arc(0, 0, 11+dataStableZ*multiZ*12, 11+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
 				}
 
 				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
@@ -138,10 +167,10 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
 				else {ctx.fillStyle=("black");}
-				ctx.beginPath(); ctx.arc(-data[start][0]*multiX, 0,20,20, Math.PI, true); ctx.fill();//G BALL X
-				ctx.beginPath(); ctx.arc(-data[start][0]*multiX, 0,25,25, Math.PI, true); ctx.stroke();//G BALL X
-				ctx.beginPath(); ctx.arc(0, data[start][1]*multiY,20,20, Math.PI, true); ctx.fill();//G BALL Y
-				ctx.beginPath(); ctx.arc(0, data[start][1]*multiY,25,25, Math.PI, true); ctx.stroke();//G BALL Y
+				ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,20,20, Math.PI, true); ctx.fill();//G BALL X
+				ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,25,25, Math.PI, true); ctx.stroke();//G BALL X
+				ctx.beginPath(); ctx.arc(0, dataStableY*multiY,20,20, Math.PI, true); ctx.fill();//G BALL Y
+				ctx.beginPath(); ctx.arc(0, dataStableY*multiY,25,25, Math.PI, true); ctx.stroke();//G BALL Y
 				ctx.lineWidth = 1;
 
 				// if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
@@ -319,25 +348,55 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 carMovementAndPositionVisuals();
 
 function carMovementInWords() { 
-	if (data[start][0] > .07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Right"; }
-	else if (data[start][0] < -.07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Left"; }
-	else { document.getElementById("left-right-straight").innerHTML = "Driving Straight"; }
+		var dataStableX = 1;
+		var dataStableY = 1;
+		var dataStableZ = 1;
+		var incForStable = 1;
+		while (incForStable <= 50) { 
+			dataStableX = dataStableX + data[start+incForStable][0];
+			dataStableY = dataStableY + data[start+incForStable][1];
+			dataStableZ = dataStableZ + data[start+incForStable][2];
+			incForStable++;
 
-	document.getElementById("text-div15").innerHTML = " and "
+		} 
+		dataStableX = dataStableX/50;
+		dataStableY = dataStableY/50;
+		dataStableZ = dataStableZ/50;
 
-				if (-data[start][1] > redline) { document.getElementById("text-div16").innerHTML = "Braking Hard"; }//Y IS FLIPPED
-				else if (-data[start][1] < -.3*g) { document.getElementById("text-div16").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
-				else if (-data[start][1] < -.07*g) { document.getElementById("text-div16").innerHTML = "Accelerating"; }//Y IS FLIPPED
-				else if (-data[start][1] > .07*g) { document.getElementById("text-div16").innerHTML = "Braking"; }//Y IS FLIPPED
+
+		if (dataStableX > .07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Right"; }
+		else if (dataStableX < -.07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Left"; }
+		else { document.getElementById("left-right-straight").innerHTML = "Driving Straight"; }
+
+		document.getElementById("text-div15").innerHTML = " and "
+
+				if (-dataStableY > redline) { document.getElementById("text-div16").innerHTML = "Braking Hard"; }//Y IS FLIPPED
+				else if (-dataStableY < -.3*g) { document.getElementById("text-div16").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
+				else if (-dataStableY < -.07*g) { document.getElementById("text-div16").innerHTML = "Accelerating"; }//Y IS FLIPPED
+				else if (-dataStableY > .07*g) { document.getElementById("text-div16").innerHTML = "Braking"; }//Y IS FLIPPED
 				else { document.getElementById("text-div16").innerHTML = "Coasting"; }
 			}
 			carMovementInWords();
 
 			function  dataRealtimePrintOuts() {
+				var dataStableX = 1;
+				var dataStableY = 1;
+				var dataStableZ = 1;
+				var incForStable = 1;
+				while (incForStable <= 50) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+
+				} 
+				dataStableX = dataStableX/50;
+				dataStableY = dataStableY/50;
+				dataStableZ = dataStableZ/50;
 				document.getElementById("text-div1").innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
-				document.getElementById("text-div2").innerHTML = "X:    " + data[start][0];
-				document.getElementById("text-div3").innerHTML = "Y:    " + data[start][1];
-				document.getElementById("text-div4").innerHTML = "Z:    " + data[start][2];
+				document.getElementById("text-div2").innerHTML = "X:    " + dataStableX;
+				document.getElementById("text-div3").innerHTML = "Y:    " + dataStableY;
+				document.getElementById("text-div4").innerHTML = "Z:    " + dataStableZ;
 				document.getElementById("speed").innerHTML = "Speed in MPH: " + data[start][27];
 				// document.getElementById("heading").innerHTML = "Heading: ";
 				document.getElementById("text-div5").innerHTML = "Data Points: " + int;
@@ -516,16 +575,27 @@ function carModelFromBack(data, start, stop, dropDataPoints, redline) {
 	var ctx = canvas.getContext('2d');
 	var int = 0;
 	var timer = 0;
-
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-
 		setTimeout(function () {
+			var dataStable = 1;
+			var countForStable = 0;
+			var incForStable = 1;
+			while (incForStable <= 50) { 
+				dataStable = dataStable + data[start+incForStable][0];
+				incForStable++;
+
+			} 
+			dataStable = dataStable/50;
+
+
+
+
+
 			ctx.canvas.width  = window.innerWidth/2;
 			ctx.canvas.height = 600;
 			ctx.scale(1,1);
-				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-				ctx.rotate(-data[start][0]/10);
-
+			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+			ctx.rotate(-dataStable/10);
 	//BODY
 	ctx.lineWidth = 5;
 	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//REAR BUMPER LINE
@@ -559,7 +629,7 @@ function carModelFromBack(data, start, stop, dropDataPoints, redline) {
 	ctx.beginPath(); ctx.arc(120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
 	ctx.beginPath(); ctx.arc(150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
 	//BUMPER
-  ctx.strokeStyle=("black");
+	ctx.strokeStyle=("black");
 	ctx.lineWidth = 3;
 	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//HATCH LINE
 	ctx.beginPath(); ctx.lineTo(-195, -30); ctx.lineTo(-55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
@@ -631,15 +701,23 @@ function carModelFromBack2(data, start, stop, dropDataPoints, redline) {
 	var ctx = canvas.getContext('2d');
 	var int = 0;
 	var timer = 0;
-
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-
 		setTimeout(function () {
+			var dataStable = 1;
+			var countForStable = 0;
+			var incForStable = 1;
+			while (incForStable <= 50) { 
+				dataStable = dataStable + data[start+incForStable][0];
+				incForStable++;
+
+			} 
+			dataStable = dataStable/50;
+			
 			ctx.canvas.width  = window.innerWidth/2;
 			ctx.canvas.height = window.innerHeight;
 			ctx.scale(1,1);
-				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-				ctx.rotate(-data[start][0]/10);
+			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+			ctx.rotate(-dataStable/10);
 
 	//BODY
 	ctx.lineWidth = 5;
@@ -674,7 +752,7 @@ function carModelFromBack2(data, start, stop, dropDataPoints, redline) {
 	ctx.beginPath(); ctx.arc(120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
 	ctx.beginPath(); ctx.arc(150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
 	//BUMPER
-  ctx.strokeStyle=("black");
+	ctx.strokeStyle=("black");
 	ctx.lineWidth = 3;
 	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//HATCH LINE
 	ctx.beginPath(); ctx.lineTo(-195, -30); ctx.lineTo(-55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
@@ -753,12 +831,88 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 		setTimeout(function () {
+			var dataStable = 1;
+			var countForStable = 0;
+			var incForStable = 1;
+			while (incForStable <= 50) { 
+				dataStable = dataStable + data[start+incForStable][0];
+				incForStable++;
+
+			} 
+			dataStable = dataStable/50;
+
 
 			ctx.canvas.width  = window.innerWidth;
 	  		ctx.canvas.height = 800;//window.innerHeight;
 	  		ctx.scale(1,1);
 	  		ctx.translate(canvas.width/2, canvas.height/2);
-	  		ctx.rotate((Math.PI/180)*(data[start][0]*10));
+	  		ctx.rotate(dataStable/2);
+	  		ctx.strokeStyle="black";
+	  		ctx.lineWidth = 3;
+					ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();//COMPASS
+	  		ctx.beginPath(); ctx.arc(0, 0, 320, 320, Math.PI, true); ctx.stroke();//COMPASS
+	  		ctx.beginPath(); ctx.arc(0, 0, 315, 315, Math.PI, true); ctx.stroke();//COMPASS
+	  		ctx.beginPath(); ctx.arc(0, 0, 310, 310, Math.PI, true); ctx.stroke();//COMPASS
+	  		ctx.beginPath(); ctx.arc(0, 0, 305, 305, Math.PI, true); ctx.stroke();//COMPASS
+				ctx.beginPath(); ctx.arc(0, 0, 300, 300, Math.PI, true); ctx.stroke();//COMPASS
+				ctx.beginPath(); ctx.arc(0, 0, 295, 295, Math.PI, true); ctx.stroke();//COMPASS
+				ctx.beginPath(); ctx.arc(0, 0, 290, 290, Math.PI, true); ctx.stroke();//COMPASS
+				ctx.beginPath(); ctx.arc(0, 0, 285, 285, Math.PI, true); ctx.stroke();//COMPASS
+				ctx.beginPath(); ctx.arc(0, 0, 280, 280, Math.PI, true); ctx.stroke();//COMPASS
+				ctx.lineWidth = 3;
+				ctx.beginPath(); ctx.lineTo(-295,-40); ctx.lineTo(295,-40); ctx.stroke(); ctx.closePath();//X
+				ctx.beginPath(); ctx.lineTo(-295,-30); ctx.lineTo(295,-30); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-295,-20); ctx.lineTo(295,-20); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-295,-10); ctx.lineTo(295,-10); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-295,0); ctx.lineTo(295,0); ctx.stroke(); ctx.closePath();
+				
+				ctx.beginPath(); ctx.lineTo(20,297); ctx.lineTo(20,0); ctx.stroke(); ctx.closePath();//Y
+				ctx.beginPath(); ctx.lineTo(10,297); ctx.lineTo(10,0); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(0,297); ctx.lineTo(0,0); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-10,297); ctx.lineTo(-10,0); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-20,297); ctx.lineTo(-20,0); ctx.stroke(); ctx.closePath();
+
+				ctx.beginPath(); ctx.lineTo(-150,0); ctx.lineTo(-20,150); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-140,0); ctx.lineTo(-20,140); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-130,0); ctx.lineTo(-20,130); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-120,0); ctx.lineTo(-20,120); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(-110,0); ctx.lineTo(-20,110); ctx.stroke(); ctx.closePath();
+
+				ctx.beginPath(); ctx.lineTo(150,0); ctx.lineTo(20,150); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(140,0); ctx.lineTo(20,140); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(130,0); ctx.lineTo(20,130); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(120,0); ctx.lineTo(20,120); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(110,0); ctx.lineTo(20,110); ctx.stroke(); ctx.closePath();
+
+				// ctx.beginPath(); ctx.lineTo(-295,-3); ctx.lineTo(295,-3); ctx.stroke(); ctx.closePath();
+				start += dropDataPoints;
+				int += dropDataPoints;
+			}, 2000+data[ii][31]*dropDataPoints);
+}
+}
+function steeringWheelModel2(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
+	var canvas = document.getElementById('canvas-steering-wheel2');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+
+	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+		setTimeout(function () {
+			var dataStable = 1;
+			var countForStable = 0;
+			var incForStable = 1;
+			while (incForStable <= 50) { 
+				dataStable = dataStable + data[start+incForStable][0];
+				incForStable++;
+
+			} 
+			dataStable = dataStable/50;
+
+
+			ctx.canvas.width  = window.innerWidth;
+	  		ctx.canvas.height = 800;//window.innerHeight;
+	  		ctx.scale(1,1);
+	  		ctx.translate(canvas.width/2, canvas.height/2);
+	  		ctx.rotate(dataStable);
 	  		ctx.strokeStyle="black";
 	  		ctx.lineWidth = 3;
 					ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();//COMPASS
@@ -803,8 +957,13 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 }
 }
 $('#wheel-function-button').on('click', function() {
-	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 30, 30, 2, 1, .3*g);
+	steeringWheelModel2(dataDownFlagstaff1, 0, 18000, 30, 30, 2, 1, .3*g);
+	$('datacontent').toggle('hide');
+	// $('carmodelback').toggle('hide');
+	// $('carmodeltop').toggle('hide');
+	$('wheelmodel').toggle('show');
 });
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 

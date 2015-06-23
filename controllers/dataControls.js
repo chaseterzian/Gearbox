@@ -21,6 +21,9 @@ $(window).load(function() {
 $(window).load(function() {
 	$('carmodelback').hide();
 });
+$(window).load(function() {
+	$('wheelmodel').hide();
+});
 	$("form").on("submit", function() {//DOES NOT WORK YET
 		// debugger;
 	});
