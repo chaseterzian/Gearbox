@@ -109,7 +109,7 @@
 <div class='col-2 hide-this' id='parameter-input-column'>
 	<form id='parameter-input-fields' action="data_plot.html" method="POST">
   <div class='center'>
-  	<div class='btn center' id='set-parameters-window'>Enter Parameters Below</div>
+  	<div class='btn center' id='set-parameters-window'>Set Values Below</div>
   	<hr>
   	<input placeholder='Start Point' type='text' name='name' class='btn param-inputs' id='testing-input-start-point'></input>
   	<input placeholder='End Point' type='text' name='name' class='btn param-inputs' id='testing-input-end-point'></input>
@@ -117,11 +117,16 @@
   	<input placeholder='Multiply Y By' type='text' name='name' class='btn param-inputs' id='testing-input-multiy'></input>
   	<input placeholder='Multiply Z By' type='text' name='name' class='btn param-inputs' id='testing-input-multiz'></input>
   	<input placeholder='Data Points/Second' type='text' name='name' class='btn param-inputs' id='testing-input-data-points'></input>
-  	<input placeholder='Warning Trip M/s^2' type='text' name='name' class='btn param-inputs' id='testing-input-redline'></input>
+  	<input placeholder='Warning Trip X' type='text' name='name' class='btn param-inputs' id='testing-input-redline-x'></input>
+  	<input placeholder='Warning Trip Y' type='text' name='name' class='btn param-inputs' id='testing-input-redline-y'></input>
+  	<input placeholder='Warning Trip Z' type='text' name='name' class='btn param-inputs' id='testing-input-redline-z'></input>
   	<hr>
-  	<input type='submit' value='Save Profile' class='btn ' id='parameter-input-submit-button'></input>
+  	<input type='submit' value='Load Profile' class='btn' id='parameter-input-submit-button'></input>
+  	<button class='btn center' id='run-program-button'>Run Program</button>
   </div>
 	</form>
+	<!-- <div class='btn center'> -->
+  <!-- </div> -->
 </div>
 
 <div class='col-3 hide-this'></div>

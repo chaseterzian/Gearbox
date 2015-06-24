@@ -1,70 +1,71 @@
 $(document).ready(function() {
-// window.onload = function() {
-//   // Check for LocalStorage support.
-//   if (localStorage) {
-//     // Add an event listener for form submissions
-//     document.getElementById('contactForm').addEventListener('submit', function() {
-//       // Get the value of the name field.
-//       var name = document.getElementById('name').value;
-//       // Save the name in localStorage.
-//       localStorage.setItem('name', name);
-//     });
-//   }
-// }
-// var name = localStorage.getItem('name');
-// window.onload = function() {
-//   // Retrieve the users name.
-//   var name = localStorage.getItem('name');
-//   if (name != "undefined" || name != "null") {
-//     console.log("Hello " + name + "!");
-//   } else { 
-//     console.log("Hello!");
-//   }
-// }
-// console.log(name);
-// $('console-button').on('click', function() {
-// 	localStorage.clear();
-// });
 
-  // $('.shoeButton').on('click', function() {
-  //   var materialType = $('.shoeMat').val(); //should be the thing that it is, in this case "material"
-  //   stringy =  "can't do it"
-  //   otherString = 'he said "no, i can\'t do it"'
-  //   $.ajax({  //like saying make a post request in the bg?
-  //     type: "POST",
-  //     url: "/shoes",
-  //     data: { "shoe": { "material": materialType } },  //params
 
-  //     success: function(backFromServer) {
-  //                       // "a href='/shoes/80'>Show</a>"
-  //       var show_link = "<a href='/shoes/" + backFromServer.id +" '>Show </a>"
-  //       var edit_link = "<a href='/shoes/" + backFromServer.id +" '>Edit </a>"
-  //       var delete_link = "<a href='/shoes/" + backFromServer.id +" '>Delete </a>"
-  //       $('tbody').append(backFromServer.material + " " + show_link + edit_link + delete_link + "<br>");
-  //       console.log(backFromServer);
-  //     }
-  //   });
-  //   return false;
-  //   // e.preventDefault();
-  // });
-		var parameterData = [];
+
 $('form').on('submit', function(e) {
 	e.preventDefault();
-		parameterData.push(document.getElementById('testing-input-start-point').value);
-		parameterData.push(document.getElementById('testing-input-end-point').value);
-		parameterData.push(document.getElementById('testing-input-multix').value);
-		parameterData.push(document.getElementById('testing-input-multiy').value);
-		parameterData.push(document.getElementById('testing-input-multiz').value);
-		parameterData.push(document.getElementById('testing-input-data-points').value);
-		parameterData.push(document.getElementById('testing-input-redline').value);
+		var parameterData = [dataDownFlagstaff1];//HARDCODED FILE
+		$('#parameter-input-submit-button').hide();
+		$('#run-program-button').show();
+		parameterData.push(parseInt(document.getElementById('testing-input-start-point').value));
+		parameterData.push(parseInt(document.getElementById('testing-input-end-point').value));
+		parameterData.push(parseInt(document.getElementById('testing-input-multix').value));
+		parameterData.push(parseInt(document.getElementById('testing-input-multiy').value));
+		parameterData.push(parseInt(document.getElementById('testing-input-multiz').value));
+		parameterData.push(parseInt(document.getElementById('testing-input-data-points').value));
+		parameterData.push(parseInt(document.getElementById('testing-input-redline-x').value));
+		parameterData.push(parseInt(document.getElementById('testing-input-redline-y').value));
+		parameterData.push(parseInt(document.getElementById('testing-input-redline-z').value));
 		document.getElementById("set-parameters-window").innerHTML = "Profile Loaded";
-		document.getElementById("parameter-input-submit-button").innerHTML = "Profile Loaded";
-	console.log(parameterData);
+		document.getElementById("parameter-input-submit-button").innerHTML = "Run Program";
+		console.log(parameterData)
+			$('#run-program-button').on('click', function() {
+				movementXyzFull(parameterData[0], parameterData[1], 
+												parameterData[2], parameterData[3], 
+												parameterData[4], parameterData[5], 
+												parameterData[6], parameterData[7], 
+												parameterData[8], parameterData[9]);	
+				
+				orientation(parameterData[0], parameterData[1],
+												parameterData[2], parameterData[3],
+												parameterData[4], parameterData[5],
+												parameterData[6], parameterData[7]);				
+				
+				steeringWheelModel(parameterData[0], parameterData[1],
+			 								 parameterData[2], parameterData[3],
+											 parameterData[4], parameterData[5],
+										   parameterData[6], parameterData[7]);
+				
+				carModelFromBack(parameterData[0], parameterData[1],
+											 parameterData[2], parameterData[6],
+											 parameterData[7]);
+
+				$('.hide-this').toggle('hide');
+				$('.hide-then-show').show('.hide-then-show');
+				$('video').toggle('show');
+				setTimeout(function() { 
+					$('video').get(0).play()
+				}, 1700);
+			});
 });
+
+$('#show-all-data-button').on('click', function() {
+				movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g, .3*g, .3*g);
+				orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
+				steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2, .3*g);
+				carModelFromBack(dataDownFlagstaff1, 0, 18000, 1, .3*g);
+				$('.hide-this').toggle('hide');
+				$('.hide-then-show').show('.hide-then-show');
+				$('video').toggle('show');
+				setTimeout(function() { 
+					$('video').get(0).play()
+				}, 1700);
+});
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 	g = 9.81;
 //////////////////////////////////////////////////////////////////////////////////////////////
-function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
+function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -72,21 +73,21 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 
 		setTimeout(function () {
+			
 			var dataStableX = 1;
 			var dataStableY = 1;
 			var dataStableZ = 1;
 			var incForStable = 1;
-			
 			function stabilizer() { 
-				while (incForStable <= 35) { 
+				while (incForStable <= 50) { 
 					dataStableX = dataStableX + data[start+incForStable][0];
 					dataStableY = dataStableY + data[start+incForStable][1];
 					dataStableZ = dataStableZ + data[start+incForStable][2];
 					incForStable++;
 				} 
-				dataStableX = dataStableX/35;
-				dataStableY = dataStableY/35;
-				dataStableZ = dataStableZ/35;
+				dataStableX = dataStableX/50;
+				dataStableY = dataStableY/50;
+				dataStableZ = dataStableZ/50;
 			}
 			stabilizer();
 
@@ -111,7 +112,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 					$('#text-div-good-driver').hide();
 				}
 
-				if (-data[start][0] >= redline) {//HARD LEFT
+				if (-data[start][0] >= redlineX) {//HARD LEFT
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-hard-left").innerHTML =
 					"- Very hard left turn. At " +
@@ -120,7 +121,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 					data[start][0] + "sec/" + int;
 					$('#text-div-good-driver').hide();
 				}
-				if (-data[start][0] < -redline) {//HARD RIGHT
+				if (-data[start][0] < -redlineX) {//HARD RIGHT
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-hard-right").innerHTML =
 					"- Very hard right turn. At " +
@@ -131,7 +132,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 					$('#text-div-good-driver').hide();
 				}
 
-				if (data[start][1] <= -redline) {//BRAKING
+				if (data[start][1] <= -redlineY) {//BRAKING
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-heavy-braking").innerHTML =
 					"- There was quite a heavy braking event at " +
@@ -140,7 +141,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 					data[start][0] + "sec/" + int;
 					$('#text-div-good-driver').hide();
 				}
-				if (data[start][1] > redline) {//ACCELERATION
+				if (data[start][1] > redlineY) {//ACCELERATION
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-heavy-acceleration").innerHTML =
 					"- There was quite a heavy acceleration event at " +
@@ -150,14 +151,14 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 					$('#text-div-good-driver').hide();
 				}
 
-				if (data[start][1] < -redline && data[start][0] > redline || data[start][1] < -redline && data[start][0] < -redline) {//HEAVY BRAKING
+				if (data[start][1] < -redlineY && data[start][0] > redlineX || data[start][1] < -redlineY && data[start][0] < -redlineX) {//HEAVY BRAKING
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-braking-and-cornering").innerHTML =
 					"***WARNING - USE MORE CAUTION: Heavy braking combined with hard cornering can easily cause you to lose control: (" +
 						data[start][1] + "X gravity forward, and " + data[start][0] + "X gravity to the side, while moving at " + data[start][27] + "MPH.";
 						$('#text-div-good-driver').hide();
 					}
-				if (data[start][1] > redline && data[start][0] >= redline || data[start][1] > redline && data[start][0] < -redline) {//HEAVY ACCELERATION
+				if (data[start][1] > redlineY && data[start][0] >= redlineX || data[start][1] > redlineY && data[start][0] < -redlineX) {//HEAVY ACCELERATION
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-acceleration-and-cornering").innerHTML =
 					"***WARNING - USE MORE CAUTION: Heavy acceleration combined with hard cornering can easily cause you to lose control: " +
@@ -212,8 +213,8 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 
 			function largeZCircleForXyzModel() { 	
 				ctx.lineWidth = 1;
-				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
-				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
+				if (data[start][0] >= redlineX || data[start][0] < -redlineX) { ctx.strokeStyle=("red"); }
+				if (data[start][1] >= redlineY || data[start][1] < -redlineY) { ctx.strokeStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
 				if (data[start][2] > 1) { 
 					ctx.beginPath(); ctx.arc(0, 0, 1+dataStableZ*multiZ*12, 5+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
@@ -224,8 +225,8 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 			largeZCircleForXyzModel();
 
 			function zCircleForXyzModel() { 
-				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
-				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
+				if (data[start][0] >= redlineX || data[start][0] < -redlineX) { ctx.fillStyle=("red"); }
+				if (data[start][1] >= redlineY || data[start][1] < -redlineY) { ctx.fillStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
 				if (data[start][2] > 1) {
 					ctx.beginPath(); ctx.arc(0, 0, 1+data[start][2]*multiZ, 1+data[start][2]*multiZ, Math.PI, true); ctx.stroke();//Z-CIRCLE
@@ -235,8 +236,8 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 			zCircleForXyzModel();
 
 			function xyGBallsForXyzModel() { 
-				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
-				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
+				if (data[start][0] >= redlineX || data[start][0] < -redlineX) { ctx.fillStyle=("red"); }
+				if (data[start][1] >= redlineY || data[start][1] < -redlineY) { ctx.fillStyle=("red"); }
 				else {ctx.fillStyle=("black");}
 					ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,20,20, Math.PI, true); ctx.fill();//G BALL X
 					ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,25,25, Math.PI, true); ctx.stroke();
@@ -455,7 +456,7 @@ function carMovementInWords() {
 
 		document.getElementById("and-window").innerHTML = " And "
 
-		if (-dataStableY > redline) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking Hard"; }//Y IS FLIPPED
+		if (-dataStableY > redlineY) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking Hard"; }//Y IS FLIPPED
 		else if (-dataStableY < -.3*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
 		else if (-dataStableY < -.07*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating"; }//Y IS FLIPPED
 		else if (-dataStableY > .07*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking"; }//Y IS FLIPPED
@@ -504,19 +505,6 @@ dataRealtimePrintOuts();
 }
 
 }
-$('#show-all-data-button').on('click', function() {
-	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
-
-	orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
-	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2, .3*g);
-	carModelFromBack(dataDownFlagstaff1, 0, 18000, 1, .2*g);
-	$('.hide-this').toggle('hide');
-	$('.hide-then-show').show('.hide-then-show');
-	$('video').toggle('show');
-	setTimeout(function() { 
-		$('video').get(0).play()
-	}, 1700);
-});
 
 ////////////////////////////////////////////////////////////////////////
 function highestG(data) {//consoleZ max
@@ -663,7 +651,7 @@ $('#car-model-top-button').on('click', function() {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-function carModelFromBack(data, start, stop, dropDataPoints, redline) {
+function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('car-model-back');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -705,7 +693,7 @@ function carModelFromBack(data, start, stop, dropDataPoints, redline) {
 	ctx.beginPath(); ctx.lineTo(-140, -145); ctx.lineTo(140, -145); ctx.stroke(); ctx.closePath();//TOP
 	//LIGHTS
 	ctx.lineWidth = 2;
-	if (data[start][1] < -redline) { ctx.strokeStyle=("red"); ctx.fillStyle=("red"); }
+	if (data[start][1] < -redlineY) { ctx.strokeStyle=("red"); ctx.fillStyle=("red"); }
 	else {ctx.strokeStyle=("black"); ctx.fillStyle=("black"); }
 	ctx.beginPath(); ctx.lineTo(-195, 0); ctx.lineTo(-100, 0); ctx.stroke(); ctx.closePath();//BOTTOM L
 	ctx.beginPath(); ctx.lineTo(195, 0); ctx.lineTo(100, 0); ctx.stroke(); ctx.closePath();//BOTTOM R
@@ -785,7 +773,7 @@ function carModelFromBack(data, start, stop, dropDataPoints, redline) {
 }
 
 
-function carModelFromBack2(data, start, stop, dropDataPoints, redline) {
+function carModelFromBack2(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('car-model-back2');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -914,7 +902,7 @@ $('#car-model-back-button').on('click', function() {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-function forceXyzForReport(data, start, stop, multiX, multiY, multiZ, multiTime, dropDataPoints) {
+function forceXyzForReport(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('canvas-report');
 	var ctx = canvas.getContext('2d');
 	ctx.canvas.width  = window.innerWidth/2;
@@ -950,7 +938,7 @@ $('#report-button').on('click', function() {
 });
 
 /////////////////////////////////////////////////////////////////////////////
-function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
+function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('canvas-wheel');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -1016,7 +1004,7 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 			}, 1000+data[ii][31]*dropDataPoints);
 }
 }
-function steeringWheelModel2(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
+function steeringWheelModel2(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('canvas-steering-wheel2');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -1092,7 +1080,7 @@ $('#wheel-function-button').on('click', function() {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 
+function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) { 
 	var canvas = document.getElementById('canvas-compas');
 	var ctx = canvas.getContext('2d');
 	var int = 0;

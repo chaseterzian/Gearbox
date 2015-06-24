@@ -12,17 +12,18 @@ $(document).ready(function() {
 // require("../data/secFiveMileDown.js");
 // require("../data/secFiveMileUp.js");
 // require("../data/secToClass.js");
+// $(window).load(function() {
+// });
+// $(window).load(function() {
+// });
+// $(window).load(function() {
+// });
 $(window).load(function() {
 	$('reportcontent').hide();
-});
-$(window).load(function() {
 	$('carmodeltop').hide();
-});
-$(window).load(function() {
 	$('carmodelback').hide();
-});
-$(window).load(function() {
 	$('wheelmodel').hide();
+	$('#run-program-button').hide();
 });
 	$("form").on("submit", function() {//DOES NOT WORK YET
 		// debugger;

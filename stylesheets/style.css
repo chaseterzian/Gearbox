@@ -154,6 +154,9 @@ video {
 #instructions-button{
   /*right: 0px;*/
 }
+#parameter-input-submit-button{
+  width: 140px;
+}
 .col-right{
   padding-top: 50px;
 }
