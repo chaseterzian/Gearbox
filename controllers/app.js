@@ -1,34 +1,98 @@
 $(document).ready(function() {
+// window.onload = function() {
+//   // Check for LocalStorage support.
+//   if (localStorage) {
+//     // Add an event listener for form submissions
+//     document.getElementById('contactForm').addEventListener('submit', function() {
+//       // Get the value of the name field.
+//       var name = document.getElementById('name').value;
+//       // Save the name in localStorage.
+//       localStorage.setItem('name', name);
+//     });
+//   }
+// }
+// var name = localStorage.getItem('name');
+// window.onload = function() {
+//   // Retrieve the users name.
+//   var name = localStorage.getItem('name');
+//   if (name != "undefined" || name != "null") {
+//     console.log("Hello " + name + "!");
+//   } else { 
+//     console.log("Hello!");
+//   }
+// }
+// console.log(name);
+// $('console-button').on('click', function() {
+// 	localStorage.clear();
+// });
 
+  // $('.shoeButton').on('click', function() {
+  //   var materialType = $('.shoeMat').val(); //should be the thing that it is, in this case "material"
+  //   stringy =  "can't do it"
+  //   otherString = 'he said "no, i can\'t do it"'
+  //   $.ajax({  //like saying make a post request in the bg?
+  //     type: "POST",
+  //     url: "/shoes",
+  //     data: { "shoe": { "material": materialType } },  //params
 
+  //     success: function(backFromServer) {
+  //                       // "a href='/shoes/80'>Show</a>"
+  //       var show_link = "<a href='/shoes/" + backFromServer.id +" '>Show </a>"
+  //       var edit_link = "<a href='/shoes/" + backFromServer.id +" '>Edit </a>"
+  //       var delete_link = "<a href='/shoes/" + backFromServer.id +" '>Delete </a>"
+  //       $('tbody').append(backFromServer.material + " " + show_link + edit_link + delete_link + "<br>");
+  //       console.log(backFromServer);
+  //     }
+  //   });
+  //   return false;
+  //   // e.preventDefault();
+  // });
+		var parameterData = [];
+$('form').on('submit', function(e) {
+	e.preventDefault();
+		parameterData.push(document.getElementById('testing-input-start-point').value);
+		parameterData.push(document.getElementById('testing-input-end-point').value);
+		parameterData.push(document.getElementById('testing-input-multix').value);
+		parameterData.push(document.getElementById('testing-input-multiy').value);
+		parameterData.push(document.getElementById('testing-input-multiz').value);
+		parameterData.push(document.getElementById('testing-input-data-points').value);
+		parameterData.push(document.getElementById('testing-input-redline').value);
+		document.getElementById("set-parameters-window").innerHTML = "Profile Loaded";
+		document.getElementById("parameter-input-submit-button").innerHTML = "Profile Loaded";
+	console.log(parameterData);
+});
+//////////////////////////////////////////////////////////////////////////////////////////////
 	g = 9.81;
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
 	var timer = 0;
-
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+
 		setTimeout(function () {
 			var dataStableX = 1;
 			var dataStableY = 1;
 			var dataStableZ = 1;
 			var incForStable = 1;
-			while (incForStable <= 35) { 
-				dataStableX = dataStableX + data[start+incForStable][0];
-				dataStableY = dataStableY + data[start+incForStable][1];
-				dataStableZ = dataStableZ + data[start+incForStable][2];
-				incForStable++;
-			} 
-			dataStableX = dataStableX/35;
-			dataStableY = dataStableY/35;
-			dataStableZ = dataStableZ/35;
+			
+			function stabilizer() { 
+				while (incForStable <= 35) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+				} 
+				dataStableX = dataStableX/35;
+				dataStableY = dataStableY/35;
+				dataStableZ = dataStableZ/35;
+			}
+			stabilizer();
 
 
 			ctx.canvas.width  = window.innerWidth;
-	  		ctx.canvas.height = 800;//window.innerHeight;
+	  		ctx.canvas.height = window.innerHeight;
 	  		ctx.scale(1,1);
 				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
 				ctx.rotate(dataStableX/6);
@@ -69,7 +133,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 
 				if (data[start][1] <= -redline) {//BRAKING
 					ctx.fillStyle=("red");
-					document.getElementById("text-div9").innerHTML =
+					document.getElementById("text-div-heavy-braking").innerHTML =
 					"- There was quite a heavy braking event at " +
 					data[start][1] +
 					" times the force of gravity: Time/DataPoint - " +
@@ -78,7 +142,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				}
 				if (data[start][1] > redline) {//ACCELERATION
 					ctx.fillStyle=("red");
-					document.getElementById("text-div21").innerHTML =
+					document.getElementById("text-div-heavy-acceleration").innerHTML =
 					"- There was quite a heavy acceleration event at " +
 					data[start][1] +
 					" times the force of gravity: Time/DataPoint - " +
@@ -88,14 +152,14 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 
 				if (data[start][1] < -redline && data[start][0] > redline || data[start][1] < -redline && data[start][0] < -redline) {//HEAVY BRAKING
 					ctx.fillStyle=("red");
-					document.getElementById("text-div10").innerHTML =
+					document.getElementById("text-div-braking-and-cornering").innerHTML =
 					"***WARNING - USE MORE CAUTION: Heavy braking combined with hard cornering can easily cause you to lose control: (" +
 						data[start][1] + "X gravity forward, and " + data[start][0] + "X gravity to the side, while moving at " + data[start][27] + "MPH.";
 						$('#text-div-good-driver').hide();
 					}
 				if (data[start][1] > redline && data[start][0] >= redline || data[start][1] > redline && data[start][0] < -redline) {//HEAVY ACCELERATION
 					ctx.fillStyle=("red");
-					document.getElementById("text-div22").innerHTML =
+					document.getElementById("text-div-acceleration-and-cornering").innerHTML =
 					"***WARNING - USE MORE CAUTION: Heavy acceleration combined with hard cornering can easily cause you to lose control: " +
 					data[start][1] + "X gravity backward, and " + data[start][0] + "X gravity to the side, while moving at " + data[start][27] + "MPH."
 					$('#text-div-good-driver').hide();
@@ -108,66 +172,82 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				}
 
 				if (data[start][21] > 60) {//SOUND
-					document.getElementById("sound-in-db").innerHTML = "- With the stereo this high, you may not hear the horns of other cars";
+					document.getElementById("sound-warning-message").innerHTML = "- With the stereo this high, you may not hear the horns of other cars";
 				}
 
 				ctx.fillStyle=("black");
 				setTimeout(function() {
 					document.getElementById("text-div-good-driver").innerHTML = "- So far, driver is doing well. No swerving, heavy braking/acceleration or aggressive turning has been detected.";
-				}, 3000);
+				}, 4000);
 
 			}
 			warningMessages();
 
 			function carMovementAndPositionVisuals() { 
-				var dataStableX = 1;
-				var dataStableY = 1;
-				var dataStableZ = 1;
-				var incForStable = 1;
-				while (incForStable <= 50) { 
-					dataStableX = dataStableX + data[start+incForStable][0];
-					dataStableY = dataStableY + data[start+incForStable][1];
-					dataStableZ = dataStableZ + data[start+incForStable][2];
-					incForStable++;
+				
+					var dataStableX = 1;
+					var dataStableY = 1;
+					var dataStableZ = 1;
+					var incForStable = 1;
+					while (incForStable <= 50) { 
+						dataStableX = dataStableX + data[start+incForStable][0];
+						dataStableY = dataStableY + data[start+incForStable][1];
+						dataStableZ = dataStableZ + data[start+incForStable][2];
+						incForStable++;
+					} 
+					dataStableX = dataStableX/50;
+					dataStableY = dataStableY/50;
+					dataStableZ = dataStableZ/50;
+				
 
-				} 
-				dataStableX = dataStableX/50;
-				dataStableY = dataStableY/50;
-				dataStableZ = dataStableZ/50;
+				function largeCircleForXyzModel() { 
 				// ctx.lineWidth = 1;				
-				// ctx.beginPath(); ctx.arc(0, 0, 600, 600, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				// ctx.beginPath(); ctx.arc(0, 0, 603, 603, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				// ctx.beginPath(); ctx.arc(0, 0, 606, 606, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				// ctx.beginPath(); ctx.arc(0, 0, 609, 609, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
-				// ctx.beginPath(); ctx.arc(0, 0, 611, 611, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE Z-CIRCLE
+				// ctx.beginPath(); ctx.arc(0, 0, 600, 600, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE CIRCLE
+				// ctx.beginPath(); ctx.arc(0, 0, 603, 603, Math.PI, true); ctx.stroke(); ctx.closePath();
+				// ctx.beginPath(); ctx.arc(0, 0, 606, 606, Math.PI, true); ctx.stroke(); ctx.closePath();
+				// ctx.beginPath(); ctx.arc(0, 0, 609, 609, Math.PI, true); ctx.stroke(); ctx.closePath();
+				// ctx.beginPath(); ctx.arc(0, 0, 611, 611, Math.PI, true); ctx.stroke(); ctx.closePath();
+			}
+			largeCircleForXyzModel();
 
+			function largeZCircleForXyzModel() { 	
 				ctx.lineWidth = 1;
 				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
 				if (data[start][2] > 1) { 
 					ctx.beginPath(); ctx.arc(0, 0, 1+dataStableZ*multiZ*12, 5+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
-					ctx.beginPath(); ctx.arc(0, 0, 6+dataStableZ*multiZ*12, 6+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
-					ctx.beginPath(); ctx.arc(0, 0, 11+dataStableZ*multiZ*12, 11+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
+					ctx.beginPath(); ctx.arc(0, 0, 6+dataStableZ*multiZ*12, 6+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();
+					ctx.beginPath(); ctx.arc(0, 0, 11+dataStableZ*multiZ*12, 11+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();
 				}
+			}
+			largeZCircleForXyzModel();
 
+			function zCircleForXyzModel() { 
 				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
 				if (data[start][2] > 1) {
 					ctx.beginPath(); ctx.arc(0, 0, 1+data[start][2]*multiZ, 1+data[start][2]*multiZ, Math.PI, true); ctx.stroke();//Z-CIRCLE
-					// ctx.beginPath(); ctx.arc(0, 0, 6+data[start][2]*multiZ, 6+data[start][2]*multiZ, Math.PI, true); ctx.stroke();//Z-CIRCLE
+					// ctx.beginPath(); ctx.arc(0, 0, 6+data[start][2]*multiZ, 6+data[start][2]*multiZ, Math.PI, true); ctx.stroke();
 				}
+			}
+			zCircleForXyzModel();
 
+			function xyGBallsForXyzModel() { 
 				if (data[start][0] >= redline || data[start][0] < -redline) { ctx.fillStyle=("red"); }
 				if (data[start][1] >= redline || data[start][1] < -redline) { ctx.fillStyle=("red"); }
 				else {ctx.fillStyle=("black");}
-				ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,20,20, Math.PI, true); ctx.fill();//G BALL X
-				ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,25,25, Math.PI, true); ctx.stroke();//G BALL X
-				ctx.beginPath(); ctx.arc(0, dataStableY*multiY,20,20, Math.PI, true); ctx.fill();//G BALL Y
-				ctx.beginPath(); ctx.arc(0, dataStableY*multiY,25,25, Math.PI, true); ctx.stroke();//G BALL Y
-				ctx.lineWidth = 1;
+					ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,20,20, Math.PI, true); ctx.fill();//G BALL X
+					ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,25,25, Math.PI, true); ctx.stroke();
+					ctx.beginPath(); ctx.arc(0, dataStableY*multiY,20,20, Math.PI, true); ctx.fill();//G BALL Y
+					ctx.beginPath(); ctx.arc(0, dataStableY*multiY,25,25, Math.PI, true); ctx.stroke();
+					ctx.lineWidth = 1;
+				}
+				xyGBallsForXyzModel();
 
+
+				function expandingYLineForXyzModel() { 		
 				// if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
 				// if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
 				// else {ctx.strokeStyle=("black");}
@@ -177,35 +257,42 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-294); ctx.lineTo(-data[start][1]*multiY,-294); ctx.stroke(); ctx.closePath();//EXPANDING Y
 				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-291); ctx.lineTo(-data[start][1]*multiY,-291); ctx.stroke(); ctx.closePath();//EXPANDING Y
 				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-288); ctx.lineTo(-data[start][1]*multiY,-288); ctx.stroke(); ctx.closePath();//EXPANDING Y
+			}
+			expandingYLineForXyzModel();
 
+			function expandingXLinesForXyzModel() { 
 				if (data[start][0] >= 0) {
-				ctx.beginPath(); ctx.lineTo(-410, data[start][0]*multiX); ctx.lineTo(-410, -data[start][0]*multiX);//EXPANDING XL NON FUNCTIONAL
-				ctx.beginPath(); ctx.lineTo(-400, data[start][0]*multiX); ctx.lineTo(-400, -data[start][0]*multiX);//EXPANDING XL
+				ctx.beginPath(); ctx.lineTo(-410, data[start][0]*multiX); ctx.lineTo(-410, -data[start][0]*multiX);//EXPANDING XL
+				ctx.beginPath(); ctx.lineTo(-400, data[start][0]*multiX); ctx.lineTo(-400, -data[start][0]*multiX);
 				ctx.stroke(); ctx.closePath();
 			}	else {
 				ctx.beginPath(); ctx.lineTo(400, -data[start][0]*multiX); ctx.lineTo(400, data[start][0]*multiX);//EXPANDING XR
-				ctx.beginPath(); ctx.lineTo(410, -data[start][0]*multiX); ctx.lineTo(410, data[start][0]*multiX);//EXPANDING XR
+				ctx.beginPath(); ctx.lineTo(410, -data[start][0]*multiX); ctx.lineTo(410, data[start][0]*multiX);
 				ctx.stroke(); ctx.closePath();
 			}
+		}
+		expandingXLinesForXyzModel();
 
+		function gridForXyzModel() { 
 			ctx.lineWidth = 1;
 			ctx.strokeStyle = "black";
 				ctx.beginPath(); ctx.lineTo(600,-6); ctx.lineTo(-600,-6); ctx.stroke(); ctx.closePath();//GRID
-				ctx.beginPath(); ctx.lineTo(600,-3); ctx.lineTo(-600,-3); ctx.stroke(); ctx.closePath();//GRID
-				ctx.beginPath(); ctx.lineTo(600,0); ctx.lineTo(-600,0); ctx.stroke(); ctx.closePath();//GRID
-				ctx.beginPath(); ctx.lineTo(600,3); ctx.lineTo(-600,3); ctx.stroke(); ctx.closePath();//GRID
-				ctx.beginPath(); ctx.lineTo(600,6); ctx.lineTo(-600,6); ctx.stroke(); ctx.closePath();//GRID
+				ctx.beginPath(); ctx.lineTo(600,-3); ctx.lineTo(-600,-3); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(600,0); ctx.lineTo(-600,0); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(600,3); ctx.lineTo(-600,3); ctx.stroke(); ctx.closePath();
+				ctx.beginPath(); ctx.lineTo(600,6); ctx.lineTo(-600,6); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(-6,400); ctx.lineTo(-6,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(-3,400); ctx.lineTo(-3,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(0,400); ctx.lineTo(0,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(3,400); ctx.lineTo(3,-300); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(6,400); ctx.lineTo(6,-300); ctx.stroke(); ctx.closePath();
+			}
+			gridForXyzModel();
 
-				//ROAD LINES
+			function roadVisualForXyzModel() { 
 				ctx.lineWidth = 5;
-				// ctx.strokeStyle = 'yellow';
 				if (data[start][27] < 1.0) { 
-					ctx.beginPath(); ctx.lineTo(-400,-250); ctx.lineTo(-400,-350); ctx.stroke(); ctx.closePath();
+					ctx.beginPath(); ctx.lineTo(-400,-250); ctx.lineTo(-400,-350); ctx.stroke(); ctx.closePath();//ROAD LINES STOPPED
 					ctx.beginPath(); ctx.lineTo(-400,-50); ctx.lineTo(-400,-150); ctx.stroke(); ctx.closePath();
 					ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,150); ctx.stroke(); ctx.closePath();
 					ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,150); ctx.stroke(); ctx.closePath();
@@ -218,7 +305,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 					ctx.beginPath(); ctx.lineTo(400,250); ctx.lineTo(400,350); ctx.stroke(); ctx.closePath();
 				} else { 
 					if (start%2 === 0) { 
-						ctx.beginPath(); ctx.lineTo(-400,-150); ctx.lineTo(-400,-250); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(-400,-150); ctx.lineTo(-400,-250); ctx.stroke(); ctx.closePath();//ROAD LINES 3
 						ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,-50); ctx.stroke(); ctx.closePath();
 						ctx.beginPath(); ctx.lineTo(-400,150); ctx.lineTo(-400,250); ctx.stroke(); ctx.closePath();
 
@@ -226,7 +313,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 						ctx.beginPath(); ctx.lineTo(400,50); ctx.lineTo(400,-50); ctx.stroke(); ctx.closePath();
 						ctx.beginPath(); ctx.lineTo(400,150); ctx.lineTo(400,250); ctx.stroke(); ctx.closePath();
 					} else { 
-						ctx.beginPath(); ctx.lineTo(-400,-250); ctx.lineTo(-400,-350); ctx.stroke(); ctx.closePath();
+						ctx.beginPath(); ctx.lineTo(-400,-250); ctx.lineTo(-400,-350); ctx.stroke(); ctx.closePath();//ROAD LINES 5
 						ctx.beginPath(); ctx.lineTo(-400,-50); ctx.lineTo(-400,-150); ctx.stroke(); ctx.closePath();
 						ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,150); ctx.stroke(); ctx.closePath();
 						ctx.beginPath(); ctx.lineTo(-400,50); ctx.lineTo(-400,150); ctx.stroke(); ctx.closePath();
@@ -239,11 +326,14 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 						ctx.beginPath(); ctx.lineTo(400,250); ctx.lineTo(400,350); ctx.stroke(); ctx.closePath();
 					}
 				}
-				ctx.strokeStyle = 'black';
+			}
+			roadVisualForXyzModel();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
-		ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
+function carTopView() { 
+	ctx.strokeStyle = 'black';
+	ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
 	ctx.beginPath(); ctx.lineTo(-100, -200); ctx.lineTo(-35, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
 	ctx.beginPath(); ctx.lineTo(35, -200); ctx.lineTo(100, -200); ctx.stroke(); ctx.closePath();//FRONT BUMPER
 	ctx.beginPath(); ctx.lineTo(-35, -200); ctx.lineTo(-25, -190); ctx.stroke(); ctx.closePath();//FRONT BUMPER
@@ -256,12 +346,13 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	ctx.beginPath(); ctx.lineTo(150, 310); ctx.lineTo(150, -100); ctx.stroke(); ctx.closePath();//RIGHT SIDE 
 	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(-130, 350); ctx.stroke(); ctx.closePath();//LEFT SIDE BUMPER CONNECT
 	ctx.beginPath(); ctx.lineTo(150, 310); ctx.lineTo(130, 350); ctx.stroke(); ctx.closePath();//RIGHT SIDE BUMPER CONNECT
-	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(150, 310); ctx.stroke(); ctx.closePath();//BUMPER FULL LINE*************
+	ctx.beginPath(); ctx.lineTo(-150, 310); ctx.lineTo(150, 310); ctx.stroke(); ctx.closePath();//BUMPER FULL LINE
 	ctx.beginPath(); ctx.lineTo(-130, 350); ctx.lineTo(-35, 350); ctx.stroke(); ctx.closePath();//REAR BUMPER L
 	ctx.beginPath(); ctx.lineTo(130, 350); ctx.lineTo(35, 350); ctx.stroke(); ctx.closePath();//REAR BUMPER L
 	ctx.beginPath(); ctx.lineTo(-35, 330); ctx.lineTo(35, 330); ctx.stroke(); ctx.closePath();//REAR BUMPER PLATE HOLDER
 	ctx.beginPath(); ctx.lineTo(-35, 330); ctx.lineTo(-35, 350); ctx.stroke(); ctx.closePath();//REAR PLATE L
 	ctx.beginPath(); ctx.lineTo(35, 330); ctx.lineTo(35, 350); ctx.stroke(); ctx.closePath();//REAR PLATE R
+	
 	//BODY LINES
 	ctx.lineWidth = 1;
 		//SIDES
@@ -291,7 +382,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	ctx.beginPath(); ctx.lineTo(0,40); ctx.lineTo(0,160);	ctx.stroke(); ctx.closePath();//TOP
 	ctx.beginPath(); ctx.lineTo(30,45); ctx.lineTo(30,152);	ctx.stroke(); ctx.closePath();//TOP
 	ctx.beginPath(); ctx.lineTo(60,48); ctx.lineTo(60,155);	ctx.stroke(); ctx.closePath();//TOP
-		//LIGHTS
+		//LIGHTS	
 		ctx.lineWidth = 2;
 	ctx.beginPath(); ctx.lineTo(-120,290); ctx.lineTo(-60,290);	ctx.stroke(); ctx.closePath();//TOP
 	ctx.beginPath(); ctx.lineTo(-100,310); ctx.lineTo(-50,310);	ctx.stroke(); ctx.closePath();//BOTTOM
@@ -304,24 +395,22 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	ctx.beginPath(); ctx.lineTo(100,290); ctx.lineTo(100,310);	ctx.stroke(); ctx.closePath();//R
 	ctx.beginPath(); ctx.lineTo(65,290); ctx.lineTo(65,310);	ctx.stroke(); ctx.closePath();//R
 	ctx.beginPath(); ctx.lineTo(60,290); ctx.lineTo(50,310);	ctx.stroke(); ctx.closePath();//R
+	
 	//WHEELS
 	ctx.lineWidth = 3;
-		//FL
 	ctx.beginPath(); ctx.arc(-140,-50,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT LEFT TIRE 
 	// ctx.beginPath(); ctx.arc(-140,-50,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//FRONT LEFT TIRE 
 	ctx.beginPath(); ctx.arc(-140,-50,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT LEFT TIRE 
-		//FR
 	ctx.beginPath(); ctx.arc(140,-50,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT RIGHT TIRE 
 	// ctx.beginPath(); ctx.arc(140,-50,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//FRONT RIGHT TIRE 
 	ctx.beginPath(); ctx.arc(140,-50,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//FRONT RIGHT TIRE 
-		//RL
 	ctx.beginPath(); ctx.arc(-140,275,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR LEFT TIRE 
 	// ctx.beginPath(); ctx.arc(-140,275,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//REAR LEFT TIRE 
 	ctx.beginPath(); ctx.arc(-140,275,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR LEFT TIRE 
-		//RR
 	ctx.beginPath(); ctx.arc(140,275,33,33,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR RIGHT TIRE 
 	// ctx.beginPath(); ctx.arc(140,275,32,32,Math.PI, true); ctx.fillStyle = 'blue'; ctx.fill(); ctx.closePath();//REAR RIGHT TIRE 
 	ctx.beginPath(); ctx.arc(140,275,30,30,Math.PI, true); ctx.stroke(); ctx.closePath();//REAR RIGHT TIRE 
+	
 	//WINDOWS
 	ctx.lineWidth = 5;
 		//FRONT
@@ -334,6 +423,8 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	ctx.beginPath(); ctx.lineTo(-100,260); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//BOTTOM
 	ctx.beginPath(); ctx.lineTo(-85,170); ctx.lineTo(-100,260);	ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(85,170); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//R
+}
+carTopView();
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	start += dropDataPoints;
@@ -352,66 +443,79 @@ function carMovementInWords() {
 			dataStableY = dataStableY + data[start+incForStable][1];
 			dataStableZ = dataStableZ + data[start+incForStable][2];
 			incForStable++;
-
 		} 
 		dataStableX = dataStableX/50;
 		dataStableY = dataStableY/50;
 		dataStableZ = dataStableZ/50;
 
+	if(data[start][27] > 0) { 
+		if (dataStableX > .07*g) { document.getElementById("left-right-straight-window").innerHTML = "Turning Right"; }
+		else if (dataStableX < -.07*g) { document.getElementById("left-right-straight-window").innerHTML = "Turning Left"; }
+		else { document.getElementById("left-right-straight-window").innerHTML = "Driving Straight"; }
 
-		if (dataStableX > .07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Right"; }
-		else if (dataStableX < -.07*g) { document.getElementById("left-right-straight").innerHTML = "Turning Left"; }
-		else { document.getElementById("left-right-straight").innerHTML = "Driving Straight"; }
+		document.getElementById("and-window").innerHTML = " And "
 
-		document.getElementById("text-div15").innerHTML = " and "
+		if (-dataStableY > redline) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking Hard"; }//Y IS FLIPPED
+		else if (-dataStableY < -.3*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
+		else if (-dataStableY < -.07*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating"; }//Y IS FLIPPED
+		else if (-dataStableY > .07*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking"; }//Y IS FLIPPED
+		else { document.getElementById("braking-accelerating-in-words").innerHTML = "Coasting"; }
+} else {
+		document.getElementById("left-right-straight-window").innerHTML = "Waiting For GPS";
+	}
+}
+carMovementInWords();
 
-				if (-dataStableY > redline) { document.getElementById("text-div16").innerHTML = "Braking Hard"; }//Y IS FLIPPED
-				else if (-dataStableY < -.3*g) { document.getElementById("text-div16").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
-				else if (-dataStableY < -.07*g) { document.getElementById("text-div16").innerHTML = "Accelerating"; }//Y IS FLIPPED
-				else if (-dataStableY > .07*g) { document.getElementById("text-div16").innerHTML = "Braking"; }//Y IS FLIPPED
-				else { document.getElementById("text-div16").innerHTML = "Coasting"; }
-			}
-			carMovementInWords();
 
-			function  dataRealtimePrintOuts() {
-				var dataStableX = 1;
-				var dataStableY = 1;
-				var dataStableZ = 1;
-				var incForStable = 1;
-				while (incForStable <= 50) { 
-					dataStableX = dataStableX + data[start+incForStable][0];
-					dataStableY = dataStableY + data[start+incForStable][1];
-					dataStableZ = dataStableZ + data[start+incForStable][2];
-					incForStable++;
+function  dataRealtimePrintOuts() {
+	function stabilizerForDataRealtimePrintOuts() { 
+		var dataStableX = 1;
+		var dataStableY = 1;
+		var dataStableZ = 1;
+		var incForStable = 1;
+		while (incForStable <= 50) { 
+			dataStableX = dataStableX + data[start+incForStable][0];
+			dataStableY = dataStableY + data[start+incForStable][1];
+			dataStableZ = dataStableZ + data[start+incForStable][2];
+			incForStable++;
+		} 
+		dataStableX = dataStableX/50;
+		dataStableY = dataStableY/50;
+		dataStableZ = dataStableZ/50;
+	}
+	stabilizerForDataRealtimePrintOuts();
 
-				} 
-				dataStableX = dataStableX/50;
-				dataStableY = dataStableY/50;
-				dataStableZ = dataStableZ/50;
-				document.getElementById("text-div1").innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
-				document.getElementById("text-div2").innerHTML = "X:    " + dataStableX;
-				document.getElementById("text-div3").innerHTML = "Y:    " + dataStableY;
-				document.getElementById("text-div4").innerHTML = "Z:    " + dataStableZ;
-				document.getElementById("speed").innerHTML = "Speed in MPH: " + data[start][27];
-				// document.getElementById("heading").innerHTML = "Heading: ";
-				document.getElementById("text-div5").innerHTML = "Data Points: " + int;
-				document.getElementById("sound-in-db").innerHTML = "dB Level:";
-				document.getElementById("noise-data2").innerHTML = (data[start][21]-80);
-				// document.getElementById("text-div6").innerHTML = highestAllAxesWithTime(data);//MAX FORCE OF ALL DATA AT TIME
-				document.getElementById("altitude").innerHTML = "Altitude in ft: " + data[start][24];
-			}
-			dataRealtimePrintOuts();
-		}, 2000+data[ii][31]*dropDataPoints);//MS
+	function liveDataPrintOut() { 
+		document.getElementById("speed-in-mph-window").innerHTML = "Speed in MPH: " + data[start][27];
+		document.getElementById("highest-all-axes-window").innerHTML = highestAllAxesWithTime(data);//MAX FORCE OF ALL DATA AT TIME
+		document.getElementById("time-window").innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
+		document.getElementById("sound-level-window").innerHTML = "dB Level: " + (data[start][21]-80);
+		document.getElementById("altitude-window").innerHTML = "Altitude in ft: " + data[start][24];
+		document.getElementById("x-axis-window").innerHTML = "X:    " + dataStableX;
+		document.getElementById("y-axis-window").innerHTML = "Y:    " + dataStableY;
+		document.getElementById("z-axis-window").innerHTML = "Z:    " + dataStableZ;
+		document.getElementById("data-points-window").innerHTML = "Data Points: " + int;
+	}
+	liveDataPrintOut();
+
+}
+dataRealtimePrintOuts();
+		}, 1000+data[ii][31]*dropDataPoints);//MS
 }
 
 }
 $('#show-all-data-button').on('click', function() {
-	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .25*g);
+	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
+
 	orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
 	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2, .3*g);
 	carModelFromBack(dataDownFlagstaff1, 0, 18000, 1, .2*g);
 	$('.hide-this').toggle('hide');
 	$('.hide-then-show').show('.hide-then-show');
+	$('video').toggle('show');
+	setTimeout(function() { 
+		$('video').get(0).play()
+	}, 1700);
 });
 
 ////////////////////////////////////////////////////////////////////////
@@ -548,7 +652,7 @@ function carModelFromTop(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	int += dropDataPoints;
 	timer += 8;
 
-}, 2000+data[ii][31]*dropDataPoints);
+}, 1000+data[ii][31]*dropDataPoints);
 
 }
 }
@@ -566,99 +670,95 @@ function carModelFromBack(data, start, stop, dropDataPoints, redline) {
 	var timer = 0;
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 		setTimeout(function () {
+
 			var dataStable = 1;
 			var countForStable = 0;
 			var incForStable = 1;
 			while (incForStable <= 50) { 
 				dataStable = dataStable + data[start+incForStable][0];
 				incForStable++;
-
 			} 
 			dataStable = dataStable/50;
 
-
-
-
-
 			ctx.canvas.width  = window.innerWidth/2;
-			ctx.canvas.height = 600;
+			ctx.canvas.height = window.innerHeight/2+100;
 			ctx.scale(1,1);
 			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
 			ctx.rotate(-dataStable/10);
 	//BODY
 	ctx.lineWidth = 5;
-	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//REAR BUMPER LINE
-	ctx.beginPath(); ctx.lineTo(-195, -25); ctx.lineTo(-195, -140); ctx.stroke(); ctx.closePath();//L SIDE
-	ctx.beginPath(); ctx.lineTo(195, -25); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//R SIDE
-	ctx.beginPath(); ctx.lineTo(-195, -25); ctx.lineTo(-180, 0); ctx.stroke(); ctx.closePath();//L BOTTOM CONNECT
-	ctx.beginPath(); ctx.lineTo(195, -25); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//R BOTTOM CONNECT
-	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(-165, -250); ctx.stroke(); ctx.closePath();//L SIDE UP
-	ctx.beginPath(); ctx.lineTo(195, -140); ctx.lineTo(165, -250); ctx.stroke(); ctx.closePath();//R SIDE UP
-	ctx.beginPath(); ctx.lineTo(-165, -250); ctx.lineTo(-150, -260); ctx.stroke(); ctx.closePath();//L SIDE ROOF CONNECT
-	ctx.beginPath(); ctx.lineTo(165, -250); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//R SIDE ROOF CONNECT
-	ctx.beginPath(); ctx.lineTo(-150, -260); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//ROOF
+	ctx.beginPath(); ctx.lineTo(-180, 100); ctx.lineTo(180, 100); ctx.stroke(); ctx.closePath();//REAR BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(-195, 75); ctx.lineTo(-195, -40); ctx.stroke(); ctx.closePath();//L SIDE
+	ctx.beginPath(); ctx.lineTo(195, 75); ctx.lineTo(195, -40); ctx.stroke(); ctx.closePath();//R SIDE
+	ctx.beginPath(); ctx.lineTo(-195, 75); ctx.lineTo(-180, 100); ctx.stroke(); ctx.closePath();//L BOTTOM CONNECT
+	ctx.beginPath(); ctx.lineTo(195, 75); ctx.lineTo(180, 100); ctx.stroke(); ctx.closePath();//R BOTTOM CONNECT
+	ctx.beginPath(); ctx.lineTo(-195, -40); ctx.lineTo(-165, -150); ctx.stroke(); ctx.closePath();//L SIDE UP
+	ctx.beginPath(); ctx.lineTo(195, -40); ctx.lineTo(165, -150); ctx.stroke(); ctx.closePath();//R SIDE UP
+	ctx.beginPath(); ctx.lineTo(-165, -150); ctx.lineTo(-150, -160); ctx.stroke(); ctx.closePath();//L SIDE ROOF CONNECT
+	ctx.beginPath(); ctx.lineTo(165, -150); ctx.lineTo(150, -160); ctx.stroke(); ctx.closePath();//R SIDE ROOF CONNECT
+	ctx.beginPath(); ctx.lineTo(-150, -160); ctx.lineTo(150, -160); ctx.stroke(); ctx.closePath();//ROOF
 	//WINDOW
 	ctx.lineWidth = 2;
-	ctx.beginPath(); ctx.lineTo(-170, -150); ctx.lineTo(170, -150); ctx.stroke(); ctx.closePath();//BOTTOM
-	ctx.beginPath(); ctx.lineTo(-170, -150); ctx.lineTo(-140, -245); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(170, -150); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//R
-	ctx.beginPath(); ctx.lineTo(-140, -245); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//TOP
+	ctx.beginPath(); ctx.lineTo(-170, -50); ctx.lineTo(170, -50); ctx.stroke(); ctx.closePath();//BOTTOM
+	ctx.beginPath(); ctx.lineTo(-170, -50); ctx.lineTo(-140, -145); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(170, -50); ctx.lineTo(140, -145); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(-140, -145); ctx.lineTo(140, -145); ctx.stroke(); ctx.closePath();//TOP
 	//LIGHTS
 	ctx.lineWidth = 2;
 	if (data[start][1] < -redline) { ctx.strokeStyle=("red"); ctx.fillStyle=("red"); }
 	else {ctx.strokeStyle=("black"); ctx.fillStyle=("black"); }
-	ctx.beginPath(); ctx.lineTo(-195, -100); ctx.lineTo(-100, -100); ctx.stroke(); ctx.closePath();//BOTTOM L
-	ctx.beginPath(); ctx.lineTo(195, -100); ctx.lineTo(100, -100); ctx.stroke(); ctx.closePath();//BOTTOM R
-	ctx.beginPath(); ctx.lineTo(-100, -100); ctx.lineTo(-100, -140); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(100, -100); ctx.lineTo(100, -140); ctx.stroke(); ctx.closePath();//R
-	ctx.beginPath(); ctx.lineTo(-160, -100); ctx.lineTo(-170, -140); ctx.stroke(); ctx.closePath();//L FAR
-	ctx.beginPath(); ctx.lineTo(160, -100); ctx.lineTo(170, -140); ctx.stroke(); ctx.closePath();//R FAR
-	ctx.beginPath(); ctx.arc(-120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
-	ctx.beginPath(); ctx.arc(-150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
-	ctx.beginPath(); ctx.arc(120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
-	ctx.beginPath(); ctx.arc(150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.lineTo(-195, 0); ctx.lineTo(-100, 0); ctx.stroke(); ctx.closePath();//BOTTOM L
+	ctx.beginPath(); ctx.lineTo(195, 0); ctx.lineTo(100, 0); ctx.stroke(); ctx.closePath();//BOTTOM R
+	ctx.beginPath(); ctx.lineTo(-100, 0); ctx.lineTo(-100, -40); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(100, 0); ctx.lineTo(100, -40); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(-160, 0); ctx.lineTo(-170, -40); ctx.stroke(); ctx.closePath();//L FAR
+	ctx.beginPath(); ctx.lineTo(160, 0); ctx.lineTo(170, -40); ctx.stroke(); ctx.closePath();//R FAR
+	ctx.beginPath(); ctx.arc(-120,-20,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(-150,-20,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(120,-20,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
+	ctx.beginPath(); ctx.arc(150,-20,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
 	//BUMPER
 	ctx.strokeStyle=("black");
 	ctx.lineWidth = 3;
-	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//HATCH LINE
-	ctx.beginPath(); ctx.lineTo(-195, -30); ctx.lineTo(-55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
-	ctx.beginPath(); ctx.lineTo(195, -30); ctx.lineTo(55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
-	ctx.beginPath(); ctx.lineTo(-55, -30); ctx.lineTo(-40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
-	ctx.beginPath(); ctx.lineTo(55, -30); ctx.lineTo(	40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
-	ctx.beginPath(); ctx.lineTo(-50, -20); ctx.lineTo(50, -20); ctx.stroke(); ctx.closePath();//SWEET BUMPER EFFECTS
+	ctx.beginPath(); ctx.lineTo(-195, -40); ctx.lineTo(195, -40); ctx.stroke(); ctx.closePath();//HATCH LINE
+	ctx.beginPath(); ctx.lineTo(-195, 70); ctx.lineTo(-55, 70); ctx.stroke(); ctx.closePath();//BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(195, 70); ctx.lineTo(55, 70); ctx.stroke(); ctx.closePath();//BUMPER LINE
+	ctx.beginPath(); ctx.lineTo(-55, 70); ctx.lineTo(-40, 100); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
+	ctx.beginPath(); ctx.lineTo(55, 70); ctx.lineTo(	40, 100); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
+	ctx.beginPath(); ctx.lineTo(-50, 80); ctx.lineTo(50, 80); ctx.stroke(); ctx.closePath();//SWEET BUMPER EFFECTS
 	//PLATE
 	ctx.lineWidth = 2;
-	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(60, -70); ctx.stroke(); ctx.closePath();//
-	ctx.beginPath(); ctx.lineTo(-60, -50); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
-	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(-60, -50); ctx.stroke(); ctx.closePath();//
-	ctx.beginPath(); ctx.lineTo(60, -70); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(-60, 30); ctx.lineTo(60, 30); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(-60, 50); ctx.lineTo(60, 50); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(-60, 30); ctx.lineTo(-60, 50); ctx.stroke(); ctx.closePath();//
+	ctx.beginPath(); ctx.lineTo(60, 30); ctx.lineTo(60, 50); ctx.stroke(); ctx.closePath();//
 	//WHEELS
 	ctx.lineWidth = 5;
-	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(-180, 20); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(-120, 0); ctx.lineTo(-120, 20); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(180, 0); ctx.lineTo(180, 20); ctx.stroke(); ctx.closePath();//R
-	ctx.beginPath(); ctx.lineTo(120, 0); ctx.lineTo(120, 20); ctx.stroke(); ctx.closePath();//R
-	ctx.beginPath(); ctx.arc(-150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
-	ctx.beginPath(); ctx.arc(150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
+	ctx.beginPath(); ctx.lineTo(-180, 100); ctx.lineTo(-180, 120); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-120, 100); ctx.lineTo(-120, 120); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(180, 100); ctx.lineTo(180, 120); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.lineTo(120, 100); ctx.lineTo(120, 120); ctx.stroke(); ctx.closePath();//R
+	ctx.beginPath(); ctx.arc(-150,120,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
+	ctx.beginPath(); ctx.arc(150,120,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
 		//TREADS
 		ctx.lineWidth = 3;	
-	ctx.beginPath(); ctx.lineTo(-170, 0); ctx.lineTo(-170, 40); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(-165, 0); ctx.lineTo(-165, 43); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(-160, 0); ctx.lineTo(-160, 45); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(-155, 0); ctx.lineTo(-155, 47); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(-145, 0); ctx.lineTo(-145, 47); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(-140, 0); ctx.lineTo(-140, 45); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(-135, 0); ctx.lineTo(-135, 43); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(-130, 0); ctx.lineTo(-130, 40); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-170, 100); ctx.lineTo(-170, 140); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-165, 100); ctx.lineTo(-165, 143); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-160, 100); ctx.lineTo(-160, 145); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-155, 100); ctx.lineTo(-155, 147); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-145, 100); ctx.lineTo(-145, 147); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-140, 100); ctx.lineTo(-140, 145); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-135, 100); ctx.lineTo(-135, 143); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(-130, 100); ctx.lineTo(-130, 140); ctx.stroke(); ctx.closePath();//L
 
-	ctx.beginPath(); ctx.lineTo(170, 0); ctx.lineTo(170, 40); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(165, 0); ctx.lineTo(165, 43); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(160, 0); ctx.lineTo(160, 45); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(155, 0); ctx.lineTo(155, 47); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(145, 0); ctx.lineTo(145, 47); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(140, 0); ctx.lineTo(140, 45); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(135, 0); ctx.lineTo(135, 43); ctx.stroke(); ctx.closePath();//L
-	ctx.beginPath(); ctx.lineTo(130, 0); ctx.lineTo(130, 40); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(170, 100); ctx.lineTo(170, 140); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(165, 100); ctx.lineTo(165, 143); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(160, 100); ctx.lineTo(160, 145); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(155, 100); ctx.lineTo(155, 147); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(145, 100); ctx.lineTo(145, 147); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(140, 100); ctx.lineTo(140, 145); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(135, 100); ctx.lineTo(135, 143); ctx.stroke(); ctx.closePath();//L
+	ctx.beginPath(); ctx.lineTo(130, 100); ctx.lineTo(130, 140); ctx.stroke(); ctx.closePath();//L
 	
 		//ROAD LINES
 				// ctx.lineWidth = 5;
@@ -679,7 +779,7 @@ function carModelFromBack(data, start, stop, dropDataPoints, redline) {
 				int += dropDataPoints;
 				timer += 8;
 
-			}, 2000+data[ii][31]*dropDataPoints);
+			}, 1000+data[ii][31]*dropDataPoints);
 
 }
 }
@@ -802,7 +902,7 @@ function carModelFromBack2(data, start, stop, dropDataPoints, redline) {
 				int += dropDataPoints;
 				timer += 8;
 
-			}, 2000+data[ii][31]*dropDataPoints);
+			}, 1000+data[ii][31]*dropDataPoints);
 
 }
 }
@@ -872,7 +972,7 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 	  		ctx.canvas.height = 800;//window.innerHeight;
 	  		ctx.scale(1,1);
 	  		ctx.translate(canvas.width/2, canvas.height/2);
-	  		ctx.rotate(dataStable/2);
+	  		ctx.rotate(dataStable/5);
 	  		ctx.strokeStyle="black";
 	  		ctx.lineWidth = 3;
 					ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();//COMPASS
@@ -913,7 +1013,7 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 				// ctx.beginPath(); ctx.lineTo(-295,-3); ctx.lineTo(295,-3); ctx.stroke(); ctx.closePath();
 				start += dropDataPoints;
 				int += dropDataPoints;
-			}, 2000+data[ii][31]*dropDataPoints);
+			}, 1000+data[ii][31]*dropDataPoints);
 }
 }
 function steeringWheelModel2(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
@@ -979,7 +1079,7 @@ function steeringWheelModel2(data, start, stop, multiX, multiY, multiZ, dropData
 				// ctx.beginPath(); ctx.lineTo(-295,-3); ctx.lineTo(295,-3); ctx.stroke(); ctx.closePath();
 				start += dropDataPoints;
 				int += dropDataPoints;
-			}, 2000+data[ii][31]*dropDataPoints);
+			}, 1000+data[ii][31]*dropDataPoints);
 }
 }
 $('#wheel-function-button').on('click', function() {
@@ -1061,7 +1161,7 @@ function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 				int += dropDataPoints;
 				// document.getElementById("orientation-in-degrees").innerHTML = 'Orientation: ' + data[start][29];
 				document.getElementById("heading").innerHTML = 'Direction: ' + direction;
-			}, 2000+data[ii][31]*dropDataPoints);
+			}, 1000+data[ii][31]*dropDataPoints);
 
 }
 }

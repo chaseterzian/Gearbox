@@ -7,16 +7,17 @@
 	<script src="../data/data5MileDownFullSet.js"></script>
 	<script src="../data/dataStandDriveFull2.js"></script>
 	<script src="../data/secFiveMileDown.js"></script>
-	<script src="../data2/dataFlagstaffUp.js"></script>
+	<!-- // <script src="../data2/dataFlagstaffUp.js"></script> -->
 	<script src="../data2/dataDownFlagstaff1.js"></script>
-	<script src="../data2/dataDownFlagstaff2.js"></script>
-	<script src="../data2/dataDownBaselineHill.js"></script>
-	<script src="../data2/dataHomeFromBroadway.js"></script>
+	<!-- // <script src="../data2/dataDownFlagstaff2.js"></script> -->
+	<!-- // <script src="../data2/dataDownBaselineHill.js"></script> -->
+	<!-- // <script src="../data2/dataHomeFromBroadway.js"></script> -->
 	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/styleForms.css" media="screen">
 	<script src="../stylesheets/jquery-1.11.3.min.js"></script>
+	<script src="../controllers/dataControls.js"></script>
 	<script src="../controllers/lineFunctions.js"></script>
 	<script src="../controllers/app.js"></script>
-	<script src="../controllers/dataControls.js"></script>
 	<script type="text/javascript"></script>
 </head>
 <body id='bg-image'>
@@ -29,147 +30,152 @@
 			<h1><button class='btn2' id='testing-area'>Testing Area</button></h1>
 			<hr>
 		</div>
-
-		<div class='col-25 hide-then-show'>
-			<div id="left-right-straight" class='center btn'></div>
-			<div id="text-div15" class='center btn'></div>
-			<div id="text-div16" class='center btn'></div>
-			<hr>
-			<div id="speed" class='btn'></div>
-			<div id="heading" class='btn'> </div>
-		</div>
-
-		<div class='col-30 hide-then-show'>
+		
+		<div class='col-36 hide-then-show'>
+			<div id="heading" class='btn center'> </div>
 			<canvas id="canvas-compas">
 			</canvas>
 		</div>
 
-		<div class='col-30 hide-then-show'>
-			<canvas id="canvas-wheel">
-			</canvas>
+		<div class='col-3 hide-then-show' id='directions-in-words-window'>
+			<div id="left-right-straight-window" class='center btn'></div>
+			<div id="and-window" class='center btn'></div>
+			<div id="braking-accelerating-in-words" class='center btn'></div>
+			
+				<video height="160px" width="100%" src="../videos/Flagstaff1.webm" controls>
+				Your browser is far too ghetto to play this video :-)
+				</video>
 		</div>
 
-		<div class='col-30' id='button-panel'>
-			<h4>
-				<div><button class='btn' id='report-button'>Show My Report</button></div>
-				<div><button class='btn' id='freeze-button'>Pause Stream</button></div>
-				<div><button class='btn' id='reset-button'>Reset</button></div>
-			</h4>
-			<h4 class="hide-this"/>
-			<div><button class='btn' id='test-functions-button'>Test Functions</button></div>
-			<div><button class='btn' id='show-all-data-button'>Show All Data</button></div>
-			<div><button class='btn' id='car-model-back-button'>Car Model From Back</button></div>
-			<div><button class='btn' id='car-model-top-button'>Car Model From Top</button></div>
-			<div><button class='btn' id='wheel-function-button'>Steering Wheel</button></div>
-			<div><button class='btn' id='orientation-function-button'>Orientation</button></div>
-			<div><button class='btn' id='location-route-function-button'>Location</button></div>
-		</h4>
-		<hr>
+		<div class='col-36 hide-then-show'>
+					<div id="speed-in-mph-window" class='btn center'></div>
+					<canvas id="canvas-wheel">
+					</canvas>
+				</div>
 
+		<div class='col-half hide-then-show'></div>
 
-
-
-		<div class='btn'>
-			<input type="file" id="files" name="files[]" multiple />
-			<output id="list"></output>
-		</div>
-
-		<script>
-		function handleFileSelect(evt) {
-    		var files = evt.target.files; // FileList object
-
-		
-		    // Loop through the FileList and render image files as thumbnails.
-		    for (var i = 0, f; f = files[i]; i++) {
-
-		      // Only process image files.
-		      if (!f.type.match('image.*')) {
-		      	continue;
-		      }
-
-		      var reader = new FileReader();
-
-		      // Closure to capture the file information.
-		      reader.onload = (function(theFile) {
-		      	return function(e) {
-		          // Render thumbnail.
-		          var span = document.createElement('span');
-		          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-		          '" title="', escape(theFile.name), '"/>'].join('');
-		          document.getElementById('list').insertBefore(span, null);
-		      };
-		  })(f);
-
-		      // Read in the image file as a data URL.
-		      
-		      reader.readAsText(f);
-		      // console.log(files);
-		  }
-		  // console.log(files);
-		}
-
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
-</script>
-
-
-
-<b><div id="text-div6"></div></b>
+		<div class='col-2 button-panel-right' id='button-panel'>
+						<div><button class='btn' id='report-button'>Show My Report</button></div>
+						<div><button class='btn' id='freeze-button'>Pause Stream</button></div>
+						<div><button class='btn' id='reset-button'>Reset</button></div>
+					<h4 class="hide-this"/>
+					<div><button class='btn' id='test-functions-button'>Test Functions</button></div>
+					<div><button class='btn' id='show-all-data-button'>Show All Data</button></div>
+					<div><button class='btn' id='car-model-back-button'>Car Model From Back</button></div>
+					<div><button class='btn' id='car-model-top-button'>Car Model From Top</button></div>
+					<div><button class='btn' id='wheel-function-button'>Steering Wheel</button></div>
+					<div><button class='btn' id='orientation-function-button'>Orientation</button></div>
+					<div><button class='btn' id='location-route-function-button'>Location</button></div>
+				</h4>
+				<hr>
+	<div class='btn' id='upload-button'>
+		<input type="file" id="files" name="files[]" multiple />
+		<output id="list"></output>
+	</div>
+				<script>
+				function handleFileSelect(evt) {
+   		var files = evt.target.files; // FileList object
+	    // Loop through the FileList and render image files as thumbnails.
+	    for (var i = 0, f; f = files[i]; i++) {
+	      // Only process image files.
+	      if (!f.type.match('image.*')) {
+	      	continue;
+	      }
+	      var reader = new FileReader();
+	      // Closure to capture the file information.
+	      reader.onload = (function(theFile) {
+	      	return function(e) {
+	          // Render thumbnail.
+	          var span = document.createElement('span');
+	          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+	          '" title="', escape(theFile.name), '"/>'].join('');
+	          document.getElementById('list').insertBefore(span, null);
+	        };
+	      })(f);
+	      // Read in the image file as a data URL.
+	      reader.readAsText(f);
+	      // console.log(files);
+	    }
+	  // console.log(files);
+	}
+	document.getElementById('files').addEventListener('change', handleFileSelect, false);
+	</script>
 </div>
 
+<!-- <div class='col-75'></div> -->
+<div class='col-3 hide-this'></div>
 
+<div class='col-2 hide-this' id='parameter-input-column'>
+	<form id='parameter-input-fields' action="data_plot.html" method="POST">
+  <div class='center'>
+  	<div class='btn center' id='set-parameters-window'>Enter Parameters Below</div>
+  	<hr>
+  	<input placeholder='Start Point' type='text' name='name' class='btn param-inputs' id='testing-input-start-point'></input>
+  	<input placeholder='End Point' type='text' name='name' class='btn param-inputs' id='testing-input-end-point'></input>
+  	<input placeholder='Multiply X By' type='text' name='multix' class='btn param-inputs' id='testing-input-multix'></input>
+  	<input placeholder='Multiply Y By' type='text' name='name' class='btn param-inputs' id='testing-input-multiy'></input>
+  	<input placeholder='Multiply Z By' type='text' name='name' class='btn param-inputs' id='testing-input-multiz'></input>
+  	<input placeholder='Data Points/Second' type='text' name='name' class='btn param-inputs' id='testing-input-data-points'></input>
+  	<input placeholder='Warning Trip M/s^2' type='text' name='name' class='btn param-inputs' id='testing-input-redline'></input>
+  	<hr>
+  	<input type='submit' value='Save Profile' class='btn ' id='parameter-input-submit-button'></input>
+  </div>
+	</form>
+</div>
 
+<div class='col-3 hide-this'></div>
 
+<div class='col-1 col-right hide-this'>
+	<div class='right'>
+	<button class='btn' id='instructions-button'>Instructions</button>
+	<a href="./index.html" class="btn home-fixed center" id='home-button'>Home</a>
+</div>
+</div>
+
+  	
 
 <div class="col-12"></div>
 
-<div class='col-3 hide-then-show'>
-	<h3>
-		<div><button id="text-div1" class='btn'></button></div>
-		<div><button id="sound-in-db" class='btn'></button></div>
-		<div><button id="noise-data2" class='btn'></button></div>
-		<div><button id="altitude" class='btn'></button></div>
-
+	<div class='col-3 hide-then-show'>
+			<div id="time-window" class='btn'></div>
+			<div id="sound-level-window" class='btn'></div>
+			<div id="altitude-window" class='btn'></div>
 		<hr>
-	</h3>
-
-	
-	<canvas id="car-model-back">
-	</canvas>
-
-	<h3>
-		<div><button id="text-div2" class='center btn' ></button></div>
-		<div><button id="text-div3" class='center btn' ></button></div>
-		<div><button id="text-div4" class='center btn' ></button></div>
-		<div><button id="text-div5" class='center btn' ></button></div>
+		<canvas id="car-model-back">
+		</canvas>
 		<h3>
-
-			<!-- <div id="text-div20" class="space"></div> -->
-		</div>
+			<div id="x-axis-window" class='btn' ></div>
+			<div id="y-axis-window" class='btn' ></div>
+			<div id="z-axis-window" class='btn' ></div>
+			<div id="data-points-window" class='btn' ></div>
+		<h3>
+	</div>
 
 		<div class='col-9'>
 			<canvas id="canvas">
 			</canvas>
-
-			<div id='all-errors-switching'></div>
-			<b><div id="text-div-crash" class="space"></div></b>
-			<div id="text-div-good-driver" class="space"></div>
-			<div id="text-div-hard-left" class="space"></div>
-			<div id="text-div-hard-right" class="space"></div>
-
-			<div id="text-div9" class="space"></div>
-			<div id="text-div21" class="space"></div>
-			<div id="text-div10" class="space"></div>
-			<div id="text-div22" class="space"></div>
-			<div id="text-div-bump" class="space"></div>
-			<div id="text-div-airborne" class="space"></div>
-			<div id="text-div13" class="space"></div>
+			<b><div class='btn' id="highest-all-axes-window"></div></b>
 		</div>
 
 
+		<div class='col-12'>
+			<div id='all-errors-switching'></div>
+			<div id="text-div-crash" class="space"></div>
+			<div id="text-div-airborne" class="space"></div>
+			<div id="text-div-bump" class="space"></div>
+			<div id="sound-warning-message" class="space"></div>
+			<div id="text-div-braking-and-cornering" class="space"></div>
+			<div id="text-div-acceleration-and-cornering" class="space"></div>
+			<div id="text-div-hard-left" class="space"></div>
+			<div id="text-div-hard-right" class="space"></div>	
+			<div id="text-div-heavy-braking" class="space"></div>
+			<div id="text-div-heavy-acceleration" class="space"></div>
+			<div id="text-div-good-driver" class="space"></div>
+		</div>
 
-		<div><a href="./index.html" class="home btn" id='home-button'>Home</a></div>
+</datacontent>
 
-	</datacontent>
 
 	<carmodeltop>
 		<div><button class='btn' id='reset-button2'>Reset</button></div>
@@ -181,6 +187,7 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 		<div class='col-3'></div>
 	</carmodeltop>
 
+
 	<carmodelback>	
 		<div><button class='btn' id='reset-button3'>Reset</button></div>
 		<div class='col-3'></div>
@@ -190,7 +197,8 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 		</div>
 		<div class='col-3'></div>
 	</carmodelback>
-	<div id='wheelmodeltag'></div>
+
+
 	<wheelmodel>
 		<div><button class='btn' id='reset-button3'>Reset</button></div>
 		<div class='col-3'></div>
@@ -200,18 +208,20 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 		</div>
 		<div class='col-3'></div>
 	</wheelmodel>
-</div>
 
 
 
-<reportcontent>
-	<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
-	<button class='btn'>Export Data</button>
-	<p>TESTING THE SHOWING OF THE REPORT CONTENT</p>
-	<p>ERROR MESSAGES HERE IN DOC FORM</p>
-	<p>BUTTON TO EXPORT OR SAVE DATA</p>
-	<p>THIS IS THE DRIVING REPORT</p>
-	<canvas id='canvas-report'>
-	</canvas>
-</reportcontent>
+
+	<reportcontent>
+		<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
+		<button class='btn'>Export Data</button>
+		<p>TESTING THE SHOWING OF THE REPORT CONTENT</p>
+		<p>ERROR MESSAGES HERE IN DOC FORM</p>
+		<p>BUTTON TO EXPORT OR SAVE DATA</p>
+		<p>THIS IS THE DRIVING REPORT</p>
+		<canvas id='canvas-report'>
+		</canvas>
+	</reportcontent>
+
+
 </body>

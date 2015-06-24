@@ -29,6 +29,7 @@ $(window).load(function() {
 	});
 	$('#freeze-button').on('click', function() {
 		alert("DATA FREEZE, IT'S COLD IN HERE");
+		$('video').each(this.pause());
 	});
 	$('#reset-button').on('click', function() {
 		location.reload();
@@ -66,7 +67,12 @@ $(window).load(function() {
 		// $('body').css('background-image', 'url(/')
 		$('body').removeClass('bg-image');
 	});
-	
+	$('#show-all-data-button').on('click', function() {
+		$('.button-panel-right').css('text-align', 'right');
+		// $('#upload-button').css('position', 'bottom');
+		$('.home').toggle('hide');
+	});
+	$('#parameter-input-fields').css('text-align', 'right');
 
 
 
