@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 $('form').on('submit', function(e) {
 	e.preventDefault();
-		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 1, 15];//
+		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 3, 15];//
 		// $('#parameter-input-submit-button').hide();
 		$('#run-program-button').show();
 		var startInput=parseInt(document.getElementById('testing-input-start-point').value);
@@ -107,13 +107,13 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	  		ctx.canvas.height = window.innerHeight;
 	  		ctx.scale(1,1);
 				ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-				ctx.rotate(dataStableX/5);
+				ctx.rotate(dataStableX/6);
 
 				function warningMessages() { 
 				if (data[start][2] >= 2*g) {//BUMP
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-bump").innerHTML =
-					"- The car went over a large bump (" + data[start][2]/g + "X gravity)";
+					"- The car went over a large bump (" + data[start][2]/g + "m/s^2 toward the road)";
 					$('#text-div-good-driver').hide();
 				}
 				if (data[start][2] <= 0*g) {//AIRBORNE - BRAKS ON CIRCLE GRAPHIC
@@ -126,10 +126,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				if (-data[start][0] >= redlineX) {//HARD LEFT
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-hard-left").innerHTML =
-					"- Very hard left turn. At " +
-					data[start][0] +
-					" times the force of gravity, you are risking loss of control: Time/DataPoint - " +
-					data[start][0] + "sec/" + int;
+					"- Very hard left turn (" + data[start][0] + " m/s^2 to the right" + int;
 					$('#text-div-good-driver').hide();
 				}
 				if (-data[start][0] < -redlineX) {//HARD RIGHT
@@ -476,7 +473,7 @@ function carMovementInWords() {
 		else if (-dataStableY > .07*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking"; }//Y IS FLIPPED
 		else { document.getElementById("braking-accelerating-in-words").innerHTML = "Coasting"; }
 } else {
-		document.getElementById("left-right-straight-window").innerHTML = "Waiting For GPS";
+		document.getElementById("left-right-straight-window").innerHTML = "Stopped";
 	}
 }
 carMovementInWords();
@@ -552,17 +549,17 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 			var dataStable = 1;
 			var countForStable = 0;
 			var incForStable = 1;
-			while (incForStable <= 50) { 
+			while (incForStable <= 30) { 
 				dataStable = dataStable + data[start+incForStable][0];
 				incForStable++;
 			} 
-			dataStable = dataStable/50;
+			dataStable = dataStable/30;
 
 			ctx.canvas.width  = window.innerWidth/2;
 			ctx.canvas.height = window.innerHeight/2+100;
 			ctx.scale(1,1);
 			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-			ctx.rotate(-dataStable/10);
+			ctx.rotate(-dataStable/15);
 	//BODY
 	ctx.lineWidth = 5;
 	ctx.beginPath(); ctx.lineTo(-180, 100); ctx.lineTo(180, 100); ctx.stroke(); ctx.closePath();//REAR BUMPER LINE
@@ -616,9 +613,12 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 	ctx.beginPath(); ctx.lineTo(-120, 100); ctx.lineTo(-120, 120); ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(180, 100); ctx.lineTo(180, 120); ctx.stroke(); ctx.closePath();//R
 	ctx.beginPath(); ctx.lineTo(120, 100); ctx.lineTo(120, 120); ctx.stroke(); ctx.closePath();//R
-	ctx.beginPath(); ctx.arc(-150,120,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
-	ctx.beginPath(); ctx.arc(150,120,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
+	if (data[start][1] > redlineY) { ctx.strokeStyle=("red"); } 
+	else { ctx.strokeStyle=("black"); }
+		ctx.beginPath(); ctx.arc(-150,120,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
+		ctx.beginPath(); ctx.arc(150,120,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
 		//TREADS
+		ctx.strokeStyle = 'black';
 		ctx.lineWidth = 3;	
 	ctx.beginPath(); ctx.lineTo(-170, 100); ctx.lineTo(-170, 140); ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(-165, 100); ctx.lineTo(-165, 143); ctx.stroke(); ctx.closePath();//L
@@ -803,19 +803,19 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 			var dataStable = 1;
 			var countForStable = 0;
 			var incForStable = 1;
-			while (incForStable <= 50) { 
+			while (incForStable <= 25) { 
 				dataStable = dataStable + data[start+incForStable][0];
 				incForStable++;
 
 			} 
-			dataStable = dataStable/50;
+			dataStable = dataStable/25;
 
 
 			ctx.canvas.width  = window.innerWidth;
 	  		ctx.canvas.height = 800;//window.innerHeight;
 	  		ctx.scale(1,1);
 	  		ctx.translate(canvas.width/2, canvas.height/2);
-	  		ctx.rotate(dataStable/5);
+	  		ctx.rotate(dataStable/2);
 	  		ctx.strokeStyle="black";
 	  		ctx.lineWidth = 3;
 					ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();//COMPASS
@@ -881,7 +881,7 @@ function steeringWheelModel2(data, start, stop, multiX, multiY, multiZ, dropData
 	  		ctx.canvas.height = 800;//window.innerHeight;
 	  		ctx.scale(1,1);
 	  		ctx.translate(canvas.width/2, canvas.height/2);
-	  		ctx.rotate(dataStable);
+	  		ctx.rotate(dataStable*2);
 	  		ctx.strokeStyle="black";
 	  		ctx.lineWidth = 3;
 					ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();//COMPASS

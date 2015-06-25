@@ -103,7 +103,6 @@
 	</script>
 </div>
 
-<!-- <div class='col-75'></div> -->
 <div class='col-3 hide-this'></div>
 
 <div class='col-2 hide-this' id='parameter-input-column'>
@@ -160,24 +159,10 @@
 		<div class='col-9'>
 			<canvas id="canvas">
 			</canvas>
-			<b><div class='btn' id="highest-all-axes-window"></div></b>
 		</div>
 
 
-		<div class='col-12'>
-			<div id='all-errors-switching'></div>
-			<div id="text-div-crash" class="space"></div>
-			<div id="text-div-airborne" class="space"></div>
-			<div id="text-div-bump" class="space"></div>
-			<div id="sound-warning-message" class="space"></div>
-			<div id="text-div-braking-and-cornering" class="space"></div>
-			<div id="text-div-acceleration-and-cornering" class="space"></div>
-			<div id="text-div-hard-left" class="space"></div>
-			<div id="text-div-hard-right" class="space"></div>	
-			<div id="text-div-heavy-braking" class="space"></div>
-			<div id="text-div-heavy-acceleration" class="space"></div>
-			<div id="text-div-good-driver" class="space"></div>
-		</div>
+
 
 </datacontent>
 
@@ -220,10 +205,22 @@
 	<reportcontent>
 		<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
 		<button class='btn'>Export Data</button>
-		<p>TESTING THE SHOWING OF THE REPORT CONTENT</p>
-		<p>ERROR MESSAGES HERE IN DOC FORM</p>
-		<p>BUTTON TO EXPORT OR SAVE DATA</p>
-		<p>THIS IS THE DRIVING REPORT</p>
+		<hr>
+		<div class='col-12'>
+			<div id='all-errors-switching'></div>
+			<div id="text-div-crash" class="space"></div>
+			<div id="text-div-airborne" class="space"></div>
+			<div id="text-div-bump" class="space"></div>
+			<div id="sound-warning-message" class="space"></div>
+			<div id="text-div-braking-and-cornering" class="space"></div>
+			<div id="text-div-acceleration-and-cornering" class="space"></div>
+			<div id="text-div-hard-left" class="space"></div>
+			<div id="text-div-hard-right" class="space"></div>	
+			<div id="text-div-heavy-braking" class="space"></div>
+			<div id="text-div-heavy-acceleration" class="space"></div>
+			<div id="text-div-good-driver" class="space"></div>
+			<b><div class='btn' id="highest-all-axes-window"></div></b>
+		</div>
 		<canvas id='canvas-report'>
 		</canvas>
 	</reportcontent>
