@@ -126,16 +126,19 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				if (-data[start][0] >= redlineX) {//HARD LEFT
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-hard-left").innerHTML =
-					"- Very hard left turn (" + data[start][0] + " m/s^2 to the right" + int;
+					"- Hard left turn. (" +
+					data[start][0] +
+					" m/s^2 - Time-in-ms/DataPoint - " +
+					data[start][31] + " sec / " + int;
 					$('#text-div-good-driver').hide();
 				}
 				if (-data[start][0] < -redlineX) {//HARD RIGHT
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-hard-right").innerHTML =
-					"- Very hard right turn. At " +
+					"- Hard right turn. (" +
 					data[start][0] +
-					" times the force of gravity, you are risking loss of control: Time/DataPoint - " +
-					data[start][0] + "sec/" + int;
+					" m/s^2 - Time-in-ms/DataPoint - " +
+					data[start][31] + " sec / " + int;
 					$('#text-div7').hide();
 					$('#text-div-good-driver').hide();
 				}
@@ -143,50 +146,51 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 				if (data[start][1] <= -redlineY) {//BRAKING
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-heavy-braking").innerHTML =
-					"- There was quite a heavy braking event at " +
+					"- Heavy braking event (" +
 					data[start][1] +
-					" times the force of gravity: Time/DataPoint - " +
-					data[start][0] + "sec/" + int;
+					" m/s^2 - Time-in-ms/DataPoint - " +
+					data[start][31] + " sec / " + int;
 					$('#text-div-good-driver').hide();
 				}
 				if (data[start][1] > redlineY) {//ACCELERATION
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-heavy-acceleration").innerHTML =
-					"- There was quite a heavy acceleration event at " +
+					"- Heavy acceleration event (" +
 					data[start][1] +
-					" times the force of gravity: Time/DataPoint - " +
-					data[start][0] + "sec/" + int;
+					" m/s^2 - Time-in-ms/DataPoint - " +
+					data[start][31] + " sec / " + int;
 					$('#text-div-good-driver').hide();
 				}
 
 				if (data[start][1] < -redlineY && data[start][0] > redlineX || data[start][1] < -redlineY && data[start][0] < -redlineX) {//HEAVY BRAKING
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-braking-and-cornering").innerHTML =
-					"***WARNING - USE MORE CAUTION: Heavy braking combined with hard cornering can easily cause you to lose control: (" +
-						data[start][1] + "X gravity forward, and " + data[start][0] + "X gravity to the side, while moving at " + data[start][27] + "MPH.";
+					"***WARNING - Heavy braking combined with hard cornering: (" +
+						data[start][1] + "m/s^2 forward, and " + data[start][0] + "m/2^2 to the side, while moving at " + data[start][27] + " MPH. ";
 						$('#text-div-good-driver').hide();
 					}
 				if (data[start][1] > redlineY && data[start][0] >= redlineX || data[start][1] > redlineY && data[start][0] < -redlineX) {//HEAVY ACCELERATION
 					ctx.fillStyle=("red");
 					document.getElementById("text-div-acceleration-and-cornering").innerHTML =
-					"***WARNING - USE MORE CAUTION: Heavy acceleration combined with hard cornering can easily cause you to lose control: " +
-					data[start][1] + "X gravity backward, and " + data[start][0] + "X gravity to the side, while moving at " + data[start][27] + "MPH."
+					"***WARNING - Heavy acceleration combined with hard cornering: (" +
+					data[start][1] + "m/s^2 backward, and " + data[start][0] + " m/2^2 to the side, while moving at " + data[start][27] + " MPH."
 					$('#text-div-good-driver').hide();
 				}
 
 				if (data[start][1] > 2*g) {//CRASH AUTO CONTACT HELP************
 					document.getElementById("text-div-crash").innerHTML =
-					"***ACCIDENT WARNING: It seems that you may have been in an accident. If you press 'OK' you can ignore this message, otherwise your emergency contact will be notified by SMS";
+					"***ACCIDENT WARNING: It seems that you may have been in an accident. Time: " + int;
 					$('#text-div-good-driver').hide();
 				}
 
-				if (data[start][21] > 60) {//SOUND
+				if (data[start][21] > 125) {//SOUND
+					console.log(data[start][21])
 					document.getElementById("sound-warning-message").innerHTML = "- With the stereo this high, you may not hear the horns of other cars";
 				}
 
 				ctx.fillStyle=("black");
 				setTimeout(function() {
-					document.getElementById("text-div-good-driver").innerHTML = "- So far, driver is doing well. No swerving, heavy braking/acceleration or aggressive turning has been detected.";
+					document.getElementById("text-div-good-driver").innerHTML = "- Driver is being careful. No swerving, heavy braking/acceleration or aggressive turning has been detected.";
 				}, 4000);
 
 			}
