@@ -1,87 +1,7 @@
-$(document).ready(function() {
-
-
-
-	$('form').on('submit', function(e) {
-		e.preventDefault();
-		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 15, 50];//
-		var fileContents = [];
-		$('#run-program-button').show();
-		
-		var startInput=parseInt(document.getElementById('testing-input-start-point').value);
-		var endInput=parseInt(document.getElementById('testing-input-end-point').value);
-		var multiX=parseInt(document.getElementById('testing-input-multix').value);
-		var multiY=parseInt(document.getElementById('testing-input-multiy').value);
-		var multiZ=parseInt(document.getElementById('testing-input-multiz').value);
-		var dataPoints=parseInt(document.getElementById('testing-input-data-points').value);
-		var redlineX=parseInt(document.getElementById('testing-input-redline-x').value);
-		var redlineY=parseInt(document.getElementById('testing-input-redline-y').value);
-		var redlineZ=parseInt(document.getElementById('testing-input-redline-z').value);
-		fileContents.push(document.getElementById('testing-input-file-contents').value);
-		if (startInput !== parameterData[1] && startInput > 0) { parameterData[1] = startInput; }
-		if (endInput !== parameterData[2] && endInput > 0) { parameterData[2] = endInput; }
-		if (multiX !== parameterData[3] && multiX > 0) { parameterData[3] = multiX; }
-		if (multiY !== parameterData[4] && multiY > 0) { parameterData[4] = multiY; }
-		if (multiZ !== parameterData[5] && multiZ > 0) { parameterData[5] = multiZ; }
-		if (dataPoints !== parameterData[6] && dataPoints > 0) { parameterData[6] = dataPoints; }
-		if (redlineX !== parameterData[7] && redlineX > 0) { parameterData[7] = redlineX; }
-		if (redlineY !== parameterData[8] && redlineY > 0) { parameterData[8] = redlineY; }
-		if (redlineZ !== parameterData[9] && redlineZ > 0) { parameterData[9] = redlineZ; }
-
-		document.getElementById("set-parameters-window").innerHTML = "Profile Loaded";
-		document.getElementById("parameter-input-submit-button").innerHTML = "Run Program";
-		console.log(parameterData);
-		console.log(fileContents);
-		sessionStorage.setItem("UserChoices", parameterData);
-		console.log(sessionStorage);
-		console.log(localStorage);
-
-		$('#run-program-button').on('click', function() {
-			movementXyzFull(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6], parameterData[7], 
-				parameterData[8], parameterData[9]);	
-			orientation(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6]);				
-			steeringWheelModel(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6], parameterData[7]); 
-			carModelFromBack(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6], parameterData[7], 
-				parameterData[8], parameterData[9]);
-
-			$('.hide-this').toggle('hide');
-			$('.hide-then-show').show('.hide-then-show');
-			$('video').toggle('show');
-			setTimeout(function() { 
-				$('video').get(0).play()
-			}, 1600);
-		});
-	});
-
-$('#show-all-data-button').on('click', function() {
-	movementXyzFull(dataDownFlagstaff1, 0, 18000, 60,60,2, 1, 3,1,15);
-	orientation(dataDownFlagstaff1, 0, 18000, 60,60,2, 1);
-	steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2);
-	carModelFromBack(dataDownFlagstaff1, 0, 18000, 0,0,0, 1, 0,2,0 );
-	$('.hide-this').toggle('hide');
-	$('.hide-then-show').show('.hide-then-show');
-	$('video').toggle('show');
-	setTimeout(function() { 
-		$('video').get(0).play()
-	}, 1700);
-});
-
-//////////////////////////////////////////////////////////////////////////////////////////////
 g = 9.81;
 //////////////////////////////////////////////////////////////////////////////////////////////
 function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
+	console.time("timer1");
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -114,93 +34,7 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
 			ctx.rotate(dataStableX/6);
 
-			function warningMessages(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) { 
-				if (data[start][2] >= 2*g) {//BUMP
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-bump").innerHTML =
-					"- The car went over a large bump (" + data[start][2]/g + "m/s^2 toward the road)";
-					$('#text-div-good-driver').hide();
-				}
-				if (data[start][2] <= 0*g) {//AIRBORNE - BRAKS ON CIRCLE GRAPHIC
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-airborne").innerHTML =
-					"- You are now airborne, goodnight";
-					$('#text-div-good-driver').hide();
-				}
-
-				if (-data[start][0] >= redlineX) {//HARD LEFT
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-hard-left").innerHTML =
-					"- Hard left turn. (" +
-						data[start][0] +
-						" m/s^2 - Time-in-ms/DataPoint - " +
-						data[start][31] + " sec / " + int;
-						$('#text-div-good-driver').hide();
-					}
-				if (-data[start][0] < -redlineX) {//HARD RIGHT
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-hard-right").innerHTML =
-					"- Hard right turn. (" +
-						data[start][0] +
-						" m/s^2 - Time-in-ms/DataPoint - " +
-						data[start][31] + " sec / " + int;
-						$('#text-div7').hide();
-						$('#text-div-good-driver').hide();
-					}
-
-				if (data[start][1] <= -redlineY) {//BRAKING
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-heavy-braking").innerHTML =
-					"- Heavy braking event (" +
-						data[start][1] +
-						" m/s^2 - Time-in-ms/DataPoint - " +
-						data[start][31] + " sec / " + int;
-						$('#text-div-good-driver').hide();
-					}
-				if (data[start][1] > redlineY) {//ACCELERATION
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-heavy-acceleration").innerHTML =
-					"- Heavy acceleration event (" +
-						data[start][1] +
-						" m/s^2 - Time-in-ms/DataPoint - " +
-						data[start][31] + " sec / " + int;
-						$('#text-div-good-driver').hide();
-					}
-
-				if (data[start][1] < -redlineY && data[start][0] > redlineX || data[start][1] < -redlineY && data[start][0] < -redlineX) {//HEAVY BRAKING
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-braking-and-cornering").innerHTML =
-					"***WARNING - Heavy braking combined with hard cornering: (" +
-						data[start][1] + "m/s^2 forward, and " + data[start][0] + "m/2^2 to the side, while moving at " + data[start][27] + " MPH. ";
-						$('#text-div-good-driver').hide();
-					}
-				if (data[start][1] > redlineY && data[start][0] >= redlineX || data[start][1] > redlineY && data[start][0] < -redlineX) {//HEAVY ACCELERATION
-					ctx.fillStyle=("red");
-					document.getElementById("text-div-acceleration-and-cornering").innerHTML =
-					"***WARNING - Heavy acceleration combined with hard cornering: (" +
-						data[start][1] + "m/s^2 backward, and " + data[start][0] + " m/2^2 to the side, while moving at " + data[start][27] + " MPH."
-						$('#text-div-good-driver').hide();
-					}
-
-				if (data[start][1] > 2*g) {//CRASH AUTO CONTACT HELP************
-					document.getElementById("text-div-crash").innerHTML =
-					"***ACCIDENT WARNING: It seems that you may have been in an accident. Time: " + int;
-					$('#text-div-good-driver').hide();
-				}
-
-				if (data[start][21] > 125) {//SOUND
-					console.log(data[start][21])
-					document.getElementById("sound-warning-message").innerHTML = "- With the stereo this high, you may not hear the horns of other cars";
-				}
-
-				ctx.fillStyle=("black");
-				setTimeout(function() {
-					document.getElementById("text-div-good-driver").innerHTML = "- Driver is being careful. No swerving, heavy braking/acceleration or aggressive turning has been detected.";
-				}, 4000);
-
-			}
-			warningMessages(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ);
-
+	
 	function carMovementAndPositionVisuals() { 
 				var dataStableX = 1;
 				var dataStableY = 1;
@@ -417,35 +251,135 @@ function movementXyzFull(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 		}
 		stabilizerForDataRealtimePrintOuts();
 
-
 		function liveDataPrintOut() { 
-			document.getElementById("speed-in-mph-window").innerHTML = "Speed in MPH: " + data[start][27];
+		var speedInMphWindowElem = document.getElementById("speed-in-mph-window");//SO I DONT QUERY THE DOM 100 TIMES PER SECOND
+		// var highestAllAxesWindowELem = document.getElementById("highest-all-axes-window");
+		var timeWindowElem = document.getElementById("time-window");
+		var soundLevelWindowElem = document.getElementById("sound-level-window");
+		var altitudeWindowElem = document.getElementById("altitude-window");
+		var xAxisWindowElem = document.getElementById("x-axis-window");
+		var yAxisWindowElem = document.getElementById("y-axis-window");
+		var zAxisWindowElem = document.getElementById("z-axis-window");
+		var dataPointsWindowElem = document.getElementById("data-points-window");
 			document.getElementById("highest-all-axes-window").innerHTML = highestAllAxesWithTime(data);//MAX FORCE OF ALL DATA AT TIME
-			document.getElementById("time-window").innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
-			document.getElementById("sound-level-window").innerHTML = "dB Level: " + (data[start][21]-80);
-			document.getElementById("altitude-window").innerHTML = "Altitude in ft: " + data[start][24];
-			document.getElementById("x-axis-window").innerHTML = "X:    " + dataStableX;
-			document.getElementById("y-axis-window").innerHTML = "Y:    " + dataStableY;
-			document.getElementById("z-axis-window").innerHTML = "Z:    " + dataStableZ;
-			document.getElementById("data-points-window").innerHTML = "Data Points: " + int;
+			speedInMphWindowElem.innerHTML = "Speed in MPH: " + data[start][27];
+			timeWindowElem.innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
+			soundLevelWindowElem.innerHTML = "dB Level: " + (data[start][21]-80);
+			altitudeWindowElem.innerHTML = "Altitude in ft: " + data[start][24];
+			xAxisWindowElem.innerHTML = "X:    " + dataStableX;
+			yAxisWindowElem.innerHTML = "Y:    " + dataStableY;
+			zAxisWindowElem.innerHTML = "Z:    " + dataStableZ;
+			dataPointsWindowElem.innerHTML = "Data Points: " + int;
 				}
 				liveDataPrintOut();
 
 			}
 			dataRealtimePrintOuts();
-			
+		
 			start += dropDataPoints;
 			int += dropDataPoints;
 			timer += 8;
 
 		}, 1000+data[ii][31]*dropDataPoints);//MS
 	}
+	console.timeEnd("timer1");
 }
-
-
-
-
 ////////////////////////////////////////////////////////////////////////
+function warningMessages(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) { 
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	var timer = 0;
+		for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+			setTimeout(function () {
+
+				if (data[start][2] >= 2*g) {//BUMP
+					ctx.fillStyle=("red");
+					document.getElementById("text-div-bump").innerHTML =
+					"- The car went over a large bump (" + data[start][2]/g + "m/s^2 toward the road)";
+					$('#text-div-good-driver').hide();
+				}
+				if (data[start][2] <= 0*g) {//AIRBORNE - BRAKS ON CIRCLE GRAPHIC
+					ctx.fillStyle=("red");
+					document.getElementById("text-div-airborne").innerHTML =
+					"- You are now airborne, goodnight";
+					$('#text-div-good-driver').hide();
+				}
+				if (-data[start][0] >= redlineX) {//HARD LEFT
+					ctx.fillStyle=("red");
+					document.getElementById("text-div-hard-left").innerHTML =
+					"- Hard left turn. (" +
+						data[start][0] +
+						" m/s^2 - Time-in-ms/DataPoint - " +
+						data[start][31] + " sec / " + int;
+						$('#text-div-good-driver').hide();
+				}
+				if (-data[start][0] < -redlineX) {//HARD RIGHT
+					ctx.fillStyle=("red");
+					document.getElementById("text-div-hard-right").innerHTML =
+					"- Hard right turn. (" +
+						data[start][0] +
+						" m/s^2 - Time-in-ms/DataPoint - " +
+						data[start][31] + " sec / " + int;
+						$('#text-div7').hide();
+						$('#text-div-good-driver').hide();
+				}
+				if (data[start][1] <= -redlineY) {//BRAKING
+					ctx.fillStyle=("red");
+					document.getElementById("text-div-heavy-braking").innerHTML =
+					"- Heavy braking event (" +
+						data[start][1] +
+						" m/s^2 - Time-in-ms/DataPoint - " +
+						data[start][31] + " sec / " + int;
+						$('#text-div-good-driver').hide();
+				}
+				if (data[start][1] > redlineY) {//ACCELERATION
+					ctx.fillStyle=("red");
+					document.getElementById("text-div-heavy-acceleration").innerHTML =
+					"- Heavy acceleration event (" +
+						data[start][1] +
+						" m/s^2 - Time-in-ms/DataPoint - " +
+						data[start][31] + " sec / " + int;
+						$('#text-div-good-driver').hide();
+				}
+				if (data[start][1] < -redlineY && data[start][0] > redlineX || data[start][1] < -redlineY && data[start][0] < -redlineX) {//HEAVY BRAKING
+					ctx.fillStyle=("red");
+					document.getElementById("text-div-braking-and-cornering").innerHTML =
+					"***WARNING - Heavy braking combined with hard cornering: (" +
+						data[start][1] + "m/s^2 forward, and " + data[start][0] + "m/2^2 to the side, while moving at " + data[start][27] + " MPH. ";
+						$('#text-div-good-driver').hide();
+				}
+				if (data[start][1] > redlineY && data[start][0] >= redlineX || data[start][1] > redlineY && data[start][0] < -redlineX) {//HEAVY ACCELERATION
+					ctx.fillStyle=("red");
+					document.getElementById("text-div-acceleration-and-cornering").innerHTML =
+					"***WARNING - Heavy acceleration combined with hard cornering: (" +
+						data[start][1] + "m/s^2 backward, and " + data[start][0] + " m/2^2 to the side, while moving at " + data[start][27] + " MPH."
+						$('#text-div-good-driver').hide();
+				}
+				if (data[start][1] > 2*g) {//CRASH AUTO CONTACT HELP************
+					document.getElementById("text-div-crash").innerHTML =
+					"***ACCIDENT WARNING: It seems that you may have been in an accident. Time: " + int;
+					$('#text-div-good-driver').hide();
+				}
+				if (data[start][21] > 125) {//SOUND
+					console.log(data[start][21])
+					document.getElementById("sound-warning-message").innerHTML = "- With the stereo this high, you may not hear the horns of other cars";
+				}
+
+				start += dropDataPoints;
+				int += dropDataPoints;
+				timer += 8;
+
+			}, 1000+data[ii][31]*dropDataPoints);//MS
+
+			ctx.fillStyle=("black");
+			setTimeout(function() {
+					document.getElementById("text-div-good-driver").innerHTML = "- Driver is being careful. No swerving, heavy braking/acceleration or aggressive turning has been detected.";
+			}, 4000);
+
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function highestG(data) {//consoleZ max
 	var highG = 0;
 	for (var i=0; i<data.length; i++) {
@@ -453,7 +387,6 @@ function highestG(data) {//consoleZ max
 	}
 	return highG;
 }
-
 ////////////////////////////////////////////////////////////////////////
 var highestAllAxesWithTime = function(data) {//consoleXYZ with time
 	var dataXYZ = [['X',0,0],['Y',0,0],['Z',0,0]];
@@ -464,7 +397,6 @@ var highestAllAxesWithTime = function(data) {//consoleXYZ with time
 	}
 	return "Max: " + dataXYZ[0] + " /// " + dataXYZ[1] + " /// " + dataXYZ[2] + " /// ";
 }
-
 /////////////////////////////////////////////////////////////////////////////
 function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('car-model-back');
@@ -529,137 +461,6 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 		}, 1000+data[ii][31]*dropDataPoints);
 	}
 }
-
-
-// function carModelFromBack2(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
-// 	var canvas = document.getElementById('car-model-back2');
-// 	var ctx = canvas.getContext('2d');
-// 	var int = 0;
-// 	var timer = 0;
-// 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-// 		setTimeout(function () {
-// 			var dataStable = 1;
-// 			var countForStable = 0;
-// 			var incForStable = 1;
-// 			while (incForStable <= 50) { 
-// 				dataStable = dataStable + data[start+incForStable][0];
-// 				incForStable++;
-
-// 			} 
-// 			dataStable = dataStable/50;
-
-// 			ctx.canvas.width  = window.innerWidth/2;
-// 			ctx.canvas.height = window.innerHeight;
-// 			ctx.scale(1,1);
-// 			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-// 			ctx.rotate(-dataStable/10);
-
-// 	//BODY
-// 	ctx.lineWidth = 5;
-// 	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//REAR BUMPER LINE
-// 	ctx.beginPath(); ctx.lineTo(-195, -25); ctx.lineTo(-195, -140); ctx.stroke(); ctx.closePath();//L SIDE
-// 	ctx.beginPath(); ctx.lineTo(195, -25); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//R SIDE
-// 	ctx.beginPath(); ctx.lineTo(-195, -25); ctx.lineTo(-180, 0); ctx.stroke(); ctx.closePath();//L BOTTOM CONNECT
-// 	ctx.beginPath(); ctx.lineTo(195, -25); ctx.lineTo(180, 0); ctx.stroke(); ctx.closePath();//R BOTTOM CONNECT
-// 	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(-165, -250); ctx.stroke(); ctx.closePath();//L SIDE UP
-// 	ctx.beginPath(); ctx.lineTo(195, -140); ctx.lineTo(165, -250); ctx.stroke(); ctx.closePath();//R SIDE UP
-// 	ctx.beginPath(); ctx.lineTo(-165, -250); ctx.lineTo(-150, -260); ctx.stroke(); ctx.closePath();//L SIDE ROOF CONNECT
-// 	ctx.beginPath(); ctx.lineTo(165, -250); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//R SIDE ROOF CONNECT
-// 	ctx.beginPath(); ctx.lineTo(-150, -260); ctx.lineTo(150, -260); ctx.stroke(); ctx.closePath();//ROOF
-// 	//WINDOW
-// 	ctx.lineWidth = 2;
-// 	ctx.beginPath(); ctx.lineTo(-170, -150); ctx.lineTo(170, -150); ctx.stroke(); ctx.closePath();//BOTTOM
-// 	ctx.beginPath(); ctx.lineTo(-170, -150); ctx.lineTo(-140, -245); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(170, -150); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//R
-// 	ctx.beginPath(); ctx.lineTo(-140, -245); ctx.lineTo(140, -245); ctx.stroke(); ctx.closePath();//TOP
-// 	//LIGHTS
-// 	ctx.lineWidth = 2;
-// 	if (data[start][1] >= redlineY || data[start][1] < -redlineY) { ctx.strokeStyle=("red"); }
-// 	else {ctx.strokeStyle=("black");}
-// 	ctx.beginPath(); ctx.lineTo(-195, -100); ctx.lineTo(-100, -100); ctx.stroke(); ctx.closePath();//BOTTOM L
-// 	ctx.beginPath(); ctx.lineTo(195, -100); ctx.lineTo(100, -100); ctx.stroke(); ctx.closePath();//BOTTOM R
-// 	ctx.beginPath(); ctx.lineTo(-100, -100); ctx.lineTo(-100, -140); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(100, -100); ctx.lineTo(100, -140); ctx.stroke(); ctx.closePath();//R
-// 	ctx.beginPath(); ctx.lineTo(-160, -100); ctx.lineTo(-170, -140); ctx.stroke(); ctx.closePath();//L FAR
-// 	ctx.beginPath(); ctx.lineTo(160, -100); ctx.lineTo(170, -140); ctx.stroke(); ctx.closePath();//R FAR
-// 	ctx.beginPath(); ctx.arc(-120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
-// 	ctx.beginPath(); ctx.arc(-150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
-// 	ctx.beginPath(); ctx.arc(120,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
-// 	ctx.beginPath(); ctx.arc(150,-120,12,12, Math.PI, true); ctx.fill(); ctx.closePath();
-// 	//BUMPER
-// 	ctx.strokeStyle=("black");
-// 	ctx.lineWidth = 3;
-// 	ctx.beginPath(); ctx.lineTo(-195, -140); ctx.lineTo(195, -140); ctx.stroke(); ctx.closePath();//HATCH LINE
-// 	ctx.beginPath(); ctx.lineTo(-195, -30); ctx.lineTo(-55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
-// 	ctx.beginPath(); ctx.lineTo(195, -30); ctx.lineTo(55, -30); ctx.stroke(); ctx.closePath();//BUMPER LINE
-// 	ctx.beginPath(); ctx.lineTo(-55, -30); ctx.lineTo(-40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
-// 	ctx.beginPath(); ctx.lineTo(55, -30); ctx.lineTo(	40, -0); ctx.stroke(); ctx.closePath();//LICENCE PLATE R
-// 	ctx.beginPath(); ctx.lineTo(-50, -20); ctx.lineTo(50, -20); ctx.stroke(); ctx.closePath();//SWEET BUMPER EFFECTS
-// 	//PLATE
-// 	ctx.lineWidth = 2;
-// 	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(60, -70); ctx.stroke(); ctx.closePath();//
-// 	ctx.beginPath(); ctx.lineTo(-60, -50); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
-// 	ctx.beginPath(); ctx.lineTo(-60, -70); ctx.lineTo(-60, -50); ctx.stroke(); ctx.closePath();//
-// 	ctx.beginPath(); ctx.lineTo(60, -70); ctx.lineTo(60, -50); ctx.stroke(); ctx.closePath();//
-// 	//WHEELS
-// 	ctx.lineWidth = 5;
-// 	ctx.beginPath(); ctx.lineTo(-180, 0); ctx.lineTo(-180, 20); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(-120, 0); ctx.lineTo(-120, 20); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(180, 0); ctx.lineTo(180, 20); ctx.stroke(); ctx.closePath();//R
-// 	ctx.beginPath(); ctx.lineTo(120, 0); ctx.lineTo(120, 20); ctx.stroke(); ctx.closePath();//R
-// 	ctx.beginPath(); ctx.arc(-150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//L WHEEL
-// 	ctx.beginPath(); ctx.arc(150,20,30,0, Math.PI); ctx.stroke(); ctx.closePath();//R WHEEL
-// 		//TREADS
-// 		ctx.lineWidth = 3;	
-// 	ctx.beginPath(); ctx.lineTo(-170, 0); ctx.lineTo(-170, 40); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(-165, 0); ctx.lineTo(-165, 43); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(-160, 0); ctx.lineTo(-160, 45); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(-155, 0); ctx.lineTo(-155, 47); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(-145, 0); ctx.lineTo(-145, 47); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(-140, 0); ctx.lineTo(-140, 45); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(-135, 0); ctx.lineTo(-135, 43); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(-130, 0); ctx.lineTo(-130, 40); ctx.stroke(); ctx.closePath();//L
-
-// 	ctx.beginPath(); ctx.lineTo(170, 0); ctx.lineTo(170, 40); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(165, 0); ctx.lineTo(165, 43); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(160, 0); ctx.lineTo(160, 45); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(155, 0); ctx.lineTo(155, 47); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(145, 0); ctx.lineTo(145, 47); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(140, 0); ctx.lineTo(140, 45); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(135, 0); ctx.lineTo(135, 43); ctx.stroke(); ctx.closePath();//L
-// 	ctx.beginPath(); ctx.lineTo(130, 0); ctx.lineTo(130, 40); ctx.stroke(); ctx.closePath();//L
-
-		//ROAD LINES
-				// ctx.lineWidth = 5;
-				// 	if (start%2 === 0) { 
-				// 		console.log(start);
-				// 		ctx.beginPath(); ctx.lineTo(-330,100); ctx.lineTo(-270,0); ctx.stroke(); ctx.closePath();
-				// 		ctx.beginPath(); ctx.lineTo(-250,-50); ctx.lineTo(-220,-150); ctx.stroke(); ctx.closePath();
-				// 		ctx.beginPath(); ctx.lineTo(-200,-200); ctx.lineTo(-185,-250); ctx.stroke(); ctx.closePath();
-				// 		ctx.beginPath(); ctx.lineTo(-170,-300); ctx.lineTo(-160,-340); ctx.stroke(); ctx.closePath();
-
-				// 		ctx.beginPath(); ctx.lineTo(330,100); ctx.lineTo(270,0); ctx.stroke(); ctx.closePath();
-				// 		ctx.beginPath(); ctx.lineTo(250,-50); ctx.lineTo(220,-150); ctx.stroke(); ctx.closePath();
-				// 		ctx.beginPath(); ctx.lineTo(200,-200); ctx.lineTo(185,-250); ctx.stroke(); ctx.closePath();
-				// 		ctx.beginPath(); ctx.lineTo(170,-300); ctx.lineTo(160,-340); ctx.stroke(); ctx.closePath();
-				// }
-
-// 				start += dropDataPoints;
-// 				int += dropDataPoints;
-// 				timer += 8;
-
-// 			}, 1000+data[ii][31]*dropDataPoints);
-
-// }
-// }
-
-$('#car-model-back-button').on('click', function() {
-	$('datacontent').hide()
-	$('carmodelback').show();
-	carModelFromBack2(dataDownFlagstaff1, 1, 18000, 1, .1*g);
-});
-
-
 /////////////////////////////////////////////////////////////////////////////
 function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('canvas-wheel');
@@ -727,6 +528,7 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 			}, 1000+data[ii][31]*dropDataPoints);
 }
 }
+/////////////////////////////////////////////////////////////////////////////
 function steeringWheelModel2(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('canvas-steering-wheel2');
 	var ctx = canvas.getContext('2d');
@@ -793,15 +595,6 @@ function steeringWheelModel2(data, start, stop, multiX, multiY, multiZ, dropData
 			}, 1000+data[ii][31]*dropDataPoints);
 }
 }
-$('#wheel-function-button').on('click', function() {
-	steeringWheelModel2(dataDownFlagstaff1, 0, 18000, 30, 30, 2, 1, .3*g);
-	$('datacontent').toggle('hide');
-	// $('carmodelback').toggle('hide');
-	// $('carmodeltop').toggle('hide');
-	$('wheelmodel').toggle('show');
-});
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////
 function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) { 
 	var canvas = document.getElementById('canvas-compas');
@@ -873,14 +666,8 @@ function orientation(data, start, stop, multiX, multiY, multiZ, dropDataPoints, 
 				// document.getElementById("orientation-in-degrees").innerHTML = 'Orientation: ' + data[start][29];
 				document.getElementById("heading").innerHTML = 'Direction: ' + direction;
 			}, 1000+data[ii][31]*dropDataPoints);
-
 }
 }
-$('#orientation-function-button').on('click', function() {
-	// console.log("insied testnewcanvas jquery");
-	orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
-});
-
 //////////////////////////////////////////////////////////////////////////
 function carModelFromTop(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
 	var canvas = document.getElementById('car-model-top');
@@ -991,52 +778,41 @@ function carModelFromTop(data, start, stop, multiX, multiY, multiZ, dropDataPoin
 	ctx.beginPath(); ctx.lineTo(-85,170); ctx.lineTo(-100,260);	ctx.stroke(); ctx.closePath();//L
 	ctx.beginPath(); ctx.lineTo(85,170); ctx.lineTo(100,260);	ctx.stroke(); ctx.closePath();//R
 
-	start += dropDataPoints;
-	int += dropDataPoints;
-	timer += 8;
-
-}, 1000+data[ii][31]*dropDataPoints);
-
-}
-}
-$('#car-model-top-button').on('click', function() {
-	carModelFromTop(dataDownFlagstaff1, 1000, 18000, 60, 60, 2, 2, .3*g);
-	$('datacontent').hide();
-	$('carmodeltop').show();
-});
-
-
-
-
-function graphicsFunctionOne(data, start, stop, multiZ, dropDataPoints) {
-	var canvas = document.getElementById('canvas-testing');
-	var ctx = canvas.getContext('2d');
-	var int = 0;
-	ctx.canvas.width  = window.innerWidth;
-	ctx.canvas.height = window.innerHeight;
-	ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-	ctx.scale(.2,.2);
-	ctx.beginPath();
-	ctx.lineTo(200,0); ctx.lineTo(-100,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
-	ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath(); ctx.beginPath();
-	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-		setTimeout(function () {
-			ctx.lineWidth = 1;
-			ctx.beginPath();
-			ctx.strokeStyle=("black");
-			ctx.lineTo(data[start][1]*multiZ*2, 0);
-			// ctx.stroke(); ctx.closePath();
-			ctx.lineTo(0, data[start][2]*multiZ);
-			ctx.stroke(); ctx.closePath();
-			// ctx.lineTo(data[start][3]*multiZ, data[start][3]*(multiZ/2));
-			// ctx.stroke(); ctx.closePath();
-
-			start += dropDataPoints;
-			int += dropDataPoints;
-		}, ii*data[ii][0]*dropDataPoints/10);
+		start += dropDataPoints;
+		int += dropDataPoints;
+		timer += 8;
+		}, 1000+data[ii][31]*dropDataPoints);
 	}
 }
+//////////////////////////////////////////////////////////////////////////
+// function graphicsFunctionOne(data, start, stop, multiZ, dropDataPoints) {
+// 	var canvas = document.getElementById('canvas-testing');
+// 	var ctx = canvas.getContext('2d');
+// 	var int = 0;
+// 	ctx.canvas.width  = window.innerWidth;
+// 	ctx.canvas.height = window.innerHeight;
+// 	ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+// 	ctx.scale(.2,.2);
+// 	ctx.beginPath();
+// 	ctx.lineTo(200,0); ctx.lineTo(-100,0); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+// 	ctx.lineTo(0,200); ctx.lineTo(0,-100); ctx.stroke(); ctx.closePath(); ctx.beginPath();
+// 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+// 		setTimeout(function () {
+// 			ctx.lineWidth = 1;
+// 			ctx.beginPath();
+// 			ctx.strokeStyle=("black");
+// 			ctx.lineTo(data[start][1]*multiZ*2, 0);
+// 			// ctx.stroke(); ctx.closePath();
+// 			ctx.lineTo(0, data[start][2]*multiZ);
+// 			ctx.stroke(); ctx.closePath();
+// 			// ctx.lineTo(data[start][3]*multiZ, data[start][3]*(multiZ/2));
+// 			// ctx.stroke(); ctx.closePath();
 
+// 			start += dropDataPoints;
+// 			int += dropDataPoints;
+// 		}, ii*data[ii][0]*dropDataPoints/10);
+// 	}
+// }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 function latitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 
 	var arrLatStartLeft = [];
@@ -1051,7 +827,7 @@ function latitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDa
 	}
 	return arrLatForStart;
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 function longitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) { 
 	var arrLongForStart = [];
 	var arrLongStartLeft = [];
@@ -1066,7 +842,6 @@ function longitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropD
 	}
 	return arrLongForStart;
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 function locationAndRouteModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline) {
 	var latStart = latitudeStartingPoint(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redline);
@@ -1119,13 +894,9 @@ function locationAndRouteModel(data, start, stop, multiX, multiY, multiZ, dropDa
 			start += dropDataPoints;
 			int += dropDataPoints;
 		}, data[ii][31]*dropDataPoints);
-}
+	}
 
 }
-$('#location-route-function-button').on('click', function() {
-	locationAndRouteModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
-});
-
 ///////////////////////////////////////////////////////////////////////////////////////
 function movementXy1Point(data, start, stop, multiX, multiY, dropDataPoints, redline) {
 	var canvas = document.getElementById('canvas');
@@ -1154,14 +925,7 @@ function movementXy1Point(data, start, stop, multiX, multiY, dropDataPoints, red
 			}, ii*data[ii][0]*880);
 	}
 }
-$('#movement-xy-1point').on('click', function() {
-	movementXy1Point(data5MileDownFullSet, 0101, 15000, 500, 400, 20, 1, 10);//IPAD?
-	// accelXy1pt(dataCanyonDown, 9000, 15000, 300, 300, 1, 1);
-	// accelXy1pt(dataStandDrive, 0101, 15000, 300, 300, 20, 1, .7);//VIDEO ON DESKTOP
-});
 //////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
 function forceXyzForReport(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
 	var canvas = document.getElementById('canvas-report');
 	var ctx = canvas.getContext('2d');
@@ -1189,13 +953,133 @@ function forceXyzForReport(data, start, stop, multiX, multiY, multiZ, dropDataPo
 		ctx.stroke(); ctx.closePath();
 		time++;
 	}
-
-
+ 
 }
-$('#report-button').on('click', function() {
-	// forceXyzTimeXyz(dataSpin3, 900, 2900, 500, 500, 500, 1, 1);
-	forceXyzForReport(dataDownFlagstaff1, 0, 10000, 200, 200, 200, 1, 1);
-});
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function() {
+
+	$('#test-functions-button').on('click', function() {
+		alert('hello');
+	});
+
+
+	$('form').on('submit', function(e) {
+		e.preventDefault();
+		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 15, 50];//
+		var fileContents = [];
+		$('#run-program-button').show();
+		
+		var startInput=parseInt(document.getElementById('testing-input-start-point').value);
+		var endInput=parseInt(document.getElementById('testing-input-end-point').value);
+		var multiX=parseInt(document.getElementById('testing-input-multix').value);
+		var multiY=parseInt(document.getElementById('testing-input-multiy').value);
+		var multiZ=parseInt(document.getElementById('testing-input-multiz').value);
+		var dataPoints=parseInt(document.getElementById('testing-input-data-points').value);
+		var redlineX=parseInt(document.getElementById('testing-input-redline-x').value);
+		var redlineY=parseInt(document.getElementById('testing-input-redline-y').value);
+		var redlineZ=parseInt(document.getElementById('testing-input-redline-z').value);
+		fileContents.push(document.getElementById('testing-input-file-contents').value);
+		if (startInput !== parameterData[1] && startInput > 0) { parameterData[1] = startInput; }
+		if (endInput !== parameterData[2] && endInput > 0) { parameterData[2] = endInput; }
+		if (multiX !== parameterData[3] && multiX > 0) { parameterData[3] = multiX; }
+		if (multiY !== parameterData[4] && multiY > 0) { parameterData[4] = multiY; }
+		if (multiZ !== parameterData[5] && multiZ > 0) { parameterData[5] = multiZ; }
+		if (dataPoints !== parameterData[6] && dataPoints > 0) { parameterData[6] = dataPoints; }
+		if (redlineX !== parameterData[7] && redlineX > 0) { parameterData[7] = redlineX; }
+		if (redlineY !== parameterData[8] && redlineY > 0) { parameterData[8] = redlineY; }
+		if (redlineZ !== parameterData[9] && redlineZ > 0) { parameterData[9] = redlineZ; }
+
+		document.getElementById("set-parameters-window").innerHTML = "Profile Loaded";
+		document.getElementById("parameter-input-submit-button").innerHTML = "Run Program";
+		console.log(parameterData);
+		console.log(fileContents);
+		sessionStorage.setItem("UserChoices", parameterData);
+		console.log(sessionStorage);
+		console.log(localStorage);
+
+		$('#run-program-button').on('click', function() {
+			movementXyzFull(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[3], 
+				parameterData[4], parameterData[5], 
+				parameterData[6], parameterData[7], 
+				parameterData[8], parameterData[9]);	
+			orientation(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[3], 
+				parameterData[4], parameterData[5], 
+				parameterData[6]);				
+			steeringWheelModel(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[3], 
+				parameterData[4], parameterData[5], 
+				parameterData[6], parameterData[7]); 
+			carModelFromBack(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[3], 
+				parameterData[4], parameterData[5], 
+				parameterData[6], parameterData[7], 
+				parameterData[8], parameterData[9]);
+
+			$('.hide-this').toggle('hide');
+			$('.hide-then-show').show('.hide-then-show');
+			$('video').toggle('show');
+			setTimeout(function() { 
+				$('video').get(0).play()
+			}, 1600);
+		});
+	});
+	
+	$('#show-all-data-button').on('click', function() {
+		movementXyzFull(dataDownFlagstaff1, 0, 18000, 60,60,2, 1, 3,1,15);
+		orientation(dataDownFlagstaff1, 0, 18000, 60,60,2, 1);
+		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 2);
+		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60,60,2, 1, 3,1,15 );
+		warningMessages(dataDownFlagstaff1, 0, 18000, 60,60,2, 1, 3,1,15); 
+		$('.hide-this').toggle('hide');
+		$('.hide-then-show').show('.hide-then-show');
+		$('video').toggle('show');
+		setTimeout(function() { 
+			$('video').get(0).play()
+		}, 1700);
+	});
+
+	$('#car-model-back-button').on('click', function() {
+		$('datacontent').hide()
+		$('carmodelback').show();
+		carModelFromBack2(dataDownFlagstaff1, 1, 18000, 1, .1*g);
+	});
+
+	$('#wheel-function-button').on('click', function() {
+		steeringWheelModel2(dataDownFlagstaff1, 0, 18000, 30, 30, 2, 1, .3*g);
+		$('datacontent').toggle('hide');
+		// $('carmodelback').toggle('hide');
+		// $('carmodeltop').toggle('hide');
+		$('wheelmodel').toggle('show');
+	});
+
+	$('#orientation-function-button').on('click', function() {
+		// console.log("insied testnewcanvas jquery");
+		orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
+	});
+
+	$('#car-model-top-button').on('click', function() {
+		carModelFromTop(dataDownFlagstaff1, 1000, 18000, 60, 60, 2, 2, .3*g);
+		$('datacontent').hide();
+		$('carmodeltop').show();
+	});
+
+	$('#location-route-function-button').on('click', function() {
+		locationAndRouteModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
+	});
+
+	$('#movement-xy-1point').on('click', function() {
+		movementXy1Point(data5MileDownFullSet, 0101, 15000, 500, 400, 20, 1, 10);//IPAD?
+		// accelXy1pt(dataCanyonDown, 9000, 15000, 300, 300, 1, 1);
+		// accelXy1pt(dataStandDrive, 0101, 15000, 300, 300, 20, 1, .7);//VIDEO ON DESKTOP
+	});
+
+	$('#report-button').on('click', function() {
+		// forceXyzTimeXyz(dataSpin3, 900, 2900, 500, 500, 500, 1, 1);
+		forceXyzForReport(dataDownFlagstaff1, 0, 10000, 200, 200, 200, 1, 1);
+	});
 
 
 });

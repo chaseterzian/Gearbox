@@ -1,33 +1,16 @@
 $(document).ready(function() {
-// require("./app.js");
-// require("../data/initSpin1.js");
-// require("../data/initSpin2.js");
-// require("../data/initSpin3.js");
-// require("../data/initRunIndoor.js");
-// require("../data/initSwing.js");
-// require("../data/secAccelAndLeft.js");
-// require("../data/secAccelBrake.js");
-// require("../data/secCanyonDown.js");
-// require("../data/secCanyonUp.js");
-// require("../data/secFiveMileDown.js");
-// require("../data/secFiveMileUp.js");
-// require("../data/secToClass.js");
-// $(window).load(function() {
-// });
-// $(window).load(function() {
-// });
-// $(window).load(function() {
-// });
-$(window).load(function() {
-	$('reportcontent').hide();
-	$('carmodeltop').hide();
-	$('carmodelback').hide();
-	$('wheelmodel').hide();
-	$('#run-program-button').hide();
-});
-	$("form").on("submit", function() {//DOES NOT WORK YET
-		// debugger;
+
+
+	$(window).load(function() {
+		$('reportcontent').hide();
+		$('carmodeltop').hide();
+		$('carmodelback').hide();
+		$('wheelmodel').hide();
+		$('#run-program-button').hide();
 	});
+	// $("form").on("submit", function() {//DOES NOT WORK YET
+	// 	// debugger;
+	// });
 	$('#freeze-button').on('click', function() {
 		alert("DATA FREEZE, IT'S COLD IN HERE");
 		$('video').each(this.pause());
@@ -74,19 +57,6 @@ $(window).load(function() {
 		$('.home').toggle('hide');
 	});
 	$('#parameter-input-fields').css('text-align', 'right');
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
