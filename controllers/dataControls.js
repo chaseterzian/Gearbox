@@ -33,9 +33,6 @@ $(document).ready(function() {
 	$('#testing-area').on('click', function() {
 		$('#testing-area').css("background-color", "red");
 	});
-	// $('#test-functions-button').on('click', function() {
-	// 	graphicsFunctionOne(data5MileDown, 101, 15000, 5000, 1);
-	// });
 	$('#test-functions').on('click', function() {
 		graphicsFunctionOne(data5MileDown, 101, 15000, 5000, 1);
 	});
