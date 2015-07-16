@@ -592,7 +592,7 @@ $(document).ready(function() {
 
 	$('form').on('submit', function(e) {
 		e.preventDefault();
-		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 15, 50];//
+		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 15];//
 		var fileContents = [];
 		$('#run-program-button').show();
 		
@@ -625,24 +625,32 @@ $(document).ready(function() {
 		console.log(localStorage);
 
 		$('#run-program-button').on('click', function() {
-			movementXyzFull(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6], parameterData[7], 
-				parameterData[8], parameterData[9]);	
-			orientation(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6]);				
 			steeringWheelModel(parameterData[0], parameterData[1], 
 				parameterData[2], parameterData[3], 
 				parameterData[4], parameterData[5], 
-				parameterData[6], parameterData[7]); 
+				parameterData[6]); 
 			carModelFromBack(parameterData[0], parameterData[1], 
 				parameterData[2], parameterData[3], 
 				parameterData[4], parameterData[5], 
 				parameterData[6], parameterData[7], 
 				parameterData[8], parameterData[9]);
+			orientation(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[6]);				
+			warningMessages(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[6],  
+				parameterData[7], parameterData[8], 
+				parameterData[9]);	
+			carMovementAndPositionVisuals(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[3], 
+				parameterData[4], parameterData[5], 
+				parameterData[6], parameterData[7], 
+				parameterData[8], parameterData[9]);
+			liveDataPrintOut(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[6]);				
+			carMovementInWords(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[6],  
+				parameterData[7], parameterData[8], 
+				parameterData[9]);	
 
 			$('.hide-this').toggle('hide');
 			$('.hide-then-show').show('.hide-then-show');
