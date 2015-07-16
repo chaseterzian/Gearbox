@@ -1,5 +1,4 @@
 g = 9.81;
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 function showAllData(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) { 
 		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1);
@@ -232,8 +231,6 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 				// ctx.beginPath(); ctx.arc(0, 0, 611, 611, Math.PI, true); ctx.stroke(); ctx.closePath();
 
 				ctx.lineWidth = 1;
-				// if (data[start][0] >= redlineX || data[start][0] < -redlineX) { ctx.strokeStyle=("red"); }
-				// if (data[start][1] >= redlineY || data[start][1] < -redlineY) { ctx.strokeStyle=("red"); }
 				if (data[start][2] >= redlineZ || data[start][2] < -redlineZ) { ctx.strokeStyle=("red"); }
 				else {ctx.strokeStyle=("black");}
 				if (data[start][2] > 1) { 
@@ -247,7 +244,6 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 				else {ctx.strokeStyle=("black");}
 				if (data[start][2] > 1) {
 					ctx.beginPath(); ctx.arc(0, 0, 1+data[start][2]*multiZ, 1+data[start][2]*multiZ, Math.PI, true); ctx.stroke();//Z-CIRCLE
-					// ctx.beginPath(); ctx.arc(0, 0, 6+data[start][2]*multiZ, 6+data[start][2]*multiZ, Math.PI, true); ctx.stroke();
 				}
 
 				if (data[start][0] >= redlineX || data[start][0] < -redlineX) { ctx.fillStyle=("red"); }
@@ -290,28 +286,28 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 					ctx.beginPath(); ctx.lineTo(xPoints[i],yPoints[i]); ctx.lineTo(xPoints[i+1],yPoints[i+1]); ctx.stroke(); ctx.closePath();
 				}//GRID FOR XYZ MODEL
 
-				var xPoints = [-400,-400,-400,-400,-400,-400,-400,-400,-400,-400,400,400,400,400,400,400,400,400,400,400];//ROAD VISUAL
-				var yPoints = [-250,-350,-50,-150,50,150,50,150,250,350,-250,-350,-50,-150,50,150,50,150,250,350];
-				ctx.lineWidth = 5;
-				if (data[start][27] < 1.0) { 
-					for (var i=0; i<xPoints.length; i=i+2) { 
-						ctx.beginPath(); ctx.lineTo(xPoints[i],yPoints[i]); ctx.lineTo(xPoints[i+1],yPoints[i+1]); ctx.stroke(); ctx.closePath();
-					}
-				} else { 
-					if (start%2 === 0) { 
-						var xPoints2  = [-400,-400,-400,-400,-400,-400,400,400,400,400,400,400];
-						var yPoints2 = [-150,-250,50,-50,150,250,-150,-250,50,-50,150,250];
-						for (var i=0; i<xPoints.length; i=i+2) { 
-							ctx.beginPath(); ctx.lineTo(xPoints2[i],yPoints2[i]); ctx.lineTo(xPoints2[i+1],yPoints2[i+1]); ctx.stroke(); ctx.closePath();
-						}
-					} else { 
-						var xPoints3  = [-400,-400,-400,-400,-400,-400,-400,-400,-400,-400,400,400,400,400,400,400,400,400,400,400];
-						var yPoints3 = [-250,-350,-50,-150,50,150,50,150,250,350,-250,-350,-50,-150,50,150,50,150,250,350];
-						for (var i=0; i<xPoints.length; i=i+2) { 
-							ctx.beginPath(); ctx.lineTo(xPoints3[i],yPoints3[i]); ctx.lineTo(xPoints3[i+1],yPoints3[i+1]); ctx.stroke(); ctx.closePath();
-						}
-					}
-				}//ROAD VISUAL
+				// var xPoints = [-400,-400,-400,-400,-400,-400,-400,-400,-400,-400,400,400,400,400,400,400,400,400,400,400];//ROAD VISUAL
+				// var yPoints = [-250,-350,-50,-150,50,150,50,150,250,350,-250,-350,-50,-150,50,150,50,150,250,350];
+				// ctx.lineWidth = 5;
+				// if (data[start][27] < 1.0) { 
+				// 	for (var i=0; i<xPoints.length; i=i+2) { 
+				// 		ctx.beginPath(); ctx.lineTo(xPoints[i],yPoints[i]); ctx.lineTo(xPoints[i+1],yPoints[i+1]); ctx.stroke(); ctx.closePath();
+				// 	}
+				// } else { 
+				// 	if (start%2 === 0) { 
+				// 		var xPoints2  = [-400,-400,-400,-400,-400,-400,400,400,400,400,400,400];
+				// 		var yPoints2 = [-150,-250,50,-50,150,250,-150,-250,50,-50,150,250];
+				// 		for (var i=0; i<xPoints.length; i=i+2) { 
+				// 			ctx.beginPath(); ctx.lineTo(xPoints2[i],yPoints2[i]); ctx.lineTo(xPoints2[i+1],yPoints2[i+1]); ctx.stroke(); ctx.closePath();
+				// 		}
+				// 	} else { 
+				// 		var xPoints3  = [-400,-400,-400,-400,-400,-400,-400,-400,-400,-400,400,400,400,400,400,400,400,400,400,400];
+				// 		var yPoints3 = [-250,-350,-50,-150,50,150,50,150,250,350,-250,-350,-50,-150,50,150,50,150,250,350];
+				// 		for (var i=0; i<xPoints.length; i=i+2) { 
+				// 			ctx.beginPath(); ctx.lineTo(xPoints3[i],yPoints3[i]); ctx.lineTo(xPoints3[i+1],yPoints3[i+1]); ctx.stroke(); ctx.closePath();
+				// 		}
+				// 	}
+				// }//ROAD VISUAL
 
 				ctx.strokeStyle = 'black';//CAR TOP VIEW
 				var pointsX = [-100,100,-100,-35,35,100,-35,-25,35,25,-150,-100,150,100,-150,-150,150,150,-150,-130,
@@ -563,148 +559,3 @@ function highestAllAxesWithTime(data) {//consoleXYZ with time
 	}
 	return "Max: " + dataXYZ[0] + " /// " + dataXYZ[1] + " /// " + dataXYZ[2] + " /// ";
 }
-/////////////////////////////////////////////////////////////////////////////
-$(document).ready(function() {
-
-	$('#show-all-data-button').on('click', function() {
-		$('.hide-this').toggle('hide');
-		$('.hide-then-show').show('.hide-then-show');
-		$('video').toggle('show');
-		setTimeout(function() { 
-			$('video').get(0).play()
-		}, 1700);
-
-		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1);
-		// 0,1,2,3,4,5,6
-		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
-		// 0,1,2,3,4,5,6,7,8,9
-		orientation(dataDownFlagstaff1, 0, 18000, 1);
-		// 0,1,2,6
-		warningMessages(dataDownFlagstaff1, 0, 18000, 1, 5, 5, 15);
-		// 0,1,2,6,7,8,9
-		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
-		// 0,1,2,3,4,5,6,7,8,9
-		liveDataPrintOut(dataDownFlagstaff1, 0, 18000, 1);
-		// 0,1,2,6
-		carMovementInWords(dataDownFlagstaff1, 0, 18000, 1, 0, 0, 0);
-		// 0,1,2,6,7,8,9
-	});
-
-	$('form').on('submit', function(e) {
-		e.preventDefault();
-		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 15];//
-		var fileContents = [];
-		$('#run-program-button').show();
-		
-		var startInput=parseInt(document.getElementById('testing-input-start-point').value);
-		var endInput=parseInt(document.getElementById('testing-input-end-point').value);
-		var multiX=parseInt(document.getElementById('testing-input-multix').value);
-		var multiY=parseInt(document.getElementById('testing-input-multiy').value);
-		var multiZ=parseInt(document.getElementById('testing-input-multiz').value);
-		var dataPoints=parseInt(document.getElementById('testing-input-data-points').value);
-		var redlineX=parseInt(document.getElementById('testing-input-redline-x').value);
-		var redlineY=parseInt(document.getElementById('testing-input-redline-y').value);
-		var redlineZ=parseInt(document.getElementById('testing-input-redline-z').value);
-		fileContents.push(document.getElementById('testing-input-file-contents').value);
-		if (startInput !== parameterData[1] && startInput > 0) { parameterData[1] = startInput; }
-		if (endInput !== parameterData[2] && endInput > 0) { parameterData[2] = endInput; }
-		if (multiX !== parameterData[3] && multiX > 0) { parameterData[3] = multiX; }
-		if (multiY !== parameterData[4] && multiY > 0) { parameterData[4] = multiY; }
-		if (multiZ !== parameterData[5] && multiZ > 0) { parameterData[5] = multiZ; }
-		if (dataPoints !== parameterData[6] && dataPoints > 0) { parameterData[6] = dataPoints; }
-		if (redlineX !== parameterData[7] && redlineX > 0) { parameterData[7] = redlineX; }
-		if (redlineY !== parameterData[8] && redlineY > 0) { parameterData[8] = redlineY; }
-		if (redlineZ !== parameterData[9] && redlineZ > 0) { parameterData[9] = redlineZ; }
-
-		document.getElementById("set-parameters-window").innerHTML = "Profile Loaded";
-		document.getElementById("parameter-input-submit-button").innerHTML = "Run Program";
-		console.log(parameterData);
-		console.log(fileContents);
-		sessionStorage.setItem("UserChoices", parameterData);
-		console.log(sessionStorage);
-		console.log(localStorage);
-
-		$('#run-program-button').on('click', function() {
-			steeringWheelModel(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6]); 
-			carModelFromBack(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6], parameterData[7], 
-				parameterData[8], parameterData[9]);
-			orientation(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[6]);				
-			warningMessages(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[6],  
-				parameterData[7], parameterData[8], 
-				parameterData[9]);	
-			carMovementAndPositionVisuals(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[3], 
-				parameterData[4], parameterData[5], 
-				parameterData[6], parameterData[7], 
-				parameterData[8], parameterData[9]);
-			liveDataPrintOut(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[6]);				
-			carMovementInWords(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[6],  
-				parameterData[7], parameterData[8], 
-				parameterData[9]);	
-
-			$('.hide-this').toggle('hide');
-			$('.hide-then-show').show('.hide-then-show');
-			$('video').toggle('show');
-			setTimeout(function() { 
-				$('video').get(0).play()
-			}, 1600);
-		});
-	});
-
-	$('#car-model-back-button').on('click', function() {
-		$('.hide-this').toggle('hide');
-		$('video').toggle('show');
-		setTimeout(function() { 
-			$('video').get(0).play()
-		}, 1700);
-		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
-		$('carmodelbackcontent').show();
-		$('#col-carmodelback').show();
-	});
-
-	$('#wheel-function-button').on('click', function() {
-		steeringWheelModel2(dataDownFlagstaff1, 0, 18000, 30, 30, 2, 1, .3*g);
-		$('datacontent').toggle('hide');
-		// $('carmodelback').toggle('hide');
-		// $('carmodeltop').toggle('hide');
-		$('wheelmodel').toggle('show');
-	});
-
-	$('#orientation-function-button').on('click', function() {
-		// console.log("insied testnewcanvas jquery");
-		orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
-	});
-
-	$('#car-model-top-button').on('click', function() {
-		carModelFromTop(dataDownFlagstaff1, 1000, 18000, 60, 60, 2, 2, .3*g);
-		$('datacontent').hide();
-		$('carmodeltop').show();
-	});
-
-	$('#location-route-function-button').on('click', function() {
-		locationAndRouteModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, .3*g);
-	});
-
-	$('#movement-xy-1point').on('click', function() {
-		movementXy1Point(data5MileDownFullSet, 0101, 15000, 500, 400, 20, 1, 10);//IPAD?
-		// accelXy1pt(dataCanyonDown, 9000, 15000, 300, 300, 1, 1);
-		// accelXy1pt(dataStandDrive, 0101, 15000, 300, 300, 20, 1, .7);//VIDEO ON DESKTOP
-	});
-
-	$('#report-button').on('click', function() {
-		// forceXyzTimeXyz(dataSpin3, 900, 2900, 500, 500, 500, 1, 1);
-		forceXyzForReport(dataDownFlagstaff1, 0, 10000, 200, 200, 200, 1, 1);
-	});
-
-
-});

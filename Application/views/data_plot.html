@@ -46,31 +46,15 @@
 		<div class='col-half hide-then-show'></div>
 
 		<div class='col-2 button-panel-right' id='button-panel'>
-						<div><button class='btn' id='report-button'>Show My Report</button></div>
-						<div><button class='btn' id='freeze-button'>Pause Stream</button></div>
-						<div><button class='btn' id='reset-button'>Reset</button></div>
-					<h4 class="hide-this"/>
-					<div><button class='btn' id='show-all-data-button'>Demo All Data</button></div>
-					<div><button class='btn' id='car-model-back-button'>Car Model From Back</button></div>
-					<div><button class='btn' id='car-model-top-button'>Car Model From Top</button></div>
-					<div><button class='btn' id='wheel-function-button'>Steering Wheel</button></div>
-					<div><button class='btn' id='orientation-function-button'>Orientation</button></div>
-					<div><button class='btn' id='location-route-function-button'>Location</button></div>
-				</h4>
-				<hr>
+			<input type="file" id="files" class='btn' name="file"></input>
+  		<button class='btn'>Show File</button>
+			<hr>
+			<div><button class='btn hide-this' id='show-all-data-button'>Demo All Data</button></div>
+			<div><button class='btn' id='report-button'>Show My Report</button></div>
+			<div><button class='btn' id='freeze-button'>Pause Stream</button></div>
+			<div><button class='btn' id='reset-button'>Reset</button></div>
+			<span class="readBytesButtons"></span>
 
-			<style>
-  			#byte_content {
-    			margin: 5px 0;
-    			max-height: 100px;
-  			}
-  			#byte_range { margin-top: 5px; }
-			</style>
-
-				<input type="file" id="files" name="file" /> Read bytes: 
-				<span class="readBytesButtons">
-  			<button>entire file</button>
-				</span>
 				<div id="byte_range"></div>
 				<div id="byte_content"></div>
 
@@ -172,33 +156,33 @@
 			</canvas>
 		</div>
 
-
-
-
 </datacontent>
 
 
-	  <reportcontent>
-		<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
-		<button class='btn'>Export Data</button>
-		<hr>
-		<div class='col-12'>
-			<div id='all-errors-switching'></div>
-			<div id="text-div-crash" class="space"></div>
-			<div id="text-div-airborne" class="space"></div>
-			<div id="text-div-bump" class="space"></div>
-			<div id="sound-warning-message" class="space"></div>
-			<div id="text-div-braking-and-cornering" class="space"></div>
-			<div id="text-div-acceleration-and-cornering" class="space"></div>
-			<div id="text-div-hard-left" class="space"></div>
-			<div id="text-div-hard-right" class="space"></div>	
-			<div id="text-div-heavy-braking" class="space"></div>
-			<div id="text-div-heavy-acceleration" class="space"></div>
-			<div id="text-div-good-driver" class="space"></div>
-			<b><div class='btn' id="highest-all-axes-window"></div></b>
-		</div>
+<reportcontent>
+	<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
+	<button class='btn'>Export Data</button>
+	<hr>
+	<div class='col-12'>
+		<div id='all-errors-switching'></div>
+		<div id="text-div-crash" class="space"></div>
+		<div id="text-div-airborne" class="space"></div>
+		<div id="text-div-bump" class="space"></div>
+		<div id="sound-warning-message" class="space"></div>
+		<div id="text-div-braking-and-cornering" class="space"></div>
+		<div id="text-div-acceleration-and-cornering" class="space"></div>
+		<div id="text-div-hard-left" class="space"></div>
+		<div id="text-div-hard-right" class="space"></div>	
+		<div id="text-div-heavy-braking" class="space"></div>
+		<div id="text-div-heavy-acceleration" class="space"></div>
+		<div id="text-div-good-driver" class="space"></div>
+		<b><div class='btn' id="highest-all-axes-window"></div></b>
+	</div>
+</reportcontent>
 
-	</reportcontent>
+<instructionscontent>
+	<p>CHECKING INSTRUCTIONS CONTENT</p>
+</instructionscontent>
 
 
 </body>
