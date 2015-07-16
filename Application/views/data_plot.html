@@ -50,7 +50,7 @@
 						<div><button class='btn' id='freeze-button'>Pause Stream</button></div>
 						<div><button class='btn' id='reset-button'>Reset</button></div>
 					<h4 class="hide-this"/>
-					<div><button class='btn' id='show-all-data-button'>Show All Data</button></div>
+					<div><button class='btn' id='show-all-data-button'>Demo All Data</button></div>
 					<div><button class='btn' id='car-model-back-button'>Car Model From Back</button></div>
 					<div><button class='btn' id='car-model-top-button'>Car Model From Top</button></div>
 					<div><button class='btn' id='wheel-function-button'>Steering Wheel</button></div>
@@ -119,15 +119,15 @@
   <div class='center'>
   	<div class='btn center' id='set-parameters-window'>Set Values Below</div>
   	<hr>
-  	<input placeholder='Start Point' type='text' name='name' class='btn param-inputs' id='testing-input-start-point'></input>
-  	<input placeholder='End Point' type='text' name='name' class='btn param-inputs' id='testing-input-end-point'></input>
-  	<input placeholder='Multiply X By' type='text' name='multix' class='btn param-inputs' id='testing-input-multix'></input>
-  	<input placeholder='Multiply Y By' type='text' name='name' class='btn param-inputs' id='testing-input-multiy'></input>
-  	<input placeholder='Multiply Z By' type='text' name='name' class='btn param-inputs' id='testing-input-multiz'></input>
+  	<input placeholder='Start Time' type='text' name='name' class='btn param-inputs' id='testing-input-start-point'></input>
+  	<input placeholder='End Time' type='text' name='name' class='btn param-inputs' id='testing-input-end-point'></input>
+  	<input placeholder='MultiX Visuals' type='text' name='multix' class='btn param-inputs' id='testing-input-multix'></input>
+  	<input placeholder='MultiY Visuals' type='text' name='name' class='btn param-inputs' id='testing-input-multiy'></input>
+  	<input placeholder='MultiZ Visuals' type='text' name='name' class='btn param-inputs' id='testing-input-multiz'></input>
   	<input placeholder='Data Points/Second' type='text' name='name' class='btn param-inputs' id='testing-input-data-points'></input>
-  	<input placeholder='Warning Trip X' type='text' name='name' class='btn param-inputs' id='testing-input-redline-x'></input>
-  	<input placeholder='Warning Trip Y' type='text' name='name' class='btn param-inputs' id='testing-input-redline-y'></input>
-  	<input placeholder='Warning Trip Z' type='text' name='name' class='btn param-inputs' id='testing-input-redline-z'></input>
+  	<input placeholder='Report Trip X' type='text' name='name' class='btn param-inputs' id='testing-input-redline-x'></input>
+  	<input placeholder='Report Trip Y' type='text' name='name' class='btn param-inputs' id='testing-input-redline-y'></input>
+  	<input placeholder='Report Trip Z' type='text' name='name' class='btn param-inputs' id='testing-input-redline-z'></input>
   	<input placeholder='Data Stabilizer' type='text' name='name' class='btn param-inputs' id='testing-input-data-stabilizer'></input>
   	<textarea placeholder='File Contents' type='text-area' name='name' class='btn param-inputs' id='testing-input-file-contents'>
   </textarea>
@@ -152,12 +152,12 @@
 
 <div class="col-12"></div>
 
-	<div class='col-3 hide-then-show'>
+	<div class='col-3 hide-then-show' id='col-carmodelback'>
 			<div id="time-window" class='btn'></div>
 			<div id="sound-level-window" class='btn'></div>
 			<div id="altitude-window" class='btn'></div>
 		<hr>
-		<canvas id="car-model-back">
+		<canvas id="car-model-back" class='col-md-8'>
 		</canvas>
 		<h3>
 			<div id="x-axis-window" class='btn' ></div>
@@ -177,43 +177,8 @@
 
 </datacontent>
 
-<carmodelback>	
-	<div><button class='btn' id='reset-button3'>Reset</button></div>
-	<div class='col-3'></div>
-	<div class='col-6'>
-		<canvas id='car-model-back'>
-		</canvas>
-	</div>
-	<div class='col-3'></div>
-</carmodelback>
 
-	<carmodeltop>
-		<div><button class='btn' id='reset-button2'>Reset</button></div>
-		<div class='col-3'></div>
-		<div class='col-6'>
-			<canvas id='car-model-top'>
-			</canvas>
-		</div>
-		<div class='col-3'></div>
-	</carmodeltop>
-
-
-
-
-	<wheelmodel>
-		<div><button class='btn' id='reset-button3'>Reset</button></div>
-		<div class='col-3'></div>
-		<div class='col-6'>
-			<canvas id='canvas-steering-wheel2'>
-			</canvas>
-		</div>
-		<div class='col-3'></div>
-	</wheelmodel>
-
-
-
-
-	<reportcontent>
+	  <reportcontent>
 		<button class='btn' id='data-page'>Take Me Back To The Testing Area</button>
 		<button class='btn'>Export Data</button>
 		<hr>

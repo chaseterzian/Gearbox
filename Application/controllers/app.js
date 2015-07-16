@@ -662,14 +662,14 @@ $(document).ready(function() {
 	});
 
 	$('#car-model-back-button').on('click', function() {
-		$('carmodelback').toggle('show');
 		$('.hide-this').toggle('hide');
-		// $('.hide-then-show').show('.hide-then-show');
 		$('video').toggle('show');
 		setTimeout(function() { 
 			$('video').get(0).play()
 		}, 1700);
 		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
+		$('carmodelbackcontent').show();
+		$('#col-carmodelback').show();
 	});
 
 	$('#wheel-function-button').on('click', function() {
