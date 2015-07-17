@@ -1,4 +1,10 @@
-Gearbox - Version 0.1
+Gearbox - Version -
+
+WARNING: Chrome tested only
+Clone the app
+Navigate to the 'Gearbox' folder and open
+Double click on the 'Gearbox' Icon to start the app
+See 'Instructions' located at the top right hand side of the 'Testing Area' after you enter the garage
 
 
 Available Sensor Data:
@@ -108,3 +114,5 @@ NaN
 35 - SS_
 
 36 - SSS
+
+(Powered By Android:)
