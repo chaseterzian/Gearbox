@@ -25,23 +25,23 @@ $(document).ready(function() {
 			$('video').get(0).play()
 		}, 1700);
 		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 25);
-		// 0,1,2,3,4,5,6
+		// 0,1,2,3,4,5,6, 10
 		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0, 35);
-		// 0,1,2,3,4,5,6,7,8,9
+		// 0,1,2,3,4,5,6,7,8,9, 10
 		orientation(dataDownFlagstaff1, 0, 18000, 1);
 		// 0,1,2,6
 		warningMessages(dataDownFlagstaff1, 0, 18000, 1, 5, 5, 15);
 		// 0,1,2,6,7,8,9
 		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0, 50);
-		// 0,1,2,3,4,5,6,7,8,9
-		liveDataPrintOut(dataDownFlagstaff1, 0, 18000, 1);
-		// 0,1,2,6
+		// 0,1,2,3,4,5,6,7,8,9,10
+		liveDataPrintOut(dataDownFlagstaff1, 0, 18000, 1, 1);
+		// 0,1,2,6,12
 		carMovementInWords(dataDownFlagstaff1, 0, 18000, 1, 0, 0, 0);
-		// 0,1,2,6,7,8,9
+		// 0,1,2,6,7,8,9,11
 	});
 	$('form').on('submit', function(e) {
 		e.preventDefault();
-		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 15, 40, 1];//
+		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 15, 40, 1, 1];//
 		var fileContents = [];
 		$('#run-program-button').show();
 		
@@ -56,6 +56,7 @@ $(document).ready(function() {
 		var redlineZ=parseInt(document.getElementById('testing-input-redline-z').value);
 		var dataStabilizerVisuals=parseInt(document.getElementById('testing-input-data-stabilizer').value);
 		var dataStabilizerWords=parseInt(document.getElementById('testing-input-words-stabilizer').value);
+		var dataStabilizerData=parseInt(document.getElementById('testing-input-data-stabilizer-data').value);
 		fileContents.push(document.getElementById('testing-input-file-contents').value);
 		if (startInput !== parameterData[1] && startInput > 0) { parameterData[1] = startInput; }
 		if (endInput !== parameterData[2] && endInput > 0) { parameterData[2] = endInput; }
@@ -68,6 +69,7 @@ $(document).ready(function() {
 		if (redlineZ !== parameterData[9] && redlineZ > 0) { parameterData[9] = redlineZ; }
 		if (dataStabilizerVisuals !== parameterData[10] && dataStabilizerVisuals > 0) { parameterData[10] = dataStabilizerVisuals; }
 		if (dataStabilizerWords !== parameterData[11] && dataStabilizerWords > 0) { parameterData[11] = dataStabilizerWords; }
+		if (dataStabilizerData !== parameterData[12] && dataStabilizerData > 0) { parameterData[12] = dataStabilizerData; }
 
 		document.getElementById("set-parameters-window").innerHTML = "Profile Loaded";
 		document.getElementById("parameter-input-submit-button").innerHTML = "Run Program";
@@ -101,7 +103,8 @@ $(document).ready(function() {
 				parameterData[8], parameterData[9],
 				parameterData[10]);
 			liveDataPrintOut(parameterData[0], parameterData[1], 
-				parameterData[2], parameterData[6]);				
+				parameterData[2], parameterData[6],
+				parameterData[12]);				
 			carMovementInWords(parameterData[0], parameterData[1], 
 				parameterData[2], parameterData[6],  
 				parameterData[7], parameterData[8], 

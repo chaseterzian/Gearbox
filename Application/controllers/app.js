@@ -98,11 +98,29 @@ function carMovementInWords(data, start, stop, dropDataPoints, redlineX, redline
 	}
 }		
 /////////////////////////////////////////////////////////////////////////////
-function liveDataPrintOut(data, start, stop, dropDataPoints) { 
+function liveDataPrintOut(data, start, stop, dropDataPoints, dataStabilizeNumber) { 
 	var int = 0;
 	var timer = 0;
+	Math.round10 = function(value, exp) {
+      return decimalAdjust('round', value, exp);
+    };//MDN
+
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 		setTimeout(function () {
+
+			var dataStableX = 0;
+			var dataStableY = 0;
+			var dataStableZ = 0;
+			var incForStable = 0;
+				while (incForStable < dataStabilizeNumber) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+				} 
+				dataStableX = dataStableX/dataStabilizeNumber;
+				dataStableY = dataStableY/dataStabilizeNumber;
+				dataStableZ = dataStableZ/dataStabilizeNumber;
 
 	var speedInMphWindowElem = document.getElementById("speed-in-mph-window");//SO I DONT QUERY THE DOM 100 TIMES PER SECOND
 	// var highestAllAxesWindowELem = document.getElementById("highest-all-axes-window");
@@ -116,11 +134,11 @@ function liveDataPrintOut(data, start, stop, dropDataPoints) {
 		document.getElementById("highest-all-axes-window").innerHTML = highestAllAxesWithTime(data);//MAX FORCE OF ALL DATA AT TIME
 		speedInMphWindowElem.innerHTML = "Speed in MPH: " + data[start][27];
 		timeWindowElem.innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
-		soundLevelWindowElem.innerHTML = "dB Level: " + (data[start][21]-80);
+		soundLevelWindowElem.innerHTML = "dB Level: " + (Math.round( (10*data[start][21])-80 )/10);
 		altitudeWindowElem.innerHTML = "Altitude in ft: " + data[start][24];
-		xAxisWindowElem.innerHTML = "X: " + data[start][0];
-		yAxisWindowElem.innerHTML = "Y: " + data[start][1];
-		zAxisWindowElem.innerHTML = "Z: " + data[start][2];
+		xAxisWindowElem.innerHTML = "X: " + Math.round(100*dataStableX)/100;
+		yAxisWindowElem.innerHTML = "Y: " + Math.round(100*dataStableY)/100;
+		zAxisWindowElem.innerHTML = "Z: " + Math.round(100*dataStableZ)/100;
 		dataPointsWindowElem.innerHTML = "Data Points: " + int;
 
 		start += dropDataPoints;
