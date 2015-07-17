@@ -1,10 +1,14 @@
 Gearbox - in development
+
 WARNING: Chrome tested only
 
 
 Clone the app
+
 Navigate to the 'Gearbox' folder and open
+
 Double click on the 'Gearbox' Icon to start the app
+
 See 'Instructions' located at the top right side of the 'Testing Area' after you enter the garage. For a quick demo, press "Demo All Data" on the left side of the 'Testing Area'
 
 
