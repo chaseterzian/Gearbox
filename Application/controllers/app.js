@@ -53,24 +53,39 @@ function dataStablilizer(data, start, stop) {
 
 }
 ////////////////////////////////////////////////////////////////////////
-function carMovementInWords(data, start, stop, dropDataPoints, redlineX, redlineY, redlineZ) { 
+function carMovementInWords(data, start, stop, dropDataPoints, redlineX, redlineY, redlineZ, wordsStabilizerNumber) { 
 	var int = 0;
 	var timer = 0;
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 		setTimeout(function () {
 
+			var dataStableX = 0;
+			var dataStableY = 0;
+			var dataStableZ = 0;
+			var incForStable = 0;
+				while (incForStable < wordsStabilizerNumber) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+				} 
+				dataStableX = dataStableX/wordsStabilizerNumber;
+				dataStableY = dataStableY/wordsStabilizerNumber;
+				dataStableZ = dataStableZ/wordsStabilizerNumber;
+
 			if(data[start][27] > 0) { 
-				if (data[start][0] > .07*g) { document.getElementById("left-right-straight-window").innerHTML = "Turning Right"; }
-				else if (data[start][0] < -.07*g) { document.getElementById("left-right-straight-window").innerHTML = "Turning Left"; }
+				if (dataStableX > 1) { document.getElementById("left-right-straight-window").innerHTML = "Turning Right"; }
+				else if (dataStableX < -1) { document.getElementById("left-right-straight-window").innerHTML = "Turning Left"; }
 				else { document.getElementById("left-right-straight-window").innerHTML = "Driving Straight"; }
 
 				document.getElementById("and-window").innerHTML = " And "
 
 				if (-data[start][27] > redlineY) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking Hard"; }//Y IS FLIPPED
-				else if (-data[start][1] < -.3*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
-				else if (-data[start][1] < -.07*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating"; }//Y IS FLIPPED
-				else if (-data[start][1] > .07*g) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking"; }//Y IS FLIPPED
+				else if (-dataStableY < -3) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
+				else if (-dataStableY < -.8) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating"; }//Y IS FLIPPED
+				else if (-dataStableY > 1) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking"; }//Y IS FLIPPED
 				else { document.getElementById("braking-accelerating-in-words").innerHTML = "Coasting"; }
+				
 				} else {
 				document.getElementById("left-right-straight-window").innerHTML = "Stopped";
 			}
@@ -432,29 +447,33 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 	}
 }
 /////////////////////////////////////////////////////////////////////////////
-function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints) {
+function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, dataStablilizerNumber) {
 	var canvas = document.getElementById('canvas-wheel');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
 
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 		setTimeout(function () {
-			var dataStable = 1;
-			var countForStable = 0;
-			var incForStable = 1;
-			while (incForStable <= 25) { 
-				dataStable = dataStable + data[start+incForStable][0];
-				incForStable++;
-
-			} 
-			dataStable = dataStable/25;
+			var dataStableX = 0;
+			var dataStableY = 0;
+			var dataStableZ = 0;
+			var incForStable = 0;
+				while (incForStable < dataStablilizerNumber) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+				} 
+				dataStableX = dataStableX/dataStablilizerNumber;
+				dataStableY = dataStableY/dataStablilizerNumber;
+				dataStableZ = dataStableZ/dataStablilizerNumber;
 
 
 			ctx.canvas.width  = window.innerWidth;
 	  		ctx.canvas.height = 800;//window.innerHeight;
 	  		ctx.scale(1,1);
 	  		ctx.translate(canvas.width/2, canvas.height/2);
-	  		ctx.rotate(dataStable/2);
+	  		ctx.rotate(dataStableX/2);
 	  		ctx.strokeStyle="black";
 	  		ctx.lineWidth = 3;
 					ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();//COMPASS

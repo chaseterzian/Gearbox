@@ -112,7 +112,9 @@
   	<input placeholder='Report Trip X' type='text' name='name' class='btn param-inputs' id='testing-input-redline-x'></input>
   	<input placeholder='Report Trip Y' type='text' name='name' class='btn param-inputs' id='testing-input-redline-y'></input>
   	<input placeholder='Report Trip Z' type='text' name='name' class='btn param-inputs' id='testing-input-redline-z'></input>
-  	<input placeholder='Data Stabilizer' type='text' name='name' class='btn param-inputs' id='testing-input-data-stabilizer'></input>
+  	<input placeholder='Stabilizer Visuals' type='text' name='name' class='btn param-inputs' id='testing-input-data-stabilizer'></input>
+  	<input placeholder='Stabilizer Words' type='text' name='name' class='btn param-inputs' id='testing-input-words-stabilizer'></input>
+
   	<textarea placeholder='File Contents' type='text-area' name='name' class='btn param-inputs' id='testing-input-file-contents'>
   </textarea>
   	<input type='submit' value='Load Profile' class='btn' id='parameter-input-submit-button'></input>
@@ -207,7 +209,7 @@
 		<p><input class='btn' placeholder='Report Trip Z'></input>
 		Report Trip Z: The number (N) entered represents N meters/second^2.  When the force in the Z direction (bumps and dips) exceeds this number, the data will be dynamically printed in the "Show My Report" section</p>
 		<p><input class='btn' placeholder='Data Stabilizer'></input>
-		<p>Data Stabilizer: The sensors on your smartphone are extremely sensitive, and as a result the different respresentations of the data can appear to be very jerky, and in some cases, difficult to interpret.  The higher the number entered into this field, the more stable the respresentations of the data become.  Although a higher number will produce 'cleaner' results, the data will be slightly less accurate, and will become more of an average as the number increases.  Recommend 25-50</p>
+		<p>Data Stabilizer: The sensors on your smartphone are extremely sensitive, and as a result the different respresentations of the data can appear to be very jerky, and in some cases, difficult to interpret.  The higher the number entered into this field, the more stable the respresentations of the data become.  Although a higher number will produce 'cleaner' results, the data will be slightly less accurate, and will become more of an average as the number increases.  Recommend less than 50</p>
 		<p><input value='Load Profile' class='btn'></input>
 		Push this button after entering your custom parameters.  If any fields are left blank, they will load the default values so you may pick and choose which custom parameters you would like to test with</p>
   		<p><button class='btn center' id='run-program-button'>Run Program</button>
