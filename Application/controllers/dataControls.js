@@ -15,9 +15,9 @@ $(document).ready(function() {
 	$('.hide-then-show').hide('.hide-then-show');
 
 	//POST PAGE LOAD
-	$('#some-test-button').on('click', function() {
-		reduce the amount of function called by loops OKAY
-	});
+	// $('#some-test-button').on('click', function() {
+	// 	reduce the amount of function called by loops OKAY
+	// });
 
 
 
