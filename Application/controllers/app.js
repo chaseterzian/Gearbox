@@ -362,158 +362,8 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 		}, 1000+data[ii][31]*dropDataPoints);//MS
 	}
 }
-// function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) { 
-// 	var canvas = document.getElementById('canvas');
-// 	var ctx = canvas.getContext('2d');
-// 	var int = 0;
-// 	var timer = 0;
-// 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-// 		setTimeout(function () {
-
-// 			var dataStableX = 1;
-// 			var dataStableY = 1;
-// 			var dataStableZ = 1;
-// 			var incForStable = 1;
-// 				while (incForStable <= 50) { 
-// 					dataStableX = dataStableX + data[start+incForStable][0];
-// 					dataStableY = dataStableY + data[start+incForStable][1];
-// 					dataStableZ = dataStableZ + data[start+incForStable][2];
-// 					incForStable++;
-// 				} 
-// 				dataStableX = dataStableX/50;
-// 				dataStableY = dataStableY/50;
-// 				dataStableZ = dataStableZ/50;
-
-// 			ctx.canvas.width  = window.innerWidth;
-// 			ctx.canvas.height = window.innerHeight;
-// 			ctx.scale(1,1);
-// 			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-// 			ctx.rotate(dataStableX/6);
-	
-// 				// ctx.lineWidth = 1;				
-// 				// ctx.beginPath(); ctx.arc(0, 0, 600, 600, Math.PI, true); ctx.stroke(); ctx.closePath();//LARGE CIRCLE
-// 				// ctx.beginPath(); ctx.arc(0, 0, 603, 603, Math.PI, true); ctx.stroke(); ctx.closePath();
-// 				// ctx.beginPath(); ctx.arc(0, 0, 606, 606, Math.PI, true); ctx.stroke(); ctx.closePath();
-// 				// ctx.beginPath(); ctx.arc(0, 0, 609, 609, Math.PI, true); ctx.stroke(); ctx.closePath();
-// 				// ctx.beginPath(); ctx.arc(0, 0, 611, 611, Math.PI, true); ctx.stroke(); ctx.closePath();
-
-// 				ctx.lineWidth = 1;
-// 				if (data[start][2] >= redlineZ || data[start][2] < -redlineZ) { ctx.strokeStyle=("red"); }
-// 				else {ctx.strokeStyle=("black");}
-// 				if (data[start][2] > 1) { 
-// 					ctx.beginPath(); ctx.arc(0, 0, 1+dataStableZ*multiZ*12, 5+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();//LARGE Z-CIRCLE
-// 					ctx.beginPath(); ctx.arc(0, 0, 6+dataStableZ*multiZ*12, 6+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();
-// 					ctx.beginPath(); ctx.arc(0, 0, 11+dataStableZ*multiZ*12, 11+dataStableZ*multiZ*12, Math.PI, true); ctx.stroke();
-// 				}
-
-// 				if (data[start][0] >= redlineX || data[start][0] < -redlineX) { ctx.fillStyle=("red"); }
-// 				if (data[start][1] >= redlineY || data[start][1] < -redlineY) { ctx.fillStyle=("red"); }
-// 				else {ctx.strokeStyle=("black");}
-// 				if (data[start][2] > 1) {
-// 					ctx.beginPath(); ctx.arc(0, 0, 1+data[start][2]*multiZ, 1+data[start][2]*multiZ, Math.PI, true); ctx.stroke();//Z-CIRCLE
-// 				}
-
-// 				if (data[start][0] >= redlineX || data[start][0] < -redlineX) { ctx.fillStyle=("red"); }
-// 				else {ctx.fillStyle=("black");}
-// 					ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,20,20, Math.PI, true); ctx.fill();//G BALL X
-// 					ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,25,25, Math.PI, true); ctx.stroke();
-
-// 					if (data[start][1] >= redlineY || data[start][1] < -redlineY) { ctx.fillStyle=("red"); }
-// 					else {ctx.fillStyle=("black");}
-// 					ctx.beginPath(); ctx.arc(0, dataStableY*multiY,20,20, Math.PI, true); ctx.fill();//G BALL Y
-// 					ctx.beginPath(); ctx.arc(0, dataStableY*multiY,25,25, Math.PI, true); ctx.stroke();
-// 					ctx.lineWidth = 1;
-
-// 				// if (data[start][0] >= redline || data[start][0] < -redline) { ctx.strokeStyle=("red"); }
-// 				// if (data[start][1] >= redline || data[start][1] < -redline) { ctx.strokeStyle=("red"); }
-// 				// else {ctx.strokeStyle=("black");}
-// 				// ctx.lineWidth = 1;
-// 				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-300); ctx.lineTo(-data[start][1]*multiY,-300); ctx.stroke(); ctx.closePath();//EXPANDING Y
-// 				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-297); ctx.lineTo(-data[start][1]*multiY,-297); ctx.stroke(); ctx.closePath();//EXPANDING Y
-// 				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-294); ctx.lineTo(-data[start][1]*multiY,-294); ctx.stroke(); ctx.closePath();//EXPANDING Y
-// 				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-291); ctx.lineTo(-data[start][1]*multiY,-291); ctx.stroke(); ctx.closePath();//EXPANDING Y
-// 				// ctx.beginPath(); ctx.lineTo(data[start][1]*multiY,-288); ctx.lineTo(-data[start][1]*multiY,-288); ctx.stroke(); ctx.closePath();//EXPANDING Y
-
-// 				if (data[start][0] >= 0) {
-// 					ctx.beginPath(); ctx.lineTo(-410, data[start][0]*multiX); ctx.lineTo(-410, -data[start][0]*multiX);//EXPANDING XL
-// 					ctx.beginPath(); ctx.lineTo(-400, data[start][0]*multiX); ctx.lineTo(-400, -data[start][0]*multiX);
-// 					ctx.stroke(); ctx.closePath();
-// 				}	else {
-// 					ctx.beginPath(); ctx.lineTo(400, -data[start][0]*multiX); ctx.lineTo(400, data[start][0]*multiX);//EXPANDING XR
-// 					ctx.beginPath(); ctx.lineTo(410, -data[start][0]*multiX); ctx.lineTo(410, data[start][0]*multiX);
-// 					ctx.stroke(); ctx.closePath();
-// 				}
-
-// 				var xPoints = [600,-600,600,-600,600,-600,600,-600,600,-600,-6,-6,-3,-3,0,0,3,3,6,6];//GRID FOR XYZ MODEL
-// 				var yPoints = [-6,-6,-3,-3,0,0,3,3,6,6,400,-300,400,-300,400,-300,400,-300,400,-300];
-// 				// ctx.lineWidth = 5;
-// 				ctx.lineWidth = 1;
-// 				ctx.strokeStyle = "black";
-// 				for (var i=0; i<xPoints.length; i=i+2) { 
-// 					ctx.beginPath(); ctx.lineTo(xPoints[i],yPoints[i]); ctx.lineTo(xPoints[i+1],yPoints[i+1]); ctx.stroke(); ctx.closePath();
-// 				}//GRID FOR XYZ MODEL
-
-// 				// var xPoints = [-400,-400,-400,-400,-400,-400,-400,-400,-400,-400,400,400,400,400,400,400,400,400,400,400];//ROAD VISUAL
-// 				// var yPoints = [-250,-350,-50,-150,50,150,50,150,250,350,-250,-350,-50,-150,50,150,50,150,250,350];
-// 				// ctx.lineWidth = 5;
-// 				// if (data[start][27] < 1.0) { 
-// 				// 	for (var i=0; i<xPoints.length; i=i+2) { 
-// 				// 		ctx.beginPath(); ctx.lineTo(xPoints[i],yPoints[i]); ctx.lineTo(xPoints[i+1],yPoints[i+1]); ctx.stroke(); ctx.closePath();
-// 				// 	}
-// 				// } else { 
-// 				// 	if (start%2 === 0) { 
-// 				// 		var xPoints2  = [-400,-400,-400,-400,-400,-400,400,400,400,400,400,400];
-// 				// 		var yPoints2 = [-150,-250,50,-50,150,250,-150,-250,50,-50,150,250];
-// 				// 		for (var i=0; i<xPoints.length; i=i+2) { 
-// 				// 			ctx.beginPath(); ctx.lineTo(xPoints2[i],yPoints2[i]); ctx.lineTo(xPoints2[i+1],yPoints2[i+1]); ctx.stroke(); ctx.closePath();
-// 				// 		}
-// 				// 	} else { 
-// 				// 		var xPoints3  = [-400,-400,-400,-400,-400,-400,-400,-400,-400,-400,400,400,400,400,400,400,400,400,400,400];
-// 				// 		var yPoints3 = [-250,-350,-50,-150,50,150,50,150,250,350,-250,-350,-50,-150,50,150,50,150,250,350];
-// 				// 		for (var i=0; i<xPoints.length; i=i+2) { 
-// 				// 			ctx.beginPath(); ctx.lineTo(xPoints3[i],yPoints3[i]); ctx.lineTo(xPoints3[i+1],yPoints3[i+1]); ctx.stroke(); ctx.closePath();
-// 				// 		}
-// 				// 	}
-// 				// }//ROAD VISUAL
-
-// 				ctx.strokeStyle = 'black';//CAR TOP VIEW
-// 				var pointsX = [-100,100,-100,-35,35,100,-35,-25,35,25,-150,-100,150,100,-150,-150,150,150,-150,-130,
-// 											150,130,-150,150,-130,-35,130,35,-35,35,-35,-35,35,35,-105,-105,105,105,-105,-60,
-// 											105,60,-150,-105,-150,-105,-150,-105,150,105,150,105,150,105,-120,-120,-120,-120,120,120,
-// 											120,120,-60,-60,-30,-30,0,0,30,30,60,60,-115,-60,-100,-50,-100,-100,-65,-65,
-// 									  	-60,-50,115,60,100,50,100,100,65,65,60,50,-100,100,-85,85,-100,-85,100,85,
-// 											-85,85,-100,100,-85,-100,85,100];
-// 				var pointsY = [-200,-200,-200,-200,-200,-200,-200,-190,-200,-190,-100,-200,-100,-200,310,-100,310,-100,310,350,
-// 											310,350,310,310,350,350,350,350,330,330,330,350,330,350,280,-77,280,-77,-77,-180,
-// 											-77,-180,0,30,100,120,200,210,0,30,100,120,200,210,85,100,175,190,85,100,
-// 											175,190,48,155,45,152,40,160,45,152,48,155,290,290,310,310,290,310,290,310,
-// 											290,310,290,290,310,310,290,310,290,310,290,310,-40,-40,30,30,-40,30,-40,30,
-// 											170,170,260,260,170,260,170,260];
-// 				var wheels = [0,30,150,0,  0,-40,150,0,  -140,-50,33,33,  -140,-50,30,30,  140,-50,33,33,  140,-50,30,30, 
-// 										-140,275,33,33,  -140,275,30,30,  140,275,33,33,  140,175,30,30,  
-// 										-140,-50,32,32,  140,-50,32,32,  -140,275,32,32, 140,275,32,32];
-// 					for (var i=0; i<pointsX.length; i=i+2){
-// 						if(i>53 && i<=61) { ctx.lineWidth = 4; }
-// 						if(i>61 && i<=71) { ctx.lineWidth = 1; }
-// 						if(i>71 && i<=91) { ctx.lineWidth = 2; }
-// 						if(i>91 && i<=107) { ctx.lineWidth = 5; }
-// 						ctx.beginPath(); ctx.lineTo(pointsX[i], pointsY[i]); ctx.lineTo(pointsX[i+1], pointsY[i+1]); ctx.stroke(); ctx.closePath();//FRONT BUMPER						
-// 					}
-// 					for (var i=0; i<wheels.length; i=i+4) { 
-// 						ctx.lineWidth = 3;
-// 						if( i<=39) { ctx.beginPath(); ctx.arc(wheels[i], wheels[i+1],wheels[i+2],wheels[i+3], Math.PI, true); ctx.stroke(); ctx.closePath(); }
-// 						if(i>39 && i<55) { ctx.beginPath(); ctx.arc(wheels[i],wheels[i+1],wheels[i+2],wheels[i+3],Math.PI, true); ctx.fillStyle = 'black'; ctx.fill(); ctx.closePath(); }
-//   				}//CAR TOP VIEW
-
-// 			start += dropDataPoints;
-// 			int += dropDataPoints;
-// 			timer += 8;
-
-// 		}, 1000+data[ii][31]*dropDataPoints);//MS
-// 	}
-// }
 /////////////////////////////////////////////////////////////////////////////
-function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) {
+function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ, dataStablilizerNumber) {
 	var canvas = document.getElementById('car-model-back');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -521,20 +371,25 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 		setTimeout(function () {
 
-			var dataStable = 1;
-			var countForStable = 0;
-			var incForStable = 1;
-			while (incForStable <= 30) { 
-				dataStable = dataStable + data[start+incForStable][0];
-				incForStable++;
-			} 
-			dataStable = dataStable/30;
+			var dataStableX = 0;
+			var dataStableY = 0;
+			var dataStableZ = 0;
+			var incForStable = 0;
+				while (incForStable < dataStablilizerNumber) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+				} 
+				dataStableX = dataStableX/dataStablilizerNumber;
+				dataStableY = dataStableY/dataStablilizerNumber;
+				dataStableZ = dataStableZ/dataStablilizerNumber;
 
 			ctx.canvas.width  = window.innerWidth/2;
 			ctx.canvas.height = window.innerHeight/2+100;
 			ctx.scale(1,1);
 			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
-			ctx.rotate(-dataStable/15);
+			ctx.rotate(-dataStableX/10);
 
 			var pointsX = [-180,180,-195,-195,195,195,-195,-180,195,180,-195,-165,195,165,-165,-150,165,150,-150,150,
 								-170,170,-170,-140,170,140,-140,140,-170,-170,-165,-165,-160,-160,-155,-155,-145,-145,-140,-140,

@@ -26,7 +26,7 @@ $(document).ready(function() {
 		}, 1700);
 		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1);
 		// 0,1,2,3,4,5,6
-		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
+		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0, 50);
 		// 0,1,2,3,4,5,6,7,8,9
 		orientation(dataDownFlagstaff1, 0, 18000, 1);
 		// 0,1,2,6
@@ -84,7 +84,8 @@ $(document).ready(function() {
 				parameterData[2], parameterData[3], 
 				parameterData[4], parameterData[5], 
 				parameterData[6], parameterData[7], 
-				parameterData[8], parameterData[9]);
+				parameterData[8], parameterData[9],
+				parameterData[10]);
 			orientation(parameterData[0], parameterData[1], 
 				parameterData[2], parameterData[6]);				
 			warningMessages(parameterData[0], parameterData[1], 
