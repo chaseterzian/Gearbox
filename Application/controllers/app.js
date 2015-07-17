@@ -87,9 +87,9 @@ function liveDataPrintOut(data, start, stop, dropDataPoints) {
 		timeWindowElem.innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
 		soundLevelWindowElem.innerHTML = "dB Level: " + (data[start][21]-80);
 		altitudeWindowElem.innerHTML = "Altitude in ft: " + data[start][24];
-		xAxisWindowElem.innerHTML = "X:    ";
-		yAxisWindowElem.innerHTML = "Y:    ";
-		zAxisWindowElem.innerHTML = "Z:    ";
+		xAxisWindowElem.innerHTML = "X: " + data[start][0];
+		yAxisWindowElem.innerHTML = "Y: " + data[start][1];
+		zAxisWindowElem.innerHTML = "Z: " + data[start][2];
 		dataPointsWindowElem.innerHTML = "Data Points: " + int;
 
 		start += dropDataPoints;
