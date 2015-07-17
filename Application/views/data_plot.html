@@ -48,6 +48,8 @@
 		<div class='col-2 button-panel-right' id='button-panel'>
 			<input type="file" id="files" class='btn' name="file"></input>
   		<button class='btn'>Show File</button>
+				<div id="byte_range"></div>
+				<div id="byte_content"></div>
 			<hr>
 			<div><button class='btn hide-this' id='show-all-data-button'>Demo All Data</button></div>
 			<div><button class='btn' id='report-button'>Show My Report</button></div>
@@ -55,8 +57,6 @@
 			<div><button class='btn' id='reset-button'>Reset</button></div>
 			<span class="readBytesButtons"></span>
 
-				<div id="byte_range"></div>
-				<div id="byte_content"></div>
 
 			<script>
   			function readBlob() {
