@@ -26,25 +26,27 @@ $(document).ready(function() {
 		}, 1700);
 		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 25);
 		// 0,1,2,3,4,5,6, 10
-		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0, 35);
+		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 12, 35);
 		// 0,1,2,3,4,5,6,7,8,9, 10
 		orientation(dataDownFlagstaff1, 0, 18000, 1);
 		// 0,1,2,6
 		warningMessages(dataDownFlagstaff1, 0, 18000, 1, 5, 5, 15);
 		// 0,1,2,6,7,8,9
-		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0, 50);
+		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 12, 50);
 		// 0,1,2,3,4,5,6,7,8,9,10
 		liveDataPrintOut(dataDownFlagstaff1, 0, 18000, 1, 1);
 		// 0,1,2,6,12
-		carMovementInWords(dataDownFlagstaff1, 0, 18000, 1, 0, 0, 0);
+		carMovementInWords(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
 		// 0,1,2,6,7,8,9,11
 	});
 	$('form').on('submit', function(e) {
 		e.preventDefault();
-		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 15, 40, 1, 1];//
+		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 12, 40, 1, 1];//
 		var fileContents = [];
 		$('#run-program-button').show();
+		$('#parameter-input-submit-button').css("background-color", "gray");
 		
+
 		var startInput=parseInt(document.getElementById('testing-input-start-point').value);
 		var endInput=parseInt(document.getElementById('testing-input-end-point').value);
 		var multiX=parseInt(document.getElementById('testing-input-multix').value);
@@ -80,6 +82,7 @@ $(document).ready(function() {
 		console.log(localStorage);
 
 		$('#run-program-button').on('click', function() {
+			$('#testing-area').css("background-color", "red");
 			steeringWheelModel(parameterData[0], parameterData[1], 
 				parameterData[2], parameterData[3], 
 				parameterData[4], parameterData[5], 

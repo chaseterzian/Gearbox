@@ -168,10 +168,11 @@ video {
 #parameter-input-submit-button{
   width: 140px;
 }
-/*.shadow-r{
-  box-shadow: 8px 3px 3px gray;
+.shadow-r{
+  /*box-shadow: 8px 3px 3px gray;*/
+  float: right;
 }
-*/
+
 .right{
   float: right;
 }

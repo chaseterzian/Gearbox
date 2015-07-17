@@ -1,58 +1,5 @@
 g = 9.81;
-//////////////////////////////////////////////////////////////////////////////////////////////
-function showAllData(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ) { 
-		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1);
-		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
-		orientation(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
-		warningMessages(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 5, 5, 15);
-		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
-		liveDataPrintOut(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
-		carMovementInWords(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
-}
-//////////////////////////////////////////////////////////////////////////////////////////////
-function dataStablilizer(data, start, stop) {
-	// var int = 0;
-	// var timer = 0;
-	// for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
-	// 	setTimeout(function () {
-	// 		var dataStableX = 1;
-	// 		var dataStableY = 1;
-	// 		var dataStableZ = 1;
-	// 		var incForStable = 1;
-
-	// 			while (incForStable <= 50) { 
-	// 				dataStableX = dataStableX + data[start+incForStable][0];
-	// 				dataStableY = dataStableY + data[start+incForStable][1];
-	// 				dataStableZ = dataStableZ + data[start+incForStable][2];
-	// 				incForStable++;
-	// 			} 
-	// 			dataStableX = dataStableX/50;
-	// 			dataStableY = dataStableY/50;
-	// 			dataStableZ = dataStableZ/50;
-
-	// 		start += dropDataPoints;
-	// 		int += dropDataPoints;
-	// 		timer += 8;
-	// 	}, 1000+data[ii][31]*dropDataPoints);//MS
-	// }
-			var dataStableX = 1;
-			var dataStableY = 1;
-			var dataStableZ = 1;
-			var incForStable = 1;
-				while (incForStable <= 50) { 
-					dataStableX = dataStableX + data[start+incForStable][0];
-					dataStableY = dataStableY + data[start+incForStable][1];
-					dataStableZ = dataStableZ + data[start+incForStable][2];
-					incForStable++;
-				} 
-				dataStableX = dataStableX/50;
-				dataStableY = dataStableY/50;
-				dataStableZ = dataStableZ/50;
-
-				return dataStableX;
-
-}
-////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 function carMovementInWords(data, start, stop, dropDataPoints, redlineX, redlineY, redlineZ, wordsStabilizerNumber) { 
 	var int = 0;
 	var timer = 0;
@@ -80,7 +27,7 @@ function carMovementInWords(data, start, stop, dropDataPoints, redlineX, redline
 
 				document.getElementById("and-window").innerHTML = " And "
 
-				if (-data[start][27] > redlineY) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking Hard"; }//Y IS FLIPPED
+				if (-dataStableY > 6) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking Hard"; }//Y IS FLIPPED
 				else if (-dataStableY < -3) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating Quickly"; }//Y IS FLIPPED
 				else if (-dataStableY < -.8) { document.getElementById("braking-accelerating-in-words").innerHTML = "Accelerating"; }//Y IS FLIPPED
 				else if (-dataStableY > 1) { document.getElementById("braking-accelerating-in-words").innerHTML = "Braking"; }//Y IS FLIPPED
@@ -238,7 +185,7 @@ function warningMessages(data, start, stop, dropDataPoints, redlineX, redlineY, 
 
 			ctx.fillStyle=("black");
 			setTimeout(function() {
-					document.getElementById("text-div-good-driver").innerHTML = "- Driver is being careful. No swerving, heavy braking/acceleration or aggressive turning has been detected.";
+					document.getElementById("text-div-good-driver").innerHTML = "- No swerving, heavy braking/acceleration or aggressive turning has been detected.";
 			}, 4000);
 
 	}
