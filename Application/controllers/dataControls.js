@@ -15,6 +15,12 @@ $(document).ready(function() {
 	$('.hide-then-show').hide('.hide-then-show');
 
 	//POST PAGE LOAD
+	$('#some-test-button').on('click', function() {
+		reduce the amount of function called by loops OKAY
+	});
+
+
+
 	$('#show-all-data-button').on('click', function() {
 		$('.button-panel-right').css('text-align', 'right');
 		$('.home').toggle('hide');

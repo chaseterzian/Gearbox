@@ -2,7 +2,6 @@ Gearbox - in development
 
 WARNING: Chrome tested only
 
-
 Clone the app
 
 Navigate to the 'Gearbox' folder and open

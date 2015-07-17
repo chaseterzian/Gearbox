@@ -43,14 +43,11 @@ function carMovementInWords(data, start, stop, dropDataPoints, redlineX, redline
 
 		}, 1000+data[ii][31]*dropDataPoints);//MS
 	}
-}		
+}//LOOP1		
 /////////////////////////////////////////////////////////////////////////////
 function liveDataPrintOut(data, start, stop, dropDataPoints, dataStabilizeNumber) { 
 	var int = 0;
-	var timer = 0;
-	Math.round10 = function(value, exp) {
-      return decimalAdjust('round', value, exp);
-    };//MDN
+	var timer = 0;////
 
 	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
 		setTimeout(function () {
@@ -94,7 +91,7 @@ function liveDataPrintOut(data, start, stop, dropDataPoints, dataStabilizeNumber
 
 		}, 1000+data[ii][31]*dropDataPoints);//MS
 	}
-}
+}//LOOP1
 /////////////////////////////////////////////////////////////////////////////
 function warningMessages(data, start, stop, dropDataPoints, redlineX, redlineY, redlineZ) { 
 	var canvas = document.getElementById('canvas');
@@ -189,7 +186,7 @@ function warningMessages(data, start, stop, dropDataPoints, redlineX, redlineY, 
 			}, 4000);
 
 	}
-}
+}//LOOP1
 /////////////////////////////////////////////////////////////////////////////
 function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ, dataStablilizerNumber) { 
 	var canvas = document.getElementById('canvas');
@@ -341,7 +338,7 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 
 		}, 1000+data[ii][31]*dropDataPoints);//MS
 	}
-}
+}//LOOP1
 /////////////////////////////////////////////////////////////////////////////
 function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ, dataStablilizerNumber) {
 	var canvas = document.getElementById('car-model-back');
@@ -410,7 +407,7 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 
 		}, 1000+data[ii][31]*dropDataPoints);
 	}
-}
+}//LOOP1
 /////////////////////////////////////////////////////////////////////////////
 function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, dataStablilizerNumber) {
 	var canvas = document.getElementById('canvas-wheel');
@@ -481,7 +478,7 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 				int += dropDataPoints;
 		}, 1000+data[ii][31]*dropDataPoints);
 	}
-}
+}//LOOP2 NO TIMER
 /////////////////////////////////////////////////////////////////////////////
 function orientation(data, start, stop, dropDataPoints) { 
 	var canvas = document.getElementById('canvas-compas');
@@ -554,7 +551,7 @@ function orientation(data, start, stop, dropDataPoints) {
 				document.getElementById("heading").innerHTML = 'Direction: ' + direction;
 		}, 1000+data[ii][31]*dropDataPoints);
 	}
-}
+}//LOOP2 NO TIMER
 /////////////////////////////////////////////////////////////////////////////
 function highestAllAxesWithTime(data) {//consoleXYZ with time
 	var dataXYZ = [['X',0,0],['Y',0,0],['Z',0,0]];
