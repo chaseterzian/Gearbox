@@ -133,7 +133,14 @@ $(document).ready(function() {
 		$('datacontent').toggle('show');
 		$('reportcontent').toggle('hide');
 	});
+	$('#data-page2').on('click', function() {
+		$('datacontent').toggle('show');
+		$('instructionscontent').toggle('hide');
+	});
 	$('#parameter-input-fields').css('text-align', 'right');
-
+	$('#instructions-button').on('click', function() {
+		$('datacontent').toggle('hide');
+		$('instructionscontent').toggle('show');
+	});
 
 });

@@ -108,7 +108,7 @@
   	<input placeholder='MultiX Visuals' type='text' name='multix' class='btn param-inputs' id='testing-input-multix'></input>
   	<input placeholder='MultiY Visuals' type='text' name='name' class='btn param-inputs' id='testing-input-multiy'></input>
   	<input placeholder='MultiZ Visuals' type='text' name='name' class='btn param-inputs' id='testing-input-multiz'></input>
-  	<input placeholder='Data Points/Second' type='text' name='name' class='btn param-inputs' id='testing-input-data-points'></input>
+  	<input placeholder='Skip Data Points' type='text' name='name' class='btn param-inputs' id='testing-input-data-points'></input>
   	<input placeholder='Report Trip X' type='text' name='name' class='btn param-inputs' id='testing-input-redline-x'></input>
   	<input placeholder='Report Trip Y' type='text' name='name' class='btn param-inputs' id='testing-input-redline-y'></input>
   	<input placeholder='Report Trip Z' type='text' name='name' class='btn param-inputs' id='testing-input-redline-z'></input>
@@ -181,7 +181,29 @@
 </reportcontent>
 
 <instructionscontent>
-	<p>CHECKING INSTRUCTIONS CONTENT</p>
+	<div class='col-5'>
+		<button class='btn' id='data-page2'>Take Me Back To The Testing Area</button>
+		<hr>
+		<h5><strong><p>Gearbox is currently in development, to see a demonstration of functionality,
+		click 'load profile' (loads default app parameters), and then click 'run program'.</p>
+		<p>OR</p>
+		<p>Input fields are also able to accept user defined parameters as follows:</p>
+		<p>Start Time: Start time in milliseconds</p>
+		<p>End Time: End time in milliseconds</p>
+		<p>MultiX Visuals: The ammount of movement present in the visuals that correspond to the X axis of the accelerometer (left and right latteral)</p>
+		<p>MultiY Visuals: The ammount of movement present in the visuals that correspond to the Y axis of the accelerometer (braking and acceleration)</p>
+		<p>MultiZ Visuals: The ammount of movement present in the visuals that correspond to the Z axis of the accelerometer (up and down, bumps and dips)</p>
+		<p>Skip Data Points: Skip this amount of data points between each point while allowing data to still be presented in proper time (larger files, slower computers.)</p>
+		<p>Report Trip X: The number (N) entered represents N meters/second^2.  When the force in the X direction (lateral force on the car) exceeds this number, the data will be dynamically printed in the "Show My Report" section. </p>
+		<p>Report Trip Y: The number (N) entered represents N meters/second^2.  When the force in the Y direction (braking and acceleration) exceeds this number, the data will be dynamically printed in the "Show My Report" section. </p>
+		<p>Report Trip Z: The number (N) entered represents N meters/second^2.  When the force in the Z direction (bumps and dips) exceeds this number, the data will be dynamically printed in the "Show My Report" section. </p>
+		<p>Data Stabilizer: The sensors on your smartphone are extremely sensitive, and as a result the different respresentations of the data can appear to be very jerky, and in some cases, difficult to interpret.  The higher the number entered into this field, the more stable the respresentations of the data become.  Although a higher number will produce 'cleaner' results, the data will be slightly less accurate, and will become more of an average as the number increases.  Recommend 50.</p>
+		<p>The results you see is a demo of my own previousley logged data. You may import your own data if you wish :)</p></strong>
+		<p>Have fun, Chase Terzian</p></h5>
+		<hr>
+
+	</div>
+
 </instructionscontent>
 
 
