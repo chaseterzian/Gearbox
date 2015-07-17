@@ -181,25 +181,39 @@
 </reportcontent>
 
 <instructionscontent>
-	<div class='col-5'>
+	<div class='col-7 courier-font'>
 		<button class='btn' id='data-page2'>Take Me Back To The Testing Area</button>
 		<hr>
-		<h5><strong><p>Gearbox is currently in development, to see a demonstration of functionality,
-		click 'load profile' (loads default app parameters), and then click 'run program'.</p>
+		<h4><strong><p>Gearbox is currently in development. To see a demonstration of functionality,
+		click 'Load Profile' (loads default app parameters), and then click 'Run Program'.</p>
 		<p>OR</p>
-		<p>Input fields are also able to accept user defined parameters as follows:</p>
-		<p>Start Time: Start time in milliseconds</p>
-		<p>End Time: End time in milliseconds</p>
-		<p>MultiX Visuals: The ammount of movement present in the visuals that correspond to the X axis of the accelerometer (left and right latteral)</p>
-		<p>MultiY Visuals: The ammount of movement present in the visuals that correspond to the Y axis of the accelerometer (braking and acceleration)</p>
-		<p>MultiZ Visuals: The ammount of movement present in the visuals that correspond to the Z axis of the accelerometer (up and down, bumps and dips)</p>
-		<p>Skip Data Points: Skip this amount of data points between each point while allowing data to still be presented in proper time (larger files, slower computers.)</p>
-		<p>Report Trip X: The number (N) entered represents N meters/second^2.  When the force in the X direction (lateral force on the car) exceeds this number, the data will be dynamically printed in the "Show My Report" section. </p>
-		<p>Report Trip Y: The number (N) entered represents N meters/second^2.  When the force in the Y direction (braking and acceleration) exceeds this number, the data will be dynamically printed in the "Show My Report" section. </p>
-		<p>Report Trip Z: The number (N) entered represents N meters/second^2.  When the force in the Z direction (bumps and dips) exceeds this number, the data will be dynamically printed in the "Show My Report" section. </p>
-		<p>Data Stabilizer: The sensors on your smartphone are extremely sensitive, and as a result the different respresentations of the data can appear to be very jerky, and in some cases, difficult to interpret.  The higher the number entered into this field, the more stable the respresentations of the data become.  Although a higher number will produce 'cleaner' results, the data will be slightly less accurate, and will become more of an average as the number increases.  Recommend 50.</p>
+		<p>Input fields are able to accept user defined parameters as follows:</p>
+		<p><input class='btn' placeholder='Start Time'></input>
+		Start time in milliseconds</p>
+		<p><input class='btn' placeholder='End Time'></input>
+		End time in milliseconds</p>
+		<p><input class='btn' placeholder='MultiX Visuals'></input>
+		The ammount of movement present in the visuals that correspond to the X axis of the accelerometer (left and right latteral)</p>
+		<p><input class='btn' placeholder='MultiY Visuals'></input>
+		The ammount of movement present in the visuals that correspond to the Y axis of the accelerometer (braking and acceleration)</p>
+		<p><input class='btn' placeholder='MultiZ Visuals'></input>
+		The ammount of movement present in the visuals that correspond to the Z axis of the accelerometer (up and down, bumps and dips)</p>
+		<p><input class='btn' placeholder='Skip Data Points'></input>
+		Skip this amount of data points between each point while allowing data to still be presented in proper time (larger files, slower computers)</p>
+		<p><input class='btn' placeholder='Report Trip X'></input>
+		The number (N) entered represents N meters/second^2.  When the force in the X direction (lateral force on the car) exceeds this number, the data will be dynamically printed in the "Show My Report" section</p>
+		<p><input class='btn' placeholder='Report Trip Y'></input>
+		Report Trip Y: The number (N) entered represents N meters/second^2.  When the force in the Y direction (braking and acceleration) exceeds this number, the data will be dynamically printed in the "Show My Report" section </p>
+		<p><input class='btn' placeholder='Report Trip Z'></input>
+		Report Trip Z: The number (N) entered represents N meters/second^2.  When the force in the Z direction (bumps and dips) exceeds this number, the data will be dynamically printed in the "Show My Report" section</p>
+		<p><input class='btn' placeholder='Data Stabilizer'></input>
+		<p>Data Stabilizer: The sensors on your smartphone are extremely sensitive, and as a result the different respresentations of the data can appear to be very jerky, and in some cases, difficult to interpret.  The higher the number entered into this field, the more stable the respresentations of the data become.  Although a higher number will produce 'cleaner' results, the data will be slightly less accurate, and will become more of an average as the number increases.  Recommend 50</p>
+		<p><input value='Load Profile' class='btn'></input>
+		Push this button after entering your custom parameters.  If any fields are left blank, they will load the default values so you may pick and choose which custom parameters you would like to test with</p>
+  		<p><button class='btn center' id='run-program-button'>Run Program</button>
+  		This will run the program
 		<p>The results you see is a demo of my own previousley logged data. You may import your own data if you wish :)</p></strong>
-		<p>Have fun, Chase Terzian</p></h5>
+		<p>Have fun, Chase Terzian</p></h4>
 		<hr>
 
 	</div>
