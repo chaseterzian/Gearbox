@@ -30,19 +30,19 @@ $(document).ready(function() {
 		setTimeout(function() { 
 			$('video').get(0).play()
 		}, 1700);
-		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 25);
+		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 20);
 		// 0,1,2,3,4,5,6, 10
-		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 12, 35);
+		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 20);
 		// 0,1,2,3,4,5,6,7,8,9, 10
 		orientation(dataDownFlagstaff1, 0, 18000, 1);
 		// 0,1,2,6
-		warningMessages(dataDownFlagstaff1, 0, 18000, 1, 5, 5, 15);
+		warningMessages(dataDownFlagstaff1, 0, 18000, 1, 2, 3, 11);
 		// 0,1,2,6,7,8,9
-		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 12, 50);
+		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 20);
 		// 0,1,2,3,4,5,6,7,8,9,10
 		liveDataPrintOut(dataDownFlagstaff1, 0, 18000, 1, 1);
 		// 0,1,2,6,12
-		carMovementInWords(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 0, 0, 0);
+		carMovementInWords(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 5);
 		// 0,1,2,6,7,8,9,11
 	});
 	$('form').on('submit', function(e) {

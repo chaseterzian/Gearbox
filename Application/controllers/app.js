@@ -78,7 +78,8 @@ function liveDataPrintOut(data, start, stop, dropDataPoints, dataStabilizeNumber
 		document.getElementById("highest-all-axes-window").innerHTML = highestAllAxesWithTime(data);//MAX FORCE OF ALL DATA AT TIME
 		speedInMphWindowElem.innerHTML = "Speed in MPH: " + data[start][27];
 		timeWindowElem.innerHTML = "Time: " + data[start][33] + ":" + data[start][34] + ":" + data[start][35] + ":" + data[start][36];
-		soundLevelWindowElem.innerHTML = "dB Level: " + (Math.round( (10*data[start][21])-80 )/10);
+			var soundLevelToRound = data[start][21]-80
+		soundLevelWindowElem.innerHTML = "dB Level: " + Math.round(soundLevelToRound)/10;
 		altitudeWindowElem.innerHTML = "Altitude in ft: " + data[start][24];
 		xAxisWindowElem.innerHTML = "X: " + Math.round(100*dataStableX)/100;
 		yAxisWindowElem.innerHTML = "Y: " + Math.round(100*dataStableY)/100;
