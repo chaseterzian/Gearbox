@@ -1,6 +1,6 @@
 WARNING: Use with Chrome
 
-Currently in development: Gearbox is a car metrics application that allows you to interpret drving and location data gathered from various sensors in your smartphone. Weather it's fast lap times you're after, new driver saftey concers you have, or perhaps you're just curious, Gearbox is a fun and accurate way for you to see whats on your cars mind.
+Currently in development: Gearbox is a car metrics application that allows you to interpret drving and location data gathered from various sensors in your smartphone. Weather it's fast lap times you're after, new driver saftey concers you have, or perhaps you're just curious, Gearbox is a fun and accurate way for you to see what's on your cars mind.
 
 1 - Clone the app
 
@@ -8,7 +8,7 @@ Currently in development: Gearbox is a car metrics application that allows you t
 
 3 - Double click on the 'Gearbox' Icon to start the app
 
-***Gathering your own data requires a download from the Google Play Store onto your Android handset. To skip this process for now, go to the instructions after the horizontal line below, for information on how to see a demo.***
+***Gathering your own data requires a download from the Google Play Store onto your Android handset. To skip this process for now, go to the instructions after the horizontal line (below) and you will see information about how to activate the demo.***
 
 4 - Download AndroSensor (one time setup)
 
@@ -33,13 +33,13 @@ Currently in development: Gearbox is a car metrics application that allows you t
 14 - Upload CSV file (and optional video) to Gearbox and have fun! 
 
 NOTE: email chaseterzian@gmail.com with support requests for different data logging apps
-____________________________________________________
+____________________________________________________________________________________________________________
 
 To see a quick demonstration of current functionality, press 'Demo All Data' on the left side of the 'Testing Area'. If you get stuck, see 'Instructions' located at the top right side of the 'Testing Area' after you enter the garage.
 
-OR
+OR play with the data:
 
-The input fields in the middle of the screen are able to accept user defined parameters. Don't worry about leaving certain fields (or all) blank; they will automatically use the default settings. Feel free to move back and forth between the different rooms in the Testing Area without affecting the data flow.  At any time you may pause or reload the data stream. You can also click 'Show My Report' to see the data being logged that relates to your 'Report Trip' inputs. User CSV upload is currently under construction, but will be functional again shortly. See 'Instructions' located at the top right side of the 'Testing Area' for further information.
+The input fields in the middle of the screen are able to accept user defined parameter values, which are outlined in the 'Instructions' section. Don't worry about leaving certain fields (or all) blank; they will automatically use the default settings. Feel free to move back and forth between the different rooms in the Testing Area without affecting the data flow.  At any time you may pause or reload the data stream. You can also click 'Show My Report' to see the data being logged that relates to your 'Report Trip' inputs. User CSV upload is currently under construction, but will be functional again shortly. See 'Instructions' located at the top right side of the 'Testing Area' for further information.
 
 Available Sensor Data:
 _____________________
