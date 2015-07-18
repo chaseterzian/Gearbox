@@ -47,6 +47,32 @@ $(document).ready(function() {
 		$('.home').toggle('hide');
 		$('.hide-this').toggle('hide');
 		$('.hide-then-show').show('.hide-then-show');
+		
+		$('#report-button').hide();
+		$('#report-button').css('background-color', 'red');
+		setTimeout(function() {
+			$('#report-button').fadeIn(300);
+		}, 1000);
+		setTimeout(function() {
+			$('#report-button').fadeOut(1000);
+		}, 2000);
+		setTimeout(function() {
+			$('#report-button').fadeIn(300);
+		}, 3000);
+		setTimeout(function() {
+			$('#report-button').fadeOut(1000);
+		}, 4000);
+		setTimeout(function() {
+			$('#report-button').fadeIn(300);
+		}, 5000);
+		setTimeout(function() {
+			$('#report-button').fadeOut(1000);
+		}, 6000);
+		setTimeout(function() {
+			$('#report-button').css('background-color', 'black');
+			$('#report-button').fadeIn(2000);
+		}, 7000);
+	
 		$('video').toggle('show');
 		setTimeout(function() { 
 			$('video').get(0).play()
@@ -54,7 +80,7 @@ $(document).ready(function() {
 		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 20);
 		// 0,1,2,3,4,5,6,10
 		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 20);
-		// 0,1,2,3,4,5,6,7,8,9,x10
+		// 0,1,2,3,4,5,6,7,8,9,10
 		orientation(dataDownFlagstaff1, 0, 18000, 1);
 		// 0,1,2,6
 		warningMessages(dataDownFlagstaff1, 0, 18000, 1, 2, 3, 11);
@@ -65,14 +91,17 @@ $(document).ready(function() {
 		// 0,1,2,6,12
 		carMovementInWords(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 5);
 		// 0,1,2,6,7,8,9,11
+		reportContentAccelerometerVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 20);
+		// 0,1,2,3,4,5,6,7,8,9,10
+		movementXy1Point(dataDownFlagstaff1, 0, 18000, 60, 60, 1, 2, 3, 20);
+		//0,1,2,3,4,6,7,8,10
 	});
 	$('form').on('submit', function(e) {
 		e.preventDefault();
-		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 3, 4, 12, 40, 1, 1];//
+		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 40, 10, 10];//
 		var fileContents = [];
 		$('#run-program-button').show();
 		$('#parameter-input-submit-button').css("background-color", "gray");
-		
 
 		var startInput=parseInt(document.getElementById('testing-input-start-point').value);
 		var endInput=parseInt(document.getElementById('testing-input-end-point').value);
@@ -109,7 +138,33 @@ $(document).ready(function() {
 		console.log(localStorage);
 
 		$('#run-program-button').on('click', function() {
+			$('#report-button').css('background-color', 'red');
 			$('#testing-area').css("background-color", "red");
+			$('#report-button').hide();
+			$('#report-button').css('background-color', 'red');
+				setTimeout(function() {
+					$('#report-button').fadeIn(300);	
+				}, 1000);
+				setTimeout(function() {
+					$('#report-button').fadeOut(1000);
+				}, 2000);
+				setTimeout(function() {
+					$('#report-button').fadeIn(300);
+				}, 3000);
+				setTimeout(function() {
+					$('#report-button').fadeOut(1000);
+				}, 4000);
+				setTimeout(function() {
+					$('#report-button').fadeIn(300);
+				}, 5000);
+				setTimeout(function() {
+					$('#report-button').fadeOut(1000);
+				}, 6000);
+				setTimeout(function() {
+					$('#report-button').css('background-color', 'black');
+					$('#report-button').fadeIn(2000);
+				}, 7000);
+				
 			steeringWheelModel(parameterData[0], parameterData[1], 
 				parameterData[2], parameterData[3], 
 				parameterData[4], parameterData[5], 
@@ -139,6 +194,17 @@ $(document).ready(function() {
 				parameterData[2], parameterData[6],  
 				parameterData[7], parameterData[8], 
 				parameterData[9], parameterData[11]);	
+			reportContentAccelerometerVisuals(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[3], 
+				parameterData[4], parameterData[5], 
+				parameterData[6], parameterData[7], 
+				parameterData[8], parameterData[9],
+				parameterData[10]);
+			movementXy1Point(parameterData[0], parameterData[1], 
+				parameterData[2], parameterData[3], 
+				parameterData[4], parameterData[6], 
+				parameterData[7], parameterData[8],
+				parameterData[10]);
 
 			$('.hide-this').toggle('hide');
 			$('.hide-then-show').show('.hide-then-show');
@@ -151,7 +217,7 @@ $(document).ready(function() {
 	$('#report-button').on('click', function() {
 		$('datacontent').toggle('hide');
 		$('reportcontent').toggle('show');
-		forceXyzForReport(dataDownFlagstaff1, 0, 10000, 200, 200, 200, 1, 1);
+		// forceXyzForReport(dataDownFlagstaff1, 0, 10000, 200, 200, 200, 1, 1);
 	});
 	
 	$('#freeze-button').on('click', function() {

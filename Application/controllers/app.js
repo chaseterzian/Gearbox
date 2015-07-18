@@ -189,7 +189,7 @@ function warningMessages(data, start, stop, dropDataPoints, redlineX, redlineY, 
 	}
 }//LOOP1
 /////////////////////////////////////////////////////////////////////////////
-function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ, dataStablilizerNumber) { 
+function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ, visualsStablilizerNumber) { 
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -201,15 +201,15 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 			var dataStableY = 0;
 			var dataStableZ = 0;
 			var incForStable = 0;
-				while (incForStable < dataStablilizerNumber) { 
+				while (incForStable < visualsStablilizerNumber) { 
 					dataStableX = dataStableX + data[start+incForStable][0];
 					dataStableY = dataStableY + data[start+incForStable][1];
 					dataStableZ = dataStableZ + data[start+incForStable][2];
 					incForStable++;
 				} 
-				dataStableX = dataStableX/dataStablilizerNumber;
-				dataStableY = dataStableY/dataStablilizerNumber;
-				dataStableZ = dataStableZ/dataStablilizerNumber;
+				dataStableX = dataStableX/visualsStablilizerNumber;
+				dataStableY = dataStableY/visualsStablilizerNumber;
+				dataStableZ = dataStableZ/visualsStablilizerNumber;
 
 			ctx.canvas.width  = window.innerWidth;
 			ctx.canvas.height = window.innerHeight;
@@ -317,7 +317,7 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 											290,310,290,290,310,310,290,310,290,310,290,310,-40,-40,30,30,-40,30,-40,30,
 											170,170,260,260,170,260,170,260];
 				var wheels = [0,30,150,0,  0,-40,150,0,  -140,-50,33,33,  -140,-50,30,30,  140,-50,33,33,  140,-50,30,30, 
-										-140,275,33,33,  -140,275,30,30,  140,275,33,33,  140,175,30,30,  
+										-140,275,33,33,  -140,275,30,30,  140,275,33,33,  140,275,30,30,  
 										-140,-50,32,32,  140,-50,32,32,  -140,275,32,32, 140,275,32,32];
 					for (var i=0; i<pointsX.length; i=i+2){
 						if(i>91 && i<=107) { ctx.lineWidth = 5; }
@@ -341,7 +341,7 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 	}
 }//LOOP1
 /////////////////////////////////////////////////////////////////////////////
-function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ, dataStablilizerNumber) {
+function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ, visualsStablilizerNumber) {
 	var canvas = document.getElementById('car-model-back');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -353,15 +353,15 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 			var dataStableY = 0;
 			var dataStableZ = 0;
 			var incForStable = 0;
-				while (incForStable < dataStablilizerNumber) { 
+				while (incForStable < visualsStablilizerNumber) { 
 					dataStableX = dataStableX + data[start+incForStable][0];
 					dataStableY = dataStableY + data[start+incForStable][1];
 					dataStableZ = dataStableZ + data[start+incForStable][2];
 					incForStable++;
 				} 
-				dataStableX = dataStableX/dataStablilizerNumber;
-				dataStableY = dataStableY/dataStablilizerNumber;
-				dataStableZ = dataStableZ/dataStablilizerNumber;
+				dataStableX = dataStableX/visualsStablilizerNumber;
+				dataStableY = dataStableY/visualsStablilizerNumber;
+				dataStableZ = dataStableZ/visualsStablilizerNumber;
 
 			ctx.canvas.width  = window.innerWidth/2;
 			ctx.canvas.height = window.innerHeight/2+100;
@@ -410,7 +410,7 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 	}
 }//LOOP1
 /////////////////////////////////////////////////////////////////////////////
-function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, dataStablilizerNumber) {
+function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataPoints, visualsStablilizerNumber) {
 	var canvas = document.getElementById('canvas-wheel');
 	var ctx = canvas.getContext('2d');
 	var int = 0;
@@ -421,15 +421,15 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 			var dataStableY = 0;
 			var dataStableZ = 0;
 			var incForStable = 0;
-				while (incForStable < dataStablilizerNumber) { 
+				while (incForStable < visualsStablilizerNumber) { 
 					dataStableX = dataStableX + data[start+incForStable][0];
 					dataStableY = dataStableY + data[start+incForStable][1];
 					dataStableZ = dataStableZ + data[start+incForStable][2];
 					incForStable++;
 				} 
-				dataStableX = dataStableX/dataStablilizerNumber;
-				dataStableY = dataStableY/dataStablilizerNumber;
-				dataStableZ = dataStableZ/dataStablilizerNumber;
+				dataStableX = dataStableX/visualsStablilizerNumber;
+				dataStableY = dataStableY/visualsStablilizerNumber;
+				dataStableZ = dataStableZ/visualsStablilizerNumber;
 
 
 			ctx.canvas.width  = window.innerWidth;
@@ -439,16 +439,16 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 	  		ctx.rotate(dataStableX/2);
 	  		ctx.strokeStyle="black";
 	  		ctx.lineWidth = 3;
-					ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();//COMPASS
-	  		ctx.beginPath(); ctx.arc(0, 0, 320, 320, Math.PI, true); ctx.stroke();//COMPASS
-	  		ctx.beginPath(); ctx.arc(0, 0, 315, 315, Math.PI, true); ctx.stroke();//COMPASS
-	  		ctx.beginPath(); ctx.arc(0, 0, 310, 310, Math.PI, true); ctx.stroke();//COMPASS
-	  		ctx.beginPath(); ctx.arc(0, 0, 305, 305, Math.PI, true); ctx.stroke();//COMPASS
-				ctx.beginPath(); ctx.arc(0, 0, 300, 300, Math.PI, true); ctx.stroke();//COMPASS
-				ctx.beginPath(); ctx.arc(0, 0, 295, 295, Math.PI, true); ctx.stroke();//COMPASS
-				ctx.beginPath(); ctx.arc(0, 0, 290, 290, Math.PI, true); ctx.stroke();//COMPASS
-				ctx.beginPath(); ctx.arc(0, 0, 285, 285, Math.PI, true); ctx.stroke();//COMPASS
-				ctx.beginPath(); ctx.arc(0, 0, 280, 280, Math.PI, true); ctx.stroke();//COMPASS
+					ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();
+	  		ctx.beginPath(); ctx.arc(0, 0, 320, 320, Math.PI, true); ctx.stroke();
+	  		ctx.beginPath(); ctx.arc(0, 0, 315, 315, Math.PI, true); ctx.stroke();
+	  		ctx.beginPath(); ctx.arc(0, 0, 310, 310, Math.PI, true); ctx.stroke();
+	  		ctx.beginPath(); ctx.arc(0, 0, 305, 305, Math.PI, true); ctx.stroke();
+				ctx.beginPath(); ctx.arc(0, 0, 300, 300, Math.PI, true); ctx.stroke();
+				ctx.beginPath(); ctx.arc(0, 0, 295, 295, Math.PI, true); ctx.stroke();
+				ctx.beginPath(); ctx.arc(0, 0, 290, 290, Math.PI, true); ctx.stroke();
+				ctx.beginPath(); ctx.arc(0, 0, 285, 285, Math.PI, true); ctx.stroke();
+				ctx.beginPath(); ctx.arc(0, 0, 280, 280, Math.PI, true); ctx.stroke();
 				ctx.lineWidth = 3;
 				ctx.beginPath(); ctx.lineTo(-295,-40); ctx.lineTo(295,-40); ctx.stroke(); ctx.closePath();//X
 				ctx.beginPath(); ctx.lineTo(-295,-30); ctx.lineTo(295,-30); ctx.stroke(); ctx.closePath();
@@ -474,7 +474,6 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 				ctx.beginPath(); ctx.lineTo(120,0); ctx.lineTo(20,120); ctx.stroke(); ctx.closePath();
 				ctx.beginPath(); ctx.lineTo(110,0); ctx.lineTo(20,110); ctx.stroke(); ctx.closePath();
 
-				// ctx.beginPath(); ctx.lineTo(-295,-3); ctx.lineTo(295,-3); ctx.stroke(); ctx.closePath();
 				start += dropDataPoints;
 				int += dropDataPoints;
 		}, data[ii][31]*dropDataPoints);
@@ -562,4 +561,129 @@ function highestAllAxesWithTime(data) {//consoleXYZ with time
 		if (dataXYZ[2][2] < data[i][3]) { dataXYZ[2][2] = data[i][3]; dataXYZ[2][1] = data[i][0]; }
 	}
 	return "Max: " + dataXYZ[0] + " /// " + dataXYZ[1] + " /// " + dataXYZ[2] + " /// ";
+}
+/////////////////////////////////////////////////////////////////////////////
+function reportContentAccelerometerVisuals(data, start, stop, multiX, multiY, multiZ, dropDataPoints, redlineX, redlineY, redlineZ, visualsStablilizerNumber) { 
+	var canvas = document.getElementById('canvas-reportcontent');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	var timer = 0;
+	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+		setTimeout(function () {
+
+			var dataStableX = 0;
+			var dataStableY = 0;
+			var dataStableZ = 0;
+			var incForStable = 0;
+				while (incForStable < visualsStablilizerNumber) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+				} 
+				dataStableX = dataStableX/visualsStablilizerNumber;
+				dataStableY = dataStableY/visualsStablilizerNumber;
+				dataStableZ = dataStableZ/visualsStablilizerNumber;
+
+			ctx.canvas.width  = window.innerWidth;
+			ctx.canvas.height = window.innerHeight;
+			ctx.scale(.8,.8);
+			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+			ctx.rotate(dataStableX/6);
+
+
+				if (data[start][0] >= redlineX || data[start][0] < -redlineX) { ctx.fillStyle=("red"); }
+				else {ctx.fillStyle=("black");}
+					ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,30,30, Math.PI, true); ctx.fill();//G BALL X
+					ctx.beginPath(); ctx.arc(-dataStableX*multiX, 0,35,35, Math.PI, true); ctx.stroke();
+
+					if (data[start][1] >= redlineY || data[start][1] < -redlineY) { ctx.fillStyle=("red"); }
+					else {ctx.fillStyle=("black");}
+					ctx.beginPath(); ctx.arc(0, dataStableY*multiY,30,30, Math.PI, true); ctx.fill();//G BALL Y
+					ctx.beginPath(); ctx.arc(0, dataStableY*multiY,35,35, Math.PI, true); ctx.stroke();
+					ctx.lineWidth = 1;
+
+								ctx.strokeStyle = 'black';//CAR TOP VIEW
+				var pointsX = [-100,100,-100,-35,35,100,-35,-25,35,25,-150,-100,150,100,-150,-150,150,150,-150,-130,
+											150,130,-150,150,-130,-35,130,35,-35,35,-35,-35,35,35,-105,-105,105,105,-105,-60,
+											105,60,-150,-105,-150,-105,-150,-105,150,105,150,105,150,105,-120,-120,-120,-120,120,120,
+											120,120,-60,-60,-30,-30,0,0,30,30,60,60,-115,-60,-100,-50,-100,-100,-65,-65,
+									  	-60,-50,115,60,100,50,100,100,65,65,60,50,-100,100,-85,85,-100,-85,100,85,
+											-85,85,-100,100,-85,-100,85,100];
+				var pointsY = [-200,-200,-200,-200,-200,-200,-200,-190,-200,-190,-100,-200,-100,-200,310,-100,310,-100,310,350,
+											310,350,310,310,350,350,350,350,330,330,330,350,330,350,280,-77,280,-77,-77,-180,
+											-77,-180,0,30,100,120,200,210,0,30,100,120,200,210,85,100,175,190,85,100,
+											175,190,48,155,45,152,40,160,45,152,48,155,290,290,310,310,290,310,290,310,
+											290,310,290,290,310,310,290,310,290,310,290,310,-40,-40,30,30,-40,30,-40,30,
+											170,170,260,260,170,260,170,260];
+				var wheels = [0,30,150,0,  0,-40,150,0,  -140,-50,33,33,  -140,-50,30,30,  140,-50,33,33,  140,-50,30,30, 
+										-140,275,33,33,  -140,275,30,30,  140,275,33,33,  140,275,30,30,  
+										-140,-50,32,32,  140,-50,32,32,  -140,275,32,32, 140,275,32,32];
+					for (var i=0; i<pointsX.length; i=i+2){
+						if(i>91 && i<=107) { ctx.lineWidth = 5; }
+						if(i>71 && i<=91) { ctx.lineWidth = 2; }
+						if(i>61 && i<=71) { ctx.lineWidth = 1; }
+						if(i>53 && i<=61) { ctx.lineWidth = 4; }
+						if(i<=53) { ctx.lineWidth = 4; }
+						ctx.beginPath(); ctx.lineTo(pointsX[i], pointsY[i]); ctx.lineTo(pointsX[i+1], pointsY[i+1]); ctx.stroke(); ctx.closePath();						
+					}
+					for (var i=0; i<wheels.length; i=i+4) { 
+						ctx.lineWidth = 3;
+						if( i<=39) { ctx.beginPath(); ctx.arc(wheels[i], wheels[i+1],wheels[i+2],wheels[i+3], Math.PI, true); ctx.stroke(); ctx.closePath(); }
+						if(i>39 && i<55) { ctx.beginPath(); ctx.arc(wheels[i],wheels[i+1],wheels[i+2],wheels[i+3],Math.PI, true); ctx.fillStyle = 'black'; ctx.fill(); ctx.closePath(); }
+  				}//CAR TOP VIEW
+
+
+
+			start += dropDataPoints;
+			int += dropDataPoints;
+			timer += 8;
+
+		}, data[ii][31]*dropDataPoints);//MS
+	}
+}
+/////////////////////////////////////////////////////////////////////////////
+function movementXy1Point(data, start, stop, multiX, multiY, dropDataPoints, redlineX, redlineY, visualsStablilizerNumber) {
+	var canvas = document.getElementById('canvas-gball');
+	var ctx = canvas.getContext('2d');
+	var int = 0;
+	for (var x=start, ii=0; x<stop; x=x + dropDataPoints, ii=ii+1) {
+		setTimeout(function () {
+			var dataStableX = 0;
+			var dataStableY = 0;
+			var dataStableZ = 0;
+			var incForStable = 0;
+				while (incForStable < visualsStablilizerNumber) { 
+					dataStableX = dataStableX + data[start+incForStable][0];
+					dataStableY = dataStableY + data[start+incForStable][1];
+					dataStableZ = dataStableZ + data[start+incForStable][2];
+					incForStable++;
+				} 
+				dataStableX = dataStableX/visualsStablilizerNumber;
+				dataStableY = dataStableY/visualsStablilizerNumber;
+				dataStableZ = dataStableZ/visualsStablilizerNumber;
+
+			ctx.canvas.width  = window.innerWidth;
+			ctx.canvas.height = window.innerHeight;
+			ctx.scale(1,1);
+			ctx.translate(canvas.width/2, canvas.height/2);
+
+				ctx.lineWidth = 5;	
+				ctx.beginPath(); ctx.lineTo(-325,0); ctx.lineTo(325,0); ctx.stroke(); ctx.closePath(); 
+				ctx.beginPath(); ctx.lineTo(0,325); ctx.lineTo(0,-325); ctx.stroke(); ctx.closePath();
+
+				if (dataStableX >= redlineX || dataStableX < -redlineX) { ctx.fillStyle=("red"); }
+				if (dataStableY >= redlineY || dataStableY < -redlineY) { ctx.fillStyle=("red"); }
+				else { ctx.fillStyle=("black") }
+				ctx.beginPath(); ctx.arc(-dataStableX*multiX, dataStableY*multiY,30,30, Math.PI, true); ctx.fill(); ctx.closePath();
+				ctx.beginPath(); ctx.arc(-dataStableX*multiX, dataStableY*multiY,35,35, Math.PI, true); ctx.stroke(); ctx.closePath();
+
+				ctx.lineWidth = 20;	
+				ctx.beginPath(); ctx.arc(0, 0, 325, 325, Math.PI, true); ctx.stroke();
+	  			
+
+				start += dropDataPoints;
+				int += dropDataPoints;
+			}, data[ii][31]*dropDataPoints);
+	}
 }
