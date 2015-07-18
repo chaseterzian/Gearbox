@@ -8,56 +8,40 @@ $(document).ready(function() {
 		$('wheelmodel').hide();
 		$('#run-program-button').hide();
 		$('instructionscontent').hide();
-
 		$('#instructions-button').hide();
 		$('#instructions-button').css('background-color', 'red');
-		setTimeout(function() {
-			$('#instructions-button').fadeIn(300);
-		}, 1000);
-		setTimeout(function() {
-			$('#instructions-button').fadeOut(1000);
-		}, 2000);
-		setTimeout(function() {
-			$('#instructions-button').fadeIn(300);
-		}, 3000);
-		setTimeout(function() {
-			$('#instructions-button').fadeOut(1000);
-		}, 4000);
-		setTimeout(function() {
-			$('#instructions-button').fadeIn(300);
-		}, 5000);
-		setTimeout(function() {
-			$('#instructions-button').fadeOut(1000);
-		}, 6000);
-		setTimeout(function() {
-			$('#instructions-button').css('background-color', 'black');
-			$('#instructions-button').fadeIn(2000);
-		}, 7000);
-
-		// setTimeout(function() {
-		// 	$('#instructions-button').css('background-color', 'red');
-		// }, 4000);
-		// setTimeout(function() {
-		// 	$('#instructions-button').css('background-color', 'black');
-		// }, 5000);
-		// setTimeout(function() {
-		// 	$('#instructions-button').css('background-color', 'red');
-		// }, 6000);
-		// setTimeout(function() {
-		// 	$('#instructions-button').css('background-color', 'black');
-		// }, 7000);
 	});
+
+	setTimeout(function() {
+		$('#instructions-button').fadeIn(300);
+	}, 1000);
+	setTimeout(function() {
+		$('#instructions-button').fadeOut(1000);
+	}, 2000);
+	setTimeout(function() {
+		$('#instructions-button').fadeIn(300);
+	}, 3000);
+	setTimeout(function() {
+		$('#instructions-button').fadeOut(1000);
+	}, 4000);
+	setTimeout(function() {
+		$('#instructions-button').fadeIn(300);
+	}, 5000);
+	setTimeout(function() {
+		$('#instructions-button').fadeOut(1000);
+	}, 6000);
+	setTimeout(function() {
+		$('#instructions-button').css('background-color', 'black');
+		$('#instructions-button').fadeIn(2000);
+	}, 7000);
+
 	$('html').css('display', 'none');
 	$('html').fadeIn(2000);
 	$('.hide-then-show').hide('.hide-then-show');
-
 	//POST PAGE LOAD
 	// $('#some-test-button').on('click', function() {
 	// 	reduce the amount of function called by loops OKAY
 	// });
-
-
-
 	$('#show-all-data-button').on('click', function() {
 		$('.button-panel-right').css('text-align', 'right');
 		$('.home').toggle('hide');
@@ -68,9 +52,9 @@ $(document).ready(function() {
 			$('video').get(0).play()
 		}, 1700);
 		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 20);
-		// 0,1,2,3,4,5,6, 10
+		// 0,1,2,3,4,5,6,10
 		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 20);
-		// 0,1,2,3,4,5,6,7,8,9, 10
+		// 0,1,2,3,4,5,6,7,8,9,x10
 		orientation(dataDownFlagstaff1, 0, 18000, 1);
 		// 0,1,2,6
 		warningMessages(dataDownFlagstaff1, 0, 18000, 1, 2, 3, 11);
@@ -161,7 +145,7 @@ $(document).ready(function() {
 			$('video').toggle('show');
 			setTimeout(function() { 
 				$('video').get(0).play()
-			}, 1600);
+			}, 600);
 		});
 	});
 	$('#report-button').on('click', function() {

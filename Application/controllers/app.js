@@ -41,7 +41,7 @@ function carMovementInWords(data, start, stop, dropDataPoints, redlineX, redline
 			int += dropDataPoints;
 			timer += 8;
 
-		}, 1000+data[ii][31]*dropDataPoints);//MS
+		}, data[ii][31]*dropDataPoints);//MS
 	}
 }//LOOP1		
 /////////////////////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ function liveDataPrintOut(data, start, stop, dropDataPoints, dataStabilizeNumber
 			int += dropDataPoints;
 			timer += 8;
 
-		}, 1000+data[ii][31]*dropDataPoints);//MS
+		}, data[ii][31]*dropDataPoints);//MS
 	}
 }//LOOP1
 /////////////////////////////////////////////////////////////////////////////
@@ -179,7 +179,7 @@ function warningMessages(data, start, stop, dropDataPoints, redlineX, redlineY, 
 				int += dropDataPoints;
 				timer += 8;
 
-			}, 1000+data[ii][31]*dropDataPoints);//MS
+			}, data[ii][31]*dropDataPoints);//MS
 
 			ctx.fillStyle=("black");
 			setTimeout(function() {
@@ -337,7 +337,7 @@ function carMovementAndPositionVisuals(data, start, stop, multiX, multiY, multiZ
 			int += dropDataPoints;
 			timer += 8;
 
-		}, 1000+data[ii][31]*dropDataPoints);//MS
+		}, data[ii][31]*dropDataPoints);//MS
 	}
 }//LOOP1
 /////////////////////////////////////////////////////////////////////////////
@@ -406,7 +406,7 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 					int += dropDataPoints;
 					timer += 8;	
 
-		}, 1000+data[ii][31]*dropDataPoints);
+		}, data[ii][31]*dropDataPoints);
 	}
 }//LOOP1
 /////////////////////////////////////////////////////////////////////////////
@@ -477,7 +477,7 @@ function steeringWheelModel(data, start, stop, multiX, multiY, multiZ, dropDataP
 				// ctx.beginPath(); ctx.lineTo(-295,-3); ctx.lineTo(295,-3); ctx.stroke(); ctx.closePath();
 				start += dropDataPoints;
 				int += dropDataPoints;
-		}, 1000+data[ii][31]*dropDataPoints);
+		}, data[ii][31]*dropDataPoints);
 	}
 }//LOOP2 NO TIMER
 /////////////////////////////////////////////////////////////////////////////
@@ -550,7 +550,7 @@ function orientation(data, start, stop, dropDataPoints) {
 				int += dropDataPoints;
 				// document.getElementById("orientation-in-degrees").innerHTML = 'Orientation: ' + data[start][29];
 				document.getElementById("heading").innerHTML = 'Direction: ' + direction;
-		}, 1000+data[ii][31]*dropDataPoints);
+		}, data[ii][31]*dropDataPoints);
 	}
 }//LOOP2 NO TIMER
 /////////////////////////////////////////////////////////////////////////////
