@@ -395,6 +395,10 @@ canvas {
    border: none;
 }
 
+/*#canvas-accelerometer-label{
+  width: 10%;
+}*/
+
 button{
   background: beige;
   potition: fixed;
