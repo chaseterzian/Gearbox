@@ -8,13 +8,13 @@ Currently in development: Gearbox is a car metrics application that allows you t
 
 3 - Double click on the 'Gearbox' Icon to start the app
 
-***Gathering your own data requires a download from the Google Play Store onto your Android handset. To skip this process for now, go to the instructions after the horizontal line below for information on how to see a demo.***
+***Gathering your own data requires a download from the Google Play Store onto your Android handset. To skip this process for now, go to the instructions after the horizontal line below, for information on how to see a demo.***
 
-4 - Download AndroSensor
+4 - Download AndroSensor (one time setup)
 
-5 - Go to settings and scroll down to Active Sensors.  Unckeck BATTERY STATUS, GPS 	   NMEA $GPGGA, and GPS NMEA*, click ok.
+5 - Go to settings and scroll down to Active Sensors.  Uncheck BATTERY STATUS, GPS NMEA $GPGGA, and GPS NMEA*, click ok.
 
-6 - set Distance Unit to imperial
+6 - Set Distance Unit to imperial
 
 7 - Set Location to n.n N/S - e.e W/E
 
@@ -24,7 +24,7 @@ Currently in development: Gearbox is a car metrics application that allows you t
 
 10 - Set File Format to CSV, and check the comma box
 
-11 - Select destination for the file to be saved
+11 - Select destination for the file to be saved (email handset etc.)
 
 12 - Exit settings
 
@@ -39,7 +39,7 @@ To see a quick demonstration of current functionality, press 'Demo All Data' on 
 
 OR
 
-The input fields in the middle of the screen are able to accept user defined parameters. Don't worry about leaving certain fields (or all) blank; they will automatically revert to the default settings. Feel free to move back and forth between the different rooms in the Testing Area without affecting the data flow.  At any time you may pause or reload the data stream. You can also click 'Show My Report' to see the data that is being logged that relates to your 'Report Trip' inputs. User CSV upload is currently under construction, but will be functional again shortly. See 'Instructions' located at the top right side of the 'Testing Area' for further information.
+The input fields in the middle of the screen are able to accept user defined parameters. Don't worry about leaving certain fields (or all) blank; they will automatically use the default settings. Feel free to move back and forth between the different rooms in the Testing Area without affecting the data flow.  At any time you may pause or reload the data stream. You can also click 'Show My Report' to see the data being logged that relates to your 'Report Trip' inputs. User CSV upload is currently under construction, but will be functional again shortly. See 'Instructions' located at the top right side of the 'Testing Area' for further information.
 
 Available Sensor Data:
 _____________________

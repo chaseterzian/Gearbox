@@ -9,6 +9,43 @@ $(document).ready(function() {
 		$('#run-program-button').hide();
 		$('instructionscontent').hide();
 
+		$('#instructions-button').hide();
+		$('#instructions-button').css('background-color', 'red');
+		setTimeout(function() {
+			$('#instructions-button').fadeIn(300);
+		}, 1000);
+		setTimeout(function() {
+			$('#instructions-button').fadeOut(1000);
+		}, 2000);
+		setTimeout(function() {
+			$('#instructions-button').fadeIn(300);
+		}, 3000);
+		setTimeout(function() {
+			$('#instructions-button').fadeOut(1000);
+		}, 4000);
+		setTimeout(function() {
+			$('#instructions-button').fadeIn(300);
+		}, 5000);
+		setTimeout(function() {
+			$('#instructions-button').fadeOut(1000);
+		}, 6000);
+		setTimeout(function() {
+			$('#instructions-button').css('background-color', 'black');
+			$('#instructions-button').fadeIn(2000);
+		}, 7000);
+
+		// setTimeout(function() {
+		// 	$('#instructions-button').css('background-color', 'red');
+		// }, 4000);
+		// setTimeout(function() {
+		// 	$('#instructions-button').css('background-color', 'black');
+		// }, 5000);
+		// setTimeout(function() {
+		// 	$('#instructions-button').css('background-color', 'red');
+		// }, 6000);
+		// setTimeout(function() {
+		// 	$('#instructions-button').css('background-color', 'black');
+		// }, 7000);
 	});
 	$('html').css('display', 'none');
 	$('html').fadeIn(2000);
@@ -159,6 +196,9 @@ $(document).ready(function() {
 	$('#instructions-button').on('click', function() {
 		$('datacontent').toggle('hide');
 		$('instructionscontent').toggle('show');
+	});
+	$('body').on('click', function() {
+		$('#instructions-button').css('background-color', 'black');	
 	});
 
 });
