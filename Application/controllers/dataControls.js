@@ -77,23 +77,23 @@ $(document).ready(function() {
 		setTimeout(function() { 
 			$('video').get(0).play()
 		}, 0);
-		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 40);
+		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 30);
 		// 0,1,2,3,4,5,6,10
-		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 40);
+		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 30);
 		// 0,1,2,3,4,5,6,7,8,9,10
 		orientation(dataDownFlagstaff1, 0, 18000, 1);
 		// 0,1,2,6
 		warningMessages(dataDownFlagstaff1, 0, 18000, 1, 2, 3, 11);
 		// 0,1,2,6,7,8,9
-		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 40);
+		carMovementAndPositionVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 30);
 		// 0,1,2,3,4,5,6,7,8,9,10
 		liveDataPrintOut(dataDownFlagstaff1, 0, 18000, 1, 1);
 		// 0,1,2,6,12
 		carMovementInWords(dataDownFlagstaff1, 0, 18000, 1, 2, 3, 11, 10);
 		// 0,1,2,6,7,8,9,11
-		reportContentAccelerometerVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 40);
+		reportContentAccelerometerVisuals(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 10);
 		// 0,1,2,3,4,5,6,7,8,9,10
-		movementXy1Point(dataDownFlagstaff1, 0, 18000, 60, 60, 1, 2, 3, 40);
+		movementXy1Point(dataDownFlagstaff1, 0, 18000, 60, 60, 1, 2, 3, 25);
 		//0,1,2,3,4,6,7,8,10
 	});
 	$('form').on('submit', function(e) {
