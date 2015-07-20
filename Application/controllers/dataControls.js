@@ -76,7 +76,7 @@ $(document).ready(function() {
 		$('video').toggle('show');
 		setTimeout(function() { 
 			$('video').get(0).play()
-		}, 1700);
+		}, 0);
 		steeringWheelModel(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 40);
 		// 0,1,2,3,4,5,6,10
 		carModelFromBack(dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 40);
@@ -98,7 +98,7 @@ $(document).ready(function() {
 	});
 	$('form').on('submit', function(e) {
 		e.preventDefault();
-		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 40, 10, 10];//
+		var parameterData = [dataDownFlagstaff1, 0, 18000, 60, 60, 2, 1, 2, 3, 11, 1, 1, 1];//
 		var fileContents = [];
 		$('#run-program-button').show();
 		$('#parameter-input-submit-button').css("background-color", "gray");
@@ -211,7 +211,7 @@ $(document).ready(function() {
 			$('video').toggle('show');
 			setTimeout(function() { 
 				$('video').get(0).play()
-			}, 600);
+			}, 0);
 		});
 	});
 	$('#report-button').on('click', function() {

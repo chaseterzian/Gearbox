@@ -366,7 +366,7 @@ function carModelFromBack(data, start, stop, multiX, multiY, multiZ, dropDataPoi
 			ctx.canvas.width  = window.innerWidth/2;
 			ctx.canvas.height = window.innerHeight/2+100;
 			ctx.scale(1,1);
-			ctx.translate(canvas.width/2, canvas.height/2);//DO PERCENTAGES FOR BALL
+			ctx.translate(canvas.width/2, canvas.height/2);
 			ctx.rotate(-dataStableX/10);
 
 			var pointsX = [-180,180,-195,-195,195,195,-195,-180,195,180,-195,-165,195,165,-165,-150,165,150,-150,150,
